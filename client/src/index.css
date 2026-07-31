@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* Colors */
+  --color-navy: #001b2a;
+  --color-navy-deep: #000f18;
+  --color-slate: #2a3a4d;
+  --color-gold: #d4af37;
+  --color-gold-light: #e9c766;
+  --color-cream: #f5f1e8;
+  --color-beige: #e8d9b5;
+  --color-brown: #8b7333;
+
+  /* Fonts */
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Raleway', sans-serif;
+
+  /* Shadows */
+  --shadow-gold-sm: 0 0 0 1px rgba(212, 175, 55, 0.35);
+  --shadow-card: 0 8px 24px -8px rgba(0, 15, 24, 0.45);
+
+  /* Radii kept minimal per heritage/blueprint aesthetic */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+    font-family: var(--font-body);
+    font-weight: 400;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(
+        ellipse at top left,
+        rgba(139, 115, 51, 0.08),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at bottom right,
+        rgba(139, 115, 51, 0.08),
+        transparent 55%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(139, 115, 51, 0.035) 0px,
+        rgba(139, 115, 51, 0.035) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.02em;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border: 2px solid var(--color-cream);
+  }
+}
+
+@layer utilities {
+  .bp-grid-bg {
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .navy-paper {
+    background-color: var(--color-navy);
+    background-image:
+      radial-gradient(
+        ellipse at 20% 0%,
+        rgba(212, 175, 55, 0.09),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at 100% 100%,
+        rgba(212, 175, 55, 0.07),
+        transparent 55%
+      );
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(120deg, #e9c766, #d4af37 45%, #8b7333);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    flex: 1 1 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  }
+}

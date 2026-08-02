@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Compass } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { Divider } from '@/components/ui/Divider';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { GearMotif } from '@/components/common/GearMotif';
 import { CompassMotif } from '@/components/common/CompassMotif';
 import { useParallax } from '@/hooks/useParallax';
+import logoImage from '@/assets/porikkalam-logo.png';
 
 export function Hero() {
   const templeRef = useParallax<HTMLDivElement>(-50);
@@ -54,30 +54,31 @@ export function Hero() {
           <Compass size={14} /> A Mega Inter-Collegiate Engineering Fest
         </motion.span>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-6 font-heading text-5xl font-bold leading-tight tracking-wide text-cream sm:text-6xl md:text-7xl"
-        >
-          PORIKKALAM
-          <span className="block text-gold-gradient">2026</span>
-        </motion.h1>
-
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
           className="mt-6 flex justify-center"
         >
-          <Divider />
+          <motion.img
+            src={logoImage}
+            alt="Porikkalam 2026"
+            loading="lazy"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{
+              scale: 1.02,
+              filter: 'drop-shadow(0 0 28px rgba(212,175,55,0.55))',
+            }}
+            className="h-auto w-[250px] drop-shadow-[0_0_16px_rgba(212,175,55,0.25)] sm:w-[350px] lg:w-[460px]"
+          />
         </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-6 max-w-xl font-body text-base uppercase tracking-[0.3em] text-beige sm:text-lg"
+          className="mx-auto mt-8 max-w-xl font-body text-base uppercase tracking-[0.3em] text-beige sm:text-lg"
         >
           Engineering Through The Ages
         </motion.p>
@@ -91,7 +92,7 @@ export function Hero() {
           <Button to="/events" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
             Explore Events
           </Button>
-          <Button to="/participate" variant="secondary" size="lg">
+          <Button to="/register" variant="secondary" size="lg">
             Register Now
           </Button>
         </motion.div>

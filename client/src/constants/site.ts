@@ -44,7 +44,7 @@ export const FOOTER_LINKS = {
     { label: 'Contact', path: '/contact' },
   ],
   participate: [
-    { label: 'Register', path: '/participate' },
+    { label: 'Register', path: '/register' },
     { label: 'Rules & Guidelines', path: '/events' },
     { label: 'FAQs', path: '/participate#faq' },
     { label: 'Downloads', path: '/participate' },

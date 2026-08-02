@@ -38,7 +38,11 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
             >
               <X size={20} />
             </button>
-            {title && <h3 className="font-heading text-2xl text-navy mb-4">{title}</h3>}
+            {title && (
+              <h3 className="mb-4 font-heading text-2xl font-semibold tracking-wide text-navy">
+                {title}
+              </h3>
+            )}
             {children}
           </motion.div>
         </motion.div>

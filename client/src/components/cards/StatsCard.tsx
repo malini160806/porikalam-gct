@@ -16,7 +16,7 @@ export function StatsCard({ stat }: StatsCardProps) {
       className="flex flex-col items-center gap-2 border border-gold/25 bg-navy px-6 py-8 text-center shadow-card"
     >
       <Icon size={28} className="text-gold" strokeWidth={1.5} />
-      <span className="font-heading text-3xl sm:text-4xl text-cream">
+      <span className="font-heading text-4xl font-bold tracking-wide text-cream sm:text-5xl">
         {value.toLocaleString()}
         {stat.suffix}
       </span>

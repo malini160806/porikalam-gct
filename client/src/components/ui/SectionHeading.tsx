@@ -33,9 +33,13 @@ export function SectionHeading({
           {eyebrow}
         </span>
       )}
-      <h2 className={`font-heading text-3xl sm:text-4xl font-semibold ${titleColor}`}>{title}</h2>
+      <h2 className={`font-heading text-4xl font-bold tracking-wide sm:text-5xl ${titleColor}`}>
+        {title}
+      </h2>
       <Divider />
-      {subtitle && <p className={`font-body text-sm sm:text-base ${subColor}`}>{subtitle}</p>}
+      {subtitle && (
+        <p className={`font-quote text-lg italic sm:text-xl ${subColor}`}>{subtitle}</p>
+      )}
     </motion.div>
   );
 }

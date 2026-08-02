@@ -1,15 +1,21 @@
 import { Button } from '@/components/ui/Button';
-import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { Divider } from '@/components/ui/Divider';
+import templeColor from '@/assets/heritage/temple-illustration-color.jpg';
 
 export default function NotFound() {
   return (
     <section className="flex min-h-[80vh] flex-col items-center justify-center gap-6 navy-paper px-4 py-24 text-center text-cream">
-      <TempleSilhouette className="h-32 w-32 text-gold/60" strokeWidth={1} />
-      <span className="font-heading text-6xl text-gold">404</span>
-      <h1 className="font-heading text-2xl text-cream">This Path Has Faded Into History</h1>
+      <img
+        src={templeColor}
+        alt="A weathered temple gopuram, faded like this page"
+        className="h-40 w-auto border border-gold/30 opacity-90 shadow-card"
+      />
+      <span className="font-heading text-7xl font-extrabold tracking-wide text-gold">404</span>
+      <h1 className="font-heading text-3xl font-bold uppercase tracking-wide text-cream sm:text-4xl">
+        This Path Has Faded Into History
+      </h1>
       <Divider />
-      <p className="max-w-sm font-body text-sm text-beige/80">
+      <p className="font-quote max-w-sm text-lg italic text-beige/85">
         The page you're looking for doesn't exist or has been moved.
       </p>
       <Button to="/" variant="primary">

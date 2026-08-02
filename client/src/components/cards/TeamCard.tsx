@@ -19,7 +19,7 @@ export function TeamCard({ member, index = 0 }: TeamCardProps) {
       <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold bg-navy font-heading text-xl text-gold">
         {member.initials}
       </div>
-      <h4 className="font-heading text-base text-navy">{member.name}</h4>
+      <h4 className="font-heading text-lg font-semibold tracking-wide text-navy">{member.name}</h4>
       <p className="font-body text-xs font-semibold uppercase tracking-wider text-brown">{member.role}</p>
     </motion.div>
   );

@@ -1,20 +1,22 @@
-export type EventCategory =
-  | 'technical'
-  | 'non-technical'
-  | 'workshop'
-  | 'exhibition';
+export type EventCategory = 'technical' | 'non-technical' | 'workshop';
+
+export type EventFormat = 'team' | 'individual';
+
+export type EventFormatMode = 'competition' | 'participation';
 
 export type EventItem = {
   id: string;
   title: string;
   category: EventCategory;
-  tagline: string;
+  /** 'Open to All Departments' or a comma-separated list of specific departments. */
+  department: string;
   description: string;
-  icon: string;
+  format: EventFormat;
+  formatMode: EventFormatMode;
+  prequalifierRequired: boolean;
+  duration: string;
   venue: string;
-  date: string;
-  teamSize: string;
-  prize: string;
+  icon: string;
   tags: string[];
 };
 

@@ -12,9 +12,14 @@ export default function Events() {
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
     return events.filter((event) => {
       const matchesFilter = filter === 'all' || event.category === filter;
-      const matchesQuery = event.title.toLowerCase().includes(query.toLowerCase());
+      const matchesQuery =
+        !normalizedQuery ||
+        [event.title, event.department, event.category, event.description].some((field) =>
+          field.toLowerCase().includes(normalizedQuery),
+        );
       return matchesFilter && matchesQuery;
     });
   }, [filter, query]);

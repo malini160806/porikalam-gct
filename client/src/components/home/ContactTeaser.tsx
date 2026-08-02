@@ -20,11 +20,11 @@ export function ContactTeaser() {
         <span className="font-body text-xs font-bold uppercase tracking-[0.3em] text-brown">
           Get In Touch
         </span>
-        <h2 className="font-heading text-3xl font-semibold text-navy sm:text-4xl">
+        <h2 className="font-heading text-4xl font-bold tracking-wide text-navy sm:text-5xl">
           Have Questions About Porikkalam 2026?
         </h2>
         <Divider />
-        <p className="font-body text-base text-slate">
+        <p className="font-quote text-lg italic text-slate sm:text-xl">
           Our team is ready to help with registrations, sponsorships, and everything in between.
         </p>
         <Button to="/contact" variant="primary" size="lg" icon={<ArrowRight size={16} />}>

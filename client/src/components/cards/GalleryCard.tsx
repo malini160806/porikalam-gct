@@ -33,7 +33,7 @@ export function GalleryCard({ image, index = 0, onClick }: GalleryCardProps) {
           <p className="font-body text-[10px] font-semibold uppercase tracking-widest text-gold">
             {image.category}
           </p>
-          <h4 className="font-heading text-sm text-cream">{image.title}</h4>
+          <h4 className="font-heading text-base font-semibold tracking-wide text-cream">{image.title}</h4>
         </div>
         <Expand
           size={16}

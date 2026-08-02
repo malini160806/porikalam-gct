@@ -34,7 +34,7 @@ export function AboutSection() {
             title="Rooted In Heritage, Driven By Innovation"
             align="left"
           />
-          <p className="font-body text-base leading-relaxed text-slate">
+          <p className="font-quote text-xl italic leading-relaxed text-slate">
             Porikkalam celebrates where tradition meets impact — blending the discipline of
             classical craftsmanship with the precision of modern engineering. Across three days,
             students converge to compete, create, and collaborate through creativity, technology,

@@ -1,7 +1,7 @@
 import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes, type SelectHTMLAttributes } from 'react';
 
 const fieldBase =
-  'w-full bg-cream/60 border border-navy/25 text-navy placeholder:text-slate/60 font-body text-sm px-4 py-3 outline-none transition-colors duration-150 focus:border-gold focus:ring-1 focus:ring-gold disabled:opacity-50 disabled:cursor-not-allowed';
+  'w-full bg-cream/60 border border-navy/25 text-navy placeholder:text-slate/60 font-body text-sm px-4 py-3 outline-none transition-all duration-200 focus:border-gold focus:ring-1 focus:ring-gold focus:shadow-[0_0_12px_0_rgba(212,175,55,0.35)] disabled:opacity-50 disabled:cursor-not-allowed';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;

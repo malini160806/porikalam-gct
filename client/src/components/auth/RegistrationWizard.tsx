@@ -441,7 +441,9 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
           {currentStep === 3 && (
             <div className="flex flex-col gap-6">
               <div className="flex items-center justify-between">
-                <h3 className="font-heading text-lg text-navy">Personal Information</h3>
+                <h3 className="font-heading text-xl font-semibold tracking-wide text-navy">
+                  Personal Information
+                </h3>
                 <button
                   type="button"
                   onClick={() => setCurrentStep(1)}
@@ -462,7 +464,7 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
               </dl>
 
               <div className="flex items-center justify-between">
-                <h3 className="font-heading text-lg text-navy">Account Setup</h3>
+                <h3 className="font-heading text-xl font-semibold tracking-wide text-navy">Account Setup</h3>
                 <button
                   type="button"
                   onClick={() => setCurrentStep(2)}

@@ -19,10 +19,10 @@ export function Timeline({ steps }: TimelineProps) {
             transition={{ duration: 0.5, delay: index * 0.12 }}
             className="relative flex flex-col items-center text-center gap-3"
           >
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold bg-navy font-heading text-gold">
+            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold bg-navy font-heading font-bold text-gold">
               {index + 1}
             </div>
-            <h4 className="font-heading text-sm sm:text-base uppercase tracking-wider text-navy">
+            <h4 className="font-heading text-base font-semibold uppercase tracking-wider text-navy sm:text-lg">
               {step.label}
             </h4>
             <span className="font-body text-xs font-semibold text-brown">{step.date}</span>

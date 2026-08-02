@@ -1,6 +1,7 @@
 import { Mail } from 'lucide-react';
 import { FaInstagram, FaLinkedinIn, FaYoutube, FaDiscord } from 'react-icons/fa';
 import type { ComponentType } from 'react';
+import { motion } from 'framer-motion';
 import { SOCIAL_LINKS } from '@/constants/site';
 
 const ICONS: Record<string, ComponentType<{ size?: number }>> = {
@@ -24,16 +25,18 @@ export function SocialIcons({ className = '', tone = 'dark' }: SocialIconsProps)
       {SOCIAL_LINKS.map((social) => {
         const Icon = ICONS[social.icon];
         return (
-          <a
+          <motion.a
             key={social.label}
             href={social.href}
             target="_blank"
             rel="noreferrer"
             aria-label={social.label}
+            whileHover={{ scale: 1.15, y: -2 }}
+            whileTap={{ scale: 0.95 }}
             className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-150 ${ring}`}
           >
             <Icon size={15} />
-          </a>
+          </motion.a>
         );
       })}
     </div>

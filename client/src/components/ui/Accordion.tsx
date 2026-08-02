@@ -32,7 +32,9 @@ export function Accordion({ items, className = '', tone = 'light' }: AccordionPr
               className="flex w-full items-center justify-between gap-4 py-5 text-left"
               aria-expanded={isOpen}
             >
-              <span className={`font-heading text-base sm:text-lg ${questionColor}`}>{item.question}</span>
+              <span className={`font-heading text-lg font-semibold tracking-wide sm:text-xl ${questionColor}`}>
+                {item.question}
+              </span>
               <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
                 <ChevronDown size={18} className="text-gold shrink-0" />
               </motion.span>
@@ -46,7 +48,9 @@ export function Accordion({ items, className = '', tone = 'light' }: AccordionPr
                   transition={{ duration: 0.25, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                  <p className={`pb-5 font-body text-sm leading-relaxed ${answerColor}`}>{item.answer}</p>
+                  <p className={`font-quote pb-5 text-lg italic leading-relaxed ${answerColor}`}>
+                    {item.answer}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -50,7 +50,9 @@ export default function Gallery() {
               className="flex h-56 items-center justify-center border border-gold/20 bp-grid-bg"
               style={{ backgroundColor: active.color }}
             >
-              <span className="font-heading text-cream/70">{active.title}</span>
+              <span className="font-heading text-xl font-semibold tracking-wide text-cream/70">
+                {active.title}
+              </span>
             </div>
             <p className="font-body text-sm text-slate">Category: {active.category}</p>
           </div>

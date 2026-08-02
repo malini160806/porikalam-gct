@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Copy, Download, PartyPopper } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { SITE } from '@/constants/site';
 
 interface RegistrationSuccessProps {
@@ -55,8 +56,11 @@ export function RegistrationSuccess({ username, fullName, onContinue }: Registra
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4 }}
-      className="mx-auto flex w-full max-w-lg flex-col items-center gap-6 border border-gold/30 bg-white/50 p-10 text-center"
+      className="relative mx-auto flex w-full max-w-lg flex-col items-center gap-6 overflow-hidden border border-gold/30 bg-white/50 p-10 text-center"
     >
+      <CornerOrnament corner="top-left" />
+      <CornerOrnament corner="bottom-right" />
+
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -67,8 +71,10 @@ export function RegistrationSuccess({ username, fullName, onContinue }: Registra
       </motion.div>
 
       <div>
-        <h2 className="font-heading text-2xl text-navy">Registration Successful!</h2>
-        <p className="mt-2 font-body text-sm text-slate">
+        <h2 className="font-heading text-3xl font-bold tracking-wide text-navy">
+          Registration Successful!
+        </h2>
+        <p className="font-quote mt-2 text-lg italic text-slate">
           Welcome to {SITE.name} {SITE.year}, {fullName}.
         </p>
       </div>

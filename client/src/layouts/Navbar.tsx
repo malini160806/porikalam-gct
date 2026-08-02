@@ -55,8 +55,14 @@ export function Navbar() {
         scrolled ? 'bg-navy/90 backdrop-blur-md shadow-card' : 'bg-navy'
       } border-b border-gold/20`}
     >
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-3 sm:px-8 lg:px-10">
-        <Logo />
+      <div
+        className={`mx-auto flex max-w-7xl items-center gap-4 px-6 transition-all duration-300 sm:px-8 lg:px-10 ${
+          scrolled ? 'py-2' : 'py-3'
+        }`}
+      >
+        <motion.div animate={{ scale: scrolled ? 0.92 : 1 }} transition={{ duration: 0.3 }} className="origin-left">
+          <Logo />
+        </motion.div>
 
         <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
@@ -121,7 +127,7 @@ export function Navbar() {
                     end={link.path === '/'}
                     onClick={() => setMobileOpen(false)}
                     className={({ isActive }) =>
-                      `font-heading text-xl tracking-wide ${isActive ? 'text-gold' : 'text-cream/90'}`
+                      `font-body text-lg font-semibold uppercase tracking-wide ${isActive ? 'text-gold' : 'text-cream/90'}`
                     }
                   >
                     {link.label}
@@ -132,7 +138,9 @@ export function Navbar() {
                 <NavLink
                   to="/login"
                   onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) => `font-heading text-xl tracking-wide ${isActive ? 'text-gold' : 'text-cream/90'}`}
+                  className={({ isActive }) =>
+                    `font-body text-lg font-semibold uppercase tracking-wide ${isActive ? 'text-gold' : 'text-cream/90'}`
+                  }
                 >
                   Login
                 </NavLink>

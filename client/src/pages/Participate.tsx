@@ -4,6 +4,7 @@ import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { Accordion } from '@/components/ui/Accordion';
+import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { faqs } from '@/data/faq';
 
 export default function Participate() {
@@ -23,10 +24,14 @@ export default function Participate() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5 }}
-            className="mt-12 flex flex-col items-center gap-5 border border-gold/30 bg-white/40 p-12 text-center"
+            className="relative mt-12 flex flex-col items-center gap-5 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
           >
+            <CornerOrnament corner="top-left" />
+            <CornerOrnament corner="bottom-right" />
             <UserPlus size={36} className="text-brown" />
-            <h3 className="font-heading text-xl text-navy">Create Your Participant Profile</h3>
+            <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
+              Create Your Participant Profile
+            </h3>
             <p className="max-w-md font-body text-sm text-slate">
               Register once to get your participant username, then sign in anytime to register for
               events, make payments, and download your QR pass and certificates — no re-entering

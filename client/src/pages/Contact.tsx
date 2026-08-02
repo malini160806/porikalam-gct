@@ -6,6 +6,7 @@ import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { CompassMotif } from '@/components/common/CompassMotif';
 import { SITE } from '@/constants/site';
+import templeInkwash from '@/assets/heritage/temple-inkwash.jpg';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,7 +32,12 @@ export default function Contact() {
 
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
           <div className="flex flex-col gap-6 border border-navy/15 bg-navy p-8 text-cream lg:col-span-2">
-            <h3 className="font-heading text-2xl text-gold">Get In Touch</h3>
+            <img
+              src={templeInkwash}
+              alt="Ink-wash illustration of a temple gopuram"
+              className="w-full border border-gold/20"
+            />
+            <h3 className="font-heading text-3xl font-semibold tracking-wide text-gold">Get In Touch</h3>
             <p className="font-body text-sm text-beige/80 leading-relaxed">
               Reach out for registrations, sponsorships, media queries, or anything else about
               Porikkalam 2026.
@@ -58,7 +64,7 @@ export default function Contact() {
                 className="flex h-full flex-col items-center justify-center gap-4 border border-gold/30 bg-cream p-12 text-center"
               >
                 <CheckCircle2 size={40} className="text-brown" />
-                <h3 className="font-heading text-xl text-navy">Message Sent</h3>
+                <h3 className="font-heading text-2xl font-semibold tracking-wide text-navy">Message Sent</h3>
                 <p className="max-w-sm font-body text-sm text-slate">
                   Thank you for reaching out. This is a mock form — no data was actually sent. Our
                   team will be in touch soon once the backend is live.
@@ -91,6 +97,26 @@ export default function Contact() {
                 </Button>
               </form>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center gap-3 text-center">
+            <span className="font-body text-xs font-bold uppercase tracking-[0.3em] text-brown">
+              Locate Us
+            </span>
+            <h3 className="font-heading text-3xl font-semibold tracking-wide text-cream">Find Us</h3>
+          </div>
+          <div className="mt-10 border border-gold/30 bg-navy p-2 shadow-card">
+            <iframe
+              title="Government College of Technology, Coimbatore — location map"
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(`${SITE.college}, ${SITE.location}`)}&z=15&output=embed`}
+              className="h-80 w-full grayscale-[35%] sm:h-96"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>

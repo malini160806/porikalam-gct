@@ -3,8 +3,10 @@ import { Landmark, Sparkles, Users, Target } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TeamCard } from '@/components/cards/TeamCard';
-import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { team } from '@/data/team';
+import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.png';
+import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.jpg';
+import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.jpg';
 
 const values = [
   {
@@ -52,13 +54,13 @@ export default function About() {
             className="order-2 flex flex-col gap-6 lg:order-1"
           >
             <SectionHeading eyebrow="Our Story" title="Engineering Through The Ages" align="left" />
-            <p className="font-body text-base leading-relaxed text-slate">
+            <p className="font-quote text-xl italic leading-relaxed text-slate">
               Porikkalam began as a small gathering of engineering enthusiasts determined to
               celebrate craftsmanship — both ancient and modern. Named after the traditional
               threshing floor where grain was separated from chaff, Porikkalam represents the
               refining process innovation goes through before it becomes impact.
             </p>
-            <p className="font-body text-base leading-relaxed text-slate">
+            <p className="font-quote text-xl italic leading-relaxed text-slate">
               Today, it stands as a mega inter-collegiate symposium hosted by the Government
               College of Technology, Coimbatore — bringing together thousands of students for
               three days of competition, learning, and celebration.
@@ -71,7 +73,11 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="order-1 flex items-center justify-center lg:order-2"
           >
-            <TempleSilhouette className="h-64 w-64 text-navy sm:h-80 sm:w-80" strokeWidth={1.1} />
+            <img
+              src={templeGopuram}
+              alt="Detailed sketch of a South Indian temple gopuram"
+              className="w-full max-w-sm border border-gold/30 shadow-card sm:max-w-md"
+            />
           </motion.div>
         </div>
       </section>
@@ -91,7 +97,7 @@ export default function About() {
                 className="flex flex-col items-center gap-3 border border-gold/25 bg-navy/60 p-6 text-center"
               >
                 <value.icon size={26} className="text-gold" strokeWidth={1.5} />
-                <h3 className="font-heading text-base text-cream">{value.title}</h3>
+                <h3 className="font-heading text-lg font-semibold tracking-wide text-cream">{value.title}</h3>
                 <p className="font-body text-sm text-beige/75">{value.description}</p>
               </motion.div>
             ))}
@@ -99,13 +105,25 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-cream py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-cream py-24">
+        <img
+          src={mandalaBrown1}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-12 top-8 hidden h-40 w-40 rounded-full opacity-40 lg:block"
+        />
+        <img
+          src={mandalaBrown2}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-12 top-8 hidden h-40 w-40 rounded-full opacity-40 lg:block"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Meet The Team" title="Faculty & Organizers" />
 
           <div className="mt-14 flex flex-col gap-14">
             <div>
-              <h3 className="mb-6 text-center font-heading text-sm uppercase tracking-widest text-brown">
+              <h3 className="mb-6 text-center font-heading text-sm font-semibold uppercase tracking-widest text-brown">
                 Faculty Advisors
               </h3>
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-2 mx-auto max-w-xl">
@@ -116,7 +134,7 @@ export default function About() {
             </div>
 
             <div>
-              <h3 className="mb-6 text-center font-heading text-sm uppercase tracking-widest text-brown">
+              <h3 className="mb-6 text-center font-heading text-sm font-semibold uppercase tracking-widest text-brown">
                 Core Team
               </h3>
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
@@ -127,7 +145,7 @@ export default function About() {
             </div>
 
             <div>
-              <h3 className="mb-6 text-center font-heading text-sm uppercase tracking-widest text-brown">
+              <h3 className="mb-6 text-center font-heading text-sm font-semibold uppercase tracking-widest text-brown">
                 Organizing Committee
               </h3>
               <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">

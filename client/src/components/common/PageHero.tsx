@@ -21,12 +21,14 @@ export function PageHero({ title, subtitle }: PageHeroProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-heading text-4xl font-semibold sm:text-5xl"
+          className="text-gold-gradient heritage-heading-shadow font-heading text-4xl font-extrabold uppercase tracking-wide sm:text-5xl lg:text-7xl"
         >
           {title}
         </motion.h1>
         <Divider />
-        {subtitle && <p className="font-body text-sm text-beige/85 sm:text-base">{subtitle}</p>}
+        {subtitle && (
+          <p className="font-quote text-lg italic text-beige/90 sm:text-xl">{subtitle}</p>
+        )}
       </div>
     </section>
   );

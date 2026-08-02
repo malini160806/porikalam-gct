@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { FloatingIcon } from '@/components/common/FloatingIcon';
+import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { Tabs } from '@/components/ui/Tabs';
 import aiChipIcon from '@/assets/motifs/ai-chip.png';
 import { Input } from '@/components/ui/Input';
@@ -57,7 +58,7 @@ function PlaceholderPanel({ icon: Icon, label }: { icon: typeof UserIcon; label:
       className="flex flex-col items-center gap-3 border border-navy/15 bg-white/40 px-8 py-16 text-center"
     >
       <Icon size={28} className="text-gold" />
-      <p className="font-heading text-lg text-navy">{label}</p>
+      <p className="font-heading text-xl font-semibold tracking-wide text-navy">{label}</p>
       <p className="max-w-sm font-body text-sm text-slate">
         Available once event registration opens. Check back soon.
       </p>
@@ -111,7 +112,7 @@ function ProfilePanel({ user, onUpdated }: { user: AuthUser; onUpdated: (user: A
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h3 className="font-heading text-lg text-navy">Profile Details</h3>
+        <h3 className="font-heading text-xl font-semibold tracking-wide text-navy">Profile Details</h3>
         <p className="mt-1 font-body text-xs text-slate/70">
           Your name, email, and academic details were set once during registration and can only be changed by an
           administrator.
@@ -129,7 +130,7 @@ function ProfilePanel({ user, onUpdated }: { user: AuthUser; onUpdated: (user: A
       </div>
 
       <form onSubmit={handleSave} className="flex flex-col gap-5 border border-navy/15 bg-white/40 p-6">
-        <h3 className="font-heading text-lg text-navy">Editable Details</h3>
+        <h3 className="font-heading text-xl font-semibold tracking-wide text-navy">Editable Details</h3>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <Input label="Mobile Number" type="tel" value={phone} onChange={(e) => setPhone(e.target.value.replace(/[^\d]/g, ''))} />
           <Input label="City" value={city} onChange={(e) => setCity(e.target.value)} />
@@ -170,12 +171,13 @@ export default function Dashboard() {
       <section className="relative overflow-hidden bg-cream py-16">
         <FloatingIcon src={aiChipIcon} className="absolute -right-4 top-4 h-28 w-28" duration={50} />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 border border-navy/10 bg-white/40 p-5">
+          <div className="relative flex flex-wrap items-center justify-between gap-4 overflow-hidden border border-navy/10 bg-white/40 p-5">
+            <CornerOrnament corner="top-left" variant="floral" className="opacity-30" />
             <div>
               <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
                 Participant Username
               </p>
-              <p className="font-heading text-xl text-navy">{currentUser.username}</p>
+              <p className="font-heading text-2xl font-bold tracking-wide text-navy">{currentUser.username}</p>
             </div>
             <div className="flex items-center gap-3">
               {isAdmin && <span className="font-body text-xs font-semibold uppercase tracking-wide text-brown">Admin</span>}

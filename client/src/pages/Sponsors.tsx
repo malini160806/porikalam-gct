@@ -6,7 +6,7 @@ import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { sponsors, SPONSOR_TIER_LABELS } from '@/data/sponsors';
 import type { Sponsor } from '@/data/types';
 
-const tierOrder: Sponsor['tier'][] = ['title', 'platinum', 'gold', 'silver', 'partner'];
+const tierOrder: Sponsor['tier'][] = ['title', 'platinum', 'gold', 'silver', 'bronze', 'partner'];
 
 export default function Sponsors() {
   return (

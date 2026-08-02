@@ -2,11 +2,16 @@ import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import { TeamCard } from '@/components/cards/TeamCard';
 import { CompassMotif } from '@/components/common/CompassMotif';
 import { SITE } from '@/constants/site';
+import { team } from '@/data/team';
 import templeInkwash from '@/assets/heritage/temple-inkwash.jpg';
+
+const coordinators = team.filter((m) => m.team === 'faculty' || m.team === 'core');
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -97,6 +102,17 @@ export default function Contact() {
                 </Button>
               </form>
             )}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Reach Out Directly" title="Faculty & Student Coordinators" />
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+            {coordinators.map((member, index) => (
+              <TeamCard key={member.id} member={member} index={index} />
+            ))}
           </div>
         </div>
       </section>

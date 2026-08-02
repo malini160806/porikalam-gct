@@ -21,7 +21,7 @@ export function Footer() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-6">
           <div className="flex flex-col gap-4 lg:col-span-2">
             <Logo />
             <p className="font-quote max-w-xs text-base italic leading-relaxed text-beige/80">
@@ -31,8 +31,9 @@ export function Footer() {
           </div>
 
           <FooterColumn title="Quick Links" links={FOOTER_LINKS.quickLinks} />
-          <FooterColumn title="Participate" links={FOOTER_LINKS.participate} />
-          <FooterColumn title="Resources" links={FOOTER_LINKS.resources} />
+          <FooterColumn title="Events" links={FOOTER_LINKS.events} />
+          <FooterColumn title="Community" links={FOOTER_LINKS.community} />
+          <FooterColumn title="Support" links={FOOTER_LINKS.support} />
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 border-t border-gold/20 pt-10 sm:grid-cols-2">

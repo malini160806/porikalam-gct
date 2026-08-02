@@ -1,11 +1,15 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ShieldCheck } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { Tabs } from '@/components/ui/Tabs';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { EventCard } from '@/components/cards/EventCard';
 import { events, EVENT_FILTERS } from '@/data/events';
 import type { EventItem } from '@/data/types';
+import { SITE } from '@/constants/site';
+
+const hasPrequalifierEvents = events.some((event) => event.prequalifierRequired);
 
 export default function Events() {
   const [filter, setFilter] = useState<'all' | EventItem['category']>('all');
@@ -33,6 +37,18 @@ export default function Events() {
 
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {hasPrequalifierEvents && (
+            <div className="mx-auto mb-12 flex max-w-3xl items-start gap-3 border border-gold/40 bg-navy/5 p-5">
+              <ShieldCheck size={20} className="mt-0.5 shrink-0 text-brown" />
+              <p className="font-body text-sm text-navy">
+                Events marked <span className="font-semibold text-brown">Prequalifier Required</span> run an
+                online round in <span className="font-semibold text-brown">{SITE.prequalifierWindow}</span> —
+                every registrant competes, and only the participants who qualify go on to compete in person
+                at the 2-day mega event on campus.
+              </p>
+            </div>
+          )}
+
           <div className="flex flex-col items-center gap-6">
             <Tabs options={EVENT_FILTERS} value={filter} onChange={setFilter} />
             <SearchBar

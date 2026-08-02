@@ -5,6 +5,7 @@ import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { GearMotif } from '@/components/common/GearMotif';
 import { CompassMotif } from '@/components/common/CompassMotif';
 import { useParallax } from '@/hooks/useParallax';
+import { Countdown } from '@/components/home/Countdown';
 import logoImage from '@/assets/porikkalam-logo.png';
 
 export function Hero() {
@@ -83,10 +84,12 @@ export function Hero() {
           Engineering Through The Ages
         </motion.p>
 
+        <Countdown />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.55 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Button to="/events" variant="primary" size="lg" icon={<ArrowRight size={16} />}>

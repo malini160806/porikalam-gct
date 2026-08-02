@@ -279,6 +279,7 @@ export const events: EventItem[] = [
     venue: 'Seminar hall',
     icon: 'brain-circuit',
     tags: ['Open to All'],
+    prerequisites: 'A laptop and a basic understanding of AI concepts is recommended, but not required.',
   },
 ];
 

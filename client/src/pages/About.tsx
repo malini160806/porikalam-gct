@@ -1,12 +1,22 @@
 import { motion } from 'framer-motion';
-import { Landmark, Sparkles, Users, Target } from 'lucide-react';
+import { Landmark, Sparkles, Users, Target, Compass, Rocket } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TeamCard } from '@/components/cards/TeamCard';
+import { Timeline } from '@/components/ui/Timeline';
+import { Button } from '@/components/ui/Button';
 import { team } from '@/data/team';
+import type { TimelineStep } from '@/data/types';
 import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.png';
 import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.jpg';
 import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.jpg';
+
+const porikkalamTimeline: TimelineStep[] = [
+  { id: 'pt1', label: 'The Idea', date: 'Origins', description: 'A small gathering of engineering enthusiasts at GCT Coimbatore.' },
+  { id: 'pt2', label: 'Growing Together', date: 'Early Editions', description: 'Departments across campus joined in, expanding the event scope.' },
+  { id: 'pt3', label: 'Regional Recognition', date: 'Recent Editions', description: 'Participation grew to colleges across the region.' },
+  { id: 'pt4', label: 'Porikkalam 2026', date: '25–26 Sept 2026', description: '18 events across technical, non-technical, and workshop tracks.' },
+];
 
 const values = [
   {
@@ -31,10 +41,23 @@ const values = [
   },
 ];
 
+const missionValues = [
+  {
+    icon: Compass,
+    title: 'Our Vision',
+    description:
+      'To be the definitive platform where engineering students across the region test ideas, build skill, and find community.',
+  },
+  {
+    icon: Rocket,
+    title: 'Our Mission',
+    description:
+      'To create a rigorous, well-run symposium that rewards genuine craftsmanship — technical and creative — over spectacle.',
+  },
+];
+
 export default function About() {
-  const faculty = team.filter((m) => m.team === 'faculty');
-  const core = team.filter((m) => m.team === 'core');
-  const organizing = team.filter((m) => m.team === 'organizing');
+  const highlightTeam = team.filter((m) => m.team === 'faculty' || m.team === 'core').slice(0, 6);
 
   return (
     <>
@@ -82,6 +105,28 @@ export default function About() {
         </div>
       </section>
 
+      <section className="bg-cream py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Purpose" title="Vision & Mission" />
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {missionValues.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.45, delay: index * 0.1 }}
+                className="flex flex-col gap-3 border border-navy/15 bg-white/40 p-8"
+              >
+                <item.icon size={28} className="text-gold" strokeWidth={1.5} />
+                <h3 className="font-heading text-xl font-semibold tracking-wide text-navy">{item.title}</h3>
+                <p className="font-body text-sm text-slate leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="relative bg-navy py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-25" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -105,6 +150,36 @@ export default function About() {
         </div>
       </section>
 
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Our Home"
+            title="Government College of Technology"
+            subtitle="A century-plus legacy of technical education in Coimbatore, and the host institution behind Porikkalam."
+          />
+          <p className="mt-8 font-body text-sm leading-relaxed text-slate">
+            Government College of Technology, Coimbatore has trained generations of engineers across
+            Civil, Mechanical, Electrical, Electronics, and Computer disciplines. Porikkalam channels
+            that same institutional depth into three days of student-run competition and craft — a
+            symposium built by the college's own students, for students everywhere.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-navy py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Milestones" title="Timeline of Porikkalam" tone="dark" />
+          <div className="mt-16">
+            <Timeline steps={porikkalamTimeline} tone="dark" />
+          </div>
+          <div className="mt-14 flex justify-center">
+            <Button to="/legacy" variant="outline">
+              Explore Previous Editions
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden bg-cream py-24">
         <img
           src={mandalaBrown1}
@@ -121,39 +196,16 @@ export default function About() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Meet The Team" title="Faculty & Organizers" />
 
-          <div className="mt-14 flex flex-col gap-14">
-            <div>
-              <h3 className="mb-6 text-center font-heading text-sm font-semibold uppercase tracking-widest text-brown">
-                Faculty Advisors
-              </h3>
-              <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-2 mx-auto max-w-xl">
-                {faculty.map((member, index) => (
-                  <TeamCard key={member.id} member={member} index={index} />
-                ))}
-              </div>
-            </div>
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+            {highlightTeam.map((member, index) => (
+              <TeamCard key={member.id} member={member} index={index} />
+            ))}
+          </div>
 
-            <div>
-              <h3 className="mb-6 text-center font-heading text-sm font-semibold uppercase tracking-widest text-brown">
-                Core Team
-              </h3>
-              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
-                {core.map((member, index) => (
-                  <TeamCard key={member.id} member={member} index={index} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="mb-6 text-center font-heading text-sm font-semibold uppercase tracking-widest text-brown">
-                Organizing Committee
-              </h3>
-              <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-                {organizing.map((member, index) => (
-                  <TeamCard key={member.id} member={member} index={index} />
-                ))}
-              </div>
-            </div>
+          <div className="mt-12 flex justify-center">
+            <Button to="/team" variant="outline">
+              Meet The Full Team
+            </Button>
           </div>
         </div>
       </section>

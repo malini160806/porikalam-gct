@@ -1,9 +1,11 @@
 import { useState, type ChangeEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { z } from 'zod';
-import { ArrowLeft, ArrowRight, Camera, Eye, EyeOff, Loader2, Pencil } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Camera, Eye, EyeOff, Loader2, Pencil, UserPlus } from 'lucide-react';
 import { Input, Select } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import { Divider } from '@/components/ui/Divider';
+import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { WizardStepper, type WizardStep } from './WizardStepper';
 import { PasswordStrengthMeter } from './PasswordStrengthMeter';
 import { PasswordRequirements, getPasswordChecks } from './PasswordRequirements';
@@ -213,7 +215,21 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
   const isPasswordValid = Object.values(passwordChecks).every(Boolean);
 
   return (
-    <div className="mx-auto w-full max-w-2xl border border-navy/15 bg-white/40 p-6 sm:p-10">
+    <div className="relative mx-auto w-full max-w-2xl overflow-hidden border border-gold/30 bg-white/50 p-6 shadow-card sm:p-10">
+      <CornerOrnament corner="top-left" />
+      <CornerOrnament corner="bottom-right" />
+
+      <div className="relative mb-8 flex flex-col items-center gap-2 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 text-brown">
+          <UserPlus size={24} strokeWidth={1.5} />
+        </div>
+        <h2 className="font-heading text-2xl font-semibold tracking-wide text-navy">Create Your Profile</h2>
+        <p className="max-w-sm font-body text-sm text-slate">
+          Register once — use your participant username to sign in and join every event.
+        </p>
+        <Divider className="mt-1" />
+      </div>
+
       <WizardStepper currentStep={currentStep} />
 
       <AnimatePresence mode="wait">

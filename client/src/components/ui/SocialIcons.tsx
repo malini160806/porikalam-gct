@@ -1,5 +1,6 @@
 import { Mail } from 'lucide-react';
-import { FaInstagram, FaLinkedinIn, FaYoutube, FaDiscord } from 'react-icons/fa';
+import { FaInstagram, FaLinkedinIn, FaWhatsapp, FaFacebookF } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import type { ComponentType } from 'react';
 import { motion } from 'framer-motion';
 import { SOCIAL_LINKS } from '@/constants/site';
@@ -7,8 +8,9 @@ import { SOCIAL_LINKS } from '@/constants/site';
 const ICONS: Record<string, ComponentType<{ size?: number }>> = {
   instagram: FaInstagram,
   linkedin: FaLinkedinIn,
-  youtube: FaYoutube,
-  discord: FaDiscord,
+  x: FaXTwitter,
+  whatsapp: FaWhatsapp,
+  facebook: FaFacebookF,
   mail: Mail,
 };
 

@@ -14,10 +14,11 @@ export default function Register() {
   return (
     <>
       <PageHero
-        title="Create Your Profile"
-        subtitle="Register once — use your participant username to sign in and join every event."
+        title="Join Porikkalam 2026"
+        subtitle="One profile, one username — your pass to every event on campus."
       />
       <section className="relative overflow-hidden bg-cream py-20">
+        <div className="absolute inset-0 bp-grid-bg opacity-30" />
         <FloatingIcon src={gearIcon} className="absolute -left-8 top-10 h-40 w-40" duration={38} />
         <FloatingIcon
           src={roboticArmIcon}

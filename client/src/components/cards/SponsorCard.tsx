@@ -14,6 +14,7 @@ export function SponsorCard({ sponsor, index = 0 }: SponsorCardProps) {
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       whileHover={{ y: -4, borderColor: '#d4af37' }}
+      title={sponsor.description}
       className="flex aspect-[3/2] flex-col items-center justify-center gap-2 border border-navy/20 bg-cream/70 px-4 text-center transition-colors"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-brown/50 font-heading text-lg text-brown">

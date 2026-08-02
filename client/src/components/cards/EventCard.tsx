@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, MapPin, Users } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, ShieldCheck, Users } from 'lucide-react';
 import type { EventItem } from '@/data/types';
 import { getIcon } from '@/utils/icons';
 import { Badge } from '@/components/ui/Badge';
+import { SITE } from '@/constants/site';
 
 type EventCardProps = {
   event: EventItem;
@@ -60,6 +61,21 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
             </Badge>
           ))}
         </div>
+
+        {event.prequalifierRequired && (
+          <p className="mt-4 flex items-start gap-2 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
+            <ShieldCheck size={14} className="mt-0.5 shrink-0 text-gold" />
+            All registrants compete in an online prequalifier round in {SITE.prequalifierWindow} — only
+            those who qualify are selected to compete in the 2-day mega event on campus.
+          </p>
+        )}
+
+        {event.prerequisites && (
+          <p className="mt-4 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
+            <span className="font-semibold uppercase tracking-wider text-gold">Prerequisites: </span>
+            {event.prerequisites}
+          </p>
+        )}
       </div>
       <a
         href={`/events#${event.id}`}

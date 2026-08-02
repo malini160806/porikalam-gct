@@ -7,6 +7,7 @@ import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 const Home = lazy(() => import('@/pages/Home'));
 const About = lazy(() => import('@/pages/About'));
 const Events = lazy(() => import('@/pages/Events'));
+const EventDetail = lazy(() => import('@/pages/EventDetail'));
 const Participate = lazy(() => import('@/pages/Participate'));
 const Sponsors = lazy(() => import('@/pages/Sponsors'));
 const Gallery = lazy(() => import('@/pages/Gallery'));
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
       { index: true, element: withSuspense(Home) },
       { path: 'about', element: withSuspense(About) },
       { path: 'events', element: withSuspense(Events) },
+      { path: 'events/:eventId', element: withSuspense(EventDetail) },
       { path: 'participate', element: withSuspense(Participate) },
       { path: 'sponsors', element: withSuspense(Sponsors) },
       { path: 'gallery', element: withSuspense(Gallery) },

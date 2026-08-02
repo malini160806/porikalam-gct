@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, MapPin, ShieldCheck, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { EventItem } from '@/data/types';
-import { getIcon } from '@/utils/icons';
+import { getEventIconSrc } from '@/utils/eventIcons';
 import { Badge } from '@/components/ui/Badge';
 import { SITE } from '@/constants/site';
 
@@ -11,8 +12,6 @@ type EventCardProps = {
 };
 
 export function EventCard({ event, index = 0 }: EventCardProps) {
-  const Icon = getIcon(event.icon);
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -20,15 +19,19 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.06 }}
       whileHover={{ y: -6, boxShadow: '0 12px 32px -8px rgba(212,175,55,0.4)', borderColor: 'rgba(212,175,55,0.8)' }}
-      className="group flex flex-col justify-between border border-gold/30 bg-navy p-6 shadow-card transition-colors duration-300"
+      className="group flex h-full flex-col justify-between border border-gold/30 bg-navy p-6 shadow-card transition-colors duration-300"
     >
       <div>
-        <div className="mb-5 flex h-14 w-14 items-center justify-center border border-gold/50 text-gold transition-colors duration-200 group-hover:bg-gold group-hover:text-navy">
-          <Icon size={26} strokeWidth={1.5} />
+        <div className="mb-5 flex h-14 w-14 items-center justify-center overflow-hidden border border-gold/50 bg-cream/95 p-1">
+          <img
+            src={getEventIconSrc(event.icon)}
+            alt=""
+            className={`h-full w-full scale-150 object-contain ${event.icon === 'rocket' ? 'rotate-180' : ''}`}
+          />
         </div>
         <h3 className="font-heading text-2xl font-semibold tracking-wide text-cream">{event.title}</h3>
         <p className="mt-1 font-body text-xs font-semibold uppercase tracking-wider text-gold">
-          {event.department} · {event.format === 'team' ? 'Team Event' : 'Individual Event'}
+          {event.format === 'team' ? 'Team Event' : 'Individual Event'}
         </p>
         <p className="mt-3 line-clamp-4 font-body text-sm text-beige/80 leading-relaxed">
           {event.description}
@@ -56,7 +59,7 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
 
         <div className="mt-4 flex flex-wrap gap-2">
           {event.tags.map((tag) => (
-            <Badge key={tag} variant="navy">
+            <Badge key={tag} variant={tag === 'Open to All' ? 'gold' : 'navy'}>
               {tag}
             </Badge>
           ))}
@@ -77,12 +80,12 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
           </p>
         )}
       </div>
-      <a
-        href={`/events#${event.id}`}
+      <Link
+        to={`/events/${event.id}`}
         className="mt-6 inline-flex items-center gap-2 font-body text-xs font-semibold uppercase tracking-widest text-gold hover:text-gold-light"
       >
         View Event <ArrowRight size={14} />
-      </a>
+      </Link>
     </motion.article>
   );
 }

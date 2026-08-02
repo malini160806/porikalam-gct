@@ -1,13 +1,20 @@
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, UserPlus } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { Accordion } from '@/components/ui/Accordion';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
+import { Badge } from '@/components/ui/Badge';
+import { events } from '@/data/events';
 import { faqs } from '@/data/faq';
 
 export default function Participate() {
+  const [searchParams] = useSearchParams();
+  const eventId = searchParams.get('event');
+  const selectedEvent = events.find((e) => e.id === eventId);
+
   return (
     <>
       <PageHero
@@ -32,12 +39,20 @@ export default function Participate() {
             <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
               Create Your Participant Profile
             </h3>
+            {selectedEvent && (
+              <Badge variant="navy">Registering for {selectedEvent.title}</Badge>
+            )}
             <p className="max-w-md font-body text-sm text-slate">
               Register once to get your participant username, then sign in anytime to register for
               events, make payments, and download your QR pass and certificates — no re-entering
               your details.
             </p>
-            <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+            <Button
+              to={selectedEvent ? `/register?event=${selectedEvent.id}` : '/register'}
+              variant="primary"
+              size="lg"
+              icon={<ArrowRight size={16} />}
+            >
               Create Your Profile
             </Button>
           </motion.div>

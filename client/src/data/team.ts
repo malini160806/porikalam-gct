@@ -1,8 +1,7 @@
 import type { TeamMember } from './types';
 
 export const team: TeamMember[] = [
-  { id: 't1', name: 'Dr. R. Balasubramaniam', role: 'Faculty Advisor', team: 'faculty', initials: 'RB' },
-  { id: 't2', name: 'Dr. S. Meenakshi', role: 'Faculty Coordinator', team: 'faculty', initials: 'SM' },
+  { id: 't1', name: 'Balakrishnan', role: 'Faculty In-Charge', team: 'faculty', initials: 'B' },
   { id: 't3', name: 'Arjun Kumaresan', role: 'Overall Coordinator', team: 'core', initials: 'AK' },
   { id: 't4', name: 'Priya Venkatesh', role: 'Events Lead', team: 'core', initials: 'PV' },
   { id: 't5', name: 'Karthik Raghavan', role: 'Technical Lead', team: 'core', initials: 'KR' },

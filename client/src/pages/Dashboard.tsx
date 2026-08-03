@@ -16,8 +16,11 @@ import {
 import { PageHero } from '@/components/common/PageHero';
 import { FloatingIcon } from '@/components/common/FloatingIcon';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
+import { CertificateTemplate } from '@/components/dashboard/CertificateTemplate';
+import { ParticipantIdCard } from '@/components/dashboard/ParticipantIdCard';
 import { Tabs } from '@/components/ui/Tabs';
-import aiChipIcon from '@/assets/motifs/ai-chip.png';
+import aiChipIcon from '@/assets/elements/modern/ai-brain-engraved.png';
+import blueprintGrid from '@/assets/elements/modern/blueprint-grid-engraved.png';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { useSession } from '@/context/SessionContext';
@@ -36,32 +39,68 @@ type DashboardTab =
   | 'notifications'
   | 'settings';
 
-const TAB_OPTIONS: Array<{ value: DashboardTab; label: string; icon: typeof UserIcon }> = [
-  { value: 'profile', label: 'Profile', icon: UserIcon },
-  { value: 'registrations', label: 'My Registrations', icon: CalendarCheck },
-  { value: 'upcoming', label: 'Upcoming Events', icon: CalendarDays },
-  { value: 'schedule', label: 'Event Schedule', icon: CalendarDays },
-  { value: 'payments', label: 'Payment History', icon: Receipt },
-  { value: 'attendance', label: 'Attendance', icon: CheckSquare },
-  { value: 'certificates', label: 'Certificates', icon: Award },
-  { value: 'qr', label: 'QR Pass', icon: QrCode },
-  { value: 'notifications', label: 'Notifications', icon: Bell },
-  { value: 'settings', label: 'Settings', icon: SettingsIcon },
+const TAB_OPTIONS: Array<{ value: DashboardTab; label: string; icon: typeof UserIcon; description: string }> = [
+  { value: 'profile', label: 'Profile', icon: UserIcon, description: '' },
+  {
+    value: 'registrations',
+    label: 'My Registrations',
+    icon: CalendarCheck,
+    description: 'The events you register for will be listed here, with quick links to each event page.',
+  },
+  {
+    value: 'upcoming',
+    label: 'Upcoming Events',
+    icon: CalendarDays,
+    description: "A countdown to your next registered event will appear here once you're signed up for one.",
+  },
+  {
+    value: 'schedule',
+    label: 'Event Schedule',
+    icon: CalendarDays,
+    description: 'A personalized schedule built from your registrations — see the full symposium schedule any time.',
+  },
+  {
+    value: 'payments',
+    label: 'Payment History',
+    icon: Receipt,
+    description: 'Your registration payment receipts and status will be tracked here once payments open.',
+  },
+  {
+    value: 'attendance',
+    label: 'Attendance',
+    icon: CheckSquare,
+    description: 'Your attendance for each event you register for will be marked here after check-in on campus.',
+  },
+  { value: 'certificates', label: 'Certificates', icon: Award, description: '' },
+  { value: 'qr', label: 'QR Pass', icon: QrCode, description: '' },
+  {
+    value: 'notifications',
+    label: 'Notifications',
+    icon: Bell,
+    description: 'Registration confirmations, schedule changes, and announcements will show up here.',
+  },
+  {
+    value: 'settings',
+    label: 'Settings',
+    icon: SettingsIcon,
+    description: 'Account preferences and notification settings will live here.',
+  },
 ];
 
-function PlaceholderPanel({ icon: Icon, label }: { icon: typeof UserIcon; label: string }) {
+function PlaceholderPanel({ icon: Icon, label, description }: { icon: typeof UserIcon; label: string; description: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="flex flex-col items-center gap-3 border border-navy/15 bg-white/40 px-8 py-16 text-center"
+      className="relative flex flex-col items-center gap-3 overflow-hidden border border-gold/25 bg-white/50 px-8 py-16 text-center shadow-card"
     >
-      <Icon size={28} className="text-gold" />
-      <p className="font-heading text-xl font-semibold tracking-wide text-navy">{label}</p>
-      <p className="max-w-sm font-body text-sm text-slate">
-        Available once event registration opens. Check back soon.
-      </p>
+      <div className="absolute inset-0 bp-grid-bg opacity-[0.1]" />
+      <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 text-gold">
+        <Icon size={26} strokeWidth={1.5} />
+      </div>
+      <p className="relative font-heading text-xl font-semibold tracking-wide text-navy">{label}</p>
+      <p className="relative max-w-sm font-body text-sm text-slate">{description}</p>
     </motion.div>
   );
 }
@@ -169,9 +208,16 @@ export default function Dashboard() {
     <>
       <PageHero title="Dashboard" subtitle={`Welcome back, ${currentUser.display_name}.`} />
       <section className="relative overflow-hidden bg-cream py-16">
+        <div className="absolute inset-0 bp-grid-bg opacity-30" />
+        <img
+          src={blueprintGrid}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 hidden w-[32rem] opacity-[0.06] lg:block"
+        />
         <FloatingIcon src={aiChipIcon} className="absolute -right-4 top-4 h-28 w-28" duration={50} />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
-          <div className="relative flex flex-wrap items-center justify-between gap-4 overflow-hidden border border-navy/10 bg-white/40 p-5">
+          <div className="relative flex flex-wrap items-center justify-between gap-4 overflow-hidden border border-gold/30 bg-white/50 p-5 shadow-card">
             <CornerOrnament corner="top-left" variant="floral" className="opacity-30" />
             <div>
               <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
@@ -202,8 +248,27 @@ export default function Dashboard() {
                   void refresh();
                 }}
               />
+            ) : activeTab === 'certificates' ? (
+              <div className="flex flex-col items-center gap-4">
+                <CertificateTemplate participantName={currentUser.display_name} />
+                <p className="max-w-sm text-center font-body text-xs text-slate">
+                  Your official certificate will be issued here once the event concludes.
+                </p>
+              </div>
+            ) : activeTab === 'qr' ? (
+              <div className="flex flex-col items-center gap-4">
+                <ParticipantIdCard
+                  name={currentUser.display_name}
+                  department={currentUser.department}
+                  yearOfStudy={currentUser.year_of_study}
+                  photoUrl={currentUser.profile_photo_url}
+                />
+                <p className="max-w-sm text-center font-body text-xs text-slate">
+                  Your scannable QR pass unlocks once event registration opens.
+                </p>
+              </div>
             ) : (
-              <PlaceholderPanel icon={activeOption.icon} label={activeOption.label} />
+              <PlaceholderPanel icon={activeOption.icon} label={activeOption.label} description={activeOption.description} />
             )}
           </div>
         </div>

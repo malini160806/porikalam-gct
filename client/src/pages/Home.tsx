@@ -1,26 +1,36 @@
 import { Hero } from '@/components/home/Hero';
-import { AboutSection } from '@/components/home/AboutSection';
+import { EraJourney } from '@/components/home/EraJourney';
 import { HeritageBanner } from '@/components/home/HeritageBanner';
+import { AboutSection } from '@/components/home/AboutSection';
+import { DepartmentsPreview } from '@/components/home/DepartmentsPreview';
 import { EventCategories } from '@/components/home/EventCategories';
-import { StatisticsSection } from '@/components/home/StatisticsSection';
 import { TimelineSection } from '@/components/home/TimelineSection';
-import { CoreTeamPreview } from '@/components/home/CoreTeamPreview';
+import { SectionDivider } from '@/components/common/SectionDivider';
+import { ExpoPreview } from '@/components/home/ExpoPreview';
 import { SponsorsPreview } from '@/components/home/SponsorsPreview';
 import { GalleryPreview } from '@/components/home/GalleryPreview';
+import { CoreTeamPreview } from '@/components/home/CoreTeamPreview';
+import { TestimonialsSection } from '@/components/home/TestimonialsSection';
+import { FaqPreview } from '@/components/home/FaqPreview';
 import { ContactTeaser } from '@/components/home/ContactTeaser';
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <AboutSection />
+      <EraJourney />
       <HeritageBanner />
+      <AboutSection />
+      <DepartmentsPreview />
       <EventCategories />
-      <StatisticsSection />
       <TimelineSection />
-      <CoreTeamPreview />
+      <SectionDivider />
+      <ExpoPreview />
       <SponsorsPreview />
       <GalleryPreview />
+      <CoreTeamPreview />
+      <TestimonialsSection />
+      <FaqPreview />
       <ContactTeaser />
     </>
   );

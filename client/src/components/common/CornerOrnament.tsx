@@ -5,6 +5,9 @@ type CornerOrnamentProps = {
   corner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   variant?: 'scroll' | 'floral';
   className?: string;
+  /** Pixel size override. Uses inline style so it reliably wins over the default size classes. */
+  size?: number;
+  opacity?: number;
 };
 
 const positionClasses: Record<NonNullable<CornerOrnamentProps['corner']>, string> = {
@@ -20,13 +23,14 @@ const variantSrc: Record<NonNullable<CornerOrnamentProps['variant']>, string> = 
 };
 
 /** Gold scrollwork flourish for framing premium moments (certificates, success states, feature CTAs). */
-export function CornerOrnament({ corner = 'top-left', variant = 'scroll', className = '' }: CornerOrnamentProps) {
+export function CornerOrnament({ corner = 'top-left', variant = 'scroll', className = '', size, opacity }: CornerOrnamentProps) {
   return (
     <img
       src={variantSrc[variant]}
       alt=""
       aria-hidden="true"
-      className={`pointer-events-none absolute h-20 w-20 opacity-80 sm:h-28 sm:w-28 ${positionClasses[corner]} ${className}`}
+      className={`pointer-events-none absolute ${size ? '' : 'h-20 w-20 sm:h-28 sm:w-28'} ${opacity ? '' : 'opacity-80'} ${positionClasses[corner]} ${className}`}
+      style={size ? { width: size, height: size, opacity } : undefined}
     />
   );
 }

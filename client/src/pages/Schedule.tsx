@@ -33,8 +33,9 @@ export default function Schedule() {
     <>
       <PageHero title="Schedule" subtitle="Two days of competition, learning, and celebration." />
 
-      <section className="bg-cream py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-cream py-24">
+        <div className="absolute inset-0 bp-grid-bg opacity-30" />
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center">
             <Tabs options={DAY_OPTIONS} value={day} onChange={setDay} />
           </div>

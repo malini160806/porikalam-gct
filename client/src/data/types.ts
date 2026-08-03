@@ -141,6 +141,14 @@ export type CoreTeamDomain = {
   order: number;
 };
 
+export type Testimonial = {
+  id: string;
+  name: string;
+  role: string;
+  quote: string;
+  initials: string;
+};
+
 export type CoreTeamMember = {
   id: string;
   name: string;

@@ -5,12 +5,18 @@
   /* Colors */
   --color-navy: #001b2a;
   --color-navy-deep: #000f18;
+  --color-charcoal: #0d1420;
   --color-slate: #2a3a4d;
   --color-gold: #d4af37;
   --color-gold-light: #e9c766;
   --color-cream: #f5f1e8;
   --color-beige: #e8d9b5;
   --color-brown: #8b7333;
+  --color-earthy: #a46621;
+  --color-steel: #3d5a75;
+  --color-tech-blue: #3891ff;
+  --color-neon-blue: #1f6fd6;
+  --color-future-purple: #6b4fc4;
 
   /* Fonts */
   --font-heading: 'Cinzel', serif;

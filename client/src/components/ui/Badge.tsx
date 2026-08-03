@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-type BadgeVariant = 'gold' | 'navy' | 'outline';
+type BadgeVariant = 'gold' | 'navy' | 'outline' | 'tech';
 
 type BadgeProps = {
   children: ReactNode;
@@ -12,6 +12,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   gold: 'bg-beige text-brown border border-brown/40',
   navy: 'bg-navy text-gold border border-gold/50',
   outline: 'bg-transparent text-navy border border-navy/40',
+  tech: 'bg-steel/15 text-tech-blue border border-tech-blue/40',
 };
 
 export function Badge({ children, variant = 'gold', className = '' }: BadgeProps) {

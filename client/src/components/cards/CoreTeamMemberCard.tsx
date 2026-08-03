@@ -24,7 +24,11 @@ export function CoreTeamMemberCard({ member, index = 0 }: CoreTeamMemberCardProp
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.45, delay: index * 0.07 }}
-      whileHover={{ y: -6, scale: 1.02, boxShadow: '0 14px 32px -10px rgba(212,175,55,0.45)' }}
+      whileHover={{
+        y: -6,
+        scale: 1.02,
+        boxShadow: '0 14px 32px -10px rgba(212,175,55,0.45), 0 8px 22px -10px rgba(61,90,117,0.3)',
+      }}
       className="group relative flex flex-col items-center gap-3 overflow-hidden border border-gold/30 bg-cream p-6 text-center shadow-card backdrop-blur-sm transition-colors duration-300 hover:border-gold"
     >
       <div className="absolute inset-0 bp-grid-bg opacity-[0.08]" />

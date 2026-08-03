@@ -13,7 +13,11 @@ export function SponsorCard({ sponsor, index = 0 }: SponsorCardProps) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      whileHover={{ y: -4, borderColor: '#d4af37' }}
+      whileHover={{
+        y: -4,
+        borderColor: '#d4af37',
+        boxShadow: '0 10px 22px -10px rgba(212,175,55,0.35), 0 6px 16px -10px rgba(61,90,117,0.3)',
+      }}
       title={sponsor.description}
       className="flex aspect-[3/2] flex-col items-center justify-center gap-2 border border-navy/20 bg-cream/70 px-4 text-center transition-colors"
     >

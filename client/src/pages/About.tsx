@@ -3,6 +3,7 @@ import { Landmark, Sparkles, Users, Target, Compass, Rocket } from 'lucide-react
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TeamCard } from '@/components/cards/TeamCard';
+import { SpecimenCard } from '@/components/common/SpecimenCard';
 import { Timeline } from '@/components/ui/Timeline';
 import { Button } from '@/components/ui/Button';
 import { team } from '@/data/team';
@@ -10,6 +11,23 @@ import type { TimelineStep } from '@/data/types';
 import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.png';
 import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.jpg';
 import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.jpg';
+import astrolabe from '@/assets/elements/ancient/astrolabe.png';
+import armillarySphere from '@/assets/elements/ancient/armillary-sphere.png';
+import sundial from '@/assets/elements/ancient/sundial.png';
+import compass from '@/assets/elements/ancient/compass.png';
+import protractor from '@/assets/elements/ancient/protractor.png';
+import gear from '@/assets/elements/ancient/gear.png';
+import kallanaiDam from '@/assets/elements/ancient/kallanai-dam-pair.png';
+import heroPanorama from '@/assets/hero/ancient-futuristic-panorama.jpg';
+
+const instruments = [
+  { image: astrolabe, title: 'Astrolabe', caption: 'Ancient tool for measuring the position of stars.' },
+  { image: armillarySphere, title: 'Armillary Sphere', caption: 'Model of celestial longitude and latitude lines.' },
+  { image: sundial, title: 'Sundial', caption: 'Timekeeping through the movement of shadow and light.' },
+  { image: compass, title: 'Compass', caption: 'Precision drafting, the foundation of engineering drawing.' },
+  { image: protractor, title: 'Protractor', caption: 'Measuring angles — geometry made practical.' },
+  { image: gear, title: 'Gear', caption: 'Mechanical advantage — the wheel refined.' },
+];
 
 const porikkalamTimeline: TimelineStep[] = [
   { id: 'pt1', label: 'The Idea', date: 'Origins', description: 'A small gathering of engineering enthusiasts at GCT Coimbatore.' },
@@ -64,6 +82,7 @@ export default function About() {
       <PageHero
         title="About Porikkalam"
         subtitle="Where heritage meets impact, and engineering finds its story."
+        backgroundImage={heroPanorama}
       />
 
       <section className="relative overflow-hidden bg-cream py-24">
@@ -177,6 +196,36 @@ export default function About() {
               Explore Previous Editions
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-cream py-24">
+        <div className="absolute inset-0 bp-grid-bg opacity-30" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Instruments of the Craft"
+            title="Engineering Through The Ages"
+            subtitle="The tools that shaped engineering long before CAD software and calculators existed."
+          />
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+            {instruments.map((item, index) => (
+              <SpecimenCard key={item.title} image={item.image} title={item.title} caption={item.caption} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-cream pb-24">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <motion.img
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            src={kallanaiDam}
+            alt="Kallanai Dam — an ancient Chola-era engineering marvel, rendered alongside its line-sketch counterpart"
+            className="w-full border border-gold/30 shadow-card"
+          />
         </div>
       </section>
 

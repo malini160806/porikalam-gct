@@ -163,9 +163,11 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
-        scrolled ? 'bg-navy/90 backdrop-blur-md shadow-card' : 'bg-navy'
-      } border-b border-gold/20`}
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-300 ${
+        scrolled
+          ? 'border-gold/20 bg-navy/90 shadow-card backdrop-blur-md'
+          : 'border-gold/10 bg-navy-deep/25 backdrop-blur-sm'
+      }`}
     >
       <div
         className={`mx-auto flex max-w-7xl items-center gap-4 px-6 transition-all duration-300 sm:px-8 lg:px-10 ${
@@ -193,7 +195,7 @@ export function Navbar() {
             )}
           </div>
           <Button to={user ? '/dashboard' : '/register'} variant="primary" size="sm">
-            {user ? 'Dashboard' : 'Register'}
+            {user ? 'Dashboard' : 'Register Now'}
           </Button>
         </div>
 
@@ -252,7 +254,7 @@ export function Navbar() {
                 </NavLink>
               )}
               <Button to={user ? '/dashboard' : '/register'} variant="primary" onClick={() => setMobileOpen(false)}>
-                {user ? 'Dashboard' : 'Register'}
+                {user ? 'Dashboard' : 'Register Now'}
               </Button>
             </motion.div>
           </>

@@ -18,11 +18,19 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: index * 0.06 }}
-      whileHover={{ y: -6, boxShadow: '0 12px 32px -8px rgba(212,175,55,0.4)', borderColor: 'rgba(212,175,55,0.8)' }}
+      whileHover={{
+        y: -6,
+        boxShadow: '0 12px 32px -8px rgba(212,175,55,0.4), 0 8px 24px -10px rgba(61,90,117,0.35)',
+        borderColor: 'rgba(212,175,55,0.8)',
+      }}
       className="group flex h-full flex-col justify-between border border-gold/30 bg-navy p-6 shadow-card transition-colors duration-300"
     >
       <div>
-        <div className="mb-5 flex h-14 w-14 items-center justify-center overflow-hidden border border-gold/50 bg-cream/95 p-1">
+        <div
+          className={`mb-5 flex h-14 w-14 items-center justify-center overflow-hidden border bg-cream/95 p-1 ${
+            event.category === 'technical' ? 'border-tech-blue/60' : 'border-gold/50'
+          }`}
+        >
           <img
             src={getEventIconSrc(event.icon)}
             alt=""
@@ -59,7 +67,10 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
 
         <div className="mt-4 flex flex-wrap gap-2">
           {event.tags.map((tag) => (
-            <Badge key={tag} variant={tag === 'Open to All' ? 'gold' : 'navy'}>
+            <Badge
+              key={tag}
+              variant={tag === 'Open to All' ? 'gold' : event.category === 'technical' ? 'tech' : 'navy'}
+            >
               {tag}
             </Badge>
           ))}

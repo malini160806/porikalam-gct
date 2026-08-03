@@ -47,6 +47,9 @@ export default function Gallery() {
 
       <section className="bg-navy py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="mb-8 text-center font-body text-xs font-semibold uppercase tracking-[0.3em] text-gold/80">
+            The Story So Far — Past &amp; Present
+          </p>
           <div className="flex flex-col items-center gap-6">
             <Tabs options={[...VIEW_OPTIONS]} value={view} onChange={setView} tone="dark" />
             {categories.length > 1 && (

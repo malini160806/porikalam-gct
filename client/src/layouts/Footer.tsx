@@ -1,17 +1,40 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Cpu, Lightbulb, Mail, MapPin, Phone, Send, Sparkles, Triangle } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import { SocialIcons } from '@/components/ui/SocialIcons';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { SITE, FOOTER_LINKS } from '@/constants/site';
 import rosetteSeal from '@/assets/heritage/rosette-seal.png';
 
+const TAGLINES = [
+  { icon: Triangle, title: 'Ancient Roots', subtitle: 'Timeless Wisdom' },
+  { icon: Lightbulb, title: 'Innovative Minds', subtitle: 'Limitless Creativity' },
+  { icon: Cpu, title: 'Modern Technology', subtitle: 'Smarter Solutions' },
+  { icon: Sparkles, title: 'Futuristic Vision', subtitle: 'Better Tomorrow' },
+];
+
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-gold/25 navy-paper text-cream">
+    <footer className="relative overflow-hidden border-t border-gold/25 bg-navy-deep text-cream">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center opacity-[0.08]">
         <TempleSilhouette className="h-64 w-64 sm:h-80 sm:w-80" strokeWidth={1} />
+      </div>
+
+      <div className="relative border-b border-gold/15 bg-charcoal/60">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:px-8">
+          {TAGLINES.map((item) => (
+            <div key={item.title} className="flex items-center gap-3">
+              <item.icon size={22} className="shrink-0 text-gold" strokeWidth={1.5} />
+              <div>
+                <p className="font-body text-xs font-semibold uppercase tracking-wide text-cream">
+                  {item.title}
+                </p>
+                <p className="font-body text-[11px] text-beige/60">{item.subtitle}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <motion.div

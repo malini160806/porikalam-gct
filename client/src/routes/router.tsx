@@ -8,12 +8,14 @@ const Home = lazy(() => import('@/pages/Home'));
 const About = lazy(() => import('@/pages/About'));
 const Events = lazy(() => import('@/pages/Events'));
 const EventDetail = lazy(() => import('@/pages/EventDetail'));
+const Expo = lazy(() => import('@/pages/Expo'));
 const Participate = lazy(() => import('@/pages/Participate'));
 const Sponsors = lazy(() => import('@/pages/Sponsors'));
 const Gallery = lazy(() => import('@/pages/Gallery'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const Register = lazy(() => import('@/pages/Register'));
 const Login = lazy(() => import('@/pages/Login'));
+const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Legacy = lazy(() => import('@/pages/Legacy'));
 const Team = lazy(() => import('@/pages/Team'));
@@ -49,12 +51,14 @@ export const router = createBrowserRouter([
       { path: 'about', element: withSuspense(About) },
       { path: 'events', element: withSuspense(Events) },
       { path: 'events/:eventId', element: withSuspense(EventDetail) },
+      { path: 'expo', element: withSuspense(Expo) },
       { path: 'participate', element: withSuspense(Participate) },
       { path: 'sponsors', element: withSuspense(Sponsors) },
       { path: 'gallery', element: withSuspense(Gallery) },
       { path: 'contact', element: withSuspense(Contact) },
       { path: 'register', element: withSuspense(Register) },
       { path: 'login', element: withSuspense(Login) },
+      { path: 'forgot-password', element: withSuspense(ForgotPassword) },
       {
         path: 'dashboard',
         element: (

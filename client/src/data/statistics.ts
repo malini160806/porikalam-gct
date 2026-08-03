@@ -11,25 +11,25 @@ export const timeline: TimelineStep[] = [
   {
     id: 'tl1',
     label: 'Registrations',
-    date: '01 – 28 Feb 2026',
+    date: '01 Aug – 15 Sept 2026',
     description: 'Open registrations across all technical and non-technical events.',
   },
   {
     id: 'tl2',
     label: 'Shortlisting',
-    date: '01 – 05 Mar 2026',
+    date: '16 – 20 Sept 2026',
     description: 'Teams and individuals are shortlisted based on preliminary submissions.',
   },
   {
     id: 'tl3',
     label: 'Competitions',
-    date: '13 – 14 Mar 2026',
+    date: '25 – 26 Sept 2026',
     description: 'Two days of intense technical battles, workshops, and exhibitions.',
   },
   {
     id: 'tl4',
     label: 'Finale',
-    date: '15 Mar 2026',
+    date: '26 Sept 2026',
     description: 'Grand finale, closing ceremony, and felicitation of winners.',
   },
 ];

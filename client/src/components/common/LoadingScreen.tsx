@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GearMotif } from './GearMotif';
-import logoImage from '@/assets/porikkalam-logo.png';
+import logoImage from '@/assets/porikkalam-logo.webp';
 
 const MIN_DISPLAY_MS = 700;
 

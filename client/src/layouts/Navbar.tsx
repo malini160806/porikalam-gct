@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
@@ -19,24 +19,27 @@ const mobileItemVariants = {
   show: { opacity: 1, x: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
 };
 
+const navLabelClass =
+  'font-heading text-[13px] font-semibold uppercase tracking-[0.12em] transition-all duration-300';
+const navUnderlineClass =
+  'absolute inset-x-0 -bottom-2 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-gold-light to-gold transition-transform duration-300 ease-out group-hover:scale-x-100';
+
 function SimpleNavItem({ to, label, end }: { to: string; label: string; end?: boolean }) {
   return (
-    <NavLink to={to} end={end} className="group relative py-1">
+    <NavLink to={to} end={end} className="group relative">
       {({ isActive }) => (
-        <>
+        <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }} className="relative px-1 py-2">
           <span
-            className={`font-body text-sm font-semibold uppercase tracking-wide transition-colors duration-200 ${
-              isActive ? 'text-gold' : 'text-cream/85 group-hover:text-gold'
+            className={`${navLabelClass} ${
+              isActive
+                ? 'text-gold drop-shadow-[0_0_10px_rgba(212,175,55,0.55)]'
+                : 'text-cream/80 group-hover:text-gold group-hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.45)]'
             }`}
           >
             {label}
           </span>
-          <span
-            className={`absolute inset-x-0 -bottom-1 h-[2px] origin-left scale-x-0 bg-gold transition-transform duration-300 ease-out group-hover:scale-x-100 ${
-              isActive ? 'scale-x-100' : ''
-            }`}
-          />
-        </>
+          <span className={`${navUnderlineClass} ${isActive ? 'scale-x-100' : ''}`} />
+        </motion.div>
       )}
     </NavLink>
   );
@@ -44,6 +47,8 @@ function SimpleNavItem({ to, label, end }: { to: string; label: string; end?: bo
 
 function DropdownNavItem({ link }: { link: NavLinkType }) {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isActive = link.children!.some((child) => pathname === child.path);
 
   return (
     <div
@@ -51,20 +56,29 @@ function DropdownNavItem({ link }: { link: NavLinkType }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
+      <motion.button
         type="button"
-        className="group flex items-center gap-1 py-1"
+        whileHover={{ y: -2 }}
+        transition={{ duration: 0.2 }}
+        className="group relative flex items-center gap-1.5 px-1 py-2"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
-        <span className="font-body text-sm font-semibold uppercase tracking-wide text-cream/85 transition-colors duration-200 group-hover:text-gold">
+        <span
+          className={`${navLabelClass} ${
+            isActive || open
+              ? 'text-gold drop-shadow-[0_0_10px_rgba(212,175,55,0.55)]'
+              : 'text-cream/80 group-hover:text-gold group-hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.45)]'
+          }`}
+        >
           {link.label}
         </span>
         <ChevronDown
-          size={14}
-          className={`text-cream/70 transition-transform duration-200 group-hover:text-gold ${open ? 'rotate-180' : ''}`}
+          size={13}
+          className={`text-cream/60 transition-transform duration-200 group-hover:text-gold ${open ? 'rotate-180 text-gold' : ''}`}
         />
-      </button>
+        <span className={`${navUnderlineClass} ${isActive || open ? 'scale-x-100' : ''}`} />
+      </motion.button>
       <AnimatePresence>
         {open && (
           <motion.div
@@ -72,16 +86,16 @@ function DropdownNavItem({ link }: { link: NavLinkType }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.18 }}
-            className="absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 border border-gold/30 bg-navy py-2 shadow-card"
+            className="navy-paper bp-grid-bg absolute left-1/2 top-full z-50 mt-4 w-56 -translate-x-1/2 border border-gold/25 py-2 shadow-card"
           >
             {link.children!.map((child) => (
               <NavLink
                 key={child.path}
                 to={child.path}
                 onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `block px-5 py-2.5 font-body text-xs font-semibold uppercase tracking-wide transition-colors duration-150 ${
-                    isActive ? 'text-gold bg-navy-deep/40' : 'text-cream/80 hover:text-gold hover:bg-navy-deep/40'
+                className={({ isActive: childActive }) =>
+                  `block px-5 py-2.5 font-heading text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-150 ${
+                    childActive ? 'text-gold bg-navy-deep/50' : 'text-cream/80 hover:text-gold hover:bg-navy-deep/50'
                   }`
                 }
               >
@@ -103,7 +117,7 @@ function MobileNavRow({ to, end, label, onNavigate }: { to: string; end?: boolea
         end={end}
         onClick={onNavigate}
         className={({ isActive }) =>
-          `group flex items-center gap-3 border-b border-gold/10 py-3.5 font-body text-lg font-semibold uppercase tracking-wide transition-colors duration-200 ${
+          `group flex items-center gap-3 border-b border-gold/10 py-3.5 font-heading text-lg font-semibold uppercase tracking-wide transition-colors duration-200 ${
             isActive ? 'text-gold' : 'text-cream/90 hover:text-gold'
           }`
         }
@@ -130,7 +144,7 @@ function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate:
 
   return (
     <motion.div variants={mobileItemVariants} className="py-2">
-      <p className="flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.25em] text-gold/70">
+      <p className="flex items-center gap-3 font-heading text-xs font-semibold uppercase tracking-[0.25em] text-gold/70">
         {link.label}
         <span className="h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent" />
       </p>
@@ -141,7 +155,7 @@ function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate:
             to={child.path}
             onClick={onNavigate}
             className={({ isActive }) =>
-              `flex items-center gap-3 border-b border-gold/10 py-3 pl-4 font-body text-base font-semibold uppercase tracking-wide transition-colors duration-200 ${
+              `flex items-center gap-3 border-b border-gold/10 py-3 pl-4 font-heading text-base font-semibold uppercase tracking-wide transition-colors duration-200 ${
                 isActive ? 'text-gold' : 'text-cream/80 hover:text-gold'
               }`
             }
@@ -233,23 +247,28 @@ export function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 border-b transition-all duration-300 ${
-        scrolled
-          ? 'border-gold/20 bg-navy/90 shadow-card backdrop-blur-md'
-          : 'border-gold/10 bg-navy-deep/25 backdrop-blur-sm'
+    <motion.header
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed inset-x-0 top-0 z-40 border-b border-gold/30 bg-navy-deep transition-all duration-300 ${
+        scrolled ? 'shadow-[0_8px_28px_-10px_rgba(0,0,0,0.6)] backdrop-blur-lg' : 'backdrop-blur-md'
       }`}
     >
+      {/* Blueprint grid texture, always present so the bar never reads as flat/plain */}
+      <div className="bp-grid-bg pointer-events-none absolute inset-0 opacity-[0.15]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy-deep/95 via-navy-deep/90 to-navy-deep/95" />
+
       <div
-        className={`mx-auto flex max-w-7xl items-center gap-4 px-6 transition-all duration-300 sm:px-8 lg:px-10 ${
-          scrolled ? 'py-2' : 'py-3'
+        className={`relative mx-auto flex max-w-7xl items-center gap-6 px-6 transition-all duration-300 sm:px-8 lg:px-10 ${
+          scrolled ? 'py-2.5' : 'py-4'
         }`}
       >
-        <motion.div animate={{ scale: scrolled ? 0.92 : 1 }} transition={{ duration: 0.3 }} className="origin-left">
+        <motion.div animate={{ scale: scrolled ? 0.9 : 1 }} transition={{ duration: 0.3 }} className="origin-left shrink-0">
           <Logo />
         </motion.div>
 
-        <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-9 md:flex">
           {NAV_LINKS.map((link) =>
             link.children?.length ? (
               <DropdownNavItem key={link.path} link={link} />
@@ -259,13 +278,13 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden shrink-0 items-center gap-6 md:flex">
           <div className="hidden lg:block">
             {!user && (
               <SimpleNavItem to="/login" label="Login" />
             )}
           </div>
-          <Button to={user ? '/dashboard' : '/register'} variant="primary" size="sm">
+          <Button to={user ? '/dashboard' : '/register'} variant="primary" size="sm" className="rounded-[10px]">
             {user ? 'Dashboard' : 'Register Now'}
           </Button>
         </div>
@@ -273,7 +292,7 @@ export function Navbar() {
         <button
           ref={menuButtonRef}
           type="button"
-          className="ml-auto flex h-11 w-11 items-center justify-center text-cream md:hidden"
+          className="ml-auto flex h-11 w-11 items-center justify-center text-gold md:hidden"
           aria-label="Open menu"
           aria-haspopup="dialog"
           aria-expanded={mobileOpen}
@@ -317,9 +336,9 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   whileHover={{ rotate: 90 }}
                   transition={{ duration: 0.2 }}
-                  className="flex h-11 w-11 items-center justify-center border border-gold/30 text-gold"
+                  className="flex h-12 w-12 items-center justify-center border border-gold/30 text-gold"
                 >
-                  <X size={22} />
+                  <X size={26} />
                 </motion.button>
               </div>
 
@@ -346,7 +365,7 @@ export function Navbar() {
                     to="/login"
                     onClick={() => setMobileOpen(false)}
                     className={({ isActive }) =>
-                      `mb-4 block text-center font-body text-base font-semibold uppercase tracking-wide ${
+                      `mb-4 block text-center font-heading text-base font-semibold uppercase tracking-wide ${
                         isActive ? 'text-gold' : 'text-cream/90 hover:text-gold'
                       }`
                     }
@@ -357,7 +376,7 @@ export function Navbar() {
                 <Button
                   to={user ? '/dashboard' : '/register'}
                   variant="primary"
-                  className="w-full"
+                  className="w-full rounded-[10px]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {user ? 'Dashboard' : 'Register Now'}
@@ -367,6 +386,6 @@ export function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

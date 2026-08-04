@@ -14,7 +14,7 @@ export function MainLayout() {
       <MouseGlow />
       <ScrollTint />
       <Navbar />
-      <main className="flex-1 pt-[68px]">
+      <main className="flex-1 pt-[76px] sm:pt-20 md:pt-[88px] lg:pt-24">
         <PageTransition />
       </main>
       <Footer />

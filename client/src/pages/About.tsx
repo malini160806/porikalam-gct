@@ -191,11 +191,6 @@ export default function About() {
           <div className="mt-16">
             <Timeline steps={porikkalamTimeline} tone="dark" />
           </div>
-          <div className="mt-14 flex justify-center">
-            <Button to="/legacy" variant="outline">
-              Explore Previous Editions
-            </Button>
-          </div>
         </div>
       </section>
 

@@ -30,11 +30,11 @@ export function Countdown() {
           Happening Now
         </span>
       ) : (
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
           {UNITS.map((unit) => (
             <div
               key={unit.key}
-              className="flex flex-col items-center gap-1 border border-gold/30 bg-navy/50 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4"
+              className="flex flex-col items-center gap-1 border border-gold/30 bg-navy/50 px-3 py-2 backdrop-blur-sm sm:px-6 sm:py-4"
             >
               <span className="font-heading text-2xl font-bold tabular-nums text-gold sm:text-4xl">
                 {String(countdown[unit.key]).padStart(2, '0')}

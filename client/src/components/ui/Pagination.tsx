@@ -17,7 +17,7 @@ export function Pagination({ page, totalPages, onChange, className = '' }: Pagin
         onClick={() => onChange(Math.max(1, page - 1))}
         disabled={page === 1}
         aria-label="Previous page"
-        className="flex h-9 w-9 items-center justify-center border border-navy/25 text-navy disabled:opacity-30 hover:border-gold hover:text-brown transition-colors"
+        className="flex h-10 w-10 items-center justify-center border border-navy/25 text-navy disabled:opacity-30 hover:border-gold hover:text-brown transition-colors"
       >
         <ChevronLeft size={16} />
       </button>
@@ -27,7 +27,7 @@ export function Pagination({ page, totalPages, onChange, className = '' }: Pagin
           type="button"
           onClick={() => onChange(p)}
           aria-current={p === page ? 'page' : undefined}
-          className={`flex h-9 w-9 items-center justify-center border font-body text-sm transition-colors ${
+          className={`flex h-10 w-10 items-center justify-center border font-body text-sm transition-colors ${
             p === page ? 'bg-gold text-navy border-gold' : 'border-navy/25 text-navy hover:border-gold hover:text-brown'
           }`}
         >
@@ -39,7 +39,7 @@ export function Pagination({ page, totalPages, onChange, className = '' }: Pagin
         onClick={() => onChange(Math.min(totalPages, page + 1))}
         disabled={page === totalPages}
         aria-label="Next page"
-        className="flex h-9 w-9 items-center justify-center border border-navy/25 text-navy disabled:opacity-30 hover:border-gold hover:text-brown transition-colors"
+        className="flex h-10 w-10 items-center justify-center border border-navy/25 text-navy disabled:opacity-30 hover:border-gold hover:text-brown transition-colors"
       >
         <ChevronRight size={16} />
       </button>

@@ -411,7 +411,7 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
-                    className="absolute right-3 top-9 text-slate/60 hover:text-brown"
+                    className="absolute right-0 top-4 flex h-10 w-10 items-center justify-center text-slate/60 hover:text-brown"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -436,7 +436,7 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword((v) => !v)}
-                  className="absolute right-3 top-9 text-slate/60 hover:text-brown"
+                  className="absolute right-0 top-4 flex h-10 w-10 items-center justify-center text-slate/60 hover:text-brown"
                   aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                 >
                   {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}

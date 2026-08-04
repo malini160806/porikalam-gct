@@ -215,7 +215,7 @@ export default function Dashboard() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-24 -top-24 hidden w-[32rem] opacity-[0.06] lg:block"
         />
-        <FloatingIcon src={aiChipIcon} className="absolute -right-4 top-4 h-28 w-28" duration={50} />
+        <FloatingIcon src={aiChipIcon} className="absolute -right-4 top-4 hidden h-28 w-28 sm:block" duration={50} />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
           <div className="relative flex flex-wrap items-center justify-between gap-4 overflow-hidden border border-gold/30 bg-white/50 p-5 shadow-card">
             <CornerOrnament corner="top-left" variant="floral" className="opacity-30" />

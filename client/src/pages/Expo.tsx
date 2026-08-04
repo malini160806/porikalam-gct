@@ -12,6 +12,7 @@ import drone from '@/assets/elements/modern/drone-engraved.png';
 import satellite from '@/assets/elements/modern/satellite-engraved.png';
 import circuitTrace from '@/assets/elements/modern/circuit-trace-engraved.png';
 import cloudComputing from '@/assets/elements/modern/cloud-computing-engraved.png';
+import expoPanorama from '@/assets/hero/expo-panorama.jpg';
 
 const frontiers = [
   { image: aiBrain, title: 'Artificial Intelligence', caption: 'Machine learning and neural systems.' },
@@ -24,13 +25,30 @@ const frontiers = [
 
 export default function Expo() {
   return (
-    <>
+    <div className="relative">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <motion.img
+          src={expoPanorama}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: [1.15, 1, 1.06, 1] }}
+          transition={{
+            opacity: { duration: 2, ease: 'easeOut' },
+            scale: { duration: 26, times: [0, 0.08, 0.54, 1], repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-deep/85" />
+      </div>
+
       <PageHero
         title="Project Expo"
         subtitle="Innovate. Showcase. Inspire. — a dedicated stage for student startups and prototypes."
+        backgroundImage={expoPanorama}
       />
 
-      <section className="relative overflow-hidden bg-charcoal py-24">
+      <section className="relative overflow-hidden bg-charcoal/70 py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-[0.15]" />
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <Rocket size={32} className="mx-auto text-gold" strokeWidth={1.5} />
@@ -58,7 +76,7 @@ export default function Expo() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-cream py-24">
+      <section className="relative overflow-hidden bg-cream/90 py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-30" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -74,7 +92,7 @@ export default function Expo() {
         </div>
       </section>
 
-      <section className="bg-cream py-24">
+      <section className="relative bg-cream/90 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="On The Expo Floor"
@@ -105,6 +123,6 @@ export default function Expo() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

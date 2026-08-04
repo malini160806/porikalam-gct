@@ -4,13 +4,35 @@ import { departments, getEventsForDepartment } from '@/data/departments';
 import { getIcon } from '@/utils/icons';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import departmentPanorama from '@/assets/hero/department-panorama.jpg';
 
 export default function Departments() {
   return (
-    <>
-      <PageHero title="Departments" subtitle="Explore events by engineering discipline." />
+    <div className="relative">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <motion.img
+          src={departmentPanorama}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: [1.15, 1, 1.06, 1] }}
+          transition={{
+            opacity: { duration: 2, ease: 'easeOut' },
+            scale: { duration: 26, times: [0, 0.08, 0.54, 1], repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-cream/30" />
+      </div>
 
-      <section className="bg-cream py-24">
+      <PageHero
+        title="Departments"
+        subtitle="Explore events by engineering discipline."
+        backgroundImage={departmentPanorama}
+        heroTone="light"
+      />
+
+      <section className="relative bg-cream/70 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {departments.map((department, index) => {
@@ -54,6 +76,6 @@ export default function Departments() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

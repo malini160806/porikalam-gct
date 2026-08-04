@@ -59,7 +59,7 @@ export function CoreTeamMemberCard({ member, index = 0 }: CoreTeamMemberCardProp
           target="_blank"
           rel="noreferrer"
           aria-label={`${member.name} on LinkedIn`}
-          className="relative flex h-8 w-8 items-center justify-center rounded-full border border-navy/20 text-navy/60 transition-colors hover:border-gold hover:text-brown"
+          className="relative flex h-10 w-10 items-center justify-center rounded-full border border-navy/20 text-navy/60 transition-colors hover:border-gold hover:text-brown"
         >
           <FaLinkedinIn size={14} />
         </a>

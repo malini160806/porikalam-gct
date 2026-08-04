@@ -113,21 +113,21 @@ export function Hero() {
 
       {/* Decorative motifs, layered above the background panorama */}
       <motion.div
-        className="absolute -left-10 top-24 z-10 h-40 w-40 text-gold/25 sm:h-56 sm:w-56"
+        className="pointer-events-none absolute -left-10 top-24 z-10 h-40 w-40 text-gold/25 sm:h-56 sm:w-56"
         animate={{ rotate: 360 }}
         transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
       >
         <GearMotif className="h-full w-full" />
       </motion.div>
       <motion.div
-        className="absolute right-6 top-10 z-10 h-24 w-24 text-gold/20 sm:h-36 sm:w-36"
+        className="pointer-events-none absolute right-6 top-10 z-10 h-24 w-24 text-gold/20 sm:h-36 sm:w-36"
         animate={{ rotate: -360 }}
         transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
       >
         <GearMotif className="h-full w-full" teeth={10} />
       </motion.div>
       <motion.div
-        className="absolute bottom-16 right-10 z-10 h-20 w-20 text-gold/20 sm:h-28 sm:w-28"
+        className="pointer-events-none absolute bottom-16 right-10 z-10 h-20 w-20 text-gold/20 sm:h-28 sm:w-28"
         animate={{ y: [0, -14, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       >

@@ -7,6 +7,7 @@ import { Select } from '@/components/ui/Input';
 import { EventCard } from '@/components/cards/EventCard';
 import { events, EVENT_FILTERS, EVENT_DEPARTMENTS } from '@/data/events';
 import type { EventItem } from '@/data/types';
+import eventsPanorama from '@/assets/hero/events-panorama.jpg';
 
 const DEPARTMENT_OPTIONS = EVENT_DEPARTMENTS.filter((dept) => dept !== 'Open to All');
 
@@ -31,13 +32,30 @@ export default function Events() {
   }, [filter, department, query]);
 
   return (
-    <>
+    <div className="relative">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <motion.img
+          src={eventsPanorama}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: [1.15, 1, 1.06, 1] }}
+          transition={{
+            opacity: { duration: 2, ease: 'easeOut' },
+            scale: { duration: 26, times: [0, 0.08, 0.54, 1], repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-deep/85" />
+      </div>
+
       <PageHero
         title="Events"
         subtitle="Discover. Compete. Conquer. Explore every arena Porikkalam has to offer."
+        backgroundImage={eventsPanorama}
       />
 
-      <section className="bg-cream py-20">
+      <section className="relative bg-cream/90 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-6">
             <Tabs options={EVENT_FILTERS} value={filter} onChange={setFilter} />
@@ -83,6 +101,6 @@ export default function Events() {
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }

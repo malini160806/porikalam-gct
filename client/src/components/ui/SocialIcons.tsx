@@ -35,7 +35,7 @@ export function SocialIcons({ className = '', tone = 'dark' }: SocialIconsProps)
             aria-label={social.label}
             whileHover={{ scale: 1.15, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-150 ${ring}`}
+            className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-150 ${ring}`}
           >
             <Icon size={15} />
           </motion.a>

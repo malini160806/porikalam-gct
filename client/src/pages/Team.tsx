@@ -8,18 +8,36 @@ import { TeamCard } from '@/components/cards/TeamCard';
 import { coreTeamDomains, getMembersForDomain } from '@/data/coreTeam';
 import { team } from '@/data/team';
 import { getIcon } from '@/utils/icons';
+import teamPanorama from '@/assets/hero/team-panorama.jpg';
 
 const faculty = team.filter((m) => m.team === 'faculty');
 
 export default function Team() {
   return (
-    <>
+    <div className="relative">
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <motion.img
+          src={teamPanorama}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: [1.15, 1, 1.06, 1] }}
+          transition={{
+            opacity: { duration: 2, ease: 'easeOut' },
+            scale: { duration: 26, times: [0, 0.08, 0.54, 1], repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-deep/85" />
+      </div>
+
       <PageHero
         title="Meet the Team Behind Porikkalam 2026"
         subtitle="The passionate team working together to organize one of GCT's flagship engineering symposiums."
+        backgroundImage={teamPanorama}
       />
 
-      <section className="relative overflow-hidden bg-cream py-24">
+      <section className="relative overflow-hidden bg-cream/90 py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-30" />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-20 px-4 sm:px-6 lg:px-8">
           {faculty.length > 0 && (
@@ -99,6 +117,6 @@ export default function Team() {
             })}
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -10,6 +10,7 @@ import { CompassMotif } from '@/components/common/CompassMotif';
 import { SITE } from '@/constants/site';
 import { team } from '@/data/team';
 import templeInkwash from '@/assets/heritage/temple-inkwash.jpg';
+import contactPanorama from '@/assets/hero/contact-panorama.jpg';
 
 const coordinators = team.filter((m) => m.team === 'faculty' || m.team === 'core');
 
@@ -22,10 +23,30 @@ export default function Contact() {
   }
 
   return (
-    <>
-      <PageHero title="Contact Us" subtitle="We would love to hear from you." />
+    <div className="relative">
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-navy-deep">
+        <motion.img
+          src={contactPanorama}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: [1.15, 1, 1.06, 1] }}
+          transition={{
+            opacity: { duration: 2, ease: 'easeOut' },
+            scale: { duration: 26, times: [0, 0.08, 0.54, 1], repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-deep/85" />
+      </div>
 
-      <section className="relative overflow-hidden bg-cream py-24">
+      <PageHero
+        title="Contact Us"
+        subtitle="We would love to hear from you."
+        backgroundImage={contactPanorama}
+      />
+
+      <section className="relative overflow-hidden bg-cream/90 py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-40" />
         <motion.div
           className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 text-brown/10"
@@ -106,7 +127,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="bg-cream py-24">
+      <section className="relative bg-cream/90 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Reach Out Directly" title="Faculty & Student Coordinators" />
           <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
@@ -117,7 +138,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="bg-navy py-24">
+      <section className="relative bg-navy/90 py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-3 text-center">
             <span className="font-body text-xs font-bold uppercase tracking-[0.3em] text-brown">
@@ -136,6 +157,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -201,7 +201,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="ml-auto text-cream md:hidden"
+          className="ml-auto flex h-11 w-11 items-center justify-center text-cream md:hidden"
           aria-label="Toggle menu"
           onClick={() => setMobileOpen((v) => !v)}
         >
@@ -232,7 +232,7 @@ export function Navbar() {
                   type="button"
                   aria-label="Close menu"
                   onClick={() => setMobileOpen(false)}
-                  className="text-cream"
+                  className="flex h-11 w-11 items-center justify-center text-cream"
                 >
                   <X size={24} />
                 </button>

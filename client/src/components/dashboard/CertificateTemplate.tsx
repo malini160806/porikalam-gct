@@ -8,7 +8,7 @@ type CertificateTemplateProps = {
 
 export function CertificateTemplate({ participantName }: CertificateTemplateProps) {
   return (
-    <div className="relative mx-auto w-full max-w-2xl overflow-hidden border-2 border-gold/60 bg-cream p-10 text-center shadow-card sm:p-14">
+    <div className="relative mx-auto w-full max-w-2xl overflow-hidden border-2 border-gold/60 bg-cream p-5 text-center shadow-card sm:p-10 lg:p-14">
       <div className="pointer-events-none absolute inset-0 border border-tech-blue/25" />
       <div
         className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full opacity-20"
@@ -33,13 +33,13 @@ export function CertificateTemplate({ participantName }: CertificateTemplateProp
         </p>
 
         <p className="mt-8 font-quote text-base italic text-slate">Presented to</p>
-        <p className="min-w-[16rem] border-b border-navy/30 pb-2 font-heading text-2xl font-semibold tracking-wide text-navy">
+        <p className="min-w-[min(16rem,80vw)] border-b border-navy/30 pb-2 font-heading text-xl font-semibold tracking-wide text-navy sm:text-2xl">
           {participantName}
         </p>
 
-        <div className="mt-10 flex w-full items-end justify-between gap-6">
-          <div className="flex flex-col items-start gap-1">
-            <div className="h-px w-32 bg-navy/30" />
+        <div className="mt-10 flex w-full flex-col items-center gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col items-center gap-1 sm:items-start">
+            <div className="h-px w-24 bg-navy/30 sm:w-32" />
             <span className="font-body text-xs uppercase tracking-wide text-slate/70">Organizing Committee</span>
           </div>
           <div className="flex flex-col items-center gap-1">
@@ -53,8 +53,8 @@ export function CertificateTemplate({ participantName }: CertificateTemplateProp
               {SITE.tagline}
             </span>
           </div>
-          <div className="flex flex-col items-end gap-1">
-            <div className="h-px w-32 bg-navy/30" />
+          <div className="flex flex-col items-center gap-1 sm:items-end">
+            <div className="h-px w-24 bg-navy/30 sm:w-32" />
             <span className="font-body text-xs uppercase tracking-wide text-slate/70">Principal</span>
           </div>
         </div>

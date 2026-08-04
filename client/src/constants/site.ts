@@ -25,10 +25,6 @@ export const NAV_LINKS: NavLink[] = [
   {
     label: 'About',
     path: '/about',
-    children: [
-      { label: 'About Porikkalam', path: '/about' },
-      { label: 'Legacy', path: '/legacy' },
-    ],
   },
   {
     label: 'Events',
@@ -78,7 +74,6 @@ export const FOOTER_LINKS = {
   quickLinks: [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
-    { label: 'Legacy', path: '/legacy' },
     { label: 'Team', path: '/team' },
     { label: 'Contact', path: '/contact' },
   ],

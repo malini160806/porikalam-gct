@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logoImage from '@/assets/porikkalam-logo.webp';
+import logoImage from '@/assets/porikkalam-logo.png';
 
 type LogoProps = {
   compact?: boolean;

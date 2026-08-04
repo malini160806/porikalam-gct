@@ -28,7 +28,11 @@ function SimpleNavItem({ to, label, end }: { to: string; label: string; end?: bo
   return (
     <NavLink to={to} end={end} className="group relative">
       {({ isActive }) => (
-        <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }} className="relative px-1 py-2">
+        <motion.div
+          whileHover={{ y: -2 }}
+          transition={{ duration: 0.2 }}
+          className="relative inline-flex items-center px-1 py-2"
+        >
           <span
             className={`${navLabelClass} ${
               isActive

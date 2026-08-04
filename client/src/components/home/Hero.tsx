@@ -8,7 +8,7 @@ import { useParallax } from '@/hooks/useParallax';
 import { Countdown } from '@/components/home/Countdown';
 import { EventHighlights } from '@/components/home/EventHighlights';
 import { SITE } from '@/constants/site';
-import logoImage from '@/assets/porikkalam-logo.webp';
+import logoImage from '@/assets/porikkalam-logo.png';
 import homeBackground from '@/assets/hero/ancient-futuristic-home.webp';
 
 const RAIL_ICONS = [User, Megaphone, Calendar, HelpCircle];

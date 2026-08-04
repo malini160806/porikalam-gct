@@ -8,9 +8,7 @@ import { TimelineSection } from '@/components/home/TimelineSection';
 import { SectionDivider } from '@/components/common/SectionDivider';
 import { ExpoPreview } from '@/components/home/ExpoPreview';
 import { SponsorsPreview } from '@/components/home/SponsorsPreview';
-import { GalleryPreview } from '@/components/home/GalleryPreview';
 import { CoreTeamPreview } from '@/components/home/CoreTeamPreview';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { FaqPreview } from '@/components/home/FaqPreview';
 import { ContactTeaser } from '@/components/home/ContactTeaser';
 
@@ -27,9 +25,7 @@ export default function Home() {
       <SectionDivider />
       <ExpoPreview />
       <SponsorsPreview />
-      <GalleryPreview />
       <CoreTeamPreview />
-      <TestimonialsSection />
       <FaqPreview />
       <ContactTeaser />
     </>

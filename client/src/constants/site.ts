@@ -40,11 +40,9 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Participate', path: '/participate' },
   {
     label: 'Explore',
-    path: '/gallery',
+    path: '/sponsors',
     children: [
-      { label: 'Gallery', path: '/gallery' },
       { label: 'Sponsors', path: '/sponsors' },
-      { label: 'Partners', path: '/partners' },
       { label: 'Accommodation', path: '/accommodation' },
       { label: 'FAQ', path: '/faq' },
       { label: 'Announcements', path: '/announcements' },
@@ -86,9 +84,7 @@ export const FOOTER_LINKS = {
     { label: 'Leaderboard', path: '/leaderboard' },
   ],
   community: [
-    { label: 'Gallery', path: '/gallery' },
     { label: 'Sponsors', path: '/sponsors' },
-    { label: 'Partners', path: '/partners' },
     { label: 'Media', path: '/media' },
     { label: 'Volunteer Portal', path: '/volunteer' },
   ],

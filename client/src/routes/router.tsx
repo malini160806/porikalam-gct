@@ -11,7 +11,6 @@ const EventDetail = lazy(() => import('@/pages/EventDetail'));
 const Expo = lazy(() => import('@/pages/Expo'));
 const Participate = lazy(() => import('@/pages/Participate'));
 const Sponsors = lazy(() => import('@/pages/Sponsors'));
-const Gallery = lazy(() => import('@/pages/Gallery'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const Register = lazy(() => import('@/pages/Register'));
 const Login = lazy(() => import('@/pages/Login'));
@@ -28,7 +27,6 @@ const Announcements = lazy(() => import('@/pages/Announcements'));
 const Resources = lazy(() => import('@/pages/Resources'));
 const Leaderboard = lazy(() => import('@/pages/Leaderboard'));
 const Media = lazy(() => import('@/pages/Media'));
-const Partners = lazy(() => import('@/pages/Partners'));
 const CertificateVerify = lazy(() => import('@/pages/CertificateVerify'));
 const VolunteerPortal = lazy(() => import('@/pages/VolunteerPortal'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
@@ -53,7 +51,6 @@ export const router = createBrowserRouter([
       { path: 'expo', element: withSuspense(Expo) },
       { path: 'participate', element: withSuspense(Participate) },
       { path: 'sponsors', element: withSuspense(Sponsors) },
-      { path: 'gallery', element: withSuspense(Gallery) },
       { path: 'contact', element: withSuspense(Contact) },
       { path: 'register', element: withSuspense(Register) },
       { path: 'login', element: withSuspense(Login) },
@@ -79,7 +76,6 @@ export const router = createBrowserRouter([
       { path: 'resources', element: withSuspense(Resources) },
       { path: 'leaderboard', element: withSuspense(Leaderboard) },
       { path: 'media', element: withSuspense(Media) },
-      { path: 'partners', element: withSuspense(Partners) },
       { path: 'certificates', element: withSuspense(CertificateVerify) },
       { path: 'volunteer', element: withSuspense(VolunteerPortal) },
       { path: '*', element: withSuspense(NotFound) },

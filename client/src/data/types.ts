@@ -21,16 +21,6 @@ export type EventItem = {
   prerequisites?: string;
 };
 
-export type GalleryImage = {
-  id: string;
-  title: string;
-  category: string;
-  span: 'tall' | 'wide' | 'normal';
-  color: string;
-  type?: 'photo' | 'video';
-  edition?: string;
-};
-
 export type Sponsor = {
   id: string;
   name: string;
@@ -119,14 +109,6 @@ export type MediaItem = {
   summary: string;
 };
 
-export type PartnerOrg = {
-  id: string;
-  name: string;
-  category: 'industry' | 'institutional' | 'community';
-  description: string;
-  initials: string;
-};
-
 export type LeaderboardEntry = {
   id: string;
   rank: number;
@@ -139,14 +121,6 @@ export type CoreTeamDomain = {
   name: string;
   icon: string;
   order: number;
-};
-
-export type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  quote: string;
-  initials: string;
 };
 
 export type CoreTeamMember = {

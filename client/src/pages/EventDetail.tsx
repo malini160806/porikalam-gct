@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { PageHero } from '@/components/common/PageHero';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { getEventIconSrc } from '@/utils/eventIcons';
+import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { events, EVENT_CATEGORY_LABELS } from '@/data/events';
 import NotFound from './NotFound';
 
@@ -28,6 +28,8 @@ export default function EventDetail() {
     return <NotFound />;
   }
 
+  const Icon = getEventIconComponent(event.icon);
+
   return (
     <>
       <PageHero title={event.title} subtitle={event.department} />
@@ -40,12 +42,8 @@ export default function EventDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="mb-6 flex h-20 w-20 items-center justify-center overflow-hidden border border-brown/40 bg-white/60 p-2">
-                <img
-                  src={getEventIconSrc(event.icon)}
-                  alt=""
-                  className={`h-full w-full scale-150 object-contain ${event.icon === 'rocket' ? 'rotate-180' : ''}`}
-                />
+              <div className="mb-6 flex h-20 w-20 items-center justify-center border border-brown/40 bg-white/50 p-3 text-brown shadow-[0_0_18px_-4px_rgba(139,115,51,0.4)]">
+                <Icon className="h-full w-full" />
               </div>
 
               <div className="flex flex-wrap gap-2">

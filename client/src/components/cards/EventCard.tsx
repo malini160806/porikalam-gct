@@ -2,8 +2,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Clock, MapPin, ShieldCheck, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { EventItem } from '@/data/types';
-import { getEventIconSrc } from '@/utils/eventIcons';
+import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { Badge } from '@/components/ui/Badge';
+import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { SITE } from '@/constants/site';
 
 type EventCardProps = {
@@ -12,6 +13,8 @@ type EventCardProps = {
 };
 
 export function EventCard({ event, index = 0 }: EventCardProps) {
+  const Icon = getEventIconComponent(event.icon);
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -20,22 +23,21 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       transition={{ duration: 0.5, delay: index * 0.06 }}
       whileHover={{
         y: -6,
-        boxShadow: '0 12px 32px -8px rgba(212,175,55,0.4), 0 8px 24px -10px rgba(61,90,117,0.35)',
+        boxShadow: '0 12px 36px -8px rgba(212,175,55,0.45), 0 8px 24px -10px rgba(61,90,117,0.35)',
         borderColor: 'rgba(212,175,55,0.8)',
       }}
-      className="group flex h-full flex-col justify-between border border-gold/30 bg-navy p-6 shadow-card transition-colors duration-300"
+      className="navy-paper bp-grid-bg group relative flex h-full flex-col justify-between overflow-hidden border border-gold/30 p-6 shadow-card transition-colors duration-300"
     >
-      <div>
+      <CornerOrnament corner="top-left" variant="scroll" size={36} opacity={0.35} />
+      <CornerOrnament corner="bottom-right" variant="scroll" size={36} opacity={0.35} />
+
+      <div className="relative">
         <div
-          className={`mb-5 flex h-14 w-14 items-center justify-center overflow-hidden border bg-cream/95 p-1 ${
-            event.category === 'technical' ? 'border-tech-blue/60' : 'border-gold/50'
+          className={`mb-5 flex h-16 w-16 items-center justify-center border p-2.5 text-gold shadow-[0_0_18px_-4px_rgba(212,175,55,0.35)] ${
+            event.category === 'technical' ? 'border-tech-blue/50' : 'border-gold/50'
           }`}
         >
-          <img
-            src={getEventIconSrc(event.icon)}
-            alt=""
-            className={`h-full w-full scale-150 object-contain ${event.icon === 'rocket' ? 'rotate-180' : ''}`}
-          />
+          <Icon className="h-full w-full" />
         </div>
         <h3 className="font-heading text-2xl font-semibold tracking-wide text-cream">{event.title}</h3>
         <p className="mt-1 font-body text-xs font-semibold uppercase tracking-wider text-gold">
@@ -93,7 +95,7 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       </div>
       <Link
         to={`/events/${event.id}`}
-        className="mt-6 inline-flex items-center gap-2 font-body text-xs font-semibold uppercase tracking-widest text-gold hover:text-gold-light"
+        className="relative mt-6 inline-flex items-center gap-2 font-body text-xs font-semibold uppercase tracking-widest text-gold hover:text-gold-light"
       >
         View Event <ArrowRight size={14} />
       </Link>

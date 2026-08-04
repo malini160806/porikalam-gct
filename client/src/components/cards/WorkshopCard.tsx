@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Clock, MapPin, ShieldCheck, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { EventItem } from '@/data/types';
-import { getEventIconSrc } from '@/utils/eventIcons';
+import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { Badge } from '@/components/ui/Badge';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { SITE } from '@/constants/site';
@@ -14,6 +14,8 @@ type WorkshopCardProps = {
 
 /** Parchment "workshop plate" card — richer framing than the standard EventCard to match the Workshops page's illustrated hero. */
 export function WorkshopCard({ event, index = 0 }: WorkshopCardProps) {
+  const Icon = getEventIconComponent(event.icon);
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -32,12 +34,8 @@ export function WorkshopCard({ event, index = 0 }: WorkshopCardProps) {
 
       <div>
         <div className="mb-5 flex items-center gap-4">
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-gold/60 bg-cream p-2.5 shadow-[0_0_0_4px_rgba(212,175,55,0.12)]">
-            <img
-              src={getEventIconSrc(event.icon)}
-              alt=""
-              className={`h-full w-full scale-150 object-contain ${event.icon === 'rocket' ? 'rotate-180' : ''}`}
-            />
+          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-gold/60 bg-cream p-3 text-brown shadow-[0_0_0_4px_rgba(212,175,55,0.12)]">
+            <Icon className="h-full w-full" />
           </div>
           <div>
             <p className="font-body text-[11px] font-semibold uppercase tracking-[0.2em] text-brown/70">Workshop</p>

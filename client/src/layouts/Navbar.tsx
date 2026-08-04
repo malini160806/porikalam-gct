@@ -20,7 +20,7 @@ const mobileItemVariants = {
 };
 
 const navLabelClass =
-  'font-heading text-[13px] font-semibold uppercase tracking-[0.12em] transition-all duration-300';
+  'font-body text-[13px] font-semibold uppercase tracking-[0.12em] transition-all duration-300';
 const navUnderlineClass =
   'absolute inset-x-0 -bottom-2 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-gold-light to-gold transition-transform duration-300 ease-out group-hover:scale-x-100';
 
@@ -94,7 +94,7 @@ function DropdownNavItem({ link }: { link: NavLinkType }) {
                 to={child.path}
                 onClick={() => setOpen(false)}
                 className={({ isActive: childActive }) =>
-                  `block px-5 py-2.5 font-heading text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-150 ${
+                  `block px-5 py-2.5 font-body text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-150 ${
                     childActive ? 'text-gold bg-navy-deep/50' : 'text-cream/80 hover:text-gold hover:bg-navy-deep/50'
                   }`
                 }
@@ -117,7 +117,7 @@ function MobileNavRow({ to, end, label, onNavigate }: { to: string; end?: boolea
         end={end}
         onClick={onNavigate}
         className={({ isActive }) =>
-          `group flex items-center gap-3 border-b border-gold/10 py-3.5 font-heading text-lg font-semibold uppercase tracking-wide transition-colors duration-200 ${
+          `group flex items-center gap-3 border-b border-gold/10 py-3.5 font-body text-lg font-semibold uppercase tracking-wide transition-colors duration-200 ${
             isActive ? 'text-gold' : 'text-cream/90 hover:text-gold'
           }`
         }
@@ -144,7 +144,7 @@ function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate:
 
   return (
     <motion.div variants={mobileItemVariants} className="py-2">
-      <p className="flex items-center gap-3 font-heading text-xs font-semibold uppercase tracking-[0.25em] text-gold/70">
+      <p className="flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.25em] text-gold/70">
         {link.label}
         <span className="h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent" />
       </p>
@@ -155,7 +155,7 @@ function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate:
             to={child.path}
             onClick={onNavigate}
             className={({ isActive }) =>
-              `flex items-center gap-3 border-b border-gold/10 py-3 pl-4 font-heading text-base font-semibold uppercase tracking-wide transition-colors duration-200 ${
+              `flex items-center gap-3 border-b border-gold/10 py-3 pl-4 font-body text-base font-semibold uppercase tracking-wide transition-colors duration-200 ${
                 isActive ? 'text-gold' : 'text-cream/80 hover:text-gold'
               }`
             }
@@ -365,7 +365,7 @@ export function Navbar() {
                     to="/login"
                     onClick={() => setMobileOpen(false)}
                     className={({ isActive }) =>
-                      `mb-4 block text-center font-heading text-base font-semibold uppercase tracking-wide ${
+                      `mb-4 block text-center font-body text-base font-semibold uppercase tracking-wide ${
                         isActive ? 'text-gold' : 'text-cream/90 hover:text-gold'
                       }`
                     }

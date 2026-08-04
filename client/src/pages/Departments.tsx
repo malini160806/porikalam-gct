@@ -4,7 +4,7 @@ import { departments, getEventsForDepartment } from '@/data/departments';
 import { getIcon } from '@/utils/icons';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import departmentPanorama from '@/assets/hero/department-panorama.jpg';
+import departmentPanorama from '@/assets/hero/department-panorama.webp';
 
 export default function Departments() {
   return (

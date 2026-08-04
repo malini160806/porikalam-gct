@@ -8,7 +8,7 @@ import { TeamCard } from '@/components/cards/TeamCard';
 import { coreTeamDomains, getMembersForDomain } from '@/data/coreTeam';
 import { team } from '@/data/team';
 import { getIcon } from '@/utils/icons';
-import teamPanorama from '@/assets/hero/team-panorama.jpg';
+import teamPanorama from '@/assets/hero/team-panorama.webp';
 
 const faculty = team.filter((m) => m.team === 'faculty');
 

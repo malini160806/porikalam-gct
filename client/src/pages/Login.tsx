@@ -1,8 +1,8 @@
 import { PageHero } from '@/components/common/PageHero';
 import { FloatingIcon } from '@/components/common/FloatingIcon';
 import { LoginForm } from '@/components/auth/LoginForm';
-import lightbulbIcon from '@/assets/motifs/lightbulb.png';
-import leafIcon from '@/assets/motifs/leaf.png';
+import lightbulbIcon from '@/assets/motifs/lightbulb.webp';
+import leafIcon from '@/assets/motifs/leaf.webp';
 
 export default function Login() {
   return (

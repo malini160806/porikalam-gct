@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { Divider } from '@/components/ui/Divider';
 import { TempleSilhouette } from './TempleSilhouette';
-import ancientImage from '@/assets/hero/ancient-engineering.jpg';
-import futuristicImage from '@/assets/hero/futuristic-engineering.jpg';
+import ancientImage from '@/assets/hero/ancient-engineering.webp';
+import futuristicImage from '@/assets/hero/futuristic-engineering.webp';
 
 type PageHeroProps = {
   title: string;

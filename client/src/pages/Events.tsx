@@ -7,7 +7,7 @@ import { Select } from '@/components/ui/Input';
 import { EventCard } from '@/components/cards/EventCard';
 import { events, EVENT_FILTERS, EVENT_DEPARTMENTS } from '@/data/events';
 import type { EventItem } from '@/data/types';
-import eventsPanorama from '@/assets/hero/events-panorama.jpg';
+import eventsPanorama from '@/assets/hero/events-panorama.webp';
 
 const DEPARTMENT_OPTIONS = EVENT_DEPARTMENTS.filter((dept) => dept !== 'Open to All');
 

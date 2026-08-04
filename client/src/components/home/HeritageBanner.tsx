@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import temple from '@/assets/heritage/temple-courtyard-wide.jpg';
+import temple from '@/assets/heritage/temple-courtyard-wide.webp';
 
 export function HeritageBanner() {
   return (

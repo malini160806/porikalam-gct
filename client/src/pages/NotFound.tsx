@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
-import templeColor from '@/assets/heritage/temple-illustration-color.jpg';
+import templeColor from '@/assets/heritage/temple-illustration-color.webp';
 
 export default function NotFound() {
   return (

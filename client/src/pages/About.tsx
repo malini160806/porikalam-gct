@@ -8,17 +8,17 @@ import { Timeline } from '@/components/ui/Timeline';
 import { Button } from '@/components/ui/Button';
 import { team } from '@/data/team';
 import type { TimelineStep } from '@/data/types';
-import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.png';
-import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.jpg';
-import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.jpg';
-import astrolabe from '@/assets/elements/ancient/astrolabe.png';
-import armillarySphere from '@/assets/elements/ancient/armillary-sphere.png';
-import sundial from '@/assets/elements/ancient/sundial.png';
-import compass from '@/assets/elements/ancient/compass.png';
-import protractor from '@/assets/elements/ancient/protractor.png';
-import gear from '@/assets/elements/ancient/gear.png';
-import kallanaiDam from '@/assets/elements/ancient/kallanai-dam-pair.png';
-import heroPanorama from '@/assets/hero/ancient-futuristic-panorama.jpg';
+import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.webp';
+import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.webp';
+import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.webp';
+import astrolabe from '@/assets/elements/ancient/astrolabe.webp';
+import armillarySphere from '@/assets/elements/ancient/armillary-sphere.webp';
+import sundial from '@/assets/elements/ancient/sundial.webp';
+import compass from '@/assets/elements/ancient/compass.webp';
+import protractor from '@/assets/elements/ancient/protractor.webp';
+import gear from '@/assets/elements/ancient/gear.webp';
+import kallanaiDam from '@/assets/elements/ancient/kallanai-dam-pair.webp';
+import heroPanorama from '@/assets/hero/ancient-futuristic-panorama.webp';
 
 const instruments = [
   { image: astrolabe, title: 'Astrolabe', caption: 'Ancient tool for measuring the position of stars.' },

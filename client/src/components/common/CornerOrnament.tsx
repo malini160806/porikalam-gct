@@ -1,5 +1,5 @@
-import scrollOrnament from '@/assets/heritage/corner-ornament-scroll.png';
-import floralOrnament from '@/assets/heritage/corner-ornament-floral.png';
+import scrollOrnament from '@/assets/heritage/corner-ornament-scroll.webp';
+import floralOrnament from '@/assets/heritage/corner-ornament-floral.webp';
 
 type CornerOrnamentProps = {
   corner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';

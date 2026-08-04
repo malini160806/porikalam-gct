@@ -9,8 +9,8 @@ import { TeamCard } from '@/components/cards/TeamCard';
 import { CompassMotif } from '@/components/common/CompassMotif';
 import { SITE } from '@/constants/site';
 import { team } from '@/data/team';
-import templeInkwash from '@/assets/heritage/temple-inkwash.jpg';
-import contactPanorama from '@/assets/hero/contact-panorama.jpg';
+import templeInkwash from '@/assets/heritage/temple-inkwash.webp';
+import contactPanorama from '@/assets/hero/contact-panorama.webp';
 
 const coordinators = team.filter((m) => m.team === 'faculty' || m.team === 'core');
 

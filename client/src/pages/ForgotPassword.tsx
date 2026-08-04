@@ -1,8 +1,8 @@
 import { PageHero } from '@/components/common/PageHero';
 import { FloatingIcon } from '@/components/common/FloatingIcon';
 import { ForgotPasswordForm } from '@/components/auth/ForgotPasswordForm';
-import lightbulbIcon from '@/assets/motifs/lightbulb.png';
-import gearIcon from '@/assets/motifs/gear.png';
+import lightbulbIcon from '@/assets/motifs/lightbulb.webp';
+import gearIcon from '@/assets/motifs/gear.webp';
 
 export default function ForgotPassword() {
   return (

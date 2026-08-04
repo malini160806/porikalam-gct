@@ -7,7 +7,7 @@ import { Divider } from '@/components/ui/Divider';
 import { VerticalTimeline } from '@/components/ui/VerticalTimeline';
 import { schedule } from '@/data/schedule';
 import type { ScheduleItem } from '@/data/types';
-import schedulePanorama from '@/assets/hero/schedule-panorama.jpg';
+import schedulePanorama from '@/assets/hero/schedule-panorama.webp';
 
 const DAY_OPTIONS: { label: string; value: '1' | '2' }[] = [
   { label: 'Day 1 — 25 Sept', value: '1' },

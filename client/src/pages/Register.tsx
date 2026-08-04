@@ -4,8 +4,8 @@ import { PageHero } from '@/components/common/PageHero';
 import { FloatingIcon } from '@/components/common/FloatingIcon';
 import { RegistrationWizard } from '@/components/auth/RegistrationWizard';
 import { RegistrationSuccess } from '@/components/auth/RegistrationSuccess';
-import gearIcon from '@/assets/motifs/gear.png';
-import roboticArmIcon from '@/assets/motifs/robotic-arm.png';
+import gearIcon from '@/assets/motifs/gear.webp';
+import roboticArmIcon from '@/assets/motifs/robotic-arm.webp';
 
 export default function Register() {
   const navigate = useNavigate();

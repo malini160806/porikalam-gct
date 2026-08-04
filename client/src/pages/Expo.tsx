@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { SpecimenCard } from '@/components/common/SpecimenCard';
 import { expoBenefits, expoShowcase } from '@/data/expo';
-import aiBrain from '@/assets/elements/modern/ai-brain-engraved.png';
-import roboticArm from '@/assets/elements/modern/robotic-arm-engraved.png';
-import drone from '@/assets/elements/modern/drone-engraved.png';
-import satellite from '@/assets/elements/modern/satellite-engraved.png';
-import circuitTrace from '@/assets/elements/modern/circuit-trace-engraved.png';
-import cloudComputing from '@/assets/elements/modern/cloud-computing-engraved.png';
-import expoPanorama from '@/assets/hero/expo-panorama.jpg';
+import aiBrain from '@/assets/elements/modern/ai-brain-engraved.webp';
+import roboticArm from '@/assets/elements/modern/robotic-arm-engraved.webp';
+import drone from '@/assets/elements/modern/drone-engraved.webp';
+import satellite from '@/assets/elements/modern/satellite-engraved.webp';
+import circuitTrace from '@/assets/elements/modern/circuit-trace-engraved.webp';
+import cloudComputing from '@/assets/elements/modern/cloud-computing-engraved.webp';
+import expoPanorama from '@/assets/hero/expo-panorama.webp';
 
 const frontiers = [
   { image: aiBrain, title: 'Artificial Intelligence', caption: 'Machine learning and neural systems.' },

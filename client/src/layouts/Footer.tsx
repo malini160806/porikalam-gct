@@ -5,7 +5,7 @@ import { Logo } from '@/components/common/Logo';
 import { SocialIcons } from '@/components/ui/SocialIcons';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { SITE, FOOTER_LINKS } from '@/constants/site';
-import rosetteSeal from '@/assets/heritage/rosette-seal.png';
+import rosetteSeal from '@/assets/heritage/rosette-seal.webp';
 
 const TAGLINES = [
   { icon: Triangle, title: 'Ancient Roots', subtitle: 'Timeless Wisdom' },

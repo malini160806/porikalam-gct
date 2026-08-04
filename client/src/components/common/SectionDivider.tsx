@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import swirlFlow from '@/assets/elements/transitions/swirl-flow.png';
+import swirlFlow from '@/assets/elements/transitions/swirl-flow.webp';
 
 /** Decorative gold-to-blue flow graphic marking the ancient-to-futuristic narrative shift between sections. */
 export function SectionDivider() {

@@ -9,7 +9,7 @@ import { Countdown } from '@/components/home/Countdown';
 import { EventHighlights } from '@/components/home/EventHighlights';
 import { SITE } from '@/constants/site';
 import logoImage from '@/assets/porikkalam-logo.webp';
-import homeBackground from '@/assets/hero/ancient-futuristic-home.webp';
+import homeBackground from '@/assets/hero/porikkalam-background-hd.webp';
 
 const RAIL_ICONS = [User, Megaphone, Calendar, HelpCircle];
 

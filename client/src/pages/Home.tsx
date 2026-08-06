@@ -1,7 +1,5 @@
 import { Hero } from '@/components/home/Hero';
 import { EraJourney } from '@/components/home/EraJourney';
-import { HeritageBanner } from '@/components/home/HeritageBanner';
-import { AboutSection } from '@/components/home/AboutSection';
 import { DepartmentsPreview } from '@/components/home/DepartmentsPreview';
 import { EventCategories } from '@/components/home/EventCategories';
 import { TimelineSection } from '@/components/home/TimelineSection';
@@ -17,8 +15,6 @@ export default function Home() {
     <>
       <Hero />
       <EraJourney />
-      <HeritageBanner />
-      <AboutSection />
       <DepartmentsPreview />
       <EventCategories />
       <TimelineSection />

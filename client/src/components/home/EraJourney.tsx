@@ -4,6 +4,7 @@ import { Factory, Landmark, MonitorSmartphone, Sparkles, Triangle } from 'lucide
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { eras } from '@/data/eras';
 import type { EraStep } from '@/data/eras';
+import eraJourneyBackground from '@/assets/heritage/era-journey-bg.png';
 
 const ICONS: Record<EraStep['icon'], typeof Triangle> = {
   triangle: Triangle,
@@ -23,7 +24,28 @@ export function EraJourney() {
 
   return (
     <section className="relative overflow-hidden bg-navy-deep py-24">
+      <motion.img
+        src={eraJourneyBackground}
+        alt=""
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 1.04 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+        className="absolute inset-0 h-full w-full object-contain"
+      />
+
+      {/* Readability overlay */}
+      <div className="absolute inset-0 bg-navy-deep/55" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/35 to-navy-deep/70" />
+
+      {/* Seamless blend into the sections above and below */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy-deep to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-cream to-transparent" />
+
+      {/* Blueprint texture */}
       <div className="absolute inset-0 bp-grid-bg opacity-[0.15]" />
+
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="The Journey"

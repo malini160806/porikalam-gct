@@ -23,8 +23,25 @@ export function EraJourney() {
   const lineScale = useTransform(scrollYProgress, [0.15, 0.85], [0, 1]);
 
   return (
-    <section className="relative overflow-hidden bg-navy-deep pb-24 pt-20">
-      <div className="absolute inset-0 bp-grid-bg opacity-[0.15]" />
+    <section className="relative overflow-hidden bg-navy-deep py-24">
+      {/* Full artwork as the section background, covering edge-to-edge. */}
+      <motion.img
+        src={eraJourneyBackground}
+        alt=""
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 1.03 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="absolute inset-0 h-full w-full object-cover brightness-110"
+      />
+
+      {/* Minimal overlay — just enough for text contrast, keeps the artwork clearly visible. */}
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-deep to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-cream to-transparent" />
+
+      {/* Blueprint texture */}
+      <div className="absolute inset-0 bp-grid-bg opacity-[0.12]" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -32,23 +49,6 @@ export function EraJourney() {
           title="Journey Of Engineering Through The Ages"
           tone="dark"
         />
-
-        {/* Full, uncropped heritage artwork — sized to its native ratio so nothing is cut. */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.02 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.1, ease: 'easeOut' }}
-          className="relative mt-14 aspect-[1672/941] w-full overflow-hidden border border-gold/25"
-        >
-          <img
-            src={eraJourneyBackground}
-            alt="Illustrated timeline of engineering from ancient temple architecture to futuristic technology"
-            className="h-full w-full object-cover"
-          />
-          {/* Light edge blend only — keeps the artwork bright and fully visible. */}
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/55 via-transparent to-navy-deep/15" />
-        </motion.div>
 
         <div ref={sectionRef} className="relative mt-16">
           <div className="absolute left-0 right-0 top-7 hidden h-px bg-gold/15 sm:block" />

@@ -4,6 +4,8 @@ export type EventFormat = 'team' | 'individual';
 
 export type EventFormatMode = 'competition' | 'participation';
 
+export type EventRegistrationStatus = 'open' | 'closed' | 'coming-soon';
+
 export type EventItem = {
   id: string;
   title: string;
@@ -19,6 +21,11 @@ export type EventItem = {
   icon: string;
   tags: string[];
   prerequisites?: string;
+  /** Official event poster/artwork. Falls back to a heritage-themed placeholder when absent. */
+  poster?: string;
+  prizePool?: string;
+  /** Defaults to 'open' when omitted — registration is live sitewide. */
+  registrationStatus?: EventRegistrationStatus;
 };
 
 export type Sponsor = {

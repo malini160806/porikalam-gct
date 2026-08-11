@@ -4,7 +4,7 @@ import { DepartmentsPreview } from '@/components/home/DepartmentsPreview';
 import { EventCategories } from '@/components/home/EventCategories';
 import { TimelineSection } from '@/components/home/TimelineSection';
 import { SectionDivider } from '@/components/common/SectionDivider';
-import { ExpoPreview } from '@/components/home/ExpoPreview';
+import { ThuliraPreview } from '@/components/home/ThuliraPreview';
 import { SponsorsPreview } from '@/components/home/SponsorsPreview';
 import { CoreTeamPreview } from '@/components/home/CoreTeamPreview';
 import { FaqPreview } from '@/components/home/FaqPreview';
@@ -19,7 +19,7 @@ export default function Home() {
       <EventCategories />
       <TimelineSection />
       <SectionDivider />
-      <ExpoPreview />
+      <ThuliraPreview />
       <SponsorsPreview />
       <CoreTeamPreview />
       <FaqPreview />

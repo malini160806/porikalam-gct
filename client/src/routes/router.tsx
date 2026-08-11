@@ -8,7 +8,7 @@ const Home = lazy(() => import('@/pages/Home'));
 const About = lazy(() => import('@/pages/About'));
 const Events = lazy(() => import('@/pages/Events'));
 const EventDetail = lazy(() => import('@/pages/EventDetail'));
-const Expo = lazy(() => import('@/pages/Expo'));
+const Thulira = lazy(() => import('@/pages/Thulira'));
 const Participate = lazy(() => import('@/pages/Participate'));
 const Sponsors = lazy(() => import('@/pages/Sponsors'));
 const Contact = lazy(() => import('@/pages/Contact'));
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
       { path: 'about', element: withSuspense(About) },
       { path: 'events', element: withSuspense(Events) },
       { path: 'events/:eventId', element: withSuspense(EventDetail) },
-      { path: 'expo', element: withSuspense(Expo) },
+      { path: 'thulira', element: withSuspense(Thulira) },
       { path: 'participate', element: withSuspense(Participate) },
       { path: 'sponsors', element: withSuspense(Sponsors) },
       { path: 'contact', element: withSuspense(Contact) },

@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Rocket } from 'lucide-react';
+import { ArrowRight, Lightbulb, Rocket, Users } from 'lucide-react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { expoBenefits } from '@/data/expo';
+import { thuliraObjectives } from '@/data/thulira';
 
-export function ExpoPreview() {
+const HIGHLIGHT_ICONS = [Lightbulb, Rocket, Users];
+
+export function ThuliraPreview() {
   return (
     <section className="relative overflow-hidden bg-charcoal py-24">
       <div className="absolute inset-0 bp-grid-bg opacity-[0.15]" />
@@ -16,13 +18,13 @@ export function ExpoPreview() {
           transition={{ duration: 0.6 }}
           className="flex flex-col gap-6"
         >
-          <SectionHeading eyebrow="Innovate. Showcase. Inspire." title="Project Expo" align="left" tone="dark" />
+          <SectionHeading eyebrow="Inspiring Ideas. Igniting Innovation." title="Thulira" align="left" tone="dark" />
           <p className="font-quote text-lg italic leading-relaxed text-beige/80">
-            A dedicated stage for student startups, prototypes, and bold engineering ideas —
-            where innovation meets industry.
+            The Student Startup Challenge — a premier platform where aspiring student entrepreneurs
+            showcase innovative startup ideas, prototypes, and entrepreneurial solutions.
           </p>
-          <Button to="/expo" variant="primary" size="lg" icon={<ArrowRight size={16} />} className="w-fit">
-            Register Your Project
+          <Button to="/thulira" variant="primary" size="lg" icon={<ArrowRight size={16} />} className="w-fit">
+            Explore Thulira
           </Button>
         </motion.div>
 
@@ -35,12 +37,15 @@ export function ExpoPreview() {
         >
           <Rocket size={28} className="text-gold" strokeWidth={1.5} />
           <ul className="flex flex-col gap-4">
-            {expoBenefits.map((benefit) => (
-              <li key={benefit.id} className="flex items-center gap-3 font-body text-sm text-beige/85">
-                <CheckCircle2 size={16} className="shrink-0 text-gold" />
-                {benefit.label}
-              </li>
-            ))}
+            {thuliraObjectives.map((objective, index) => {
+              const Icon = HIGHLIGHT_ICONS[index] ?? Lightbulb;
+              return (
+                <li key={objective.id} className="flex items-start gap-3 font-body text-sm text-beige/85">
+                  <Icon size={16} className="mt-0.5 shrink-0 text-gold" />
+                  {objective.description}
+                </li>
+              );
+            })}
           </ul>
         </motion.div>
       </div>

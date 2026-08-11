@@ -23,7 +23,8 @@ import {
   Truck,
   Wrench,
 } from 'lucide-react';
-import { PageHero } from '@/components/common/PageHero';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -96,11 +97,70 @@ export default function Thulira() {
 
   return (
     <div className="relative">
-      <PageHero
-        title="Thulira"
-        subtitle="Student Startup Challenge"
-        backgroundImage={ancientFuturisticPanorama}
-      />
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-navy-deep py-32 text-center sm:py-44">
+        <motion.img
+          src={ancientFuturisticPanorama}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.15 }}
+          animate={{ opacity: 1, scale: [1.15, 1, 1.06, 1] }}
+          transition={{
+            opacity: { duration: 2, ease: 'easeOut' },
+            scale: { duration: 26, times: [0, 0.08, 0.54, 1], repeat: Infinity, ease: 'easeInOut' },
+          }}
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/50 to-navy-deep/75" />
+        <div className="absolute inset-0 bp-grid-bg opacity-30" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center text-gold/10">
+          <TempleSilhouette className="h-40 w-40 sm:h-56 sm:w-56" strokeWidth={0.9} />
+        </div>
+
+        <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-5 px-4 sm:px-6">
+          <Breadcrumb items={[{ label: 'Home', path: '/' }, { label: 'Thulira' }]} tone="dark" />
+
+          <div className="flex items-center justify-center gap-4 sm:gap-8">
+            <motion.span
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.9, delay: 0.4, ease: 'easeOut' }}
+              className="hidden h-px w-16 origin-right bg-gradient-to-l from-gold to-transparent sm:block sm:w-24 lg:w-32"
+            />
+            <motion.h1
+              initial={{ opacity: 0, y: 24, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="heading-glow-pulse text-shimmer-gold font-heading text-6xl font-extrabold uppercase tracking-wide sm:text-7xl lg:text-8xl"
+            >
+              Thulira
+            </motion.h1>
+            <motion.span
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.9, delay: 0.4, ease: 'easeOut' }}
+              className="hidden h-px w-16 origin-left bg-gradient-to-r from-gold to-transparent sm:block sm:w-24 lg:w-32"
+            />
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="font-body text-sm font-semibold uppercase tracking-[0.35em] text-beige/90 sm:text-base"
+          >
+            Student Startup Challenge
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            <Divider />
+          </motion.div>
+        </div>
+      </section>
 
       {/* Tagline strip */}
       <section className="relative overflow-hidden bg-navy-deep py-12">

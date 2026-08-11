@@ -150,6 +150,40 @@
       0 2px 6px rgba(0, 15, 24, 0.5);
   }
 
+  /* Sweeping gold highlight band across a text-clipped gradient — used for premium page headings. */
+  .text-shimmer-gold {
+    background: linear-gradient(110deg, #8b7333 25%, #f5e7b8 45%, #ffffff 52%, #f5e7b8 59%, #d4af37 80%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer-sweep 4.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer-sweep {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+
+  /* Slow breathing gold glow, layered under .text-shimmer-gold for premium hero headings. */
+  .heading-glow-pulse {
+    animation: glow-pulse 2.8s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.35));
+    }
+    50% {
+      filter: drop-shadow(0 0 32px rgba(212, 175, 55, 0.7));
+    }
+  }
+
   /* Dark-on-navy scrollbar for the mobile nav drawer, overriding the site-wide gold-on-cream default. */
   .mobile-nav-scroll {
     scrollbar-width: thin;

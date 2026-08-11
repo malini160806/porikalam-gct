@@ -49,6 +49,35 @@ function SimpleNavItem({ to, label, end }: { to: string; label: string; end?: bo
   );
 }
 
+/** Highlighted nav entry for Thulira — shimmering gold label with a small pulsing accent dot. */
+function ThuliraNavItem({ to, label }: { to: string; label: string }) {
+  return (
+    <NavLink to={to} className="group relative">
+      {({ isActive }) => (
+        <motion.div
+          whileHover={{ y: -2 }}
+          transition={{ duration: 0.2 }}
+          className="relative inline-flex items-center gap-1.5 px-1 py-2"
+        >
+          <span
+            className={`text-shimmer-gold ${navLabelClass} ${
+              isActive ? 'drop-shadow-[0_0_10px_rgba(212,175,55,0.55)]' : 'group-hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.45)]'
+            }`}
+          >
+            {label}
+          </span>
+          <motion.span
+            animate={{ opacity: [1, 0.35, 1], scale: [1, 1.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold shadow-[0_0_8px_2px_rgba(212,175,55,0.6)]"
+          />
+          <span className={`${navUnderlineClass} ${isActive ? 'scale-x-100' : ''}`} />
+        </motion.div>
+      )}
+    </NavLink>
+  );
+}
+
 function DropdownNavItem({ link }: { link: NavLinkType }) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
@@ -113,7 +142,19 @@ function DropdownNavItem({ link }: { link: NavLinkType }) {
   );
 }
 
-function MobileNavRow({ to, end, label, onNavigate }: { to: string; end?: boolean; label: string; onNavigate: () => void }) {
+function MobileNavRow({
+  to,
+  end,
+  label,
+  onNavigate,
+  highlight,
+}: {
+  to: string;
+  end?: boolean;
+  label: string;
+  onNavigate: () => void;
+  highlight?: boolean;
+}) {
   return (
     <motion.div variants={mobileItemVariants}>
       <NavLink
@@ -122,7 +163,7 @@ function MobileNavRow({ to, end, label, onNavigate }: { to: string; end?: boolea
         onClick={onNavigate}
         className={({ isActive }) =>
           `group flex items-center gap-3 border-b border-gold/10 py-3.5 font-body text-lg font-semibold uppercase tracking-wide transition-colors duration-200 ${
-            isActive ? 'text-gold' : 'text-cream/90 hover:text-gold'
+            isActive ? 'text-gold' : highlight ? 'text-cream/90' : 'text-cream/90 hover:text-gold'
           }`
         }
       >
@@ -133,7 +174,18 @@ function MobileNavRow({ to, end, label, onNavigate }: { to: string; end?: boolea
                 isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
               }`}
             />
-            {label}
+            {highlight ? (
+              <span className="inline-flex items-center gap-2">
+                <span className="text-shimmer-gold">{label}</span>
+                <motion.span
+                  animate={{ opacity: [1, 0.35, 1], scale: [1, 1.3, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold shadow-[0_0_8px_2px_rgba(212,175,55,0.6)]"
+                />
+              </span>
+            ) : (
+              label
+            )}
           </>
         )}
       </NavLink>
@@ -143,7 +195,15 @@ function MobileNavRow({ to, end, label, onNavigate }: { to: string; end?: boolea
 
 function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate: () => void }) {
   if (!link.children?.length) {
-    return <MobileNavRow to={link.path} end={link.path === '/'} label={link.label} onNavigate={onNavigate} />;
+    return (
+      <MobileNavRow
+        to={link.path}
+        end={link.path === '/'}
+        label={link.label}
+        onNavigate={onNavigate}
+        highlight={link.path === '/thulira'}
+      />
+    );
   }
 
   return (
@@ -276,6 +336,8 @@ export function Navbar() {
           {NAV_LINKS.map((link) =>
             link.children?.length ? (
               <DropdownNavItem key={link.path} link={link} />
+            ) : link.path === '/thulira' ? (
+              <ThuliraNavItem key={link.path} to={link.path} label={link.label} />
             ) : (
               <SimpleNavItem key={link.path} to={link.path} label={link.label} end={link.path === '/'} />
             ),

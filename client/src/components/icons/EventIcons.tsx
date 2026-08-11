@@ -3,8 +3,7 @@ import type { SVGProps } from 'react';
 type IconProps = SVGProps<SVGSVGElement>;
 
 /**
- * Antique engraved / blueprint line-art icon set for events, matching the heritage motifs
- * (GearMotif, CompassMotif) already used site-wide: 100x100 viewBox, stroke-only,
+ * Antique engraved / blueprint line-art icon set for events: 100x100 viewBox, stroke-only,
  * `currentColor` so callers control the gold/bronze tone via text color classes.
  */
 const base = {

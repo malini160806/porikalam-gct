@@ -1,9 +1,7 @@
-import { GearMotif } from './GearMotif';
-
 export function PageLoader() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center bg-cream">
-      <GearMotif className="h-12 w-12 animate-spin text-gold" />
+      <div className="h-8 w-8 animate-spin border-2 border-brown/30 border-t-brown" />
     </div>
   );
 }

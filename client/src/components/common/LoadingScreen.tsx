@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { GearMotif } from './GearMotif';
 import logoImage from '@/assets/porikkalam-logo.webp';
 
 const MIN_DISPLAY_MS = 700;
@@ -32,12 +31,10 @@ export function LoadingScreen() {
             className="h-16 w-auto sm:h-20"
           />
           <motion.div
-            className="h-10 w-10 text-gold"
+            className="h-6 w-6 border-2 border-gold"
             animate={{ rotate: 360 }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'linear' }}
-          >
-            <GearMotif className="h-full w-full" />
-          </motion.div>
+          />
         </motion.div>
       )}
     </AnimatePresence>

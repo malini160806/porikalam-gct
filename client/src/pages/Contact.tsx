@@ -6,7 +6,6 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { TeamCard } from '@/components/cards/TeamCard';
-import { CompassMotif } from '@/components/common/CompassMotif';
 import { SITE } from '@/constants/site';
 import { team } from '@/data/team';
 import templeInkwash from '@/assets/heritage/temple-inkwash.webp';
@@ -48,13 +47,6 @@ export default function Contact() {
 
       <section className="relative overflow-hidden bg-cream/90 py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-40" />
-        <motion.div
-          className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 text-brown/10"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-        >
-          <CompassMotif className="h-full w-full" />
-        </motion.div>
 
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
           <div className="flex flex-col gap-6 border border-navy/15 bg-navy p-8 text-cream lg:col-span-2">

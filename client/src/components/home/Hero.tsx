@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Compass, HelpCircle, Megaphone, User } from 'lucide-react';
+import { ArrowRight, Calendar, HelpCircle, Megaphone, User } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
-import { GearMotif } from '@/components/common/GearMotif';
-import { CompassMotif } from '@/components/common/CompassMotif';
 import { useParallax } from '@/hooks/useParallax';
 import { Countdown } from '@/components/home/Countdown';
 import { EventHighlights } from '@/components/home/EventHighlights';
@@ -46,7 +44,7 @@ export function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 border border-gold/40 px-4 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold sm:tracking-[0.25em]"
           >
-            <Compass size={14} /> From Ancient Ingenuity To Futuristic Innovation
+            <span className="h-1.5 w-1.5 shrink-0 rotate-45 bg-gold" /> From Ancient Ingenuity To Futuristic Innovation
           </motion.span>
 
           <motion.div
@@ -110,29 +108,6 @@ export function Hero() {
       </div>
 
       <EventHighlights />
-
-      {/* Decorative motifs, layered above the background panorama */}
-      <motion.div
-        className="pointer-events-none absolute -left-10 top-24 z-10 h-40 w-40 text-gold/25 sm:h-56 sm:w-56"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-      >
-        <GearMotif className="h-full w-full" />
-      </motion.div>
-      <motion.div
-        className="pointer-events-none absolute right-6 top-10 z-10 h-24 w-24 text-gold/20 sm:h-36 sm:w-36"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
-      >
-        <GearMotif className="h-full w-full" teeth={10} />
-      </motion.div>
-      <motion.div
-        className="pointer-events-none absolute bottom-16 right-10 z-10 h-20 w-20 text-gold/20 sm:h-28 sm:w-28"
-        animate={{ y: [0, -14, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <CompassMotif className="h-full w-full" />
-      </motion.div>
 
       <div
         ref={templeRef}

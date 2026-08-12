@@ -3,33 +3,27 @@ import { motion } from 'framer-motion';
 import { PageHero } from '@/components/common/PageHero';
 import { Tabs } from '@/components/ui/Tabs';
 import { SearchBar } from '@/components/ui/SearchBar';
-import { Select } from '@/components/ui/Input';
 import { EventCard } from '@/components/cards/EventCard';
-import { events, EVENT_FILTERS, EVENT_DEPARTMENTS } from '@/data/events';
+import { events, EVENT_FILTERS } from '@/data/events';
 import type { EventItem } from '@/data/types';
 import eventsPanorama from '@/assets/hero/events-panorama.webp';
 
-const DEPARTMENT_OPTIONS = EVENT_DEPARTMENTS.filter((dept) => dept !== 'Open to All');
-
 export default function Events() {
   const [filter, setFilter] = useState<'all' | EventItem['category']>('all');
-  const [department, setDepartment] = useState('all');
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return events.filter((event) => {
       const matchesFilter = filter === 'all' || event.category === filter;
-      const matchesDepartment =
-        department === 'all' || event.tags.includes('Open to All') || event.tags.includes(department);
       const matchesQuery =
         !normalizedQuery ||
-        [event.title, event.department, event.category, event.description].some((field) =>
+        [event.title, event.category, event.description].some((field) =>
           field.toLowerCase().includes(normalizedQuery),
         );
-      return matchesFilter && matchesDepartment && matchesQuery;
+      return matchesFilter && matchesQuery;
     });
-  }, [filter, department, query]);
+  }, [filter, query]);
 
   return (
     <div className="relative">
@@ -59,27 +53,11 @@ export default function Events() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-6">
             <Tabs options={EVENT_FILTERS} value={filter} onChange={setFilter} />
-            <div className="flex w-full max-w-2xl flex-col gap-4 sm:flex-row">
-              <SearchBar
-                className="w-full flex-1"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <Select
-                id="department-filter"
-                aria-label="Filter by department"
-                className="sm:w-56"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
-              >
-                <option value="all">All Departments</option>
-                {DEPARTMENT_OPTIONS.map((dept) => (
-                  <option key={dept} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-              </Select>
-            </div>
+            <SearchBar
+              className="w-full max-w-2xl"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
           </div>
 
           {filtered.length > 0 ? (

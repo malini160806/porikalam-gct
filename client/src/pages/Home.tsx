@@ -1,6 +1,5 @@
 import { Hero } from '@/components/home/Hero';
 import { EraJourney } from '@/components/home/EraJourney';
-import { DepartmentsPreview } from '@/components/home/DepartmentsPreview';
 import { EventCategories } from '@/components/home/EventCategories';
 import { TimelineSection } from '@/components/home/TimelineSection';
 import { SectionDivider } from '@/components/common/SectionDivider';
@@ -15,7 +14,6 @@ export default function Home() {
     <>
       <Hero />
       <EraJourney />
-      <DepartmentsPreview />
       <EventCategories />
       <TimelineSection />
       <SectionDivider />

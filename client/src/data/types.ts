@@ -10,7 +10,7 @@ export type EventItem = {
   id: string;
   title: string;
   category: EventCategory;
-  /** 'Open to All Departments' or a comma-separated list of specific departments. */
+  /** Always 'Open to All' — every Porikkalam 2026 event is open to every department. */
   department: string;
   description: string;
   format: EventFormat;

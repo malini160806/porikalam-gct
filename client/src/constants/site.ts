@@ -32,7 +32,6 @@ export const NAV_LINKS: NavLink[] = [
     children: [
       { label: 'All Events', path: '/events' },
       { label: 'Schedule', path: '/schedule' },
-      { label: 'Departments', path: '/departments' },
       { label: 'Workshops', path: '/workshops' },
     ],
   },
@@ -78,7 +77,6 @@ export const FOOTER_LINKS = {
   events: [
     { label: 'All Events', path: '/events' },
     { label: 'Schedule', path: '/schedule' },
-    { label: 'Departments', path: '/departments' },
     { label: 'Workshops', path: '/workshops' },
     { label: 'Thulira', path: '/thulira' },
     { label: 'Leaderboard', path: '/leaderboard' },

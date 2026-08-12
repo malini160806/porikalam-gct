@@ -14,7 +14,7 @@ export const events: EventItem[] = [
     id: 'the-outliner',
     title: 'The Outliner',
     category: 'non-technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       "This is a drawing event in which you will be given a certain sketch, but you should think outside the box and draw what is not intended in the given sketch.",
     format: 'individual',
@@ -29,7 +29,7 @@ export const events: EventItem[] = [
     id: 'sitesprint',
     title: 'SiteSprint',
     category: 'technical',
-    department: 'Civil Engineering',
+    department: 'Open to All',
     description:
       'A real-world construction management challenge where teams act as site engineers and solve practical problems such as budget constraints, material shortages, safety issues, and design changes.',
     format: 'team',
@@ -38,13 +38,13 @@ export const events: EventItem[] = [
     duration: TBA,
     venue: 'Classroom',
     icon: 'hard-hat',
-    tags: ['Civil Engineering'],
+    tags: ['Open to All'],
   },
   {
     id: 'structron',
     title: 'Structron',
     category: 'technical',
-    department: 'Civil Engineering',
+    department: 'Open to All',
     description:
       'A hands-on structural engineering competition that challenges participants to design and construct a model structure using the materials provided. Teams must apply engineering principles, creativity, and practical building skills to create a stable, efficient structure capable of withstanding the maximum load applied during testing. Structures are evaluated on load-bearing capacity, stability, structural efficiency, innovation, and overall performance.',
     format: 'team',
@@ -53,13 +53,13 @@ export const events: EventItem[] = [
     duration: '1 Hour',
     venue: 'Building materials, testing load rig',
     icon: 'landmark',
-    tags: ['Civil Engineering'],
+    tags: ['Open to All'],
   },
   {
     id: 'concept-clash',
     title: 'Concept Clash',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'A technical debate competition where two teams present opposing perspectives on a given engineering or technology topic — one defending the concept, the other opposing it. Teams are judged on logical reasoning, practical examples, technical knowledge, and overall debate performance.',
     format: 'team',
@@ -74,7 +74,7 @@ export const events: EventItem[] = [
     id: 'deep-dive-challenge',
     title: 'Deep Dive Challenge',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'Participants are given a topic related to a specific subject and must quickly understand it, analyze it in depth, and present their insights within the allotted time — testing technical knowledge, analytical thinking, and presentation skills.',
     format: 'individual',
@@ -89,7 +89,7 @@ export const events: EventItem[] = [
     id: 'brainstorm-battle',
     title: 'Brainstorm Battle',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'A three-round assessment of future engineering leaders: Round 1 — Qualifier (Aptitude); Round 2 — Group Discussion on a technical topic to assess communication, teamwork, and analytical skills; Round 3 — Final Interview.',
     format: 'individual',
@@ -104,7 +104,7 @@ export const events: EventItem[] = [
     id: 'civil-cbi',
     title: 'Civil CBI',
     category: 'technical',
-    department: 'Civil Engineering',
+    department: 'Open to All',
     description:
       'Participants are shown real civil engineering site pictures and must find the defects in the site activity, write the reason behind them, and explain how to overcome the issue.',
     format: 'individual',
@@ -113,13 +113,13 @@ export const events: EventItem[] = [
     duration: '1 Hour',
     venue: 'Classroom',
     icon: 'search',
-    tags: ['Civil Engineering'],
+    tags: ['Open to All'],
   },
   {
     id: 'robo-soccer',
     title: 'Robo Soccer',
     category: 'technical',
-    department: 'Mechanical, EEE, ECE, IT, Production',
+    department: 'Open to All',
     description:
       'Build a robotic vehicle with the given source materials and compete head-to-head — the winner is decided by number of goals scored.',
     format: 'team',
@@ -128,13 +128,13 @@ export const events: EventItem[] = [
     duration: '1 Hour',
     venue: 'Arena for soccer',
     icon: 'bot',
-    tags: ['Mechanical', 'EEE', 'ECE', 'IT', 'Production'],
+    tags: ['Open to All'],
   },
   {
     id: 'flightcraft-skyworks',
     title: 'Flightcraft, Skyworks',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'Round 1: build a paper glider using only the materials provided and launch it on event day. Round 2: maximize and maintain flight time by applying sound aerodynamic principles — wing design, balance, stability, and weight distribution. Fliers are judged on load-bearing capacity and sustained flight time, with distance or stability as tie-breakers.',
     format: 'team',
@@ -149,7 +149,7 @@ export const events: EventItem[] = [
     id: 'water-rokletry',
     title: 'Water Rokletry',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'A safer, more accessible alternative to full rocket launches that still attracts strong participation — evaluated on flight distance and travel mode.',
     format: 'team',
@@ -164,7 +164,7 @@ export const events: EventItem[] = [
     id: 'gear-heads',
     title: 'Gear Heads',
     category: 'technical',
-    department: 'Mechanical, Production',
+    department: 'Open to All',
     description:
       'A multi-round technical event testing knowledge of automotive engines and modern automotive technologies, culminating in a hands-on mechanical assembly/disassembly task or troubleshooting simulation under a fixed time limit.',
     format: 'team',
@@ -173,13 +173,13 @@ export const events: EventItem[] = [
     duration: 'Half Day',
     venue: 'Seminar hall, machine shop',
     icon: 'cog',
-    tags: ['Mechanical', 'Production'],
+    tags: ['Open to All'],
   },
   {
     id: 'what-if-reverse-engineering-debugging',
     title: 'What If? (Reverse Engineering & Debugging)',
     category: 'technical',
-    department: 'EEE, ECE, EIE',
+    department: 'Open to All',
     description:
       'Explore what happens when electrical circuits are connected incorrectly. Analyze faults, predict circuit behavior, identify the cause, and suggest the correct solution — testing troubleshooting, analytical thinking, and real-world electrical safety knowledge.',
     format: 'individual',
@@ -188,13 +188,13 @@ export const events: EventItem[] = [
     duration: '30 Minutes',
     venue: 'Classrooms',
     icon: 'circuit-board',
-    tags: ['EEE', 'ECE', 'EIE'],
+    tags: ['Open to All'],
   },
   {
     id: 'robo-rally',
     title: 'Robo Rally',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'Design and build a robotic vehicle to navigate a specially designed obstacle track. If a robot deviates from the track, overturns, or is unable to proceed, it is repositioned at the last successfully crossed checkpoint. Robots violating technical regulations are disqualified.',
     format: 'team',
@@ -209,7 +209,7 @@ export const events: EventItem[] = [
     id: 'industry-5-0-challenge',
     title: 'Industry 5.0 Challenge',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'Real industry problems replace the usual paper presentation format — teams get 2–3 hours to prepare a solution and pitch it, Shark Tank style.',
     format: 'team',
@@ -224,7 +224,7 @@ export const events: EventItem[] = [
     id: 'product-presentation',
     title: 'Product Presentation',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'Participants showcase a fully functional product that solves a real-world problem, explaining the design process, working principle, technical implementation, testing results, and applications while demonstrating it to the judges.',
     format: 'team',
@@ -239,7 +239,7 @@ export const events: EventItem[] = [
     id: 'code-detective-speed-relay',
     title: 'Code Detective — Speed Relay',
     category: 'technical',
-    department: 'CSE, IT, AI/ML',
+    department: 'Open to All',
     description:
       'A 4-person relay against the clock: Round 1 (5 min) Bug Fix — Member 1 fixes as many bugs as possible before the code is locked and passed on. Round 2 (5 min) Optimize — Member 2 reduces time/memory complexity without starting over. Round 3 (5 min) Test — Member 3 runs hidden test cases and fixes edge cases and runtime errors. Round 4 (5–10 min) Explain — Member 4 explains the fixes, why the solution is faster, and its time complexity, with bonus points for finishing early or tackling a harder twist.',
     format: 'team',
@@ -248,13 +248,13 @@ export const events: EventItem[] = [
     duration: '1 Hour',
     venue: 'Lab and computers',
     icon: 'bug',
-    tags: ['CSE', 'IT', 'AI/ML'],
+    tags: ['Open to All'],
   },
   {
     id: 'requirement-rumble',
     title: 'Requirement Rumble',
     category: 'technical',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'Round 1: Client Chaos — teams interact with judges acting as clients to gather and clarify incomplete or ambiguous requirements. Round 2: Blueprint Builder — teams convert the gathered requirements into user stories, use cases, and acceptance criteria using simple design artifacts like wireframes or flow diagrams. Round 3: Build Sprint — teams develop a working prototype based on their blueprint and adapt it to a new requirement introduced mid-development.',
     format: 'team',
@@ -269,7 +269,7 @@ export const events: EventItem[] = [
     id: 'ai-workshop',
     title: 'AI Workshop',
     category: 'workshop',
-    department: 'Open to All Departments',
+    department: 'Open to All',
     description:
       'A hands-on session introducing AI tools and workflows beyond the basics most students already know, helping participants use AI properly and confidently in their engineering work and careers.',
     format: 'team',
@@ -297,11 +297,6 @@ export const EVENT_FILTERS: { label: string; value: 'all' | EventItem['category'
     value: category,
   })),
 ];
-
-/** Distinct departments across all events, for filter UIs — derived, never hand-typed. */
-export const EVENT_DEPARTMENTS: string[] = Array.from(
-  new Set(events.flatMap((event) => event.tags)),
-).sort();
 
 /** First N events in source order — deterministic, not hand-curated. */
 export function getFeaturedEvents(count = 6): EventItem[] {

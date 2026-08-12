@@ -2,7 +2,6 @@ import { Hero } from '@/components/home/Hero';
 import { EraJourney } from '@/components/home/EraJourney';
 import { EventCategories } from '@/components/home/EventCategories';
 import { TimelineSection } from '@/components/home/TimelineSection';
-import { SectionDivider } from '@/components/common/SectionDivider';
 import { ThuliraPreview } from '@/components/home/ThuliraPreview';
 import { SponsorsPreview } from '@/components/home/SponsorsPreview';
 import { CoreTeamPreview } from '@/components/home/CoreTeamPreview';
@@ -16,7 +15,6 @@ export default function Home() {
       <EraJourney />
       <EventCategories />
       <TimelineSection />
-      <SectionDivider />
       <ThuliraPreview />
       <SponsorsPreview />
       <CoreTeamPreview />

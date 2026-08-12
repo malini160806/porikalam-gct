@@ -1,11 +1,12 @@
 import { User } from "./User.js";
 import { Role } from "./Role.js";
 import { Counter } from "./Counter.js";
+import { Event } from "./Event.js";
 import { env } from "../config/env.js";
 
-export { User, Role, Counter };
+export { User, Role, Counter, Event };
 
-const allModels = [User, Role, Counter];
+const allModels = [User, Role, Counter, Event];
 
 /**
  * Explicitly creates every collection (and its indexes) at boot so all

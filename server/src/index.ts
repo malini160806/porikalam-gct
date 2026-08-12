@@ -11,8 +11,9 @@ import { errorHandler } from "./middleware/errorHandler.js";
 import { UPLOADS_ROOT } from "./utils/upload.js";
 
 import authRoutes from "./routes/auth.routes.js";
+import eventRoutes from "./routes/event.routes.js";
 
-// Phase 2+ will add: events, registrations, attendance, admin, payments,
+// Phase 2+ will add: registrations, attendance, admin, payments,
 // certificates, sponsors, gallery, announcements, contact routes.
 
 async function main(): Promise<void> {
@@ -35,6 +36,7 @@ async function main(): Promise<void> {
   app.use("/api/auth", authLimiter);
 
   app.use("/api/auth", authRoutes);
+  app.use("/api/events", eventRoutes);
 
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
 

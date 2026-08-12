@@ -4,13 +4,17 @@ import { PageHero } from '@/components/common/PageHero';
 import { Tabs } from '@/components/ui/Tabs';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { EventCard } from '@/components/cards/EventCard';
-import { events, EVENT_FILTERS } from '@/data/events';
+import { getEventFilters } from '@/data/eventMeta';
+import { useEvents } from '@/hooks/useEvents';
 import type { EventItem } from '@/data/types';
 import eventsPanorama from '@/assets/hero/events-panorama.webp';
 
 export default function Events() {
+  const { events, loading, error } = useEvents();
   const [filter, setFilter] = useState<'all' | EventItem['category']>('all');
   const [query, setQuery] = useState('');
+
+  const eventFilters = useMemo(() => getEventFilters(events), [events]);
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -23,7 +27,7 @@ export default function Events() {
         );
       return matchesFilter && matchesQuery;
     });
-  }, [filter, query]);
+  }, [events, filter, query]);
 
   return (
     <div className="relative">
@@ -52,7 +56,7 @@ export default function Events() {
       <section className="relative bg-cream/90 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-6">
-            <Tabs options={EVENT_FILTERS} value={filter} onChange={setFilter} />
+            <Tabs options={eventFilters} value={filter} onChange={setFilter} />
             <SearchBar
               className="w-full max-w-2xl"
               value={query}
@@ -60,7 +64,11 @@ export default function Events() {
             />
           </div>
 
-          {filtered.length > 0 ? (
+          {loading ? (
+            <p className="mt-16 text-center font-body text-sm text-slate">Loading events…</p>
+          ) : error ? (
+            <p className="mt-16 text-center font-body text-sm text-slate">{error}</p>
+          ) : filtered.length > 0 ? (
             <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
               {filtered.map((event, index) => (
                 <div id={event.id} key={event.id} className="h-full">

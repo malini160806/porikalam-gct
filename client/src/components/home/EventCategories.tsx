@@ -1,11 +1,12 @@
 import { EventCard } from '@/components/cards/EventCard';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { getFeaturedEvents } from '@/data/events';
-
-const featuredEvents = getFeaturedEvents(6);
+import { useEvents } from '@/hooks/useEvents';
 
 export function EventCategories() {
+  const { events, loading } = useEvents();
+  const featuredEvents = events.slice(0, 6);
+
   return (
     <section className="relative bg-navy py-24">
       <div className="absolute inset-0 bp-grid-bg opacity-[0.25]" />
@@ -17,11 +18,13 @@ export function EventCategories() {
           tone="dark"
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {featuredEvents.map((event, index) => (
-            <EventCard key={event.id} event={event} index={index} />
-          ))}
-        </div>
+        {!loading && (
+          <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {featuredEvents.map((event, index) => (
+              <EventCard key={event.id} event={event} index={index} />
+            ))}
+          </div>
+        )}
 
         <div className="mt-14 flex justify-center">
           <Button to="/events" variant="primary" size="md">

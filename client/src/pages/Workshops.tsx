@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { PageHero } from '@/components/common/PageHero';
 import { WorkshopCard } from '@/components/cards/WorkshopCard';
-import { events } from '@/data/events';
+import { useEvents } from '@/hooks/useEvents';
 import workshopPanorama from '@/assets/hero/workshop-panorama.webp';
 
 export default function Workshops() {
+  const { events } = useEvents();
   const workshops = events.filter((event) => event.category === 'workshop');
 
   return (

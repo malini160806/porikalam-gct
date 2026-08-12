@@ -1,5 +1,6 @@
 import type { HydratedDocument } from "mongoose";
 import type { UserDoc } from "../models/User.js";
+import type { EventDoc } from "../models/Event.js";
 
 export function serializeUser(user: HydratedDocument<UserDoc>) {
   return {
@@ -23,5 +24,35 @@ export function serializeUser(user: HydratedDocument<UserDoc>) {
     managed_event: user.managedEvent ?? null,
     created_at: user.createdAt.toISOString(),
     updated_at: user.updatedAt.toISOString(),
+  };
+}
+
+export function serializeEvent(event: HydratedDocument<EventDoc>) {
+  return {
+    id: event._id.toString(),
+    event_name: event.eventName,
+    slug: event.slug,
+    category: event.category,
+    description: event.description,
+    eligibility: event.eligibility,
+    target_participants: event.targetParticipants,
+    target_sub_category: event.targetSubCategory,
+    why_included: event.whyIncluded ?? null,
+    team_type: event.teamType,
+    team_size: event.teamSize,
+    event_type: event.eventType,
+    prequalifier_required: event.prequalifierRequired,
+    duration: event.duration,
+    expected_participants: event.expectedParticipants,
+    venue: event.venue,
+    resources: event.resources ?? null,
+    reference_link: event.referenceLink ?? null,
+    budget: event.budget ?? null,
+    prize_pool: event.prizePool ?? null,
+    registration_fee: event.registrationFee ?? null,
+    poster: event.poster ?? null,
+    icon: event.icon,
+    created_at: event.createdAt.toISOString(),
+    updated_at: event.updatedAt.toISOString(),
   };
 }

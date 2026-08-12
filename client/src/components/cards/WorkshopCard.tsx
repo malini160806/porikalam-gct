@@ -71,11 +71,7 @@ export function WorkshopCard({ event, index = 0 }: WorkshopCardProps) {
         </dl>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {event.tags.map((tag) => (
-            <Badge key={tag} variant={tag === 'Open to All' ? 'gold' : 'outline'}>
-              {tag}
-            </Badge>
-          ))}
+          <Badge variant="gold">{event.eligibility}</Badge>
         </div>
 
         {event.prequalifierRequired && (
@@ -83,13 +79,6 @@ export function WorkshopCard({ event, index = 0 }: WorkshopCardProps) {
             <ShieldCheck size={14} className="mt-0.5 shrink-0 text-brown" />
             All registrants compete in an online prequalifier round in {SITE.prequalifierWindow} — only
             those who qualify are selected to compete in the 2-day mega event on campus.
-          </p>
-        )}
-
-        {event.prerequisites && (
-          <p className="mt-4 border-t border-brown/15 pt-4 font-body text-xs text-brown/80">
-            <span className="font-semibold uppercase tracking-wider text-brown">Prerequisites: </span>
-            {event.prerequisites}
           </p>
         )}
       </div>

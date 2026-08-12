@@ -7,13 +7,13 @@ import { Button } from '@/components/ui/Button';
 import { Accordion } from '@/components/ui/Accordion';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { Badge } from '@/components/ui/Badge';
-import { events } from '@/data/events';
+import { useEvent } from '@/hooks/useEvents';
 import { faqs } from '@/data/faq';
 
 export default function Participate() {
   const [searchParams] = useSearchParams();
-  const eventId = searchParams.get('event');
-  const selectedEvent = events.find((e) => e.id === eventId);
+  const eventId = searchParams.get('event') ?? undefined;
+  const { event: selectedEvent } = useEvent(eventId);
 
   return (
     <>

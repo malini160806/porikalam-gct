@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { PageHero } from '@/components/common/PageHero';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
+import { PageLoader } from '@/components/common/PageLoader';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
-import { events, EVENT_CATEGORY_LABELS } from '@/data/events';
+import { EVENT_CATEGORY_LABELS } from '@/data/eventMeta';
+import { useEvent } from '@/hooks/useEvents';
 import NotFound from './NotFound';
-
-const TBA = 'To Be Announced';
 
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
@@ -22,7 +22,11 @@ function DetailRow({ label, value }: { label: string; value: string }) {
 
 export default function EventDetail() {
   const { eventId } = useParams<{ eventId: string }>();
-  const event = events.find((e) => e.id === eventId);
+  const { event, loading } = useEvent(eventId);
+
+  if (loading) {
+    return <PageLoader />;
+  }
 
   if (!event) {
     return <NotFound />;
@@ -32,7 +36,7 @@ export default function EventDetail() {
 
   return (
     <>
-      <PageHero title={event.title} subtitle={event.department} />
+      <PageHero title={event.title} subtitle={EVENT_CATEGORY_LABELS[event.category]} />
 
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -48,16 +52,33 @@ export default function EventDetail() {
 
               <div className="flex flex-wrap gap-2">
                 <Badge variant="navy">{EVENT_CATEGORY_LABELS[event.category]}</Badge>
-                {event.tags.map((tag) => (
-                  <Badge key={tag} variant={tag === 'Open to All' ? 'gold' : 'navy'}>
-                    {tag}
-                  </Badge>
-                ))}
+                <Badge variant="gold">{event.eligibility}</Badge>
+                {event.prequalifierRequired ? (
+                  <Badge variant="navy">Prequalifier Required</Badge>
+                ) : (
+                  <Badge variant="outline">No Prequalifier</Badge>
+                )}
               </div>
 
               <p className="mt-6 font-body text-base leading-relaxed text-slate">
                 {event.description}
               </p>
+
+              {event.primaryDomains && event.primaryDomains.length > 0 && (
+                <p className="mt-4 font-body text-xs text-slate/70">
+                  <span className="font-semibold uppercase tracking-wider text-brown">Primary Domains: </span>
+                  {event.primaryDomains.join(', ')} — informational only, open to every department.
+                </p>
+              )}
+
+              {event.whyIncluded && (
+                <div className="mt-8 border-t border-navy/10 pt-6">
+                  <h3 className="font-heading text-lg font-semibold tracking-wide text-navy">
+                    Why This Event Is Included
+                  </h3>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-slate">{event.whyIncluded}</p>
+                </div>
+              )}
             </motion.div>
 
             <motion.div
@@ -66,20 +87,23 @@ export default function EventDetail() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex flex-col gap-4 border border-navy/15 bg-white/40 p-6"
             >
-              <DetailRow label="Eligibility" value={event.department} />
-              <DetailRow label="Participation" value={event.format === 'team' ? 'Team' : 'Individual'} />
+              <DetailRow label="Eligibility" value={event.eligibility} />
+              <DetailRow
+                label="Team Size"
+                value={event.format === 'team' ? `Team — ${event.teamSize}` : 'Individual'}
+              />
               <DetailRow
                 label="Type"
                 value={event.formatMode === 'competition' ? 'Competition' : 'Participation'}
               />
+              <DetailRow label="Prequalifier" value={event.prequalifierRequired ? 'Required' : 'Not Required'} />
               <DetailRow label="Duration" value={event.duration} />
+              <DetailRow label="Expected Participants" value={String(event.expectedParticipants)} />
               <DetailRow label="Venue" value={event.venue} />
-              <DetailRow
-                label="Prequalifier"
-                value={event.prequalifierRequired ? 'Required' : 'Not Required'}
-              />
-              <DetailRow label="Date" value={TBA} />
-              <DetailRow label="Prize" value={TBA} />
+              {event.resources && <DetailRow label="Resources" value={event.resources} />}
+              {event.budget && <DetailRow label="Budget" value={event.budget} />}
+              {event.prizePool && <DetailRow label="Prize Pool" value={event.prizePool} />}
+              {event.registrationFee && <DetailRow label="Registration Fee" value={event.registrationFee} />}
 
               <Button
                 to={`/participate?event=${event.id}`}

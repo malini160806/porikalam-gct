@@ -7,23 +7,31 @@ export type EventFormatMode = 'competition' | 'participation';
 export type EventRegistrationStatus = 'open' | 'closed' | 'coming-soon';
 
 export type EventItem = {
+  /** URL slug — also the Mongo document's unique key. */
   id: string;
   title: string;
   category: EventCategory;
-  /** Always 'Open to All' — every Porikkalam 2026 event is open to every department. */
-  department: string;
   description: string;
   format: EventFormat;
+  /** Explicit team size as given by the organizers: 'Individual', 'Team', or a headcount like '4'. */
+  teamSize: string;
   formatMode: EventFormatMode;
   prequalifierRequired: boolean;
   duration: string;
+  expectedParticipants: number;
   venue: string;
+  resources?: string;
+  /** Always 'Open to All Departments' — shown as the eligibility badge on every event. */
+  eligibility: string;
+  /** Informational "primary domain" tags (e.g. 'Civil', 'CSE') — never used to gate registration. */
+  primaryDomains?: string[];
+  whyIncluded?: string;
+  budget?: string;
+  prizePool?: string;
+  registrationFee?: string;
   icon: string;
-  tags: string[];
-  prerequisites?: string;
   /** Official event poster/artwork. Falls back to a heritage-themed placeholder when absent. */
   poster?: string;
-  prizePool?: string;
   /** Defaults to 'open' when omitted — registration is live sitewide. */
   registrationStatus?: EventRegistrationStatus;
 };
@@ -79,15 +87,6 @@ export type ScheduleItem = {
   type: 'session' | 'workshop' | 'ceremony' | 'break';
   venue: string;
   relatedEventId?: string;
-};
-
-export type DepartmentInfo = {
-  id: string;
-  name: string;
-  fullName: string;
-  icon: string;
-  description: string;
-  tagMatches: string[];
 };
 
 export type AnnouncementItem = {

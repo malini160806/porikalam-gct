@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, GraduationCap, MapPin, ShieldCheck, Trophy, Users } from 'lucide-react';
+import { ArrowRight, Clock, MapPin, ShieldCheck, Users, Users2 } from 'lucide-react';
 import type { EventItem } from '@/data/types';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { SITE } from '@/constants/site';
-import { EVENT_CATEGORY_LABELS } from '@/data/events';
+import { EVENT_CATEGORY_LABELS } from '@/data/eventMeta';
 import posterPlaceholder from '@/assets/heritage/gct-building-banner.png';
 
 type EventCardProps = {
@@ -55,7 +55,6 @@ function DetailRow({ icon, children }: { icon: ReactNode; children: ReactNode })
 export function EventCard({ event, index = 0 }: EventCardProps) {
   const Icon = getEventIconComponent(event.icon);
   const registrationStatus = event.registrationStatus ?? 'open';
-  const isOpenToAll = event.tags.includes('Open to All');
 
   return (
     <motion.article
@@ -113,39 +112,33 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
           <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gold/15 pt-4">
             <DetailRow icon={<Clock size={13} />}>{event.duration}</DetailRow>
             <DetailRow icon={<MapPin size={13} />}>{event.venue}</DetailRow>
-            <DetailRow icon={<GraduationCap size={13} />}>{event.department}</DetailRow>
             <DetailRow icon={<Users size={13} />}>
-              {event.formatMode === 'competition' ? 'Competition' : 'Participation'}
+              {event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
             </DetailRow>
-            {event.prizePool && (
-              <DetailRow icon={<Trophy size={13} />}>{event.prizePool}</DetailRow>
-            )}
+            <DetailRow icon={<Users2 size={13} />}>{event.expectedParticipants} Expected</DetailRow>
           </dl>
 
           <div className="mt-4 flex flex-wrap gap-2">
-            {event.prequalifierRequired && <Badge variant="gold">Prequalifier Required</Badge>}
-            {isOpenToAll && <Badge variant="gold">Open to All</Badge>}
-            {event.tags
-              .filter((tag) => tag !== 'Open to All')
-              .map((tag) => (
-                <Badge key={tag} variant={event.category === 'technical' ? 'tech' : 'navy'}>
-                  {tag}
-                </Badge>
-              ))}
+            <Badge variant="gold">{event.eligibility}</Badge>
+            {event.prequalifierRequired ? (
+              <Badge variant="navy">Prequalifier Required</Badge>
+            ) : (
+              <Badge variant="outline">No Prequalifier</Badge>
+            )}
+            {event.registrationFee && <Badge variant="tech">Fee: {event.registrationFee}</Badge>}
           </div>
+
+          {event.primaryDomains && event.primaryDomains.length > 0 && (
+            <p className="mt-3 font-body text-[11px] text-beige/55">
+              Primary domain: {event.primaryDomains.join(', ')}
+            </p>
+          )}
 
           {event.prequalifierRequired && (
             <p className="mt-4 flex items-start gap-2 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
               <ShieldCheck size={14} className="mt-0.5 shrink-0 text-gold" />
               All registrants compete in an online prequalifier round in {SITE.prequalifierWindow} — only
               those who qualify are selected to compete in the 2-day mega event on campus.
-            </p>
-          )}
-
-          {event.prerequisites && (
-            <p className="mt-4 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
-              <span className="font-semibold uppercase tracking-wider text-gold">Prerequisites: </span>
-              {event.prerequisites}
             </p>
           )}
         </div>

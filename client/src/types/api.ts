@@ -47,3 +47,31 @@ export interface MeResponse {
   isSuperAdmin: boolean;
   registrations: RegistrationDto[];
 }
+
+export interface EventDto {
+  id: string;
+  event_name: string;
+  slug: string;
+  category: 'technical' | 'non-technical' | 'workshop';
+  description: string;
+  eligibility: string;
+  target_participants: number;
+  target_sub_category: string[];
+  why_included: string | null;
+  team_type: 'individual' | 'team';
+  team_size: string;
+  event_type: 'competition' | 'participation';
+  prequalifier_required: boolean;
+  duration: string;
+  expected_participants: number;
+  venue: string;
+  resources: string | null;
+  reference_link: string | null;
+  budget: string | null;
+  prize_pool: string | null;
+  registration_fee: string | null;
+  poster: string | null;
+  icon: string;
+  created_at: string;
+  updated_at: string;
+}

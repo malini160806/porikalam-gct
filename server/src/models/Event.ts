@@ -28,6 +28,7 @@ export interface EventDoc {
   registrationFee?: string | null;
   poster?: string | null;
   icon: string;
+  registrationOpen: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -58,6 +59,7 @@ const eventSchema = new Schema<EventDoc>(
     registrationFee: { type: String, trim: true, default: null },
     poster: { type: String, trim: true, default: null },
     icon: { type: String, required: true, trim: true },
+    registrationOpen: { type: Boolean, required: true, default: true },
   },
   { timestamps: true },
 );

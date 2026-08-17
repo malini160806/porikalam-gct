@@ -33,6 +33,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "pen-tool",
+    registrationOpen: true,
   },
   {
     eventName: "Civil CBI",
@@ -58,6 +59,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "search",
+    registrationOpen: true,
   },
   {
     eventName: "Structron",
@@ -83,6 +85,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "landmark",
+    registrationOpen: true,
   },
   {
     eventName: "Deep Dive Challenge",
@@ -108,6 +111,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "presentation",
+    registrationOpen: true,
   },
   {
     eventName: "Robo Soccer",
@@ -133,6 +137,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "bot",
+    registrationOpen: true,
   },
   {
     eventName: "Flightcraft, Skyworks",
@@ -159,6 +164,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "plane",
+    registrationOpen: true,
   },
   {
     eventName: "Water Rocketry",
@@ -185,6 +191,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "rocket",
+    registrationOpen: true,
   },
   {
     eventName: "What If? (Reverse Engineering & Debugging)",
@@ -210,6 +217,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "circuit-board",
+    registrationOpen: true,
   },
   {
     eventName: "Robo Rally",
@@ -236,6 +244,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "bot",
+    registrationOpen: true,
   },
   {
     eventName: "Code Detective – Speed Relay",
@@ -262,6 +271,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "bug",
+    registrationOpen: true,
   },
   {
     eventName: "Human Matrix",
@@ -288,6 +298,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "clipboard-list",
+    registrationOpen: true,
   },
   {
     eventName: "Hackathon",
@@ -314,6 +325,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "brain-circuit",
+    registrationOpen: true,
   },
   {
     eventName: "IPL Auction",
@@ -339,6 +351,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "message-square-text",
+    registrationOpen: true,
   },
   {
     eventName: "Paper Presentation",
@@ -365,6 +378,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "presentation",
+    registrationOpen: true,
   },
   {
     eventName: "Poster Designing",
@@ -391,6 +405,7 @@ const events: SeedEvent[] = [
     registrationFee: null,
     poster: null,
     icon: "pen-tool",
+    registrationOpen: true,
   },
 ];
 

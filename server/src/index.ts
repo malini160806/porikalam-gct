@@ -12,8 +12,9 @@ import { UPLOADS_ROOT } from "./utils/upload.js";
 
 import authRoutes from "./routes/auth.routes.js";
 import eventRoutes from "./routes/event.routes.js";
+import adminRoutes from "./routes/admin/index.js";
 
-// Phase 2+ will add: registrations, attendance, admin, payments,
+// Phase 2+ will add: registrations, attendance, payments,
 // certificates, sponsors, gallery, announcements, contact routes.
 
 async function main(): Promise<void> {
@@ -35,8 +36,17 @@ async function main(): Promise<void> {
   });
   app.use("/api/auth", authLimiter);
 
+  const adminLoginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 10,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+  app.use("/api/admin/auth/login", adminLoginLimiter);
+
   app.use("/api/auth", authRoutes);
   app.use("/api/events", eventRoutes);
+  app.use("/api/admin", adminRoutes);
 
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
 

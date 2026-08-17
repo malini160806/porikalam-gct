@@ -4,7 +4,8 @@ import { Factory, Landmark, MonitorSmartphone, Sparkles, Triangle } from 'lucide
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { eras } from '@/data/eras';
 import type { EraStep } from '@/data/eras';
-import eraJourneyBackground from '@/assets/heritage/era-journey-bg.png';
+import { useParallax } from '@/hooks/useParallax';
+import gctBuildingBanner from '@/assets/heritage/gct-building-banner.png';
 
 const ICONS: Record<EraStep['icon'], typeof Triangle> = {
   triangle: Triangle,
@@ -21,27 +22,40 @@ export function EraJourney() {
     offset: ['start end', 'end start'],
   });
   const lineScale = useTransform(scrollYProgress, [0.15, 0.85], [0, 1]);
+  const buildingRef = useParallax<HTMLDivElement>(36);
 
   return (
     <section className="relative overflow-hidden bg-navy-deep py-24">
-      {/* Full artwork as the section background, covering edge-to-edge. */}
-      <motion.img
-        src={eraJourneyBackground}
-        alt=""
+      {/* Soft gold bloom behind the building */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[60%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-[100px] mix-blend-screen" />
+
+      {/* Full GCT building illustration — object-contain guarantees the tower and wings are never cropped. */}
+      <div ref={buildingRef} className="absolute inset-0">
+        <motion.img
+          src={gctBuildingBanner}
+          alt="Illustrated blueprint of the Government College of Technology main building"
+          initial={{ opacity: 0, scale: 1.03 }}
+          whileInView={{ opacity: 0.3, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.3, ease: 'easeOut' }}
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      {/* Slow shimmer sweep across the gold linework */}
+      <motion.div
         aria-hidden="true"
-        initial={{ opacity: 0, scale: 1.03 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="absolute inset-0 h-full w-full object-cover brightness-110"
+        className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-gold/15 to-transparent mix-blend-overlay"
+        animate={{ x: ['0%', '400%'] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2 }}
       />
 
-      {/* Minimal overlay — just enough for text contrast, keeps the artwork clearly visible. */}
+      {/* Edge blends — dark on both sides, no washed-out fade */}
       <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-deep to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-cream to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-navy-deep to-transparent" />
 
-      {/* Blueprint texture */}
-      <div className="absolute inset-0 bp-grid-bg opacity-[0.12]" />
+      {/* Blueprint grid texture */}
+      <div className="absolute inset-0 bp-grid-bg opacity-[0.15]" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading

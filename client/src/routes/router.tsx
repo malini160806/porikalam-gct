@@ -32,6 +32,7 @@ const VolunteerPortal = lazy(() => import('@/pages/VolunteerPortal'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
 const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
+const AdminSignup = lazy(() => import('@/pages/admin/AdminSignup'));
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
 const AdminEvents = lazy(() => import('@/pages/admin/AdminEvents'));
 const AdminRegistrations = lazy(() => import('@/pages/admin/AdminRegistrations'));
@@ -49,49 +50,57 @@ function withSuspense(Component: React.ComponentType) {
   );
 }
 
+/** Full pages behind the participant account gate — everything except Home, auth pages, the
+ * Participate CTA (which exists to funnel signed-out visitors into registering), and the public
+ * certificate verification utility. */
+function withProtectedSuspense(Component: React.ComponentType) {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <ProtectedRoute>
+        <Component />
+      </ProtectedRoute>
+    </Suspense>
+  );
+}
+
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
     children: [
       { index: true, element: withSuspense(Home) },
-      { path: 'about', element: withSuspense(About) },
-      { path: 'events', element: withSuspense(Events) },
-      { path: 'events/:eventId', element: withSuspense(EventDetail) },
-      { path: 'thulira', element: withSuspense(Thulira) },
+      { path: 'about', element: withProtectedSuspense(About) },
+      { path: 'events', element: withProtectedSuspense(Events) },
+      { path: 'events/:eventId', element: withProtectedSuspense(EventDetail) },
+      { path: 'thulira', element: withProtectedSuspense(Thulira) },
       { path: 'participate', element: withSuspense(Participate) },
-      { path: 'sponsors', element: withSuspense(Sponsors) },
-      { path: 'contact', element: withSuspense(Contact) },
+      { path: 'sponsors', element: withProtectedSuspense(Sponsors) },
+      { path: 'contact', element: withProtectedSuspense(Contact) },
       { path: 'register', element: withSuspense(Register) },
       { path: 'login', element: withSuspense(Login) },
       { path: 'forgot-password', element: withSuspense(ForgotPassword) },
-      {
-        path: 'dashboard',
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          </Suspense>
-        ),
-      },
-      { path: 'team', element: withSuspense(Team) },
-      { path: 'schedule', element: withSuspense(Schedule) },
-      { path: 'workshops', element: withSuspense(Workshops) },
-      { path: 'accommodation', element: withSuspense(Accommodation) },
-      { path: 'faq', element: withSuspense(Faq) },
-      { path: 'announcements', element: withSuspense(Announcements) },
-      { path: 'resources', element: withSuspense(Resources) },
-      { path: 'leaderboard', element: withSuspense(Leaderboard) },
-      { path: 'media', element: withSuspense(Media) },
+      { path: 'dashboard', element: withProtectedSuspense(Dashboard) },
+      { path: 'team', element: withProtectedSuspense(Team) },
+      { path: 'schedule', element: withProtectedSuspense(Schedule) },
+      { path: 'workshops', element: withProtectedSuspense(Workshops) },
+      { path: 'accommodation', element: withProtectedSuspense(Accommodation) },
+      { path: 'faq', element: withProtectedSuspense(Faq) },
+      { path: 'announcements', element: withProtectedSuspense(Announcements) },
+      { path: 'resources', element: withProtectedSuspense(Resources) },
+      { path: 'leaderboard', element: withProtectedSuspense(Leaderboard) },
+      { path: 'media', element: withProtectedSuspense(Media) },
       { path: 'certificates', element: withSuspense(CertificateVerify) },
-      { path: 'volunteer', element: withSuspense(VolunteerPortal) },
+      { path: 'volunteer', element: withProtectedSuspense(VolunteerPortal) },
       { path: '*', element: withSuspense(NotFound) },
     ],
   },
   {
     path: '/admin/login',
     element: withSuspense(AdminLogin),
+  },
+  {
+    path: '/admin/signup',
+    element: withSuspense(AdminSignup),
   },
   {
     path: '/admin',

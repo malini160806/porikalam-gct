@@ -12,10 +12,14 @@ import { UPLOADS_ROOT } from "./utils/upload.js";
 
 import authRoutes from "./routes/auth.routes.js";
 import eventRoutes from "./routes/event.routes.js";
+import announcementRoutes from "./routes/announcement.routes.js";
 import adminRoutes from "./routes/admin/index.js";
+import { pollSocialFeeds } from "./services/socialFeed.js";
 
 // Phase 2+ will add: registrations, attendance, payments,
-// certificates, sponsors, gallery, announcements, contact routes.
+// certificates, sponsors, gallery, contact routes.
+
+const SOCIAL_POLL_INTERVAL_MS = 15 * 60 * 1000;
 
 async function main(): Promise<void> {
   await connectToDatabase();
@@ -46,6 +50,7 @@ async function main(): Promise<void> {
 
   app.use("/api/auth", authRoutes);
   app.use("/api/events", eventRoutes);
+  app.use("/api/announcements", announcementRoutes);
   app.use("/api/admin", adminRoutes);
 
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
@@ -55,6 +60,12 @@ async function main(): Promise<void> {
   app.listen(env.port, () => {
     console.log(`[server] listening on http://localhost:${env.port}`);
   });
+
+  if (env.metaAccessToken) {
+    console.log("[social-feed] auto-pull enabled — polling Instagram/Facebook every 15 minutes");
+    void pollSocialFeeds();
+    setInterval(() => void pollSocialFeeds(), SOCIAL_POLL_INTERVAL_MS);
+  }
 }
 
 main().catch((error) => {

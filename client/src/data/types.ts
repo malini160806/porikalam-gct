@@ -93,9 +93,12 @@ export type AnnouncementItem = {
   id: string;
   title: string;
   date: string;
-  category: 'registration' | 'schedule' | 'workshop' | 'general';
+  category: 'registration' | 'schedule' | 'workshop' | 'general' | 'social';
   content: string;
   pinned?: boolean;
+  source?: 'manual' | 'instagram' | 'facebook';
+  sourceUrl?: string;
+  mediaUrl?: string;
 };
 
 export type ResourceItem = {

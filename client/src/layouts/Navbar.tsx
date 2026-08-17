@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, LogOut } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import { Button } from '@/components/ui/Button';
 import { NAV_LINKS, type NavLink as NavLinkType } from '@/constants/site';
@@ -244,7 +244,7 @@ function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate:
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { user } = useSession();
+  const { user, signOut } = useSession();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -346,10 +346,18 @@ export function Navbar() {
 
         <div className="hidden shrink-0 items-center gap-6 md:flex">
           <div className="hidden lg:block">
-            {!user && (
-              <SimpleNavItem to="/login" label="Login" />
-            )}
+            {!user && <SimpleNavItem to="/login" label="Login" />}
           </div>
+          {user && (
+            <button
+              type="button"
+              onClick={signOut}
+              className="group relative hidden items-center gap-1.5 px-1 py-2 lg:inline-flex"
+            >
+              <span className={`${navLabelClass} text-cream/80 group-hover:text-gold`}>Logout</span>
+              <LogOut size={14} className="text-cream/70 group-hover:text-gold" />
+            </button>
+          )}
           <Button to={user ? '/dashboard' : '/register'} variant="primary" size="sm" className="rounded-[10px]">
             {user ? 'Dashboard' : 'Register Now'}
           </Button>
@@ -438,6 +446,18 @@ export function Navbar() {
                   >
                     Login
                   </NavLink>
+                )}
+                {user && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      signOut();
+                    }}
+                    className="mb-4 flex w-full items-center justify-center gap-2 text-center font-body text-base font-semibold uppercase tracking-wide text-cream/90 hover:text-gold"
+                  >
+                    <LogOut size={16} /> Logout
+                  </button>
                 )}
                 <Button
                   to={user ? '/dashboard' : '/register'}

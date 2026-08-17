@@ -2,6 +2,7 @@ import type { HydratedDocument } from "mongoose";
 import type { UserDoc } from "../models/User.js";
 import type { EventDoc } from "../models/Event.js";
 import type { AdminDoc } from "../models/Admin.js";
+import type { AnnouncementDoc } from "../models/Announcement.js";
 
 export function serializeUser(user: HydratedDocument<UserDoc>) {
   return {
@@ -56,6 +57,20 @@ export function serializeEvent(event: HydratedDocument<EventDoc>) {
     registration_open: event.registrationOpen ?? true,
     created_at: event.createdAt.toISOString(),
     updated_at: event.updatedAt.toISOString(),
+  };
+}
+
+export function serializeAnnouncement(announcement: HydratedDocument<AnnouncementDoc>) {
+  return {
+    id: announcement._id.toString(),
+    title: announcement.title,
+    content: announcement.content,
+    date: announcement.date.toISOString(),
+    category: announcement.category,
+    pinned: announcement.pinned,
+    source: announcement.source,
+    source_url: announcement.sourceUrl ?? null,
+    media_url: announcement.mediaUrl ?? null,
   };
 }
 

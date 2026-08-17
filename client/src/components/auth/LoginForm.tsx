@@ -7,9 +7,12 @@ import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { loginParticipant, ParticipantAuthError } from '@/lib/participantAuth';
+import { loginAdmin } from '@/lib/adminAuth';
+import { useAdminSession } from '@/context/AdminSessionContext';
 
 export function LoginForm() {
   const navigate = useNavigate();
+  const { refresh: refreshAdminSession } = useAdminSession();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,8 +26,16 @@ export function LoginForm() {
     try {
       await loginParticipant(username.trim(), password);
       navigate('/dashboard');
-    } catch (err) {
-      setError(err instanceof ParticipantAuthError ? err.message : 'Could not sign you in right now.');
+    } catch (participantErr) {
+      // Not a participant account — this same form doubles as the admin sign-in,
+      // so silently check whether it's an admin account before surfacing an error.
+      try {
+        await loginAdmin(username.trim(), password);
+        await refreshAdminSession();
+        navigate('/admin/dashboard');
+      } catch {
+        setError(participantErr instanceof ParticipantAuthError ? participantErr.message : 'Could not sign you in right now.');
+      }
     } finally {
       setIsSubmitting(false);
     }

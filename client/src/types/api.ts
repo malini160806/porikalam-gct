@@ -75,3 +75,15 @@ export interface EventDto {
   created_at: string;
   updated_at: string;
 }
+
+export interface AnnouncementDto {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  category: 'registration' | 'schedule' | 'workshop' | 'general' | 'social';
+  pinned: boolean;
+  source: 'manual' | 'instagram' | 'facebook';
+  source_url: string | null;
+  media_url: string | null;
+}

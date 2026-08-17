@@ -336,26 +336,27 @@ export default function Thulira() {
         </div>
       </section>
 
-      {/* Application & Registration */}
+      {/* Application & Registration — mirrors the Participate page's registration card */}
       <section className="relative bg-cream/95 py-24">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Application & Registration" title="Submit Your Startup Idea" />
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="relative mt-12 flex flex-col items-center gap-6 overflow-hidden border border-gold/30 bg-white/55 p-8 text-center shadow-card sm:p-12"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5 }}
+            className="relative mt-12 flex flex-col items-center gap-5 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
           >
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <p className="max-w-xl font-body text-base leading-relaxed text-slate">
-              Participation begins with an online application and registration process. Participants
-              submit their startup idea through the prescribed application form within the specified
-              timeline.
-            </p>
-            <p className="max-w-xl font-body text-base leading-relaxed text-slate">
-              All applications undergo preliminary screening. The review considers:
+            <Lightbulb size={36} className="text-brown" />
+            <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
+              Apply For Thulira
+            </h3>
+            <p className="max-w-md font-body text-sm text-slate">
+              Participation begins with an online application. Submit your startup idea through the
+              prescribed form within the specified timeline — all applications undergo preliminary
+              screening before shortlisted teams are invited to the startup exhibition.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {thuliraApplicationReview.map((item) => (
@@ -364,9 +365,6 @@ export default function Thulira() {
                 </Badge>
               ))}
             </div>
-            <p className="font-quote max-w-xl text-lg italic text-brown">
-              Shortlisted teams will be invited to participate in the startup exhibition.
-            </p>
             <Button to="/participate" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
               Apply Now
             </Button>

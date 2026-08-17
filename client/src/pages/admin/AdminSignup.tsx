@@ -1,20 +1,22 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff, LogIn, ShieldCheck } from 'lucide-react';
+import { Eye, EyeOff, UserPlus, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
-import { loginAdmin, AdminAuthError } from '@/lib/adminAuth';
+import { signupAdmin, AdminAuthError } from '@/lib/adminAuth';
 import { useAdminSession } from '@/context/AdminSessionContext';
 import gctBuildingBanner from '@/assets/heritage/gct-building-banner.png';
 
-export default function AdminLogin() {
+export default function AdminSignup() {
   const navigate = useNavigate();
   const { refresh } = useAdminSession();
-  // Pre-filled with the default admin credentials for local/dev convenience.
-  const [identifier, setIdentifier] = useState('dckapadmin');
-  const [password, setPassword] = useState('admin123');
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [signupCode, setSignupCode] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,11 +26,17 @@ export default function AdminLogin() {
     setError('');
     setIsSubmitting(true);
     try {
-      await loginAdmin(identifier.trim(), password);
+      await signupAdmin({
+        name: name.trim(),
+        username: username.trim(),
+        email: email.trim(),
+        signupCode: signupCode.trim(),
+        password,
+      });
       await refresh();
       navigate('/admin/dashboard');
     } catch (err) {
-      setError(err instanceof AdminAuthError ? err.message : 'Could not sign you in right now.');
+      setError(err instanceof AdminAuthError ? err.message : 'Could not create your admin account right now.');
     } finally {
       setIsSubmitting(false);
     }
@@ -59,7 +67,7 @@ export default function AdminLogin() {
           <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 text-gold shadow-[0_0_18px_-4px_rgba(212,175,55,0.5)]">
             <ShieldCheck size={24} strokeWidth={1.5} />
           </div>
-          <h1 className="font-heading text-2xl font-bold uppercase tracking-widest text-gold">Admin Portal</h1>
+          <h1 className="font-heading text-2xl font-bold uppercase tracking-widest text-gold">Admin Signup</h1>
           <p className="font-body text-xs uppercase tracking-[0.2em] text-beige/70">
             Porikkalam 2026 — Event Administration
           </p>
@@ -68,17 +76,45 @@ export default function AdminLogin() {
 
         <div className="relative flex flex-col gap-5">
           <div>
-            <label htmlFor="admin-identifier" className="font-body text-xs font-semibold uppercase tracking-wider text-beige/70">
-              Admin Username / Email
+            <label htmlFor="admin-name" className="font-body text-xs font-semibold uppercase tracking-wider text-beige/70">
+              Full Name
             </label>
             <input
-              id="admin-identifier"
+              id="admin-name"
+              required
+              autoComplete="name"
+              autoFocus
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="mt-1.5 w-full border border-gold/25 bg-navy-deep/60 px-4 py-3 font-body text-sm text-cream placeholder:text-beige/40 outline-none transition-all duration-200 focus:border-gold focus:ring-1 focus:ring-gold focus:shadow-[0_0_12px_0_rgba(212,175,55,0.35)]"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="admin-username" className="font-body text-xs font-semibold uppercase tracking-wider text-beige/70">
+              Username
+            </label>
+            <input
+              id="admin-username"
               required
               autoComplete="username"
-              autoFocus
-              placeholder="admin"
-              value={identifier}
-              onChange={(e) => setIdentifier(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="mt-1.5 w-full border border-gold/25 bg-navy-deep/60 px-4 py-3 font-body text-sm text-cream placeholder:text-beige/40 outline-none transition-all duration-200 focus:border-gold focus:ring-1 focus:ring-gold focus:shadow-[0_0_12px_0_rgba(212,175,55,0.35)]"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="admin-email" className="font-body text-xs font-semibold uppercase tracking-wider text-beige/70">
+              Email
+            </label>
+            <input
+              id="admin-email"
+              type="email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="mt-1.5 w-full border border-gold/25 bg-navy-deep/60 px-4 py-3 font-body text-sm text-cream placeholder:text-beige/40 outline-none transition-all duration-200 focus:border-gold focus:ring-1 focus:ring-gold focus:shadow-[0_0_12px_0_rgba(212,175,55,0.35)]"
             />
           </div>
@@ -91,7 +127,7 @@ export default function AdminLogin() {
               id="admin-password"
               type={showPassword ? 'text' : 'password'}
               required
-              autoComplete="current-password"
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1.5 w-full border border-gold/25 bg-navy-deep/60 px-4 py-3 pr-11 font-body text-sm text-cream placeholder:text-beige/40 outline-none transition-all duration-200 focus:border-gold focus:ring-1 focus:ring-gold focus:shadow-[0_0_12px_0_rgba(212,175,55,0.35)]"
@@ -105,6 +141,20 @@ export default function AdminLogin() {
               {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
           </div>
+
+          <div>
+            <label htmlFor="admin-signup-code" className="font-body text-xs font-semibold uppercase tracking-wider text-beige/70">
+              Signup Code
+            </label>
+            <input
+              id="admin-signup-code"
+              required
+              value={signupCode}
+              onChange={(e) => setSignupCode(e.target.value)}
+              className="mt-1.5 w-full border border-gold/25 bg-navy-deep/60 px-4 py-3 font-body text-sm text-cream placeholder:text-beige/40 outline-none transition-all duration-200 focus:border-gold focus:ring-1 focus:ring-gold focus:shadow-[0_0_12px_0_rgba(212,175,55,0.35)]"
+            />
+            <p className="mt-1.5 font-body text-[11px] text-beige/50">Provided by an existing super admin.</p>
+          </div>
         </div>
 
         {error && (
@@ -117,16 +167,16 @@ export default function AdminLogin() {
           type="submit"
           variant="primary"
           size="lg"
-          icon={<LogIn size={16} />}
+          icon={<UserPlus size={16} />}
           disabled={isSubmitting}
           className="relative w-full"
         >
-          {isSubmitting ? 'Signing In…' : 'Login to Admin Portal'}
+          {isSubmitting ? 'Creating Account…' : 'Create Admin Account'}
         </Button>
 
         <div className="relative flex flex-col items-center gap-2">
-          <Link to="/admin/signup" className="font-body text-xs text-beige/50 transition-colors hover:text-gold">
-            Need an account? Sign up
+          <Link to="/admin/login" className="font-body text-xs text-beige/50 transition-colors hover:text-gold">
+            Already have an account? Sign in
           </Link>
           <Link to="/" className="font-body text-xs text-beige/50 transition-colors hover:text-gold">
             ← Back to Porikkalam 2026

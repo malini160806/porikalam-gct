@@ -24,3 +24,27 @@ export async function loginAdmin(identifier: string, password: string): Promise<
     throw new AdminAuthError('Could not sign you in right now.');
   }
 }
+
+export interface AdminSignupPayload {
+  signupCode: string;
+  username: string;
+  email: string;
+  name: string;
+  password: string;
+}
+
+export async function signupAdmin(payload: AdminSignupPayload): Promise<void> {
+  try {
+    const result = await adminApiFetch<AdminLoginResponse>('/auth/signup', {
+      method: 'POST',
+      auth: false,
+      body: JSON.stringify(payload),
+    });
+    setAdminToken(result.token);
+  } catch (error) {
+    if (error instanceof AdminApiError) {
+      throw new AdminAuthError(error.message);
+    }
+    throw new AdminAuthError('Could not create your admin account right now.');
+  }
+}

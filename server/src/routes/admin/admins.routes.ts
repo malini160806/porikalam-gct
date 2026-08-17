@@ -6,22 +6,10 @@ import { asyncHandler } from "../../utils/asyncHandler.js";
 import { ApiError } from "../../utils/ApiError.js";
 import { requireAdminAuth, requireSuperAdmin } from "../../middleware/adminAuth.js";
 import { serializeAdmin } from "../../utils/serializers.js";
+import { ROLE_PERMISSIONS } from "../../utils/adminRoles.js";
 
 const router = Router();
 router.use(requireAdminAuth, requireSuperAdmin);
-
-const ROLE_PERMISSIONS: Record<"super_admin" | "event_admin", string[]> = {
-  super_admin: [
-    "manage_events",
-    "view_registrations",
-    "manage_users",
-    "manage_admins",
-    "view_attendance",
-    "manage_event_settings",
-    "view_payments",
-  ],
-  event_admin: ["view_assigned_registrations", "view_assigned_participants", "manage_assigned_attendance", "scan_qr"],
-};
 
 router.get(
   "/",

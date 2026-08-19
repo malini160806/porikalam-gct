@@ -11,7 +11,7 @@ export function Logo({ compact = false }: LogoProps) {
       <img
         src={logoImage}
         alt="Porikkalam 2026"
-        className={compact ? 'h-10 w-auto' : 'h-11 w-auto sm:h-12 md:h-14 lg:h-16'}
+        className={compact ? 'h-10 w-auto object-contain' : 'h-11 w-auto object-contain sm:h-12 md:h-14 lg:h-16'}
       />
     </Link>
   );

@@ -336,7 +336,7 @@ export default function Thulira() {
         </div>
       </section>
 
-      {/* Application & Registration — mirrors the Participate page's registration card */}
+      {/* Application & Registration */}
       <section className="relative bg-cream/95 py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Application & Registration" title="Submit Your Startup Idea" />
@@ -365,7 +365,7 @@ export default function Thulira() {
                 </Badge>
               ))}
             </div>
-            <Button to="/participate" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+            <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
               Apply Now
             </Button>
           </motion.div>

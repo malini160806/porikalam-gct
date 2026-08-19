@@ -39,9 +39,11 @@ export type EventItem = {
 export type Sponsor = {
   id: string;
   name: string;
-  tier: 'title' | 'platinum' | 'gold' | 'silver' | 'bronze' | 'partner';
+  tier: 'organizer' | 'title' | 'platinum' | 'gold' | 'silver' | 'bronze' | 'partner';
   initials: string;
   description?: string;
+  /** Actual brand logo image — when present, cards render this instead of the initials badge. */
+  logo?: string;
 };
 
 export type TeamMember = {

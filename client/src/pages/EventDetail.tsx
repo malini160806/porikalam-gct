@@ -106,7 +106,7 @@ export default function EventDetail() {
               {event.registrationFee && <DetailRow label="Registration Fee" value={event.registrationFee} />}
 
               <Button
-                to={`/participate?event=${event.id}`}
+                to="/register"
                 variant="primary"
                 size="lg"
                 className="mt-2 w-full"

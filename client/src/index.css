@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -22,6 +22,7 @@
   --font-heading: 'Cinzel', serif;
   --font-quote: 'Cormorant Garamond', serif;
   --font-body: 'Raleway', sans-serif;
+  --font-tamil: 'Noto Sans Tamil', sans-serif;
 
   /* Shadows */
   --shadow-gold-sm: 0 0 0 1px rgba(212, 175, 55, 0.35);

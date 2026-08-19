@@ -6,6 +6,7 @@ import { Logo } from '@/components/common/Logo';
 import { Button } from '@/components/ui/Button';
 import { NAV_LINKS, type NavLink as NavLinkType } from '@/constants/site';
 import { useSession } from '@/context/SessionContext';
+import dckapLogo from '@/assets/partners/dckap-logo.png';
 
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -20,7 +21,7 @@ const mobileItemVariants = {
 };
 
 const navLabelClass =
-  'font-body text-[13px] font-semibold uppercase tracking-[0.12em] transition-all duration-300';
+  'font-body text-[10px] xl:text-[11px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] transition-all duration-300';
 const navUnderlineClass =
   'absolute inset-x-0 -bottom-2 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-gold-light to-gold transition-transform duration-300 ease-out group-hover:scale-x-100';
 
@@ -31,7 +32,7 @@ function SimpleNavItem({ to, label, end }: { to: string; label: string; end?: bo
         <motion.div
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}
-          className="relative inline-flex items-center px-1 py-2"
+          className="relative inline-flex items-center whitespace-nowrap px-1 py-2"
         >
           <span
             className={`${navLabelClass} ${
@@ -57,7 +58,7 @@ function ThuliraNavItem({ to, label }: { to: string; label: string }) {
         <motion.div
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}
-          className="relative inline-flex items-center gap-1.5 px-1 py-2"
+          className="relative inline-flex items-center gap-1.5 whitespace-nowrap px-1 py-2"
         >
           <span
             className={`text-shimmer-gold ${navLabelClass} ${
@@ -93,7 +94,7 @@ function DropdownNavItem({ link }: { link: NavLinkType }) {
         type="button"
         whileHover={{ y: -2 }}
         transition={{ duration: 0.2 }}
-        className="group relative flex items-center gap-1.5 px-1 py-2"
+        className="group relative flex items-center gap-1.5 whitespace-nowrap px-1 py-2"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
@@ -201,7 +202,7 @@ function MobileNavSection({ link, onNavigate }: { link: NavLinkType; onNavigate:
         end={link.path === '/'}
         label={link.label}
         onNavigate={onNavigate}
-        highlight={link.path === '/thulira'}
+        highlight={link.path === '/thulira' || link.path === '/tech-thiral'}
       />
     );
   }
@@ -324,19 +325,35 @@ export function Navbar() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy-deep/95 via-navy-deep/90 to-navy-deep/95" />
 
       <div
-        className={`relative mx-auto flex max-w-7xl items-center gap-6 px-6 transition-all duration-300 sm:px-8 lg:px-10 ${
+        className={`relative mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-5 transition-all duration-300 sm:px-6 lg:px-8 ${
           scrolled ? 'py-2.5' : 'py-4'
         }`}
       >
-        <motion.div animate={{ scale: scrolled ? 0.9 : 1 }} transition={{ duration: 0.3 }} className="origin-left shrink-0">
-          <Logo />
-        </motion.div>
+        {/* Left: brand — Porikkalam logo, divider, DCKAP logo */}
+        <div className="flex shrink-0 items-center gap-3">
+          <motion.div
+            animate={{ scale: scrolled ? 0.9 : 1 }}
+            transition={{ duration: 0.3 }}
+            className="flex shrink-0 items-center origin-left"
+          >
+            <Logo compact />
+          </motion.div>
+          <div className="hidden h-7 w-px shrink-0 bg-gold/25 xl:block" aria-hidden="true" />
+          <div className="hidden shrink-0 items-center xl:flex" title="Organized By DCKAP Incubation Centre">
+            <img
+              src={dckapLogo}
+              alt="Organized by DCKAP Incubation Centre"
+              className="h-7 w-auto object-contain opacity-90"
+            />
+          </div>
+        </div>
 
-        <nav className="hidden flex-1 items-center justify-center gap-9 md:flex">
+        {/* Center: primary navigation links */}
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-3 md:flex xl:gap-4 2xl:gap-6">
           {NAV_LINKS.map((link) =>
             link.children?.length ? (
               <DropdownNavItem key={link.path} link={link} />
-            ) : link.path === '/thulira' ? (
+            ) : link.path === '/thulira' || link.path === '/tech-thiral' ? (
               <ThuliraNavItem key={link.path} to={link.path} label={link.label} />
             ) : (
               <SimpleNavItem key={link.path} to={link.path} label={link.label} end={link.path === '/'} />
@@ -344,7 +361,8 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-6 md:flex">
+        {/* Right: auth + primary action */}
+        <div className="hidden shrink-0 items-center gap-3 md:flex">
           <div className="hidden lg:block">
             {!user && <SimpleNavItem to="/login" label="Login" />}
           </div>
@@ -352,21 +370,22 @@ export function Navbar() {
             <button
               type="button"
               onClick={signOut}
-              className="group relative hidden items-center gap-1.5 px-1 py-2 lg:inline-flex"
+              className="group relative hidden items-center gap-1.5 whitespace-nowrap px-1 py-2 lg:inline-flex"
             >
               <span className={`${navLabelClass} text-cream/80 group-hover:text-gold`}>Logout</span>
               <LogOut size={14} className="text-cream/70 group-hover:text-gold" />
             </button>
           )}
-          <Button to={user ? '/dashboard' : '/register'} variant="primary" size="sm" className="rounded-[10px]">
+          <Button to={user ? '/dashboard' : '/register'} variant="primary" size="sm" className="shrink-0 whitespace-nowrap rounded-[10px]">
             {user ? 'Dashboard' : 'Register Now'}
           </Button>
         </div>
 
+        {/* Mobile menu trigger */}
         <button
           ref={menuButtonRef}
           type="button"
-          className="ml-auto flex h-11 w-11 items-center justify-center text-gold md:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center text-gold md:hidden"
           aria-label="Open menu"
           aria-haspopup="dialog"
           aria-expanded={mobileOpen}

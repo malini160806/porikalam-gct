@@ -11,7 +11,7 @@ const About = lazy(() => import('@/pages/About'));
 const Events = lazy(() => import('@/pages/Events'));
 const EventDetail = lazy(() => import('@/pages/EventDetail'));
 const Thulira = lazy(() => import('@/pages/Thulira'));
-const Participate = lazy(() => import('@/pages/Participate'));
+const TechThiral = lazy(() => import('@/pages/TechThiral'));
 const Sponsors = lazy(() => import('@/pages/Sponsors'));
 const Contact = lazy(() => import('@/pages/Contact'));
 const Register = lazy(() => import('@/pages/Register'));
@@ -50,9 +50,8 @@ function withSuspense(Component: React.ComponentType) {
   );
 }
 
-/** Full pages behind the participant account gate — everything except Home, auth pages, the
- * Participate CTA (which exists to funnel signed-out visitors into registering), and the public
- * certificate verification utility. */
+/** Full pages behind the participant account gate — everything except Home, auth pages, and the
+ * public certificate verification utility. */
 function withProtectedSuspense(Component: React.ComponentType) {
   return (
     <Suspense fallback={<PageLoader />}>
@@ -73,7 +72,7 @@ export const router = createBrowserRouter([
       { path: 'events', element: withProtectedSuspense(Events) },
       { path: 'events/:eventId', element: withProtectedSuspense(EventDetail) },
       { path: 'thulira', element: withProtectedSuspense(Thulira) },
-      { path: 'participate', element: withSuspense(Participate) },
+      { path: 'tech-thiral', element: withProtectedSuspense(TechThiral) },
       { path: 'sponsors', element: withProtectedSuspense(Sponsors) },
       { path: 'contact', element: withProtectedSuspense(Contact) },
       { path: 'register', element: withSuspense(Register) },

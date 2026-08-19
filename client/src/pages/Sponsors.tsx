@@ -6,7 +6,7 @@ import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { sponsors, SPONSOR_TIER_LABELS } from '@/data/sponsors';
 import type { Sponsor } from '@/data/types';
 
-const tierOrder: Sponsor['tier'][] = ['title', 'platinum', 'gold', 'silver', 'bronze', 'partner'];
+const tierOrder: Sponsor['tier'][] = ['organizer', 'title', 'platinum', 'gold', 'silver', 'bronze', 'partner'];
 
 export default function Sponsors() {
   return (
@@ -24,7 +24,7 @@ export default function Sponsors() {
               if (tierSponsors.length === 0) return null;
               return (
                 <div key={tier}>
-                  <SectionHeading eyebrow="Tier" title={SPONSOR_TIER_LABELS[tier]} />
+                  <SectionHeading eyebrow={tier === 'organizer' ? 'Organizer' : 'Tier'} title={SPONSOR_TIER_LABELS[tier]} />
                   <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
                     {tierSponsors.map((sponsor, index) => (
                       <SponsorCard key={sponsor.id} sponsor={sponsor} index={index} />

@@ -19,14 +19,22 @@ export function SponsorCard({ sponsor, index = 0 }: SponsorCardProps) {
         boxShadow: '0 10px 22px -10px rgba(212,175,55,0.35), 0 6px 16px -10px rgba(61,90,117,0.3)',
       }}
       title={sponsor.description}
-      className="flex aspect-[3/2] flex-col items-center justify-center gap-2 border border-navy/20 bg-cream/70 px-4 text-center transition-colors"
+      className={`flex aspect-[3/2] flex-col items-center justify-center gap-2 border px-4 text-center transition-colors ${
+        sponsor.logo ? 'border-gold/30 bg-navy' : 'border-navy/20 bg-cream/70'
+      }`}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-brown/50 font-heading text-lg text-brown">
-        {sponsor.initials}
-      </div>
-      <span className="font-body text-xs font-semibold uppercase tracking-wide text-navy">
-        {sponsor.name}
-      </span>
+      {sponsor.logo ? (
+        <img src={sponsor.logo} alt={sponsor.name} className="h-10 w-auto max-w-[85%] object-contain" />
+      ) : (
+        <>
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-brown/50 font-heading text-lg text-brown">
+            {sponsor.initials}
+          </div>
+          <span className="font-body text-xs font-semibold uppercase tracking-wide text-navy">
+            {sponsor.name}
+          </span>
+        </>
+      )}
     </motion.div>
   );
 }

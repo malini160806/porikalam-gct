@@ -11,7 +11,7 @@ import { useSession } from '@/context/SessionContext';
 
 /** Destinations a signed-out visitor may still reach — every other in-app link (nav, footer,
  * or any in-page button) opens the account gate instead of navigating. */
-const PUBLIC_PATHS = ['/', '/login', '/register', '/forgot-password', '/participate', '/certificates'];
+const PUBLIC_PATHS = ['/', '/login', '/register', '/forgot-password', '/certificates'];
 
 function isPublicHref(href: string): boolean {
   if (!href.startsWith('/') || href.startsWith('/admin')) return true; // external/mailto/tel + the separate admin portal are never gated here
@@ -40,7 +40,7 @@ export function MainLayout() {
       <MouseGlow />
       <ScrollTint />
       <Navbar />
-      <main className="flex-1 pt-[76px] sm:pt-20 md:pt-[88px] lg:pt-24">
+      <main className="flex-1 pt-[73px]">
         <PageTransition />
       </main>
       <Footer />

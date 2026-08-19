@@ -8,6 +8,7 @@ import { EventHighlights } from '@/components/home/EventHighlights';
 import { SITE } from '@/constants/site';
 import logoImage from '@/assets/porikkalam-logo.webp';
 import homeBackground from '@/assets/hero/porikkalam-background-hd.webp';
+import dckapLogo from '@/assets/partners/dckap-logo.png';
 
 const RAIL_ICONS = [User, Megaphone, Calendar, HelpCircle];
 
@@ -38,20 +39,20 @@ export function Hero() {
         <div className="relative hidden lg:block" />
 
         <div className="flex flex-col items-center justify-center px-4 py-20 text-center sm:px-6">
-          <motion.span
+          <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 border border-gold/40 px-4 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold sm:tracking-[0.25em]"
+            className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-beige/60 sm:text-sm"
           >
-            <span className="h-1.5 w-1.5 shrink-0 rotate-45 bg-gold" /> From Ancient Ingenuity To Futuristic Innovation
-          </motion.span>
+            {SITE.college}, Coimbatore Presents
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="mt-6 flex justify-center"
+            className="mt-4 flex justify-center"
           >
             <motion.img
               src={logoImage}
@@ -70,16 +71,25 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mx-auto mt-6 max-w-xl font-body text-base uppercase tracking-[0.3em] text-beige sm:text-lg"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-gold-gradient mx-auto mt-6 max-w-xl font-heading text-2xl font-semibold tracking-wide sm:text-3xl lg:text-4xl"
           >
-            Engineering Through The Ages
+            An Arena For Engineers
           </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-gold-gradient mx-auto mt-1 max-w-xl font-tamil text-xl font-medium sm:text-2xl lg:text-3xl"
+          >
+திறன்களின் திடல்
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="mx-auto mt-4 max-w-md font-quote text-lg italic leading-relaxed text-beige/80"
           >
             A National-Level Techno-Cultural Fest
@@ -101,6 +111,29 @@ export function Hero() {
             <Button to="/events" variant="secondary" size="lg" icon={<ArrowRight size={16} />}>
               Explore Events
             </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.75 }}
+            className="mt-10 flex flex-col items-center gap-2"
+          >
+            <span className="font-body text-[10px] uppercase tracking-[0.3em] text-beige/50">
+              Organized By
+            </span>
+            <motion.img
+              src={dckapLogo}
+              alt="DCKAP Incubation Centre"
+              loading="lazy"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              whileHover={{
+                scale: 1.05,
+                filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
+              }}
+              className="h-7 w-auto opacity-90 sm:h-8"
+            />
           </motion.div>
         </div>
 

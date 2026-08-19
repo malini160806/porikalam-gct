@@ -1,9 +1,14 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { thuliraJourney } from '@/data/thulira';
+import { thuliraJourney, type ThuliraJourneyStage } from '@/data/thulira';
 
-/** Scroll-linked six-stage journey — the gold rail fills in as the visitor scrolls past each stage. */
-export function ParticipantJourney() {
+type ParticipantJourneyProps = {
+  steps?: ThuliraJourneyStage[];
+};
+
+/** Scroll-linked stage journey — the gold rail fills in as the visitor scrolls past each stage.
+ * Defaults to the Thulira journey; pass `steps` to reuse for other flagship tracks (e.g. Tech Thiral). */
+export function ParticipantJourney({ steps = thuliraJourney }: ParticipantJourneyProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -19,7 +24,7 @@ export function ParticipantJourney() {
         className="absolute left-6 top-3 bottom-3 w-px origin-top bg-gradient-to-b from-gold via-gold-light to-gold sm:left-8"
       />
       <div className="flex flex-col gap-10 sm:gap-12">
-        {thuliraJourney.map((stage, index) => (
+        {steps.map((stage, index) => (
           <motion.div
             key={stage.id}
             initial={{ opacity: 0, x: -20 }}

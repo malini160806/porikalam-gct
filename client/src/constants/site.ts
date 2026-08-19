@@ -36,7 +36,7 @@ export const NAV_LINKS: NavLink[] = [
     ],
   },
   { label: 'Thulira', path: '/thulira' },
-  { label: 'Participate', path: '/participate' },
+  { label: 'Tech Thiral', path: '/tech-thiral' },
   {
     label: 'Explore',
     path: '/sponsors',

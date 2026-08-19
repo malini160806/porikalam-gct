@@ -1,39 +1,54 @@
 import { motion } from 'framer-motion';
-import { Landmark, Sparkles, Users, Target, Compass, Rocket } from 'lucide-react';
+import { Landmark, Sparkles, Users, Target, Compass, Rocket, GraduationCap, Building2, Factory, Globe2 } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TeamCard } from '@/components/cards/TeamCard';
-import { SpecimenCard } from '@/components/common/SpecimenCard';
-import { Timeline } from '@/components/ui/Timeline';
 import { Button } from '@/components/ui/Button';
 import { team } from '@/data/team';
-import type { TimelineStep } from '@/data/types';
 import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.webp';
 import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.webp';
 import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.webp';
-import astrolabe from '@/assets/elements/ancient/astrolabe.webp';
-import armillarySphere from '@/assets/elements/ancient/armillary-sphere.webp';
-import sundial from '@/assets/elements/ancient/sundial.webp';
-import compass from '@/assets/elements/ancient/compass.webp';
-import protractor from '@/assets/elements/ancient/protractor.webp';
-import gear from '@/assets/elements/ancient/gear.webp';
-import kallanaiDam from '@/assets/elements/ancient/kallanai-dam-pair.webp';
 import heroPanorama from '@/assets/hero/ancient-futuristic-panorama.webp';
 
-const instruments = [
-  { image: astrolabe, title: 'Astrolabe', caption: 'Ancient tool for measuring the position of stars.' },
-  { image: armillarySphere, title: 'Armillary Sphere', caption: 'Model of celestial longitude and latitude lines.' },
-  { image: sundial, title: 'Sundial', caption: 'Timekeeping through the movement of shadow and light.' },
-  { image: compass, title: 'Compass', caption: 'Precision drafting, the foundation of engineering drawing.' },
-  { image: protractor, title: 'Protractor', caption: 'Measuring angles — geometry made practical.' },
-  { image: gear, title: 'Gear', caption: 'Mechanical advantage — the wheel refined.' },
+const whyPorikkalam = [
+  {
+    icon: GraduationCap,
+    title: 'For Students',
+    tagline: 'Learn. Compete. Build. Connect.',
+    description:
+      'Students step beyond the classroom, put their engineering skills to the test, build and showcase ideas, meet industry and startup leaders, and discover new possibilities for their careers and entrepreneurial journeys.',
+  },
+  {
+    icon: Building2,
+    title: 'For The College',
+    tagline: 'Showcase. Connect. Grow.',
+    description:
+      'Porikkalam gives the college a platform to showcase its students and their capabilities, foster a culture of innovation and entrepreneurship, and build meaningful connections with industry, startups, alumni and the wider engineering ecosystem.',
+  },
+  {
+    icon: Factory,
+    title: 'For Industry & Startups',
+    tagline: 'Discover. Engage. Collaborate.',
+    description:
+      'Porikkalam brings industry and startups onto a platform to showcase their work, technologies and innovations to students, faculty and the GCT alumni community — building visibility and connecting with a wider network of professionals and innovators.',
+  },
+  {
+    icon: Globe2,
+    title: 'For The Ecosystem',
+    tagline: 'Connect. Inspire. Create Impact.',
+    description:
+      'Porikkalam brings together students, academia, industry, startups and innovators to exchange ideas, create opportunities and turn engineering potential into real-world impact.',
+  },
 ];
 
-const porikkalamTimeline: TimelineStep[] = [
-  { id: 'pt1', label: 'The Idea', date: 'Origins', description: 'A small gathering of engineering enthusiasts at GCT Coimbatore.' },
-  { id: 'pt2', label: 'Growing Together', date: 'Early Editions', description: 'Departments across campus joined in, expanding the event scope.' },
-  { id: 'pt3', label: 'Regional Recognition', date: 'Recent Editions', description: 'Participation grew to colleges across the region.' },
-  { id: 'pt4', label: 'Porikkalam 2026', date: '25–26 Sept 2026', description: '18 events across technical, non-technical, and workshop tracks.' },
+const atAGlance = [
+  { label: 'Presented By', value: 'Government College of Technology, Coimbatore' },
+  { label: 'Organised By', value: 'DCKAP Incubation Centre' },
+  { label: 'Date & Time', value: 'September 25–26, 2026 | 9 AM – 6 PM' },
+  { label: 'Theme', value: 'Engineering, Innovation & Entrepreneurship' },
+  { label: 'Participants', value: 'Engineering students, startups, industry, academia, and innovators' },
+  { label: 'Format', value: 'Startup challenges, industry and startup summits, workshops and showcases, and technical and non-technical events' },
+  { label: 'Focus', value: 'Competition | Innovation | Entrepreneurship | Industry Connect' },
 ];
 
 const values = [
@@ -95,17 +110,22 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="order-2 flex flex-col gap-6 lg:order-1"
           >
-            <SectionHeading eyebrow="Our Story" title="Engineering Through The Ages" align="left" />
+            <SectionHeading eyebrow="About Porikkalam" title="Where Engineering Meets Impact" align="left" />
             <p className="font-quote text-xl italic leading-relaxed text-slate">
-              Porikkalam began as a small gathering of engineering enthusiasts determined to
-              celebrate craftsmanship — both ancient and modern. Named after the traditional
-              threshing floor where grain was separated from chaff, Porikkalam represents the
-              refining process innovation goes through before it becomes impact.
+              PORIKKALAM 2026 is the inaugural flagship Engineering, Innovation, and
+              Entrepreneurship event presented by Government College of Technology, Coimbatore,
+              and organized by the DCKAP Incubation Centre. Named after the traditional threshing
+              floor where grain was separated from chaff, Porikkalam represents the refining
+              process innovation goes through before it becomes impact.
             </p>
             <p className="font-quote text-xl italic leading-relaxed text-slate">
-              Today, it stands as a mega inter-collegiate symposium hosted by the Government
-              College of Technology, Coimbatore — bringing together thousands of students for
-              three days of competition, learning, and celebration.
+              It brings together students, academia, industry, startups, researchers, and
+              innovators on a common platform to compete, collaborate, innovate, and create
+              through technical challenges, project showcases, startup activities, workshops, and
+              expert interactions — over two days, 25–26 September 2026.
+            </p>
+            <p className="font-body text-sm font-semibold uppercase tracking-widest text-brown">
+              Where Engineers Compete. Ideas Connect. Innovation Begins.
             </p>
           </motion.div>
           <motion.div
@@ -179,48 +199,50 @@ export default function About() {
           <p className="mt-8 font-body text-sm leading-relaxed text-slate">
             Government College of Technology, Coimbatore has trained generations of engineers across
             Civil, Mechanical, Electrical, Electronics, and Computer disciplines. Porikkalam channels
-            that same institutional depth into three days of student-run competition and craft — a
+            that same institutional depth into two days of student-run competition and craft — a
             symposium built by the college's own students, for students everywhere.
           </p>
         </div>
       </section>
 
       <section className="bg-navy py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Milestones" title="Timeline of Porikkalam" tone="dark" />
-          <div className="mt-16">
-            <Timeline steps={porikkalamTimeline} tone="dark" />
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-cream py-24">
-        <div className="absolute inset-0 bp-grid-bg opacity-30" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Instruments of the Craft"
-            title="Engineering Through The Ages"
-            subtitle="The tools that shaped engineering long before CAD software and calculators existed."
-          />
-          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
-            {instruments.map((item, index) => (
-              <SpecimenCard key={item.title} image={item.image} title={item.title} caption={item.caption} index={index} />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Why Porikkalam" title="One Platform, Four Perspectives" tone="dark" />
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whyPorikkalam.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="flex flex-col gap-3 border border-gold/25 bg-navy/60 p-6"
+              >
+                <item.icon size={26} className="text-gold" strokeWidth={1.5} />
+                <h3 className="font-heading text-lg font-semibold tracking-wide text-cream">{item.title}</h3>
+                <p className="font-body text-xs font-semibold uppercase tracking-wide text-gold/80">
+                  {item.tagline}
+                </p>
+                <p className="font-body text-sm leading-relaxed text-beige/75">{item.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-cream pb-24">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <motion.img
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            src={kallanaiDam}
-            alt="Kallanai Dam — an ancient Chola-era engineering marvel, rendered alongside its line-sketch counterpart"
-            className="w-full border border-gold/30 shadow-card"
-          />
+      <section className="bg-cream py-24">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Porikkalam 2026" title="At A Glance" />
+          <div className="mt-12 flex flex-col divide-y divide-navy/10 border border-navy/15 bg-white/40">
+            {atAGlance.map((item) => (
+              <div key={item.label} className="flex flex-col gap-1 px-6 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+                <span className="w-40 shrink-0 font-heading text-sm font-semibold uppercase tracking-wide text-brown">
+                  {item.label}
+                </span>
+                <span className="font-body text-sm leading-relaxed text-slate">{item.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

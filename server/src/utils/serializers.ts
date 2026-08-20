@@ -3,6 +3,7 @@ import type { UserDoc } from "../models/User.js";
 import type { EventDoc } from "../models/Event.js";
 import type { AdminDoc } from "../models/Admin.js";
 import type { AnnouncementDoc } from "../models/Announcement.js";
+import type { RegistrationDoc } from "../models/Registration.js";
 
 export function serializeUser(user: HydratedDocument<UserDoc>) {
   return {
@@ -71,6 +72,28 @@ export function serializeAnnouncement(announcement: HydratedDocument<Announcemen
     source: announcement.source,
     source_url: announcement.sourceUrl ?? null,
     media_url: announcement.mediaUrl ?? null,
+  };
+}
+
+export function serializeRegistration(registration: HydratedDocument<RegistrationDoc>) {
+  return {
+    id: registration._id.toString(),
+    user_id: registration.userId.toString(),
+    event_key: registration.eventSlug,
+    event_name: registration.eventName,
+    event_category: registration.eventCategory,
+    participant_name: registration.participantName,
+    contact_email: registration.contactEmail,
+    phone: registration.phone,
+    college: registration.college ?? null,
+    department: registration.department ?? null,
+    year_of_study: registration.yearOfStudy ?? null,
+    team_name: registration.teamName ?? null,
+    teammate_names: registration.teammateNames ?? null,
+    notes: registration.notes ?? null,
+    status: registration.status,
+    created_at: registration.createdAt.toISOString(),
+    updated_at: registration.updatedAt.toISOString(),
   };
 }
 

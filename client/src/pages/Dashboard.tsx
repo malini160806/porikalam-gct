@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Award,
@@ -25,7 +25,7 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { useSession } from '@/context/SessionContext';
 import { apiFetch, ApiError } from '@/lib/apiClient';
-import type { AuthUser } from '@/types/api';
+import type { AuthUser, RegistrationDto } from '@/types/api';
 
 type DashboardTab =
   | 'profile'
@@ -102,6 +102,45 @@ function PlaceholderPanel({ icon: Icon, label, description }: { icon: typeof Use
       <p className="relative font-heading text-xl font-semibold tracking-wide text-navy">{label}</p>
       <p className="relative max-w-sm font-body text-sm text-slate">{description}</p>
     </motion.div>
+  );
+}
+
+const STATUS_LABEL: Record<RegistrationDto['status'], string> = {
+  submitted: 'Pending Payment',
+  confirmed: 'Confirmed',
+  cancelled: 'Cancelled',
+};
+
+function RegistrationsPanel({ registrations }: { registrations: RegistrationDto[] }) {
+  if (registrations.length === 0) {
+    return (
+      <PlaceholderPanel
+        icon={CalendarCheck}
+        label="My Registrations"
+        description="The events you register for will be listed here, with quick links to each event page."
+      />
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-4">
+      {registrations.map((registration) => (
+        <div
+          key={registration.id}
+          className="flex flex-wrap items-center justify-between gap-4 border border-navy/15 bg-white/40 p-5"
+        >
+          <div>
+            <p className="font-heading text-lg font-semibold tracking-wide text-navy">{registration.event_name}</p>
+            <p className="font-body text-xs uppercase tracking-wide text-slate/70">
+              {STATUS_LABEL[registration.status]}
+            </p>
+          </div>
+          <Button to={`/events/${registration.event_key}`} variant="outline" size="sm">
+            View Event
+          </Button>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -187,10 +226,15 @@ function ProfilePanel({ user, onUpdated }: { user: AuthUser; onUpdated: (user: A
   );
 }
 
+const TAB_VALUES = TAB_OPTIONS.map((option) => option.value);
+
 export default function Dashboard() {
   const navigate = useNavigate();
-  const { user, isAdmin, signOut, refresh } = useSession();
-  const [activeTab, setActiveTab] = useState<DashboardTab>('profile');
+  const { user, isAdmin, signOut, refresh, registrations } = useSession();
+  const [searchParams] = useSearchParams();
+  const tabParam = searchParams.get('tab');
+  const initialTab = TAB_VALUES.includes(tabParam as DashboardTab) ? (tabParam as DashboardTab) : 'profile';
+  const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [localUser, setLocalUser] = useState<AuthUser | null>(user);
 
   const currentUser = localUser ?? user;
@@ -248,6 +292,8 @@ export default function Dashboard() {
                   void refresh();
                 }}
               />
+            ) : activeTab === 'registrations' ? (
+              <RegistrationsPanel registrations={registrations} />
             ) : activeTab === 'certificates' ? (
               <div className="flex flex-col items-center gap-4">
                 <CertificateTemplate participantName={currentUser.display_name} />

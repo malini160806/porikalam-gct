@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PageHero } from '@/components/common/PageHero';
 import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import { PageLoader } from '@/components/common/PageLoader';
+import { EventRegistrationAction } from '@/components/events/EventRegistrationAction';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { EVENT_CATEGORY_LABELS } from '@/data/eventMeta';
 import { useEvent } from '@/hooks/useEvents';
@@ -105,14 +105,7 @@ export default function EventDetail() {
               {event.prizePool && <DetailRow label="Prize Pool" value={event.prizePool} />}
               {event.registrationFee && <DetailRow label="Registration Fee" value={event.registrationFee} />}
 
-              <Button
-                to="/register"
-                variant="primary"
-                size="lg"
-                className="mt-2 w-full"
-              >
-                Register for this Event
-              </Button>
+              <EventRegistrationAction event={event} />
             </motion.div>
           </div>
         </div>

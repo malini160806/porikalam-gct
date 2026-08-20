@@ -72,6 +72,7 @@ export interface EventDto {
   registration_fee: string | null;
   poster: string | null;
   icon: string;
+  registration_open: boolean;
   created_at: string;
   updated_at: string;
 }

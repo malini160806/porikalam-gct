@@ -24,6 +24,7 @@ function toEventItem(dto: EventDto): EventItem {
     registrationFee: dto.registration_fee ?? undefined,
     icon: dto.icon,
     poster: dto.poster ?? undefined,
+    registrationStatus: dto.registration_open ? 'open' : 'closed',
   };
 }
 

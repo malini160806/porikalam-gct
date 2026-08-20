@@ -4,12 +4,13 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { User } from "../models/User.js";
 import { Role } from "../models/Role.js";
+import { Registration } from "../models/Registration.js";
 import { generateUsername } from "../utils/username.js";
 import { signToken } from "../utils/jwt.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { requireAuth, requireUserId } from "../middleware/auth.js";
-import { serializeUser } from "../utils/serializers.js";
+import { serializeUser, serializeRegistration } from "../utils/serializers.js";
 import { sendUsernameEmail, sendResetEmail } from "../utils/mailer.js";
 import { uploadPhoto } from "../utils/upload.js";
 
@@ -157,15 +158,17 @@ router.get(
     const user = await User.findById(requireUserId(req));
     if (!user) throw new ApiError(401, "Session is no longer valid.");
 
-    const roles = await Role.find({ userId: user._id });
+    const [roles, registrations] = await Promise.all([
+      Role.find({ userId: user._id }),
+      Registration.find({ userId: user._id }).sort({ createdAt: -1 }),
+    ]);
     const roleNames = roles.map((role) => role.role);
 
     res.json({
       user: serializeUser(user),
       isAdmin: roleNames.some((role) => ADMIN_ROLES.includes(role)),
       isSuperAdmin: roleNames.includes("super_admin"),
-      // Populated once event registration ships (Phase 2).
-      registrations: [],
+      registrations: registrations.map(serializeRegistration),
     });
   }),
 );

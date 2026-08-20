@@ -21,6 +21,13 @@ export interface AuthUser {
   updated_at: string;
 }
 
+export interface RegistrationTeammateDto {
+  user_id: string;
+  username: string;
+  name: string;
+  role: 'leader' | 'member';
+}
+
 export interface RegistrationDto {
   id: string;
   user_id: string;
@@ -33,8 +40,11 @@ export interface RegistrationDto {
   college: string | null;
   department: string | null;
   year_of_study: string | null;
+  team_id: string;
+  role: 'leader' | 'member';
   team_name: string | null;
-  teammate_names: string | null;
+  teammates: RegistrationTeammateDto[];
+  payment_reference: string | null;
   notes: string | null;
   status: 'submitted' | 'confirmed' | 'cancelled';
   created_at: string;

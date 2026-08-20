@@ -12,6 +12,10 @@ export const SITE = {
   eventStart: '2026-09-25T00:00:00+05:30',
   eventEnd: '2026-09-26T23:59:59+05:30',
   prequalifierWindow: 'Mid-August 2026',
+  // TODO: placeholder until the organizers share the real collection UPI ID —
+  // swap these two before payments go live.
+  upiId: 'To be announced',
+  upiPayeeName: 'Porikkalam 2026 Organizing Committee',
 } as const;
 
 export type NavLink = {

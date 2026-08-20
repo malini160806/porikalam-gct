@@ -125,19 +125,34 @@ function RegistrationsPanel({ registrations }: { registrations: RegistrationDto[
   return (
     <div className="flex flex-col gap-4">
       {registrations.map((registration) => (
-        <div
-          key={registration.id}
-          className="flex flex-wrap items-center justify-between gap-4 border border-navy/15 bg-white/40 p-5"
-        >
-          <div>
-            <p className="font-heading text-lg font-semibold tracking-wide text-navy">{registration.event_name}</p>
-            <p className="font-body text-xs uppercase tracking-wide text-slate/70">
-              {STATUS_LABEL[registration.status]}
-            </p>
+        <div key={registration.id} className="flex flex-col gap-3 border border-navy/15 bg-white/40 p-5">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="font-heading text-lg font-semibold tracking-wide text-navy">{registration.event_name}</p>
+              <p className="font-body text-xs uppercase tracking-wide text-slate/70">
+                {STATUS_LABEL[registration.status]}
+                {registration.role === 'member' && ' · Added as Teammate'}
+              </p>
+            </div>
+            <Button to={`/events/${registration.event_key}`} variant="outline" size="sm">
+              View Event
+            </Button>
           </div>
-          <Button to={`/events/${registration.event_key}`} variant="outline" size="sm">
-            View Event
-          </Button>
+          {registration.teammates.length > 1 && (
+            <div className="border-t border-navy/10 pt-3">
+              <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
+                Team{registration.team_name ? `: ${registration.team_name}` : ''}
+              </p>
+              <p className="mt-1 font-body text-xs text-slate">
+                {registration.teammates
+                  .map((teammate) => `${teammate.name} (${teammate.username})${teammate.role === 'leader' ? ' · Leader' : ''}`)
+                  .join(', ')}
+              </p>
+            </div>
+          )}
+          {registration.payment_reference && (
+            <p className="font-body text-xs text-slate/70">Payment reference: {registration.payment_reference}</p>
+          )}
         </div>
       ))}
     </div>

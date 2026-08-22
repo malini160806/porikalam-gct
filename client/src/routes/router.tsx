@@ -68,28 +68,28 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { index: true, element: withSuspense(Home) },
-      { path: 'about', element: withProtectedSuspense(About) },
-      { path: 'events', element: withProtectedSuspense(Events) },
-      { path: 'events/:eventId', element: withProtectedSuspense(EventDetail) },
-      { path: 'thulira', element: withProtectedSuspense(Thulira) },
-      { path: 'tech-thiral', element: withProtectedSuspense(TechThiral) },
-      { path: 'sponsors', element: withProtectedSuspense(Sponsors) },
-      { path: 'contact', element: withProtectedSuspense(Contact) },
+      { path: 'about', element: withSuspense(About) },
+      { path: 'events', element: withSuspense(Events) },
+      { path: 'events/:eventId', element: withSuspense(EventDetail) },
+      { path: 'thulira', element: withSuspense(Thulira) },
+      { path: 'tech-thiral', element: withSuspense(TechThiral) },
+      { path: 'sponsors', element: withSuspense(Sponsors) },
+      { path: 'contact', element: withSuspense(Contact) },
       { path: 'register', element: withSuspense(Register) },
       { path: 'login', element: withSuspense(Login) },
       { path: 'forgot-password', element: withSuspense(ForgotPassword) },
       { path: 'dashboard', element: withProtectedSuspense(Dashboard) },
-      { path: 'team', element: withProtectedSuspense(Team) },
-      { path: 'schedule', element: withProtectedSuspense(Schedule) },
-      { path: 'workshops', element: withProtectedSuspense(Workshops) },
-      { path: 'accommodation', element: withProtectedSuspense(Accommodation) },
-      { path: 'faq', element: withProtectedSuspense(Faq) },
-      { path: 'announcements', element: withProtectedSuspense(Announcements) },
-      { path: 'resources', element: withProtectedSuspense(Resources) },
-      { path: 'leaderboard', element: withProtectedSuspense(Leaderboard) },
-      { path: 'media', element: withProtectedSuspense(Media) },
+      { path: 'team', element: withSuspense(Team) },
+      { path: 'schedule', element: withSuspense(Schedule) },
+      { path: 'workshops', element: withSuspense(Workshops) },
+      { path: 'accommodation', element: withSuspense(Accommodation) },
+      { path: 'faq', element: withSuspense(Faq) },
+      { path: 'announcements', element: withSuspense(Announcements) },
+      { path: 'resources', element: withSuspense(Resources) },
+      { path: 'leaderboard', element: withSuspense(Leaderboard) },
+      { path: 'media', element: withSuspense(Media) },
       { path: 'certificates', element: withSuspense(CertificateVerify) },
-      { path: 'volunteer', element: withProtectedSuspense(VolunteerPortal) },
+      { path: 'volunteer', element: withSuspense(VolunteerPortal) },
       { path: '*', element: withSuspense(NotFound) },
     ],
   },
@@ -106,9 +106,36 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { index: true, element: <Navigate to="/admin/dashboard" replace /> },
-      { path: 'dashboard', element: withSuspense(AdminDashboard) },
-      { path: 'events', element: withSuspense(AdminEvents) },
-      { path: 'registrations', element: withSuspense(AdminRegistrations) },
+      {
+        path: 'dashboard',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProtectedAdminRoute>
+              <AdminDashboard />
+            </ProtectedAdminRoute>
+          </Suspense>
+        ),
+      },
+      {
+        path: 'events',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProtectedAdminRoute>
+              <AdminEvents />
+            </ProtectedAdminRoute>
+          </Suspense>
+        ),
+      },
+      {
+        path: 'registrations',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProtectedAdminRoute>
+              <AdminRegistrations />
+            </ProtectedAdminRoute>
+          </Suspense>
+        ),
+      },
       {
         path: 'participants',
         element: (
@@ -119,7 +146,16 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      { path: 'attendance', element: withSuspense(AdminAttendance) },
+      {
+        path: 'attendance',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProtectedAdminRoute>
+              <AdminAttendance />
+            </ProtectedAdminRoute>
+          </Suspense>
+        ),
+      },
       {
         path: 'payments',
         element: (
@@ -140,7 +176,16 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      { path: 'settings', element: withSuspense(AdminSettings) },
+      {
+        path: 'settings',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProtectedAdminRoute>
+              <AdminSettings />
+            </ProtectedAdminRoute>
+          </Suspense>
+        ),
+      },
       { path: '*', element: <Navigate to="/admin/dashboard" replace /> },
     ],
   },

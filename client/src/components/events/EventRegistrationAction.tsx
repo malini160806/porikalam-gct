@@ -52,7 +52,13 @@ export function EventRegistrationAction({ event }: { event: EventItem }) {
   const [teammateUsernames, setTeammateUsernames] = useState<string[]>(['']);
   const [paymentReference, setPaymentReference] = useState('');
 
-  if (!user) return null;
+  if (!user) {
+    return (
+      <Button to="/login" variant="primary" size="lg" className="mt-2 w-full">
+        Login to Register
+      </Button>
+    );
+  }
 
   const existing = registrations.find((r) => r.event_key === event.id);
   const displayRegistration = existing ?? result;

@@ -67,13 +67,13 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
         boxShadow: '0 12px 36px -8px rgba(212,175,55,0.45), 0 8px 24px -10px rgba(61,90,117,0.35)',
         borderColor: 'rgba(212,175,55,0.8)',
       }}
-      className="group relative grid h-full grid-cols-1 overflow-hidden rounded-sm border border-gold/30 shadow-card transition-colors duration-300"
+      className="group relative grid h-full min-h-[560px] grid-cols-1 grid-rows-2 overflow-hidden rounded-sm border border-gold/30 shadow-card transition-colors duration-300"
     >
       <CornerOrnament corner="top-left" variant="scroll" size={36} opacity={0.5} className="z-20 drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
       <CornerOrnament corner="bottom-right" variant="scroll" size={36} opacity={0.5} className="z-20 drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
 
       {/* Top half — poster */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-full overflow-hidden">
         <img
           src={event.poster ?? posterPlaceholder}
           alt={event.poster ? `${event.title} poster` : ''}
@@ -96,7 +96,7 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       </div>
 
       {/* Bottom half — details */}
-      <div className="navy-paper bp-grid-bg relative flex flex-col justify-between border-t border-gold/20 p-6 shadow-[inset_0_0_44px_-24px_rgba(212,175,55,0.5)]">
+      <div className="navy-paper bp-grid-bg relative flex h-full flex-col justify-between overflow-y-auto border-t border-gold/20 p-6 shadow-[inset_0_0_44px_-24px_rgba(212,175,55,0.5)]">
         <div>
           <h3 className="font-heading text-xl font-semibold tracking-wide text-cream sm:text-2xl">
             {event.title}

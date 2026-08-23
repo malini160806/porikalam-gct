@@ -36,7 +36,11 @@ export default function EventDetail() {
 
   return (
     <>
-      <PageHero title={event.title} subtitle={EVENT_CATEGORY_LABELS[event.category]} />
+      <PageHero
+        title={event.title}
+        subtitle={EVENT_CATEGORY_LABELS[event.category]}
+        backgroundImage={event.poster}
+      />
 
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

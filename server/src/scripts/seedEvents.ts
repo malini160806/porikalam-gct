@@ -301,7 +301,7 @@ const events: SeedEvent[] = [
     registrationOpen: true,
   },
   {
-    eventName: "Hackathon",
+    eventName: "Hackonex",
     slug: "hackathon",
     category: "technical",
     description:

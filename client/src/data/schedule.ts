@@ -12,7 +12,7 @@ export const schedule: ScheduleItem[] = [
   { id: 'sch-d1-5', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Tech Talks', type: 'session', venue: 'Main Auditorium' },
   { id: 'sch-d1-6', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Workshop', type: 'workshop', venue: 'TBA' },
   { id: 'sch-d1-7', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Paper Presentation', type: 'session', venue: 'DCKAP Room', relatedEventId: 'paper-presentation' },
-  { id: 'sch-d1-8', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Hackathon', type: 'session', venue: 'Classrooms', relatedEventId: 'hackathon' },
+  { id: 'sch-d1-8', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Hackonex', type: 'session', venue: 'Classrooms', relatedEventId: 'hackathon' },
   { id: 'sch-d1-9', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Deep Dive Challenge — Round 1', type: 'session', venue: 'Main Building Classrooms', relatedEventId: 'deep-dive-challenge' },
   { id: 'sch-d1-10', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'Civil CBI', type: 'session', venue: 'Main Building Classrooms', relatedEventId: 'civil-cbi' },
   { id: 'sch-d1-11', day: 1, date: '25 Sept 2026', startTime: '10:00', endTime: '12:30', title: 'SketchShift', type: 'session', venue: 'Drawing Hall – 112', relatedEventId: 'sketchshift' },

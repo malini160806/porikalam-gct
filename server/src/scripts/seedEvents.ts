@@ -135,7 +135,7 @@ const events: SeedEvent[] = [
     budget: "₹1000",
     prizePool: null,
     registrationFee: null,
-    poster: null,
+    poster: "/events/robo-soccer.jpeg",
     icon: "bot",
     registrationOpen: true,
   },

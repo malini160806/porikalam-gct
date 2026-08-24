@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto grid w-full max-w-xl grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-6"
+            className="mx-auto grid w-full max-w-xl grid-cols-[6rem_1fr_6rem] items-center gap-3 sm:grid-cols-[8rem_1fr_8rem] sm:gap-6"
           >
             <motion.img
               src={gctLogo}
@@ -56,7 +56,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-10 w-auto justify-self-end opacity-90 sm:h-14"
+              className="h-10 w-auto justify-self-center opacity-90 sm:h-14"
             />
             <p className="font-body text-[10px] font-semibold uppercase tracking-[0.15em] text-beige/60 sm:text-sm sm:tracking-[0.3em]">
               {SITE.college}, Coimbatore Presents
@@ -71,7 +71,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-10 w-auto justify-self-start opacity-90 sm:h-14"
+              className="h-10 w-auto justify-self-center opacity-90 sm:h-14"
             />
           </motion.div>
 

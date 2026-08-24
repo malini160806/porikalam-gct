@@ -215,24 +215,26 @@ export default function Thulira() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="relative mt-12 flex flex-col gap-5 overflow-hidden border border-navy/10 bg-white/55 p-8 shadow-card sm:p-10"
+            className="relative mt-12 overflow-hidden border border-navy/10 bg-white/55 p-8 shadow-card sm:p-10"
           >
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <p className="font-body text-base leading-relaxed text-slate">
-              THULIRA – Student Startup Challenge is a premier platform that brings together aspiring
-              student entrepreneurs from diverse educational institutions to showcase innovative
-              startup ideas, prototypes, and entrepreneurial solutions.
-            </p>
-            <p className="font-body text-base leading-relaxed text-slate">
-              The event provides students with an opportunity to present their innovations before
-              industry experts, academicians, and the startup ecosystem while receiving valuable
-              insights and recognition.
-            </p>
-            <p className="font-body text-base leading-relaxed text-slate">
-              THULIRA aims to cultivate creativity, problem-solving, and entrepreneurial thinking and
-              inspire the next generation of student innovators.
-            </p>
+            <div className="relative z-10 flex flex-col gap-5">
+              <p className="font-body text-base leading-relaxed text-slate">
+                THULIRA – Student Startup Challenge is a premier platform that brings together aspiring
+                student entrepreneurs from diverse educational institutions to showcase innovative
+                startup ideas, prototypes, and entrepreneurial solutions.
+              </p>
+              <p className="font-body text-base leading-relaxed text-slate">
+                The event provides students with an opportunity to present their innovations before
+                industry experts, academicians, and the startup ecosystem while receiving valuable
+                insights and recognition.
+              </p>
+              <p className="font-body text-base leading-relaxed text-slate">
+                THULIRA aims to cultivate creativity, problem-solving, and entrepreneurial thinking and
+                inspire the next generation of student innovators.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -276,14 +278,16 @@ export default function Thulira() {
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -6 }}
-                  className="group relative flex flex-col items-center gap-4 overflow-hidden border border-brown/25 bg-white/60 p-8 text-center shadow-card transition-shadow duration-300 hover:shadow-[0_16px_36px_-14px_rgba(139,115,51,0.4)]"
+                  className="group relative overflow-hidden border border-brown/25 bg-white/60 p-8 text-center shadow-card transition-shadow duration-300 hover:shadow-[0_16px_36px_-14px_rgba(139,115,51,0.4)]"
                 >
                   <CornerOrnament corner="top-left" variant="floral" size={36} opacity={0.3} />
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-brown/40 bg-cream text-brown transition-transform duration-300 group-hover:scale-110">
-                    <Icon size={26} strokeWidth={1.5} />
+                  <div className="relative z-10 flex flex-col items-center gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-brown/40 bg-cream text-brown transition-transform duration-300 group-hover:scale-110">
+                      <Icon size={26} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-heading text-lg font-semibold tracking-wide text-navy">{objective.title}</h3>
+                    <p className="font-body text-sm leading-relaxed text-slate">{objective.description}</p>
                   </div>
-                  <h3 className="font-heading text-lg font-semibold tracking-wide text-navy">{objective.title}</h3>
-                  <p className="font-body text-sm leading-relaxed text-slate">{objective.description}</p>
                 </motion.div>
               );
             })}
@@ -345,29 +349,31 @@ export default function Thulira() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5 }}
-            className="relative mt-12 flex flex-col items-center gap-5 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
+            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
           >
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <Lightbulb size={36} className="text-brown" />
-            <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
-              Apply For Thulira
-            </h3>
-            <p className="max-w-md font-body text-sm text-slate">
-              Participation begins with an online application. Submit your startup idea through the
-              prescribed form within the specified timeline — all applications undergo preliminary
-              screening before shortlisted teams are invited to the startup exhibition.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              {thuliraApplicationReview.map((item) => (
-                <Badge key={item} variant="outline">
-                  {item}
-                </Badge>
-              ))}
+            <div className="relative z-10 flex flex-col items-center gap-5">
+              <Lightbulb size={36} className="text-brown" />
+              <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
+                Apply For Thulira
+              </h3>
+              <p className="max-w-md font-body text-sm text-slate">
+                Participation begins with an online application. Submit your startup idea through the
+                prescribed form within the specified timeline — all applications undergo preliminary
+                screening before shortlisted teams are invited to the startup exhibition.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {thuliraApplicationReview.map((item) => (
+                  <Badge key={item} variant="outline">
+                    {item}
+                  </Badge>
+                ))}
+              </div>
+              <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+                Apply Now
+              </Button>
             </div>
-            <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-              Apply Now
-            </Button>
           </motion.div>
         </div>
       </section>
@@ -455,14 +461,16 @@ export default function Thulira() {
                     boxShadow: '0 12px 32px -10px rgba(212,175,55,0.4)',
                     borderColor: 'rgba(212,175,55,0.7)',
                   }}
-                  className="relative flex flex-col gap-4 overflow-hidden border border-gold/25 bg-navy-deep p-6 shadow-card transition-colors duration-300"
+                  className="relative overflow-hidden border border-gold/25 bg-navy-deep p-6 shadow-card transition-colors duration-300"
                 >
                   <CornerOrnament corner="top-left" size={28} opacity={0.3} />
-                  <Icon size={26} className="text-gold" strokeWidth={1.5} />
-                  <h4 className="font-heading text-base font-semibold uppercase tracking-wide text-cream">
-                    {criterion.title}
-                  </h4>
-                  <p className="font-body text-xs leading-relaxed text-beige/75">{criterion.description}</p>
+                  <div className="relative z-10 flex flex-col gap-4">
+                    <Icon size={26} className="text-gold" strokeWidth={1.5} />
+                    <h4 className="font-heading text-base font-semibold uppercase tracking-wide text-cream">
+                      {criterion.title}
+                    </h4>
+                    <p className="font-body text-xs leading-relaxed text-beige/75">{criterion.description}</p>
+                  </div>
                 </motion.div>
               );
             })}
@@ -492,14 +500,16 @@ export default function Thulira() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.6 }}
-            className="relative mx-auto mt-14 flex max-w-xl flex-col items-center gap-3 overflow-hidden border-2 border-gold bg-navy-deep px-8 py-10 text-cream shadow-[0_0_36px_-8px_rgba(212,175,55,0.5)]"
+            className="relative mx-auto mt-14 max-w-xl overflow-hidden border-2 border-gold bg-navy-deep px-8 py-10 text-cream shadow-[0_0_36px_-8px_rgba(212,175,55,0.5)]"
           >
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <Award size={32} className="text-gold" strokeWidth={1.5} />
-            <p className="font-heading text-lg font-bold uppercase tracking-wide text-gold sm:text-xl">
-              All Participants Will Receive A Certificate Of Participation
-            </p>
+            <div className="relative z-10 flex flex-col items-center gap-3">
+              <Award size={32} className="text-gold" strokeWidth={1.5} />
+              <p className="font-heading text-lg font-bold uppercase tracking-wide text-gold sm:text-xl">
+                All Participants Will Receive A Certificate Of Participation
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -56,7 +56,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-12 w-auto justify-self-center opacity-90 sm:h-20 lg:h-24"
+              className="h-12 w-auto justify-self-end opacity-90 sm:h-20 lg:h-24"
             />
             <p className="font-body text-[8px] font-semibold uppercase tracking-tight text-beige/60 sm:text-sm sm:tracking-[0.2em] lg:tracking-[0.3em]">
               <span className="whitespace-nowrap">
@@ -75,7 +75,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-12 w-auto justify-self-center opacity-90 sm:h-20 lg:h-24"
+              className="h-12 w-auto justify-self-start opacity-90 sm:h-20 lg:h-24"
             />
           </motion.div>
 

@@ -276,19 +276,21 @@ export default function Dashboard() {
         />
         <FloatingIcon src={aiChipIcon} className="absolute -right-4 top-4 hidden h-28 w-28 sm:block" duration={50} />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
-          <div className="relative flex flex-wrap items-center justify-between gap-4 overflow-hidden border border-gold/30 bg-white/50 p-5 shadow-card">
-            <CornerOrnament corner="top-left" variant="floral" className="opacity-30" />
-            <div>
-              <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
-                Participant Username
-              </p>
-              <p className="font-heading text-2xl font-bold tracking-wide text-navy">{currentUser.username}</p>
-            </div>
-            <div className="flex items-center gap-3">
-              {isAdmin && <span className="font-body text-xs font-semibold uppercase tracking-wide text-brown">Admin</span>}
-              <Button variant="outline" size="sm" icon={<LogOut size={14} />} onClick={handleSignOut}>
-                Sign Out
-              </Button>
+          <div className="relative overflow-hidden border border-gold/30 bg-white/50 p-5 shadow-card">
+            <CornerOrnament corner="top-left" variant="floral" size={24} opacity={0.3} />
+            <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
+                  Participant Username
+                </p>
+                <p className="font-heading text-2xl font-bold tracking-wide text-navy">{currentUser.username}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                {isAdmin && <span className="font-body text-xs font-semibold uppercase tracking-wide text-brown">Admin</span>}
+                <Button variant="outline" size="sm" icon={<LogOut size={14} />} onClick={handleSignOut}>
+                  Sign Out
+                </Button>
+              </div>
             </div>
           </div>
 

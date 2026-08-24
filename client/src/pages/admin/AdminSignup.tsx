@@ -60,8 +60,8 @@ export default function AdminSignup() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="relative flex w-full max-w-sm flex-col gap-6 overflow-hidden border border-gold/30 bg-navy/70 p-8 shadow-[0_0_50px_-12px_rgba(212,175,55,0.35)] backdrop-blur-sm sm:p-10"
       >
-        <CornerOrnament corner="top-left" className="z-10" />
-        <CornerOrnament corner="bottom-right" className="z-10" />
+        <CornerOrnament corner="top-left" />
+        <CornerOrnament corner="bottom-right" />
 
         <div className="relative flex flex-col items-center gap-2 text-center">
           <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 text-gold shadow-[0_0_18px_-4px_rgba(212,175,55,0.5)]">

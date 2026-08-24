@@ -17,18 +17,20 @@ export default function VolunteerPortal() {
       <PageHero title="Volunteer Portal" subtitle="Be part of the team that makes Porikkalam happen." />
 
       <section className="relative overflow-hidden bg-navy py-24">
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 text-center sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-3xl px-4 py-8 text-center sm:px-6 lg:px-8">
           <CornerOrnament corner="top-left" className="opacity-40" />
           <CornerOrnament corner="bottom-right" className="opacity-40" />
-          <SectionHeading
-            eyebrow="Join The Crew"
-            title="Apply to Volunteer"
-            subtitle="Help run events, coordinate logistics, and welcome participants from colleges across the region."
-            tone="dark"
-          />
-          <Button to="/contact" variant="primary" size="lg">
-            Apply to Volunteer
-          </Button>
+          <div className="relative z-10 flex flex-col items-center gap-6">
+            <SectionHeading
+              eyebrow="Join The Crew"
+              title="Apply to Volunteer"
+              subtitle="Help run events, coordinate logistics, and welcome participants from colleges across the region."
+              tone="dark"
+            />
+            <Button to="/contact" variant="primary" size="lg">
+              Apply to Volunteer
+            </Button>
+          </div>
         </div>
       </section>
 

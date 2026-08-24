@@ -69,9 +69,6 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       }}
       className="group relative grid h-full min-h-[560px] grid-cols-1 grid-rows-2 overflow-hidden rounded-sm border border-gold/30 shadow-card transition-colors duration-300"
     >
-      <CornerOrnament corner="top-left" variant="scroll" size={36} opacity={0.5} className="z-20 drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
-      <CornerOrnament corner="bottom-right" variant="scroll" size={36} opacity={0.5} className="z-20 drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
-
       {/* Top half — poster */}
       <div className="relative h-full overflow-hidden">
         <img
@@ -96,62 +93,67 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       </div>
 
       {/* Bottom half — details */}
-      <div className="navy-paper bp-grid-bg relative flex h-full flex-col justify-between overflow-y-auto border-t border-gold/20 p-6 shadow-[inset_0_0_44px_-24px_rgba(212,175,55,0.5)]">
-        <div>
-          <h3 className="font-heading text-xl font-semibold tracking-wide text-cream sm:text-2xl">
-            {event.title}
-          </h3>
-          <p className="mt-1 font-body text-xs font-semibold uppercase tracking-wider text-gold">
-            {event.format === 'team' ? 'Team Event' : 'Individual Event'}
-          </p>
+      <div className="navy-paper bp-grid-bg relative h-full overflow-y-auto border-t border-gold/20 p-6 shadow-[inset_0_0_44px_-24px_rgba(212,175,55,0.5)]">
+        <CornerOrnament corner="top-left" variant="scroll" size={28} opacity={0.5} className="drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
+        <CornerOrnament corner="bottom-right" variant="scroll" size={28} opacity={0.5} className="drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
 
-          <p className="mt-3 line-clamp-3 font-body text-sm leading-relaxed text-beige/80">
-            {event.description}
-          </p>
+        <div className="relative z-10 flex h-full flex-col justify-between">
+          <div>
+            <h3 className="font-heading text-xl font-semibold tracking-wide text-cream sm:text-2xl">
+              {event.title}
+            </h3>
+            <p className="mt-1 font-body text-xs font-semibold uppercase tracking-wider text-gold">
+              {event.format === 'team' ? 'Team Event' : 'Individual Event'}
+            </p>
 
-          <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gold/15 pt-4">
-            <DetailRow icon={<Clock size={13} />}>{event.duration}</DetailRow>
-            <DetailRow icon={<MapPin size={13} />}>{event.venue}</DetailRow>
-            <DetailRow icon={<Users size={13} />}>
-              {event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
-            </DetailRow>
-            <DetailRow icon={<Users2 size={13} />}>{event.expectedParticipants} Expected</DetailRow>
-          </dl>
+            <p className="mt-3 line-clamp-3 font-body text-sm leading-relaxed text-beige/80">
+              {event.description}
+            </p>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            <Badge variant="gold">{event.eligibility}</Badge>
-            {event.prequalifierRequired ? (
-              <Badge variant="navy">Prequalifier Required</Badge>
-            ) : (
-              <Badge variant="outline">No Prequalifier</Badge>
+            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gold/15 pt-4">
+              <DetailRow icon={<Clock size={13} />}>{event.duration}</DetailRow>
+              <DetailRow icon={<MapPin size={13} />}>{event.venue}</DetailRow>
+              <DetailRow icon={<Users size={13} />}>
+                {event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
+              </DetailRow>
+              <DetailRow icon={<Users2 size={13} />}>{event.expectedParticipants} Expected</DetailRow>
+            </dl>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Badge variant="gold">{event.eligibility}</Badge>
+              {event.prequalifierRequired ? (
+                <Badge variant="navy">Prequalifier Required</Badge>
+              ) : (
+                <Badge variant="outline">No Prequalifier</Badge>
+              )}
+              {event.registrationFee && <Badge variant="tech">Fee: {event.registrationFee}</Badge>}
+            </div>
+
+            {event.primaryDomains && event.primaryDomains.length > 0 && (
+              <p className="mt-3 font-body text-[11px] text-beige/55">
+                Primary domain: {event.primaryDomains.join(', ')}
+              </p>
             )}
-            {event.registrationFee && <Badge variant="tech">Fee: {event.registrationFee}</Badge>}
+
+            {event.prequalifierRequired && (
+              <p className="mt-4 flex items-start gap-2 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
+                <ShieldCheck size={14} className="mt-0.5 shrink-0 text-gold" />
+                All registrants compete in an online prequalifier round in {SITE.prequalifierWindow} — only
+                those who qualify are selected to compete in the 2-day mega event on campus.
+              </p>
+            )}
           </div>
 
-          {event.primaryDomains && event.primaryDomains.length > 0 && (
-            <p className="mt-3 font-body text-[11px] text-beige/55">
-              Primary domain: {event.primaryDomains.join(', ')}
-            </p>
-          )}
-
-          {event.prequalifierRequired && (
-            <p className="mt-4 flex items-start gap-2 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
-              <ShieldCheck size={14} className="mt-0.5 shrink-0 text-gold" />
-              All registrants compete in an online prequalifier round in {SITE.prequalifierWindow} — only
-              those who qualify are selected to compete in the 2-day mega event on campus.
-            </p>
-          )}
+          <Button
+            to={`/events/${event.id}`}
+            variant="secondary"
+            size="sm"
+            className="mt-6 w-fit"
+            icon={<ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />}
+          >
+            View Event
+          </Button>
         </div>
-
-        <Button
-          to={`/events/${event.id}`}
-          variant="secondary"
-          size="sm"
-          className="mt-6 w-fit"
-          icon={<ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />}
-        >
-          View Event
-        </Button>
       </div>
     </motion.article>
   );

@@ -177,24 +177,26 @@ export default function TechThiral() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="relative mt-12 flex flex-col gap-5 overflow-hidden border border-navy/10 bg-white/55 p-8 shadow-card sm:p-10"
+            className="relative mt-12 overflow-hidden border border-navy/10 bg-white/55 p-8 shadow-card sm:p-10"
           >
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <p className="font-body text-base leading-relaxed text-slate">
-              TECH THIRAL — Industry & Startup Summit brings together startups, innovators, industry
-              professionals, and researchers on a common platform to showcase emerging technologies,
-              products, ideas, and entrepreneurial ventures.
-            </p>
-            <p className="font-body text-base leading-relaxed text-slate">
-              It creates opportunities for students to discover innovations, interact with founders
-              and industry experts, explore emerging technologies, and build meaningful connections
-              with the startup and industrial ecosystem.
-            </p>
-            <p className="font-body text-base leading-relaxed text-slate">
-              Tech Thiral runs as a continuous two-day flagship track alongside Thulira, with every
-              other Porikkalam programme scheduled around them.
-            </p>
+            <div className="relative z-10 flex flex-col gap-5">
+              <p className="font-body text-base leading-relaxed text-slate">
+                TECH THIRAL — Industry & Startup Summit brings together startups, innovators, industry
+                professionals, and researchers on a common platform to showcase emerging technologies,
+                products, ideas, and entrepreneurial ventures.
+              </p>
+              <p className="font-body text-base leading-relaxed text-slate">
+                It creates opportunities for students to discover innovations, interact with founders
+                and industry experts, explore emerging technologies, and build meaningful connections
+                with the startup and industrial ecosystem.
+              </p>
+              <p className="font-body text-base leading-relaxed text-slate">
+                Tech Thiral runs as a continuous two-day flagship track alongside Thulira, with every
+                other Porikkalam programme scheduled around them.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -238,14 +240,16 @@ export default function TechThiral() {
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -6 }}
-                  className="group relative flex flex-col items-center gap-4 overflow-hidden border border-brown/25 bg-white/60 p-8 text-center shadow-card transition-shadow duration-300 hover:shadow-[0_16px_36px_-14px_rgba(139,115,51,0.4)]"
+                  className="group relative overflow-hidden border border-brown/25 bg-white/60 p-8 text-center shadow-card transition-shadow duration-300 hover:shadow-[0_16px_36px_-14px_rgba(139,115,51,0.4)]"
                 >
                   <CornerOrnament corner="top-left" variant="floral" size={36} opacity={0.3} />
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-brown/40 bg-cream text-brown transition-transform duration-300 group-hover:scale-110">
-                    <Icon size={26} strokeWidth={1.5} />
+                  <div className="relative z-10 flex flex-col items-center gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-brown/40 bg-cream text-brown transition-transform duration-300 group-hover:scale-110">
+                      <Icon size={26} strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-heading text-lg font-semibold tracking-wide text-navy">{item.title}</h3>
+                    <p className="font-body text-sm leading-relaxed text-slate">{item.description}</p>
                   </div>
-                  <h3 className="font-heading text-lg font-semibold tracking-wide text-navy">{item.title}</h3>
-                  <p className="font-body text-sm leading-relaxed text-slate">{item.description}</p>
                 </motion.div>
               );
             })}
@@ -347,25 +351,27 @@ export default function TechThiral() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5 }}
-            className="relative mt-12 flex flex-col items-center gap-5 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
+            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
           >
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <Presentation size={36} className="text-brown" />
-            <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
-              Bring Your Booth To Tech Thiral
-            </h3>
-            <p className="max-w-md font-body text-sm text-slate">
-              Startups and industry teams interested in exhibiting can reach out to the Porikkalam
-              team to apply for booth space at the Industry Expo.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button to="/contact" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-                Apply To Exhibit
-              </Button>
-              <Button to="/schedule" variant="secondary" size="lg">
-                View Schedule
-              </Button>
+            <div className="relative z-10 flex flex-col items-center gap-5">
+              <Presentation size={36} className="text-brown" />
+              <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
+                Bring Your Booth To Tech Thiral
+              </h3>
+              <p className="max-w-md font-body text-sm text-slate">
+                Startups and industry teams interested in exhibiting can reach out to the Porikkalam
+                team to apply for booth space at the Industry Expo.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Button to="/contact" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+                  Apply To Exhibit
+                </Button>
+                <Button to="/schedule" variant="secondary" size="lg">
+                  View Schedule
+                </Button>
+              </div>
             </div>
           </motion.div>
         </div>

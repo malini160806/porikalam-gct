@@ -35,17 +35,19 @@ export default function Sponsors() {
             })}
           </div>
 
-          <div className="relative mt-20 flex flex-col items-center gap-4 overflow-hidden border border-gold/30 bg-navy px-8 py-12 text-center">
+          <div className="relative mt-20 overflow-hidden border border-gold/30 bg-navy px-8 py-12 text-center">
             <CornerOrnament corner="top-left" />
             <CornerOrnament corner="bottom-right" />
-            <h3 className="font-heading text-3xl font-semibold tracking-wide text-cream">Become a Sponsor</h3>
-            <p className="max-w-md font-body text-sm text-beige/80">
-              Partner with Porikkalam 2026 and connect your brand with thousands of engineering
-              minds shaping tomorrow.
-            </p>
-            <Button to="/contact" variant="primary">
-              Get In Touch
-            </Button>
+            <div className="relative z-10 flex flex-col items-center gap-4">
+              <h3 className="font-heading text-3xl font-semibold tracking-wide text-cream">Become a Sponsor</h3>
+              <p className="max-w-md font-body text-sm text-beige/80">
+                Partner with Porikkalam 2026 and connect your brand with thousands of engineering
+                minds shaping tomorrow.
+              </p>
+              <Button to="/contact" variant="primary">
+                Get In Touch
+              </Button>
+            </div>
           </div>
         </div>
       </section>

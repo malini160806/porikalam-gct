@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { coreTeamDomains, getMembersForDomain } from '@/data/coreTeam';
-import { getIcon } from '@/utils/icons';
+import { getIcon } from '@/routes/utils/icons';
 
 export function CoreTeamPreview() {
   const domains = [...coreTeamDomains].sort((a, b) => a.order - b.order);

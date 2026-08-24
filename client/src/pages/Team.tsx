@@ -4,7 +4,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { CoreTeamMemberCard } from '@/components/cards/CoreTeamMemberCard';
 import { coreTeamDomains, getMembersForDomain } from '@/data/coreTeam';
-import { getIcon } from '@/utils/icons';
+import { getIcon } from '@/routes/utils/icons';
 import teamPanorama from '@/assets/hero/team-panorama.webp';
 
 export default function Team() {

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Bot, Sparkles } from 'lucide-react';
-import { getIcon } from '@/utils/icons';
+import { getIcon } from '@/routes/utils/icons';
 import { useCountUp } from '@/hooks/useCountUp';
 import { statistics } from '@/data/statistics';
 

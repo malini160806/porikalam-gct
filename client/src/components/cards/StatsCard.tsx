@@ -1,5 +1,5 @@
 import type { StatItem } from '@/data/types';
-import { getIcon } from '@/utils/icons';
+import { getIcon } from '@/routes/utils/icons';
 import { useCountUp } from '@/hooks/useCountUp';
 
 type StatsCardProps = {

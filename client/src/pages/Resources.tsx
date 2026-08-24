@@ -3,7 +3,7 @@ import { Download } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { getIcon } from '@/utils/icons';
+import { getIcon } from '@/routes/utils/icons';
 import { resources } from '@/data/resources';
 
 export default function Resources() {

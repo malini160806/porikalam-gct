@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto grid w-full max-w-xl grid-cols-[6rem_1fr_6rem] items-center gap-3 sm:grid-cols-[8rem_1fr_8rem] sm:gap-6"
+            className="mx-auto grid w-full max-w-[min(92vw,56rem)] grid-cols-[5rem_auto_5rem] items-center gap-2 sm:grid-cols-[8rem_auto_8rem] sm:gap-6 lg:grid-cols-[10rem_auto_10rem]"
           >
             <motion.img
               src={gctLogo}
@@ -56,10 +56,14 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-10 w-auto justify-self-center opacity-90 sm:h-14"
+              className="h-12 w-auto justify-self-center opacity-90 sm:h-20 lg:h-24"
             />
-            <p className="font-body text-[10px] font-semibold uppercase tracking-[0.15em] text-beige/60 sm:text-sm sm:tracking-[0.3em]">
-              {SITE.college}, Coimbatore Presents
+            <p className="font-body text-[8px] font-semibold uppercase tracking-tight text-beige/60 sm:text-sm sm:tracking-[0.2em] lg:tracking-[0.3em]">
+              <span className="whitespace-nowrap">
+                {SITE.college}, Coimbatore
+              </span>
+              <br />
+              Presents
             </p>
             <motion.img
               src={dckapLogo}
@@ -71,7 +75,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-10 w-auto justify-self-center opacity-90 sm:h-14"
+              className="h-12 w-auto justify-self-center opacity-90 sm:h-20 lg:h-24"
             />
           </motion.div>
 

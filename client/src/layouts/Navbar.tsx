@@ -6,7 +6,6 @@ import { Logo } from '@/components/common/Logo';
 import { Button } from '@/components/ui/Button';
 import { NAV_LINKS, type NavLink as NavLinkType } from '@/constants/site';
 import { useSession } from '@/context/SessionContext';
-import dckapLogo from '@/assets/partners/dckap-logo.png';
 
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -329,7 +328,7 @@ export function Navbar() {
           scrolled ? 'py-2.5' : 'py-4'
         }`}
       >
-        {/* Left: brand — Porikkalam logo, divider, DCKAP logo */}
+        {/* Left: brand — Porikkalam logo */}
         <div className="flex shrink-0 items-center gap-3">
           <motion.div
             animate={{ scale: scrolled ? 0.9 : 1 }}
@@ -338,14 +337,6 @@ export function Navbar() {
           >
             <Logo compact />
           </motion.div>
-          <div className="hidden h-7 w-px shrink-0 bg-gold/25 xl:block" aria-hidden="true" />
-          <div className="hidden shrink-0 items-center xl:flex" title="Organized By DCKAP Incubation Centre">
-            <img
-              src={dckapLogo}
-              alt="Organized by DCKAP Incubation Centre"
-              className="h-7 w-auto object-contain opacity-90"
-            />
-          </div>
         </div>
 
         {/* Center: primary navigation links */}

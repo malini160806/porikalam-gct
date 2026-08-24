@@ -1,9 +1,15 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import crypto from "node:crypto";
 import multer from "multer";
 
-export const UPLOADS_ROOT = path.resolve(process.cwd(), "uploads");
+// Vercel's serverless filesystem is read-only outside /tmp, and /tmp itself is wiped
+// between invocations — uploads written there won't persist. This keeps the app from
+// crashing on cold start there; durable uploads need real object storage (e.g. S3).
+export const UPLOADS_ROOT = process.env.VERCEL
+  ? path.join(os.tmpdir(), "uploads")
+  : path.resolve(process.cwd(), "uploads");
 export const PHOTOS_DIR = path.join(UPLOADS_ROOT, "photos");
 
 for (const dir of [PHOTOS_DIR]) {

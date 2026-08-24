@@ -1,6 +1,9 @@
 import { getToken } from './tokenStorage';
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000/api';
+// In production (Vercel), the API is deployed as a serverless function under the same
+// origin, so relative /api works without needing VITE_API_URL set. Locally it falls back
+// to the standalone Express dev server on :5000.
+const API_BASE = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:5000/api' : '/api');
 
 export class ApiError extends Error {
   status: number;

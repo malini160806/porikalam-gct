@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-center gap-2"
+            className="mx-auto grid w-full max-w-xl grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-6"
           >
             <motion.img
               src={gctLogo}
@@ -56,22 +56,11 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-14 w-auto opacity-90 sm:h-16"
+              className="h-10 w-auto justify-self-end opacity-90 sm:h-14"
             />
-            <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-beige/60 sm:text-sm">
+            <p className="font-body text-[10px] font-semibold uppercase tracking-[0.15em] text-beige/60 sm:text-sm sm:tracking-[0.3em]">
               {SITE.college}, Coimbatore Presents
             </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-3 flex flex-col items-center gap-2"
-          >
-            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-beige/60 sm:text-xs">
-              Organized By
-            </span>
             <motion.img
               src={dckapLogo}
               alt="DCKAP Incubation Centre"
@@ -82,7 +71,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-14 w-auto opacity-90 sm:h-16"
+              className="h-10 w-auto justify-self-start opacity-90 sm:h-14"
             />
           </motion.div>
 

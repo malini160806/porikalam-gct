@@ -9,6 +9,7 @@ import { SITE } from '@/constants/site';
 import logoImage from '@/assets/porikkalam-logo.webp';
 import homeBackground from '@/assets/hero/porikkalam-background-hd.webp';
 import dckapLogo from '@/assets/partners/DIC.png';
+import gctLogo from '@/assets/partners/gct-logo.png';
 
 const RAIL_ICONS = [User, Megaphone, Calendar, HelpCircle];
 
@@ -39,14 +40,28 @@ export function Hero() {
         <div className="relative hidden lg:block" />
 
         <div className="flex flex-col items-center justify-center px-4 py-20 text-center sm:px-6">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-beige/60 sm:text-sm"
+            className="flex flex-col items-center gap-2"
           >
-            {SITE.college}, Coimbatore Presents
-          </motion.p>
+            <motion.img
+              src={gctLogo}
+              alt="Government College of Technology, Coimbatore"
+              loading="lazy"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              whileHover={{
+                scale: 1.05,
+                filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
+              }}
+              className="h-14 w-auto opacity-90 sm:h-16"
+            />
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.3em] text-beige/60 sm:text-sm">
+              {SITE.college}, Coimbatore Presents
+            </p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: -6 }}

@@ -67,7 +67,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-7 w-auto opacity-90 sm:h-8"
+              className="h-14 w-auto opacity-90 sm:h-16"
             />
           </motion.div>
 

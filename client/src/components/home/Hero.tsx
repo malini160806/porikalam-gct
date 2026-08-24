@@ -8,7 +8,7 @@ import { EventHighlights } from '@/components/home/EventHighlights';
 import { SITE } from '@/constants/site';
 import logoImage from '@/assets/porikkalam-logo.webp';
 import homeBackground from '@/assets/hero/porikkalam-background-hd.webp';
-import dckapLogo from '@/assets/partners/dckap-logo.png';
+import dckapLogo from '@/assets/partners/DIC.png';
 
 const RAIL_ICONS = [User, Megaphone, Calendar, HelpCircle];
 
@@ -47,6 +47,29 @@ export function Hero() {
           >
             {SITE.college}, Coimbatore Presents
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-3 flex flex-col items-center gap-2"
+          >
+            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.3em] text-beige/60 sm:text-xs">
+              Organized By
+            </span>
+            <motion.img
+              src={dckapLogo}
+              alt="DCKAP Incubation Centre"
+              loading="lazy"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              whileHover={{
+                scale: 1.05,
+                filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
+              }}
+              className="h-7 w-auto opacity-90 sm:h-8"
+            />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -111,29 +134,6 @@ export function Hero() {
             <Button to="/events" variant="secondary" size="lg" icon={<ArrowRight size={16} />}>
               Explore Events
             </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.75 }}
-            className="mt-10 flex flex-col items-center gap-2"
-          >
-            <span className="font-body text-[10px] uppercase tracking-[0.3em] text-beige/50">
-              Organized By
-            </span>
-            <motion.img
-              src={dckapLogo}
-              alt="DCKAP Incubation Centre"
-              loading="lazy"
-              animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              whileHover={{
-                scale: 1.05,
-                filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
-              }}
-              className="h-7 w-auto opacity-90 sm:h-8"
-            />
           </motion.div>
         </div>
 

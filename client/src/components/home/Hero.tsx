@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto grid w-fit max-w-[92vw] grid-cols-[3.5rem_auto_3.5rem] items-center gap-1.5 sm:grid-cols-[5.5rem_auto_5.5rem] sm:gap-3 lg:grid-cols-[6.5rem_auto_6.5rem]"
+            className="mx-auto grid w-fit max-w-[92vw] grid-cols-[6.5rem_auto_6.5rem] items-center gap-1.5 sm:grid-cols-[10.5rem_auto_10.5rem] sm:gap-3 lg:grid-cols-[12.5rem_auto_12.5rem]"
           >
             <motion.img
               src={gctLogo}
@@ -77,7 +77,7 @@ export function Hero() {
                 scale: 1.05,
                 filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
               }}
-              className="h-8 w-auto justify-self-start opacity-90 sm:h-12 lg:h-16"
+              className="h-12 w-auto justify-self-start opacity-90 sm:h-20 lg:h-24"
             />
           </motion.div>
 

@@ -1,19 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
-import { createApp } from "../server/src/app.js";
-import { connectToDatabaseServerless } from "../server/src/db/connection.js";
-import { ensureCollections } from "../server/src/models/index.js";
-
-// Built once per cold start and reused across warm invocations of this function.
-const app = createApp();
-
-let collectionsReady: Promise<void> | null = null;
-
-export default async function handler(req: IncomingMessage, res: ServerResponse): Promise<void> {
-  await connectToDatabaseServerless();
-  if (!collectionsReady) {
-    collectionsReady = ensureCollections();
-  }
-  await collectionsReady;
-
-  app(req, res);
-}
+// Vercel only auto-detects Serverless Functions under a root-level `api/` directory,
+// so this thin stub re-exports the real handler, which lives with the rest of the
+// server code at server/api/index.ts.
+export { default } from "../server/api/index.js";

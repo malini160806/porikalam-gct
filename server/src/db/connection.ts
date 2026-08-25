@@ -20,22 +20,6 @@ if (env.mongoUri.startsWith("mongodb+srv://")) {
   dns.setServers(["8.8.8.8", "1.1.1.1", ...dns.getServers()]);
 }
 
-// Serverless (Vercel) invocations can reuse a warm module scope between requests but
-// never get a graceful shutdown, so — unlike connectToDatabase — this never retries in
-// a loop or calls process.exit; it just caches the in-flight/connected promise so a warm
-// function reuses the existing connection instead of opening a new one per request.
-let serverlessConnection: Promise<typeof mongoose> | null = null;
-
-export function connectToDatabaseServerless(): Promise<typeof mongoose> {
-  if (!serverlessConnection) {
-    serverlessConnection = mongoose.connect(env.mongoUri).catch((err) => {
-      serverlessConnection = null;
-      throw err;
-    });
-  }
-  return serverlessConnection;
-}
-
 export async function connectToDatabase(): Promise<void> {
   mongoose.connection.on("error", (err) => {
     console.error("[mongo] connection error:", err.message);

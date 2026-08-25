@@ -5,8 +5,5 @@
   "workspaces": [
     "client",
     "server"
-  ],
-  "devDependencies": {
-    "@vercel/node": "^7.0.0"
-  }
+  ]
 }

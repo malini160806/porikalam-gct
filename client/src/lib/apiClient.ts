@@ -1,9 +1,16 @@
 import { getToken } from './tokenStorage';
 
-// In production (Vercel), the API is deployed as a serverless function under the same
-// origin, so relative /api works without needing VITE_API_URL set. Locally it falls back
-// to the standalone Express dev server on :5000.
+// The backend runs on Render, a separate origin from the Vercel-hosted client, so
+// VITE_API_URL must be set to the Render service's URL in production (e.g.
+// https://porikkalam-api.onrender.com/api) — set it in the Vercel project's environment
+// variables. Locally it falls back to the standalone Express dev server on :5000.
 const API_BASE = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:5000/api' : '/api');
+
+if (!import.meta.env.VITE_API_URL && !import.meta.env.DEV) {
+  console.error(
+    'VITE_API_URL is not set — API requests will fail. Set it to the Render backend URL (e.g. https://<service>.onrender.com/api) in the Vercel project\'s environment variables.',
+  );
+}
 
 export class ApiError extends Error {
   status: number;

@@ -24,7 +24,7 @@ export const timeline: TimelineStep[] = [
     id: 'tl3',
     label: 'Competitions',
     date: '25 – 26 Sept 2026',
-    description: 'Two days of intense technical battles, workshops, and exhibitions.',
+    description: 'Two days of intense technical battles,  and exhibitions.',
   },
   {
     id: 'tl4',

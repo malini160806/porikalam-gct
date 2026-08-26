@@ -305,21 +305,7 @@ export function InnovationBulbIcon(props: IconProps) {
   );
 }
 
-/** Workshops — drafting compass crossed with a ruling pen. */
-export function DraftingToolsIcon(props: IconProps) {
-  return (
-    <svg {...base} {...props}>
-      <path d="M50 16 L26 82" />
-      <path d="M50 16 L74 82" />
-      <path d="M38 50 H62" strokeWidth={1} />
-      <circle cx="50" cy="16" r="4" />
-      <circle cx="26" cy="84" r="2.4" fill="currentColor" stroke="none" />
-      <circle cx="74" cy="84" r="2.4" fill="currentColor" stroke="none" />
-      <path d="M14 70 L34 30" strokeWidth={1.2} />
-      <path d="M14 70 L20 66 L18 74 Z" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
+
 
 export const EVENT_ICON_COMPONENTS = {
   'pen-tool': QuillIcon,
@@ -339,7 +325,6 @@ export const EVENT_ICON_COMPONENTS = {
   'clipboard-list': ChecklistIcon,
   'brain-circuit': BrainCircuitIcon,
   expo: InnovationBulbIcon,
-  workshop: DraftingToolsIcon,
 } satisfies Record<string, (props: IconProps) => React.ReactElement>;
 
 export type EventIconKey = keyof typeof EVENT_ICON_COMPONENTS;

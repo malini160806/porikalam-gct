@@ -20,7 +20,6 @@ const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Team = lazy(() => import('@/pages/Team'));
 const Schedule = lazy(() => import('@/pages/Schedule'));
-const Workshops = lazy(() => import('@/pages/Workshops'));
 const Accommodation = lazy(() => import('@/pages/Accommodation'));
 const Faq = lazy(() => import('@/pages/Faq'));
 const Announcements = lazy(() => import('@/pages/Announcements'));
@@ -81,7 +80,6 @@ export const router = createBrowserRouter([
       { path: 'dashboard', element: withProtectedSuspense(Dashboard) },
       { path: 'team', element: withSuspense(Team) },
       { path: 'schedule', element: withSuspense(Schedule) },
-      { path: 'workshops', element: withSuspense(Workshops) },
       { path: 'accommodation', element: withSuspense(Accommodation) },
       { path: 'faq', element: withSuspense(Faq) },
       { path: 'announcements', element: withSuspense(Announcements) },

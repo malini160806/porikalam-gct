@@ -47,7 +47,7 @@ const atAGlance = [
   { label: 'Date & Time', value: 'September 25–26, 2026 | 9 AM – 6 PM' },
   { label: 'Theme', value: 'Engineering, Innovation & Entrepreneurship' },
   { label: 'Participants', value: 'Engineering students, startups, industry, academia, and innovators' },
-  { label: 'Format', value: 'Startup challenges, industry and startup summits, workshops and showcases, and technical and non-technical events' },
+  { label: 'Format', value: 'Startup challenges, industry and startup summits, and showcases, and technical and non-technical events' },
   { label: 'Focus', value: 'Competition | Innovation | Entrepreneurship | Industry Connect' },
 ];
 
@@ -121,7 +121,7 @@ export default function About() {
             <p className="font-quote text-xl italic leading-relaxed text-slate">
               It brings together students, academia, industry, startups, researchers, and
               innovators on a common platform to compete, collaborate, innovate, and create
-              through technical challenges, project showcases, startup activities, workshops, and
+              through technical challenges, project showcases, startup activities,  and
               expert interactions — over two days, 25–26 September 2026.
             </p>
             <p className="font-body text-sm font-semibold uppercase tracking-widest text-brown">

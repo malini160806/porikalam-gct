@@ -10,7 +10,7 @@ export const mediaItems: MediaItem[] = [
   },
   {
     id: 'm2',
-    title: 'Registrations open across 18 events and workshops',
+    title: 'Registrations open across 18 events',
     date: '2026-08-01',
     type: 'news',
     summary: 'Participants from engineering colleges across the region can now register for Porikkalam 2026.',

@@ -13,7 +13,7 @@ export function SearchBar({ className = '', ...rest }: SearchBarProps) {
       <Search size={16} className="text-brown shrink-0" />
       <input
         type="search"
-        placeholder="Search events, workshops..."
+        placeholder="Search events"
         className="w-full bg-transparent font-body text-sm text-navy placeholder:text-slate/60 outline-none"
         {...rest}
       />

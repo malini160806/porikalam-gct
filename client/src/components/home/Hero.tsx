@@ -63,9 +63,8 @@ export function Hero() {
                 {SITE.college}, Coimbatore
               </span>
               <br />
-              <span className="whitespace-nowrap font-heading tracking-wide text-gold-gradient">DCKAP Incubation Center</span>
-              <br />
-              Presents
+              <span className="whitespace-nowrap tracking-wide text-gold-gradient">DCKAP Incubation Center</span>
+              <span className="mt-1 block text-[6px] sm:text-xs">Presents</span>
             </p>
             <motion.img
               src={dckapLogo}

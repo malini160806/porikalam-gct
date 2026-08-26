@@ -54,7 +54,7 @@ export function Hero() {
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               whileHover={{
                 scale: 1.05,
-                filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
+                filter: 'drop-shadow(0 0 14px rgba(103, 89, 9, 0.93))',
               }}
               className="h-auto w-16 justify-self-end opacity-90 sm:w-28 lg:w-32"
             />
@@ -63,7 +63,7 @@ export function Hero() {
                 {SITE.college}, Coimbatore
               </span>
               <br />
-              <span className="whitespace-nowrap tracking-wide text-gold-gradient">DCKAP Incubation Center</span>
+              <span className="whitespace-nowrap tracking-wide">DCKAP Incubation Center</span>
               <span className="mt-1 block text-[6px] sm:text-xs">Presents</span>
             </p>
             <motion.img
@@ -74,7 +74,7 @@ export function Hero() {
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               whileHover={{
                 scale: 1.05,
-                filter: 'drop-shadow(0 0 14px rgba(212,175,55,0.5))',
+                filter: 'drop-shadow(0 0 14px rgba(103, 89, 9, 0.93))',
               }}
               className="h-auto w-16 justify-self-start opacity-90 sm:w-28 lg:w-32"
             />

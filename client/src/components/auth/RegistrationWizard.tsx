@@ -23,14 +23,14 @@ const YEAR_OPTIONS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year'
 const step1Schema = z.object({
   fullName: z.string().trim().min(2, 'Name must be at least 2 characters').max(100),
   email: z.string().trim().email('Enter a valid email address'),
-  phone: z.string().trim().regex(/^\d{7,15}$/, 'Enter a valid mobile number'),
+  phone: z.string().trim().regex(/^\d{10}$/, 'Enter a valid mobile number'),
   dob: z.string().trim().min(1, 'Date of birth is required'),
   gender: z.string().trim().min(1, 'Select a gender'),
   college: z.string().trim().min(2, 'College is required').max(120),
   department: z.string().trim().min(2, 'Department is required').max(80),
   degree: z.string().trim().min(2, 'Degree is required').max(80),
   yearOfStudy: z.string().trim().min(1, 'Year is required').max(40),
-  registerNumber: z.string().trim().max(40).optional(),
+  registerNumber: z.string().trim().min(1, 'Register number is required').max(40),
   city: z.string().trim().min(1, 'City is required').max(80),
   state: z.string().trim().min(1, 'State is required').max(80),
   guardianName: z.string().trim().min(2, 'Guardian name is required').max(100),
@@ -122,7 +122,7 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
   async function handleEmailPhoneBlur() {
     if (!values.email && !values.phone) return;
     const emailValid = z.string().trim().email().safeParse(values.email).success;
-    const phoneValid = /^\d{7,15}$/.test(values.phone);
+    const phoneValid = /^\d{10}$/.test(values.phone);
     if (!emailValid && !phoneValid) return;
 
     setIsCheckingConflicts(true);
@@ -188,7 +188,6 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
       const reservedUsername = await reserveUsername();
       const { username } = await registerParticipant({
         ...values,
-        registerNumber: values.registerNumber || undefined,
         password,
         reservedUsername,
       });
@@ -279,8 +278,9 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   label="Mobile Number"
                   type="tel"
                   required
+                  maxLength={10}
                   value={values.phone}
-                  onChange={(e) => updateField('phone', e.target.value.replace(/[^\d]/g, ''))}
+                  onChange={(e) => updateField('phone', e.target.value.replace(/[^\d]/g, '').slice(0, 10))}
                   onBlur={handleEmailPhoneBlur}
                   error={errors.phone}
                 />
@@ -350,9 +350,11 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   {errors.yearOfStudy && <span className="text-xs text-red-700">{errors.yearOfStudy}</span>}
                 </div>
                 <Input
-                  label="Register Number (Optional)"
+                  label="Register Number"
+                  required
                   value={values.registerNumber}
                   onChange={(e) => updateField('registerNumber', e.target.value)}
+                  error={errors.registerNumber}
                 />
                 <Input
                   label="City"

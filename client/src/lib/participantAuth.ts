@@ -62,7 +62,7 @@ export interface RegisterParticipantInput {
   department: string;
   degree: string;
   yearOfStudy: string;
-  registerNumber?: string;
+  registerNumber: string;
   city: string;
   state: string;
   guardianName: string;

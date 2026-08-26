@@ -11,6 +11,8 @@ const OPEN_TO_ALL = 'Open to All Departments';
 export const EVENTS: EventItem[] = [
   {
     id: 'sketchshift',
+    registrationFee: '₹99',
+    prizePool: '1st ₹750 + Gold Medal · 2nd ₹500 + Silver Medal · 3rd ₹250 + Bronze Medal',
     title: 'SketchShift',
     category: 'non-technical',
     description:
@@ -32,6 +34,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'civil-cbi',
+    registrationFee: '₹149',
+    prizePool: '1st ₹1000 + Gold Medal · 2nd ₹750 + Silver Medal · 3rd ₹500 + Bronze Medal',
     title: 'Civil CBI',
     category: 'technical',
     description:
@@ -53,6 +57,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'structron',
+    registrationFee: '₹149',
+    prizePool: '1st ₹1000 + Gold Medal · 2nd ₹750 + Silver Medal · 3rd ₹500 + Bronze Medal',
     title: 'Structron',
     category: 'technical',
     description:
@@ -74,6 +80,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'deep-dive-challenge',
+    registrationFee: '₹149',
+    prizePool: '1st ₹1500 + Gold Medal · 2nd ₹1000 + Silver Medal · 3rd ₹750 + Bronze Medal',
     title: 'Deep Dive Challenge',
     category: 'technical',
     description:
@@ -93,6 +101,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'robo-soccer',
+    registrationFee: '₹444',
+    prizePool: '1st ₹4000 + Large Trophy · 2nd ₹3000 + Medium Trophy · 3rd ₹2500 + Small Trophy',
     title: 'Robo Soccer',
     category: 'technical',
     description:
@@ -115,6 +125,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'flightcraft-skyworks',
+    registrationFee: '₹199',
+    prizePool: '1st ₹2500 + Large Shield · 2nd ₹1750 + Medium Shield · 3rd ₹1250 + Small Shield',
     title: 'Flightcraft, Skyworks',
     category: 'technical',
     description:
@@ -135,6 +147,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'water-rocketry',
+    registrationFee: '₹199',
+    prizePool: '1st ₹1500 + Large Shield · 2nd ₹1000 + Medium Shield · 3rd ₹750 + Small Shield',
     title: 'Water Rocketry',
     category: 'technical',
     description:
@@ -157,6 +171,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'what-if-reverse-engineering-debugging',
+    registrationFee: '₹149',
+    prizePool: '1st ₹1000 + Gold Medal · 2nd ₹750 + Silver Medal · 3rd ₹500 + Bronze Medal',
     title: 'What If? (Reverse Engineering & Debugging)',
     category: 'technical',
     description:
@@ -178,6 +194,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'robo-rally',
+    registrationFee: '₹555',
+    prizePool: '1st ₹5000 + Large Trophy · 2nd ₹4250 + Medium Trophy · 3rd ₹3500 + Small Trophy',
     title: 'Robo Rally',
     category: 'technical',
     description:
@@ -201,6 +219,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'code-detective-speed-relay',
+    registrationFee: '₹149',
+    prizePool: '1st ₹1000 + Gold Medal · 2nd ₹750 + Silver Medal · 3rd ₹500 + Bronze Medal',
     title: 'Code Detective – Speed Relay',
     category: 'technical',
     description:
@@ -241,6 +261,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'hackathon',
+    registrationFee: '₹499',
+    prizePool: '1st ₹6000 + Large Trophy · 2nd ₹5000 + Medium Trophy · 3rd ₹4000 + Small Trophy',
     title: 'Hackonex',
     category: 'technical',
     description:
@@ -280,6 +302,8 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'paper-presentation',
+    registrationFee: '₹149',
+    prizePool: '1st (×5) ₹1000 + Gold Medal · 2nd (×5) ₹750 + Silver Medal · 3rd (×5) ₹500 + Bronze Medal',
     title: 'Paper Presentation',
     category: 'technical',
     description:

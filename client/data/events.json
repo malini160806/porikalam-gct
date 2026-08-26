@@ -1,0 +1,282 @@
+{
+  "categories": [
+    {
+      "id": "technical",
+      "name": "TECHNICAL EVENT"
+    },
+    {
+      "id": "non-technical",
+      "name": "NON TECH EVENT"
+    },
+    {
+      "id": "premium-category-1",
+      "name": "PREMIUM CATEGORY 1"
+    },
+    {
+      "id": "premium-category-2",
+      "name": "PREMIUM CATEGORY 2"
+    },
+    {
+      "id": "flagship",
+      "name": "FLAGSHIP EVENT"
+    }
+  ],
+  "events": [
+    {
+      "id": "civil-cbi",
+      "name": "CIVIL CBI",
+      "category": "technical",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "Civil Engineering & related departments",
+      "registrationFee": 149,
+      "prizes": {
+        "first": "1000 + MEDAL GOLD",
+        "second": "750 + MEDAL SILVER",
+        "third": "500 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 2250
+    },
+    {
+      "id": "structron",
+      "name": "STRUCTRON",
+      "category": "technical",
+      "teamOrIndividual": "TEAM OF MAX 3",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "Civil Engineering & related departments",
+      "registrationFee": 149,
+      "prizes": {
+        "first": "1000 + MEDAL GOLD",
+        "second": "750 + MEDAL SILVER",
+        "third": "500 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 2250
+    },
+    {
+      "id": "deep-dive-challenge",
+      "name": "DEEP DIVE CHALLENGE",
+      "category": "technical",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": 149,
+      "prizes": {
+        "first": "1500 + MEDAL GOLD",
+        "second": "1000 + MEDAL SILVER",
+        "third": "750 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 3250
+    },
+    {
+      "id": "what-if",
+      "name": "WHAT IF (REVERSE ENGINEERING & DEBUGGING)",
+      "category": "technical",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "EEE, ECE, EIE & related related departments",
+      "registrationFee": 149,
+      "prizes": {
+        "first": "1000 + MEDAL GOLD",
+        "second": "750 + MEDAL SILVER",
+        "third": "500 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 2250
+    },
+    {
+      "id": "code-detective",
+      "name": "CODE DETECTIVE",
+      "category": "technical",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "CSE, IT, AIML & related departments",
+      "registrationFee": 149,
+      "prizes": {
+        "first": "1000 + MEDAL GOLD",
+        "second": "750 + MEDAL SILVER",
+        "third": "500 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 2250
+    },
+    {
+      "id": "paper-presentation",
+      "name": "PAPER PRESENTATION",
+      "category": "technical",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": 149,
+      "prizes": {
+        "first": "5 * (1000 + MEDAL GOLD)",
+        "second": "5 * (750 + MEDAL SILVER)",
+        "third": "5 * (500 + MEDAL BRONZE)"
+      },
+      "prizePoolMoney": 11250
+    },
+    {
+      "id": "sketchshift",
+      "name": "SKETCHSHIFT",
+      "category": "non-technical",
+      "teamOrIndividual": "INDIVIDUAL",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": 99,
+      "prizes": {
+        "first": "750 + MEDAL GOLD",
+        "second": "500 + MEDAL SILVER",
+        "third": "250 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 1500
+    },
+    {
+      "id": "human-matrix",
+      "name": "HUMAN MATRIX",
+      "category": "non-technical",
+      "teamOrIndividual": "TEAM OF 4",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": null,
+      "prizes": {
+        "first": null,
+        "second": null,
+        "third": null
+      },
+      "prizePoolMoney": null
+    },
+    {
+      "id": "ipl-auction",
+      "name": "IPL AUCTION",
+      "category": "non-technical",
+      "teamOrIndividual": "TEAM OF 4",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": null,
+      "prizes": {
+        "first": null,
+        "second": null,
+        "third": null
+      },
+      "prizePoolMoney": null
+    },
+    {
+      "id": "visual-vanguard",
+      "name": "VISUAL VANGUARD",
+      "category": "non-technical",
+      "teamOrIndividual": "INDIVIDUAL",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": 99,
+      "prizes": {
+        "first": "750 + MEDAL GOLD",
+        "second": "500 + MEDAL SILVER",
+        "third": "250 + MEDAL BRONZE"
+      },
+      "prizePoolMoney": 1500
+    },
+    {
+      "id": "flightcraft",
+      "name": "FLIGHTCRAFT",
+      "category": "premium-category-1",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "Mechanical, Production, Aeronautical Engg & related departments",
+      "registrationFee": 199,
+      "prizes": {
+        "first": "2500 + SHIELD BIG",
+        "second": "1750 + SHIELD MEDIUM",
+        "third": "1250 + SHIELD SMALL"
+      },
+      "prizePoolMoney": 5500
+    },
+    {
+      "id": "water-rocketry",
+      "name": "WATER ROCKETRY",
+      "category": "premium-category-1",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "Mechanical, Production, Aeronautical Engg & related departments",
+      "registrationFee": 199,
+      "prizes": {
+        "first": "1500 + SHIELD BIG",
+        "second": "1000 + SHIELD MEDIUM",
+        "third": "750 + SHIELD SMALL"
+      },
+      "prizePoolMoney": 3250
+    },
+    {
+      "id": "robo-rally",
+      "name": "ROBO RALLY",
+      "category": "premium-category-2",
+      "teamOrIndividual": "TEAM OF MAX 3",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "Mechanical, Production, EEE, EIE, ECE & related departments",
+      "registrationFee": 555,
+      "prizes": {
+        "first": "5000 + TROPHY BIG",
+        "second": "4250 + TROPHY MEDIUM",
+        "third": "3500 + TROPHY SMALL"
+      },
+      "prizePoolMoney": 12750
+    },
+    {
+      "id": "robo-soccer",
+      "name": "ROBO SOCCER",
+      "category": "premium-category-2",
+      "teamOrIndividual": "TEAM OF MAX 2",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "Mechanical, Production, EEE, EIE, ECE & related departments",
+      "registrationFee": 444,
+      "prizes": {
+        "first": "4000 + TROPHY BIG",
+        "second": "3000 + TROPHY MEDIUM",
+        "third": "2500 + TROPHY SMALL"
+      },
+      "prizePoolMoney": 9500
+    },
+    {
+      "id": "hackone-x",
+      "name": "HACKONE X",
+      "category": "premium-category-2",
+      "teamOrIndividual": "TEAM OF MAX 4",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "CSE, IT, AIML & related departments",
+      "registrationFee": 499,
+      "prizes": {
+        "first": "6000 + TROPHY BIG",
+        "second": "5000 + TROPHY MEDIUM",
+        "third": "4000 + TROPHY SMALL"
+      },
+      "prizePoolMoney": null
+    },
+    {
+      "id": "thulira",
+      "name": "THULIRA",
+      "category": "flagship",
+      "teamOrIndividual": "TEAM OF MAX 4",
+      "eligibility": "OPEN TO ALL DEPARTMENTS",
+      "targetParticipants": "OPEN TO ALL DEPARTMENTS",
+      "registrationFee": 1000,
+      "prizes": {
+        "first": "25,000 + CUSTOM MADE TROPHY BIG + CHEQUE BIG",
+        "second": "20,000 + CUSTOM MADE TROPHY MEDIUM + CHEQUE MEDIUM",
+        "third": "15,000 + CUSTOM MADE TROPHY SMALL"
+      },
+      "prizePoolMoney": 60000
+    },
+    {
+      "id": "tech-thiral",
+      "name": "TECH THIRAL",
+      "category": "flagship",
+      "teamOrIndividual": null,
+      "eligibility": null,
+      "targetParticipants": null,
+      "registrationFee": 5000,
+      "prizes": {
+        "first": "NIL",
+        "second": "NIL",
+        "third": "NIL"
+      },
+      "prizePoolMoney": null
+    }
+  ],
+  "totalPrizePoolMoney": 132500
+}

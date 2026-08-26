@@ -312,7 +312,7 @@ export const EVENTS: EventItem[] = [
   },
   {
     id: 'poster-designing',
-    title: ' visual vanguard',
+    title: 'visual ',
     category: 'non-technical',
     description:
       'Participants design an attractive and impactful poster based on a given theme or topic within a specified time, using creativity, artistic expression, visual communication and innovative thinking.',

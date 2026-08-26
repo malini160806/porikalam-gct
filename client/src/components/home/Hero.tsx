@@ -63,8 +63,10 @@ export function Hero() {
                 {SITE.college}, Coimbatore
               </span>
               <br />
-              <span className="whitespace-nowrap tracking-wide">DCKAP Incubation Center</span>
-              <span className="mt-1 block text-[6px] sm:text-xs">Presents</span>
+                            <span className="whitespace-nowrap">AND</span>
+                            <br/>
+              <span className="whitespace-nowrap">DCKAP Incubation Center</span>
+              <span className="mt-1 block text-[6px] sm:text-xs  text-gold-gradient">Presents</span>
             </p>
             <motion.img
               src={dckapLogo}
@@ -124,9 +126,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mx-auto mt-4 max-w-md font-quote text-lg italic leading-relaxed text-beige/80"
           >
-            A National-Level Techno-Cultural Fest
+A National Level Flagship 
             <br />
-            {SITE.college}, Coimbatore
+Engineering,Innovation and Entrepreneurship event            
           </motion.p>
 
           <Countdown />

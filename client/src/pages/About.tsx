@@ -42,8 +42,8 @@ const whyPorikkalam = [
 ];
 
 const atAGlance = [
-  { label: 'Presented By', value: 'Government College of Technology, Coimbatore' },
-  { label: 'Organised By', value: 'DCKAP Incubation Centre' },
+  { label: 'Hosted By', value: 'Government College of Technology, Coimbatore' },
+  { label: 'Presented By', value: 'DCKAP Incubation Centre' },
   { label: 'Date & Time', value: 'September 25–26, 2026 | 9 AM – 6 PM' },
   { label: 'Theme', value: 'Engineering, Innovation & Entrepreneurship' },
   { label: 'Participants', value: 'Engineering students, startups, industry, academia, and innovators' },

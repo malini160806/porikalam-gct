@@ -34,12 +34,11 @@ export function EraJourney() {
         <motion.img
           src={gctBuildingBanner}
           alt="Illustrated blueprint of the Government College of Technology main building"
-          initial={{ opacity: 0, scale: 1.03 }}
-          whileInView={{ opacity: 0.3, scale: 1 }}
+          initial={{ opacity: 0, scale: 1.4 }}
+          whileInView={{ opacity: 0.3, scale: 1.25 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.3, ease: 'easeOut' }}
-          className="h-full w-full object-cover"
-        />
+          className=" h-full w-full object-cover"/>
       </div>
 
       {/* Slow shimmer sweep across the gold linework */}

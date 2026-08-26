@@ -23,8 +23,13 @@ const YEAR_OPTIONS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year'
 const step1Schema = z.object({
   fullName: z.string().trim().min(2, 'Name must be at least 2 characters').max(100),
   email: z.string().trim().email('Enter a valid email address'),
-  phone: z.string().trim().regex(/^\d{10}$/, 'Enter a valid mobile number'),
-  dob: z.string().trim().min(1, 'Date of birth is required'),
+  phone: z
+         .string()
+         .trim()
+         .regex(
+         /^[6-9]\d{9}$/,
+         'Mobile number must start with 6, 7, 8, or 9 and contain 10 digits',),
+    dob: z.string().trim().min(1, 'Date of birth is required'),
   gender: z.string().trim().min(1, 'Select a gender'),
   college: z.string().trim().min(2, 'College is required').max(120),
   department: z.string().trim().min(2, 'Department is required').max(80),
@@ -274,16 +279,43 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   onBlur={handleEmailPhoneBlur}
                   error={errors.email}
                 />
-                <Input
-                  label="Mobile Number"
-                  type="tel"
-                  required
-                  maxLength={10}
-                  value={values.phone}
-                  onChange={(e) => updateField('phone', e.target.value.replace(/[^\d]/g, '').slice(0, 10))}
-                  onBlur={handleEmailPhoneBlur}
-                  error={errors.phone}
-                />
+               <Input
+  label="Mobile Number"
+  type="tel"
+  required
+  maxLength={10}
+  value={values.phone}
+  onChange={(e) => {
+    const input = e.target.value.replace(/\D/g, '');
+
+    // Don't allow the first digit to be anything except 6, 7, 8, or 9
+    if (input.length > 0 && !/^[6-9]/.test(input)) {
+      updateField('phone', '');
+      setErrors((prev) => ({
+        ...prev,
+        phone: 'Mobile number must start with 6, 7, 8, or 9',
+      }));
+      return;
+    }
+
+    updateField('phone', input.slice(0, 10));
+
+    // Show error until a valid 10-digit number is entered
+    if (input.length > 0 && !/^[6-9]\d{9}$/.test(input)) {
+      setErrors((prev) => ({
+        ...prev,
+        phone: 'Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9',
+      }));
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+        phone: undefined,
+      }));
+    }
+  }}
+  onBlur={handleEmailPhoneBlur}
+  error={errors.phone}
+/>
                 <Input
                   label="Date of Birth"
                   type="date"

@@ -43,11 +43,14 @@ function RegistrationStatus({ status = 'open' }: { status?: EventItem['registrat
   );
 }
 
-function DetailRow({ icon, children }: { icon: ReactNode; children: ReactNode }) {
+function DetailRow({ icon, label, value }: { icon: ReactNode; label: string; value: ReactNode }) {
   return (
-    <div className="flex items-start gap-1.5 font-body text-xs text-beige/70">
+    <div className="flex items-start gap-2">
       <span className="mt-0.5 shrink-0 text-gold">{icon}</span>
-      <span className="leading-snug">{children}</span>
+      <div className="min-w-0">
+        <p className="font-body text-[9px] font-semibold uppercase tracking-wider text-gold/80">{label}</p>
+        <p className="font-body text-xs leading-snug text-beige/80">{value}</p>
+      </div>
     </div>
   );
 }
@@ -110,13 +113,19 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
               {event.description}
             </p>
 
-            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-gold/15 pt-4">
-              <DetailRow icon={<Clock size={13} />}>{event.duration}</DetailRow>
-              <DetailRow icon={<MapPin size={13} />}>{event.venue}</DetailRow>
-              <DetailRow icon={<Users size={13} />}>
-                {event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
-              </DetailRow>
-              <DetailRow icon={<Users2 size={13} />}>{event.expectedParticipants} Expected</DetailRow>
+            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-gold/15 pt-4">
+              <DetailRow icon={<Clock size={13} />} label="Duration" value={event.duration} />
+              <DetailRow
+                icon={<Users size={13} />}
+                label="Team Size"
+                value={event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
+              />
+              <DetailRow icon={<MapPin size={13} />} label="Location" value={event.venue} />
+              <DetailRow
+                icon={<Users2 size={13} />}
+                label="Registration Limit"
+                value={`${event.expectedParticipants} Participants`}
+              />
             </dl>
 
             <div className="mt-4 flex flex-wrap gap-2">
@@ -126,15 +135,9 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
               ) : (
                 <Badge variant="outline">No Prequalifier</Badge>
               )}
-              {event.registrationFee && <Badge variant="tech">Fee: {event.registrationFee}</Badge>}
             </div>
 
-            {event.primaryDomains && event.primaryDomains.length > 0 && (
-              <p className="mt-3 font-body text-[11px] text-beige/55">
-                Primary domain: {event.primaryDomains.join(', ')}
-              </p>
-            )}
-
+          
             {event.prequalifierRequired && (
               <p className="mt-4 flex items-start gap-2 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
                 <ShieldCheck size={14} className="mt-0.5 shrink-0 text-gold" />

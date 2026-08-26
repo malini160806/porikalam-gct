@@ -1,4 +1,4 @@
-export type EventCategory = 'technical' | 'non-technical' | 'workshop';
+export type EventCategory = 'premium' | 'technical' | 'non-technical';
 
 export type EventFormat = 'team' | 'individual';
 

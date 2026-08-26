@@ -1,10 +1,10 @@
 import type { StatItem, TimelineStep } from './types';
 
 export const statistics: StatItem[] = [
-  { id: 'st1', label: 'Events', value: 10, suffix: '+', icon: 'calendar' },
-  { id: 'st2', label: 'Colleges', value: 50, suffix: '+', icon: 'landmark' },
+  { id: 'st1', label: 'Events', value: 15, suffix: '+', icon: 'calendar' },
+  { id: 'st2', label: 'Colleges', value: 40, suffix: '+', icon: 'landmark' },
   { id: 'st3', label: 'Participants', value: 1000, suffix: '+', icon: 'users' },
-  { id: 'st4', label: 'Prize Pool', value: 150000, suffix: '+', icon: 'trophy' },
+  { id: 'st4', label: 'Prize Pool', value: 135000, suffix: '+', icon: 'trophy' },
 ];
 
 export const timeline: TimelineStep[] = [

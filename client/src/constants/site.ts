@@ -53,7 +53,6 @@ export const NAV_LINKS: NavLink[] = [
       { label: 'Leaderboard', path: '/leaderboard' },
     ],
   },
-  { label: 'Team', path: '/team' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -74,7 +73,6 @@ export const FOOTER_LINKS = {
   quickLinks: [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
-    { label: 'Team', path: '/team' },
     { label: 'Contact', path: '/contact' },
   ],
   events: [

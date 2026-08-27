@@ -18,7 +18,6 @@ const Register = lazy(() => import('@/pages/Register'));
 const Login = lazy(() => import('@/pages/Login'));
 const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
-const Team = lazy(() => import('@/pages/Team'));
 const Schedule = lazy(() => import('@/pages/Schedule'));
 const Accommodation = lazy(() => import('@/pages/Accommodation'));
 const Faq = lazy(() => import('@/pages/Faq'));
@@ -78,7 +77,6 @@ export const router = createBrowserRouter([
       { path: 'login', element: withSuspense(Login) },
       { path: 'forgot-password', element: withSuspense(ForgotPassword) },
       { path: 'dashboard', element: withProtectedSuspense(Dashboard) },
-      { path: 'team', element: withSuspense(Team) },
       { path: 'schedule', element: withSuspense(Schedule) },
       { path: 'accommodation', element: withSuspense(Accommodation) },
       { path: 'faq', element: withSuspense(Faq) },

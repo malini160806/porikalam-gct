@@ -2,8 +2,7 @@ export const SITE = {
   name: 'Porikkalam',
   year: '2026',
   tagline: 'Engineering Through The Ages',
-  description:
-    'A mega inter-collegiate engineering symposium blending heritage craftsmanship with modern innovation.',
+  description: 'A National Level Flagship Event',
   college: 'Government College of Technology',
   location: 'Coimbatore — 641 013, Tamil Nadu, India',
   email: 'contact@porikkalam.in',

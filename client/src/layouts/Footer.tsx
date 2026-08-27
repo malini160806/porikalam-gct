@@ -49,6 +49,15 @@ export function Footer() {
             <Logo />
             <p className="font-quote max-w-xs text-base italic leading-relaxed text-beige/80">
               {SITE.description}
+              <span className="mt-3 flex flex-wrap items-center gap-y-1 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:text-sm">
+                <span className="mr-2 text-gold/50">✦</span>
+                <span>Engineering</span>
+                <span className="mx-2 text-beige/40">|</span>
+                <span>Innovation</span>
+                <span className="mx-2 text-beige/40">|</span>
+                <span>Entrepreneurship</span>
+                <span className="ml-2 text-gold/50">✦</span>
+              </span>
             </p>
             <SocialIcons />
           </div>

@@ -58,8 +58,8 @@ export function EraJourney() {
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="The Journey"
-          title="Journey Of Engineering Through The Ages"
+          title="Event Theme"
+          subtitle="Journey of Engineering through the ages"
           tone="dark"
         />
 

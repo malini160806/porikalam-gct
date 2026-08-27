@@ -6,6 +6,7 @@ import { LoadingScreen } from '@/components/common/LoadingScreen';
 
 function App() {
   return (
+    
     <SessionProvider>
       <AdminSessionProvider>
         <LoadingScreen />

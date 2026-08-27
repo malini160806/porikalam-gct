@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import logoImage from '@/assets/porikkalam-logo.webp';
+import gctLogo from '@/assets/partners/gct-logo.png';
+import dicLogo from '@/assets/partners/DIC.png';
 
 type LogoProps = {
   compact?: boolean;
@@ -7,11 +8,35 @@ type LogoProps = {
 
 export function Logo({ compact = false }: LogoProps) {
   return (
-    <Link to="/" className="flex shrink-0 items-center">
+    <Link
+      to="/"
+      className="flex shrink-0 items-center gap-4"
+    >
+      {/* GCT Logo */}
       <img
-        src={logoImage}
-        alt="Porikkalam 2026"
-        className={compact ? 'h-10 w-auto object-contain' : 'h-11 w-auto object-contain sm:h-12 md:h-14 lg:h-16'}
+        src={gctLogo}
+        alt="Government College of Technology"
+        className={
+          compact
+            ? 'h-14 w-auto object-contain'
+            : 'h-16 w-auto object-contain sm:h-18 md:h-20 lg:h-20'
+        }
+      />
+         {/* Divider */}
+      <span
+        aria-hidden="true"
+        className="h-12 w-px bg-gold/60 sm:h-14 md:h-16"
+      />
+
+      {/* DIC Logo */}
+      <img
+        src={dicLogo}
+        alt="DIC Logo"
+        className={
+          compact
+            ? 'h-14 w-auto object-contain'
+            : 'h-16 w-auto object-contain sm:h-18 md:h-20 lg:h-20'
+        }
       />
     </Link>
   );

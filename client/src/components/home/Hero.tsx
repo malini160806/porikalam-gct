@@ -8,8 +8,6 @@ import { EventHighlights } from '@/components/home/EventHighlights';
 import { SITE } from '@/constants/site';
 import logoImage from '@/assets/porikkalam-logo.webp';
 import homeBackground from '@/assets/hero/porikkalam-background-hd.webp';
-import dckapLogo from '@/assets/partners/DIC.png';
-import gctLogo from '@/assets/partners/gct-logo.png';
 
 const RAIL_ICONS = [User, Megaphone, Calendar, HelpCircle];
 
@@ -19,6 +17,7 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-navy-deep text-cream">
+      {/* Background */}
       <motion.img
         src={homeBackground}
         alt="Ancient temple construction transitioning into a futuristic city — Engineering Through The Ages"
@@ -27,7 +26,11 @@ export function Hero() {
         transition={{ duration: 2.2, ease: 'easeOut' }}
         className="absolute inset-0 z-0 h-full w-full object-cover"
       />
+
+      {/* Dark overlay */}
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-navy-deep/50" />
+
+      {/* Blueprint grid */}
       <motion.div
         ref={gridRef}
         initial={{ opacity: 0 }}
@@ -36,64 +39,59 @@ export function Hero() {
         className="absolute inset-0 z-0 bp-grid-bg"
       />
 
+      {/* Main Hero */}
       <div className="relative z-0 grid min-h-[88vh] grid-cols-1 lg:grid-cols-[1fr_1.7fr_1fr]">
+        {/* Left spacer */}
         <div className="relative hidden lg:block" />
 
+        {/* Center content */}
         <div className="flex flex-col items-center justify-center px-4 py-20 text-center sm:px-6">
+
+          {/* College + DCKAP + Presents */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto grid w-fit max-w-[92vw] grid-cols-[4.5rem_auto_4.5rem] items-center gap-1.5 sm:grid-cols-[7.5rem_auto_7.5rem] sm:gap-3 lg:grid-cols-[8.5rem_auto_8.5rem]"
+            className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center text-center"
           >
-            <motion.img
-              src={gctLogo}
-              alt="Government College of Technology, Coimbatore"
-              loading="lazy"
-              animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              whileHover={{
-                scale: 1.05,
-                filter: 'drop-shadow(0 0 14px rgba(103, 89, 9, 0.93))',
-              }}
-              className="h-auto w-16 justify-self-end opacity-90 sm:w-28 lg:w-32"
-            />
-            <p className="font-body text-[8px] font-semibold uppercase tracking-tight text-beige/60 sm:text-sm sm:tracking-[0.2em] lg:tracking-[0.3em]">
-              <span className="whitespace-nowrap">
+            <p className="font-body text-[9px] font-semibold uppercase tracking-[0.18em] text-beige/70 sm:text-sm sm:tracking-[0.25em] lg:text-base lg:tracking-[0.3em]">
+              <span className="block whitespace-nowrap">
                 {SITE.college}, Coimbatore
               </span>
-              <br />
-                            <span className="whitespace-nowrap">AND</span>
-                            <br/>
-              <span className="whitespace-nowrap">DCKAP Incubation Center</span>
-              <span className="mt-1 block text-[6px] sm:text-xs  text-gold-gradient">Presents</span>
+
+              <span className="my-1.5 block text-[9px] text-gold sm:text-sm">
+                AND
+              </span>
+
+              <span className="block whitespace-nowrap">
+                DCKAP Incubation Center
+              </span>
+
+              <span className="mx-auto mt-3 flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-[0.4em] text-gold sm:text-sm">
+                <span className="h-px w-8 bg-gold/50 sm:w-12" />
+                Presents
+                <span className="h-px w-8 bg-gold/50 sm:w-12" />
+              </span>
             </p>
-            <motion.img
-              src={dckapLogo}
-              alt="DCKAP Incubation Centre"
-              loading="lazy"
-              animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              whileHover={{
-                scale: 1.05,
-                filter: 'drop-shadow(0 0 14px rgba(103, 89, 9, 0.93))',
-              }}
-              className="h-auto w-16 justify-self-start opacity-90 sm:w-28 lg:w-32"
-            />
           </motion.div>
 
+          {/* Porikkalam Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="mt-4 flex justify-center"
+            className="mt-6 flex w-full items-center justify-center"
           >
             <motion.img
               src={logoImage}
               alt="Porikkalam 2026"
               loading="lazy"
               animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
               whileHover={{
                 scale: 1.02,
                 filter: 'drop-shadow(0 0 28px rgba(212,175,55,0.55))',
@@ -102,37 +100,57 @@ export function Hero() {
             />
           </motion.div>
 
+          {/* English Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-gold-gradient mx-auto mt-6 max-w-xl font-heading text-2xl font-semibold tracking-wide sm:text-3xl lg:text-4xl"
+            className="mx-auto mt-6 max-w-xl font-heading text-2xl font-semibold tracking-wide text-gold-gradient sm:text-3xl lg:text-4xl"
           >
             An Arena For Engineers
           </motion.p>
 
+          {/* Tamil Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-gold-gradient mx-auto mt-1 max-w-xl font-tamil text-xl font-medium sm:text-2xl lg:text-3xl"
+            className="mx-auto mt-1 max-w-xl font-tamil text-xl font-medium text-gold-gradient sm:text-2xl lg:text-3xl"
           >
-திறன்களின் திடல்
+            திறன்களின் திடல்
           </motion.p>
 
+          {/* Event Description */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mx-auto mt-4 max-w-md font-quote text-lg italic leading-relaxed text-beige/80"
           >
-A National Level Flagship 
-            <br />
-Engineering,Innovation and Entrepreneurship event            
+            A National Level Flagship Event
+
+            {/* Engineering | Innovation | Entrepreneurship */}
+            <span className="mt-3 flex items-center justify-center whitespace-nowrap font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:text-sm">
+              <span className="mr-2 text-gold/50">✦</span>
+
+              <span>Engineering</span>
+
+              <span className="mx-2 text-beige/40">|</span>
+
+              <span>Innovation</span>
+
+              <span className="mx-2 text-beige/40">|</span>
+
+              <span>Entrepreneurship</span>
+
+              <span className="ml-2 text-gold/50">✦</span>
+            </span>
           </motion.p>
 
+          {/* Countdown */}
           <Countdown />
 
+          {/* Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,25 +160,37 @@ Engineering,Innovation and Entrepreneurship event
             <Button to="/register" variant="primary" size="lg">
               Register Now
             </Button>
-            <Button to="/events" variant="secondary" size="lg" icon={<ArrowRight size={16} />}>
+
+            <Button
+              to="/events"
+              variant="secondary"
+              size="lg"
+              icon={<ArrowRight size={16} />}
+            >
               Explore Events
             </Button>
           </motion.div>
         </div>
 
+        {/* Right spacer */}
         <div className="relative hidden lg:block" />
       </div>
 
+      {/* Event Highlights */}
       <EventHighlights />
 
+      {/* Temple Silhouette */}
       <div
         ref={templeRef}
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center text-gold/10"
       >
-        <TempleSilhouette className="h-[50vh] w-auto" strokeWidth={0.8} />
+        <TempleSilhouette
+          className="h-[50vh] w-auto"
+          strokeWidth={0.8}
+        />
       </div>
 
-      {/* Vertical glass icon rail */}
+      {/* Vertical Glass Icon Rail */}
       <motion.div
         initial={{ opacity: 0, x: 12 }}
         animate={{ opacity: 1, x: 0 }}

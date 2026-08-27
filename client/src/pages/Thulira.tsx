@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   ChevronRight,
   Factory,
-  Flag,
   GraduationCap,
   Handshake,
   HeartHandshake,
@@ -15,7 +14,6 @@ import {
   MonitorSmartphone,
   Presentation,
   Shapes,
-  Sparkles,
   Sprout,
   Stethoscope,
   Target,
@@ -31,7 +29,6 @@ import { Badge } from '@/components/ui/Badge';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
-import { useParallax } from '@/hooks/useParallax';
 import { useCountUp } from '@/hooks/useCountUp';
 import { SITE } from '@/constants/site';
 import {
@@ -46,7 +43,6 @@ import {
   type ThuliraDomain,
 } from '@/data/thulira';
 import ancientFuturisticPanorama from '@/assets/hero/ancient-futuristic-panorama.webp';
-import ancientEngineering from '@/assets/hero/ancient-engineering.webp';
 
 const DOMAIN_ICONS: Record<ThuliraDomain['icon'], typeof BrainCircuit> = {
   'brain-circuit': BrainCircuit,
@@ -93,8 +89,6 @@ function OverviewStat({ label, value }: { label: string; value: number }) {
 }
 
 export default function Thulira() {
-  const aboutParallaxRef = useParallax<HTMLDivElement>(30);
-
   return (
     <div className="relative">
       {/* Hero */}
@@ -159,6 +153,16 @@ export default function Thulira() {
           >
             <Divider />
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.85 }}
+          >
+            <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+              Apply Now
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -202,64 +206,33 @@ export default function Thulira() {
         </div>
       </section>
 
-      {/* About Thulira */}
-      <section className="relative overflow-hidden bg-cream/95 py-24">
-        <div className="absolute inset-0 bp-grid-bg opacity-30" />
-        <div ref={aboutParallaxRef} className="pointer-events-none absolute inset-0 opacity-[0.06]">
-          <img src={ancientEngineering} alt="" aria-hidden="true" className="h-full w-full object-cover" />
-        </div>
+      {/* Event Overview */}
+      <section className="relative overflow-hidden bg-navy-deep py-24">
+        <div className="absolute inset-0 bp-grid-bg opacity-20" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="About Thulira" title="Where Ideas Become Ventures" />
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="relative mt-12 overflow-hidden border border-navy/10 bg-white/55 p-8 shadow-card sm:p-10"
-          >
-            <CornerOrnament corner="top-left" />
-            <CornerOrnament corner="bottom-right" />
-            <div className="relative z-10 flex flex-col gap-5">
-              <p className="font-body text-base leading-relaxed text-slate">
-                THULIRA – Student Startup Challenge is a premier platform that brings together aspiring
-                student entrepreneurs from diverse educational institutions to showcase innovative
-                startup ideas, prototypes, and entrepreneurial solutions.
-              </p>
-              <p className="font-body text-base leading-relaxed text-slate">
-                The event provides students with an opportunity to present their innovations before
-                industry experts, academicians, and the startup ecosystem while receiving valuable
-                insights and recognition.
-              </p>
-              <p className="font-body text-base leading-relaxed text-slate">
-                THULIRA aims to cultivate creativity, problem-solving, and entrepreneurial thinking and
-                inspire the next generation of student innovators.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+          <SectionHeading eyebrow="Event Overview" title="Two Days. One Startup Ecosystem." tone="dark" />
+          <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-5">
+            <p className="font-body text-base leading-relaxed text-beige/85">
+              THULIRA is a two-day startup exhibition and competition that provides a platform for
+              students to showcase innovative startup ideas. It is open to students from Government
+              College of Technology (GCT) and other educational institutions.
+            </p>
+            <p className="font-body text-base leading-relaxed text-beige/85">
+              The process begins with an open call for applications, followed by preliminary
+              screening to shortlist promising startup ideas. Selected teams are invited to exhibit
+              their ideas, present their innovations, interact with industry experts, entrepreneurs,
+              academicians and visitors, and engage in meaningful discussions.
+            </p>
+            <p className="font-body text-base leading-relaxed text-beige/85">
+              The exhibition promotes knowledge sharing, collaboration and entrepreneurial learning.
+            </p>
+          </div>
 
-      {/* Vision & Mission */}
-      <section className="relative overflow-hidden bg-navy py-24">
-        <div className="absolute inset-0 bp-grid-bg opacity-25" />
-        <div className="relative mx-auto grid max-w-5xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:px-8">
-          {[
-            { icon: Sparkles, title: 'Vision', text: 'To inspire students to innovate, embrace entrepreneurship, and transform ideas into impactful solutions.' },
-            { icon: Flag, title: 'Mission', text: 'To provide a platform for students to showcase innovative startup ideas and foster entrepreneurial thinking.' },
-          ].map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col gap-4 border border-gold/25 bg-navy-deep p-8 shadow-[inset_0_0_30px_-20px_rgba(212,175,55,0.5)]"
-            >
-              <item.icon className="text-gold" size={28} strokeWidth={1.5} />
-              <h3 className="font-heading text-2xl font-semibold tracking-wide text-gold">{item.title}</h3>
-              <p className="font-body text-sm leading-relaxed text-beige/80">{item.text}</p>
-            </motion.div>
-          ))}
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {OVERVIEW_STATS.map((stat) => (
+              <OverviewStat key={stat.id} label={stat.label} value={stat.value} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -295,36 +268,6 @@ export default function Thulira() {
         </div>
       </section>
 
-      {/* Event Overview */}
-      <section className="relative overflow-hidden bg-navy-deep py-24">
-        <div className="absolute inset-0 bp-grid-bg opacity-20" />
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Event Overview" title="Two Days. One Startup Ecosystem." tone="dark" />
-          <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-5">
-            <p className="font-body text-base leading-relaxed text-beige/85">
-              THULIRA is a two-day startup exhibition and competition that provides a platform for
-              students to showcase innovative startup ideas. It is open to students from Government
-              College of Technology (GCT) and other educational institutions.
-            </p>
-            <p className="font-body text-base leading-relaxed text-beige/85">
-              The process begins with an open call for applications, followed by preliminary
-              screening to shortlist promising startup ideas. Selected teams are invited to exhibit
-              their ideas, present their innovations, interact with industry experts, entrepreneurs,
-              academicians and visitors, and engage in meaningful discussions.
-            </p>
-            <p className="font-body text-base leading-relaxed text-beige/85">
-              The exhibition promotes knowledge sharing, collaboration and entrepreneurial learning.
-            </p>
-          </div>
-
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {OVERVIEW_STATS.map((stat) => (
-              <OverviewStat key={stat.id} label={stat.label} value={stat.value} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Participant Journey */}
       <section className="relative overflow-hidden bg-navy py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-20" />
@@ -334,7 +277,7 @@ export default function Thulira() {
             title="Six Stages, One Path To The Stage"
             tone="dark"
           />
-          <div className="mt-16">
+          <div className="mt-10">
             <ParticipantJourney />
           </div>
         </div>
@@ -512,6 +455,22 @@ export default function Thulira() {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* Apply Now — final CTA */}
+      <section className="relative overflow-hidden bg-navy-deep py-16 text-center">
+        <div className="absolute inset-0 bp-grid-bg opacity-20" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+          className="relative mx-auto flex max-w-4xl justify-center px-4 sm:px-6"
+        >
+          <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+            Apply Now
+          </Button>
+        </motion.div>
       </section>
     </div>
   );

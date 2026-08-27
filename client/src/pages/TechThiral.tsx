@@ -22,7 +22,6 @@ import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
 
-import { useParallax } from '@/hooks/useParallax';
 import { useCountUp } from '@/hooks/useCountUp';
 import { SITE } from '@/constants/site';
 
@@ -35,7 +34,6 @@ import {
 } from '@/data/techThiral';
 
 import expoPanorama from '@/assets/hero/expo-panorama.webp';
-import ancientEngineering from '@/assets/hero/ancient-engineering.webp';
 
 const HIGHLIGHT_ICONS: Record<string, typeof Compass> = {
   discover: Compass,
@@ -105,8 +103,6 @@ function OverviewStat({
 }
 
 export default function TechThiral() {
-  const aboutParallaxRef = useParallax<HTMLDivElement>(30);
-
   return (
     <div className="relative overflow-hidden">
 
@@ -229,6 +225,16 @@ export default function TechThiral() {
             <Divider />
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.85 }}
+          >
+            <Button to="/contact" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+              Apply To Exhibit
+            </Button>
+          </motion.div>
+
         </div>
       </section>
 
@@ -302,149 +308,55 @@ export default function TechThiral() {
 
 
       {/* =========================================================
-          ABOUT TECH THIRAL
+          EVENT OVERVIEW
       ========================================================= */}
-      <section className="relative overflow-hidden bg-cream/95 py-24">
+      <section className="relative overflow-hidden bg-navy-deep py-24">
 
-        <div className="absolute inset-0 bp-grid-bg opacity-30" />
-
-        <div
-          ref={aboutParallaxRef}
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        >
-          <img
-            src={ancientEngineering}
-            alt=""
-            aria-hidden="true"
-            className="h-full w-full object-cover"
-          />
-        </div>
+        <div className="absolute inset-0 bp-grid-bg opacity-20" />
 
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 
           <SectionHeading
-            eyebrow="About Tech Thiral"
-            title="Where Industry Meets Innovation"
+            eyebrow="Event Overview"
+            title="Two Days. One Industry Floor."
+            tone="dark"
           />
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 24,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.3,
-            }}
-            transition={{
-              duration: 0.6,
-            }}
-            className="relative mt-12 overflow-hidden border border-navy/10 bg-white/55 p-8 shadow-card sm:p-10"
-          >
+          <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-5">
 
-            <CornerOrnament corner="top-left" />
-            <CornerOrnament corner="bottom-right" />
+            <p className="font-body text-base leading-relaxed text-beige/85">
+              Tech Thiral is a two-day industry expo held in the Parking
+              Space venue, running continuously across both days of
+              Porikkalam alongside Thulira.
+            </p>
 
-            <div className="relative z-10 flex flex-col gap-5">
+            <p className="font-body text-base leading-relaxed text-beige/85">
+              Startups, industry professionals, entrepreneurs, researchers,
+              and innovators exhibit their technologies and ventures to a
+              live audience of engineering students, faculty, and the GCT
+              alumni community.
+            </p>
 
-              <p className="font-body text-base leading-relaxed text-slate">
-                TECH THIRAL — Industry &amp; Startup Summit brings together
-                startups, innovators, industry professionals, and researchers
-                on a common platform to showcase emerging technologies,
-                products, ideas, and entrepreneurial ventures.
-              </p>
+            <p className="font-body text-base leading-relaxed text-beige/85">
+              The expo promotes discovery, direct engagement with founders
+              and experts, and long-term connections across the startup and
+              industrial ecosystem.
+            </p>
 
-              <p className="font-body text-base leading-relaxed text-slate">
-                It creates opportunities for students to discover innovations,
-                interact with founders and industry experts, explore emerging
-                technologies, and build meaningful connections with the startup
-                and industrial ecosystem.
-              </p>
+          </div>
 
-              <p className="font-body text-base leading-relaxed text-slate">
-                Tech Thiral runs as a continuous two-day flagship track
-                alongside Thulira, with every other Porikkalam programme
-                scheduled around them.
-              </p>
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
 
-            </div>
-          </motion.div>
+            {OVERVIEW_STATS.map((stat) => (
+              <OverviewStat
+                key={stat.id}
+                label={stat.label}
+                value={stat.value}
+                icon={stat.icon}
+              />
+            ))}
 
-        </div>
-      </section>
-
-
-      {/* =========================================================
-          VISION & MISSION
-      ========================================================= */}
-      <section className="relative overflow-hidden bg-navy py-24">
-
-        <div className="absolute inset-0 bp-grid-bg opacity-25" />
-
-        <div className="relative mx-auto grid max-w-5xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:px-8">
-
-          {[
-            {
-              icon: Sparkles,
-              title: 'Vision',
-              text: 'To be the meeting point where students, industry, and startups discover each other and build what comes next.',
-            },
-            {
-              icon: Rocket,
-              title: 'Mission',
-              text: 'To give startups and industry a platform to showcase innovation, and give students direct access to the ecosystem building it.',
-            },
-          ].map((item, index) => {
-
-            const Icon = item.icon;
-
-            return (
-              <motion.div
-                key={item.title}
-                initial={{
-                  opacity: 0,
-                  y: 24,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.4,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                }}
-                whileHover={{
-                  y: -5,
-                }}
-                className="flex flex-col gap-4 border border-gold/25 bg-navy-deep p-8 shadow-[inset_0_0_30px_-20px_rgba(212,175,55,0.5)]"
-              >
-
-                <Icon
-                  className="text-gold"
-                  size={28}
-                  strokeWidth={1.5}
-                />
-
-                <h3 className="font-heading text-2xl font-semibold tracking-wide text-gold">
-                  {item.title}
-                </h3>
-
-                <p className="font-body text-sm leading-relaxed text-beige/80">
-                  {item.text}
-                </p>
-
-              </motion.div>
-            );
-          })}
-
+          </div>
         </div>
       </section>
 
@@ -527,60 +439,6 @@ export default function TechThiral() {
 
 
       {/* =========================================================
-          EVENT OVERVIEW
-      ========================================================= */}
-      <section className="relative overflow-hidden bg-navy-deep py-24">
-
-        <div className="absolute inset-0 bp-grid-bg opacity-20" />
-
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-
-          <SectionHeading
-            eyebrow="Event Overview"
-            title="Two Days. One Industry Floor."
-            tone="dark"
-          />
-
-          <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-5">
-
-            <p className="font-body text-base leading-relaxed text-beige/85">
-              Tech Thiral is a two-day industry expo held in the Parking
-              Space venue, running continuously across both days of
-              Porikkalam alongside Thulira.
-            </p>
-
-            <p className="font-body text-base leading-relaxed text-beige/85">
-              Startups, industry professionals, entrepreneurs, researchers,
-              and innovators exhibit their technologies and ventures to a
-              live audience of engineering students, faculty, and the GCT
-              alumni community.
-            </p>
-
-            <p className="font-body text-base leading-relaxed text-beige/85">
-              The expo promotes discovery, direct engagement with founders
-              and experts, and long-term connections across the startup and
-              industrial ecosystem.
-            </p>
-
-          </div>
-
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-
-            {OVERVIEW_STATS.map((stat) => (
-              <OverviewStat
-                key={stat.id}
-                label={stat.label}
-                value={stat.value}
-                icon={stat.icon}
-              />
-            ))}
-
-          </div>
-        </div>
-      </section>
-
-
-      {/* =========================================================
           EXHIBITOR JOURNEY
       ========================================================= */}
       <section className="relative overflow-hidden bg-navy py-24">
@@ -595,9 +453,89 @@ export default function TechThiral() {
             tone="dark"
           />
 
-          <div className="mt-16">
+          <div className="mt-10">
             <ParticipantJourney steps={techThiralJourney} />
           </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================================================
+          PARTICIPATION / GET INVOLVED
+      ========================================================= */}
+      <section className="relative bg-cream/95 py-24">
+
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+
+          <SectionHeading
+            eyebrow="Get Involved"
+            title="Showcase At Tech Thiral"
+          />
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 16,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.4,
+            }}
+            transition={{
+              duration: 0.5,
+            }}
+            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-10 text-center sm:p-12"
+          >
+
+            <CornerOrnament corner="top-left" />
+            <CornerOrnament corner="bottom-right" />
+
+            <div className="relative z-10 flex flex-col items-center gap-5">
+
+              <Presentation
+                size={36}
+                className="text-brown"
+                strokeWidth={1.5}
+              />
+
+              <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
+                Bring Your Booth To Tech Thiral
+              </h3>
+
+              <p className="max-w-lg font-body text-sm leading-relaxed text-slate">
+                Startups and industry teams interested in exhibiting can
+                reach out to the Porikkalam team to apply for booth space
+                at the Industry Expo.
+              </p>
+
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
+
+                <Button
+                  to="/contact"
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowRight size={16} />}
+                >
+                  Apply To Exhibit
+                </Button>
+
+                <Button
+                  to="/schedule"
+                  variant="secondary"
+                  size="lg"
+                >
+                  View Schedule
+                </Button>
+
+              </div>
+
+            </div>
+          </motion.div>
 
         </div>
       </section>
@@ -693,86 +631,6 @@ export default function TechThiral() {
             ))}
 
           </div>
-        </div>
-      </section>
-
-
-      {/* =========================================================
-          PARTICIPATION / GET INVOLVED
-      ========================================================= */}
-      <section className="relative bg-cream/95 py-24">
-
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-
-          <SectionHeading
-            eyebrow="Get Involved"
-            title="Showcase At Tech Thiral"
-          />
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 16,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.4,
-            }}
-            transition={{
-              duration: 0.5,
-            }}
-            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-10 text-center sm:p-12"
-          >
-
-            <CornerOrnament corner="top-left" />
-            <CornerOrnament corner="bottom-right" />
-
-            <div className="relative z-10 flex flex-col items-center gap-5">
-
-              <Presentation
-                size={36}
-                className="text-brown"
-                strokeWidth={1.5}
-              />
-
-              <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
-                Bring Your Booth To Tech Thiral
-              </h3>
-
-              <p className="max-w-lg font-body text-sm leading-relaxed text-slate">
-                Startups and industry teams interested in exhibiting can
-                reach out to the Porikkalam team to apply for booth space
-                at the Industry Expo.
-              </p>
-
-              <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-
-                <Button
-                  to="/contact"
-                  variant="primary"
-                  size="lg"
-                  icon={<ArrowRight size={16} />}
-                >
-                  Apply To Exhibit
-                </Button>
-
-                <Button
-                  to="/schedule"
-                  variant="secondary"
-                  size="lg"
-                >
-                  View Schedule
-                </Button>
-
-              </div>
-
-            </div>
-          </motion.div>
-
         </div>
       </section>
 

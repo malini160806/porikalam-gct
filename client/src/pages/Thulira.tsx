@@ -29,7 +29,6 @@ import { Badge } from '@/components/ui/Badge';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
-import { useCountUp } from '@/hooks/useCountUp';
 import { SITE } from '@/constants/site';
 import {
   thuliraApplicationReview,
@@ -37,7 +36,6 @@ import {
   thuliraDomains,
   thuliraEvaluationCriteria,
   thuliraExhibitionOpportunities,
-  thuliraJourney,
   thuliraJourneyStrip,
   thuliraObjectives,
   type ThuliraDomain,
@@ -71,20 +69,26 @@ const EVALUATION_ICONS: Record<string, typeof Lightbulb> = {
   presentation: Presentation,
 };
 
-const OVERVIEW_STATS = [
-  { id: 'days', label: 'Event Days', value: 2 },
-  { id: 'stages', label: 'Journey Stages', value: thuliraJourney.length },
-  { id: 'domains', label: 'Innovation Domains', value: thuliraDomains.length },
-  { id: 'criteria', label: 'Evaluation Criteria', value: thuliraEvaluationCriteria.length },
+const OVERVIEW_PILLARS = [
+  { id: 'think', word: 'Think', tagline: 'Beyond The Classroom' },
+  { id: 'build', word: 'Build', tagline: 'For The Real World' },
+  { id: 'pitch', word: 'Pitch', tagline: 'With Purpose' },
+  { id: 'grow', word: 'Grow', tagline: 'With The Ecosystem' },
 ];
 
-function OverviewStat({ label, value }: { label: string; value: number }) {
-  const { ref, value: animated } = useCountUp(value);
+function OverviewPillar({ word, tagline, index }: { word: string; tagline: string; index: number }) {
   return (
-    <div ref={ref} className="flex flex-col items-center gap-1 border border-gold/20 bg-navy-deep/60 px-6 py-5 text-center">
-      <span className="font-heading text-3xl font-bold text-gold sm:text-4xl">{animated}</span>
-      <span className="font-body text-[11px] font-semibold uppercase tracking-widest text-beige/70">{label}</span>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      whileHover={{ y: -4, borderColor: 'rgba(212,175,55,0.6)' }}
+      className="flex flex-col items-center gap-1.5 border border-gold/20 bg-navy-deep/60 px-6 py-5 text-center transition-colors duration-300"
+    >
+      <span className="font-heading text-xl font-bold uppercase tracking-wide text-gold sm:text-2xl">{word}</span>
+      <span className="font-body text-[11px] font-semibold uppercase tracking-widest text-beige/70">{tagline}</span>
+    </motion.div>
   );
 }
 
@@ -229,8 +233,8 @@ export default function Thulira() {
           </div>
 
           <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {OVERVIEW_STATS.map((stat) => (
-              <OverviewStat key={stat.id} label={stat.label} value={stat.value} />
+            {OVERVIEW_PILLARS.map((pillar, index) => (
+              <OverviewPillar key={pillar.id} word={pillar.word} tagline={pillar.tagline} index={index} />
             ))}
           </div>
         </div>

@@ -455,7 +455,7 @@ export default function About() {
       {/* =========================================
           FULL TEAM
       ========================================= */}
-      <section className="relative overflow-hidden bg-navy-deep py-28">
+      <section id="team" className="relative overflow-hidden bg-navy-deep py-28">
 
         {/* Background grid */}
         <div className="absolute inset-0 bp-grid-bg opacity-[0.12]" />

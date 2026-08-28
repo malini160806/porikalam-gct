@@ -5,8 +5,8 @@ export const SITE = {
   description: 'A National Level Flagship Event',
   college: 'Government College of Technology',
   location: 'Coimbatore — 641 013, Tamil Nadu, India',
-  email: 'contact@porikkalam.in',
-  phone: '+91 12345 67890',
+  email: 'porikkalam.gct@gmail.com',
+  phone: '+91 824 888 7118',
   eventDateRange: '25 – 26 September 2026',
   eventStart: '2026-09-25T00:00:00+05:30',
   eventEnd: '2026-09-26T23:59:59+05:30',
@@ -65,25 +65,26 @@ export const SOCIAL_LINKS = [
   { label: 'X', href: 'https://x.com/porikkalam_gct/status/2081736396147240975?s=48', icon: 'x' },
   { label: 'WhatsApp', href: 'https://whatsapp.com/channel/0029VbDTSWEGE56iCcdPgH3D', icon: 'whatsapp' },
   { label: 'Facebook', href: 'https://www.facebook.com/share/p/1EwErXR158/', icon: 'facebook' },
-  { label: 'Email', href: 'mailto:contact@porikkalam.in', icon: 'mail' },
+  { label: 'Email', href: 'mailto:porikkalam.gct@gmail.com', icon: 'mail' },
 ] as const;
 
 export const FOOTER_LINKS = {
   quickLinks: [
     { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
+    { label: 'About Porikkalam', path: '/about' },
+    { label: 'About the Team', path: '/about#team' },
     { label: 'Contact', path: '/contact' },
   ],
   events: [
     { label: 'All Events', path: '/events' },
     { label: 'Schedule', path: '/schedule' },
     { label: 'Thulira', path: '/thulira' },
+    { label: 'Tech Thiral', path: '/tech-thiral' },
     { label: 'Leaderboard', path: '/leaderboard' },
   ],
   community: [
     { label: 'Sponsors', path: '/sponsors' },
     { label: 'Media', path: '/media' },
-    { label: 'Volunteer Portal', path: '/volunteer' },
   ],
   support: [
     { label: 'FAQ', path: '/faq' },
@@ -91,5 +92,6 @@ export const FOOTER_LINKS = {
     { label: 'Resources', path: '/resources' },
     { label: 'Accommodation', path: '/accommodation' },
     { label: 'Certificates', path: '/certificates' },
+    { label: 'Volunteer Portal', path: '/volunteer' },
   ],
 };

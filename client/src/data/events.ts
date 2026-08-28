@@ -1,6 +1,32 @@
 import type { EventItem } from './types';
 
 const OPEN_TO_ALL = 'Open to All Departments';
+import civilCbi from '@/assets/events/CIVIL CBI.png';
+import Hackonex from '@/assets/events/HACKONEX.png';
+import flightcraft from '@/assets/events/FLIGHT CRAFT.png';
+import water from '@/assets/events/WATER ROCKETRY.png';
+import structron from '@/assets/events/STRUCTRON.png';
+import deep from '@/assets/events/DEEP DIVE CHALLENGE.png';
+import whatif from '@/assets/events/WHAT IF.png';
+import rally from '@/assets/events/Robo Rally.jpg';
+import soccer from '@/assets/events/Robo soccer.jpg';
+import code from '@/assets/events/CODE DETECTIVE.png';
+import paper from '@/assets/events/PAPER PRESENTATION.png';
+import sketch from '@/assets/events/SKETCH SHIFT.png';
+import human from '@/assets/events/HUMAN MATRIX.png';
+import ipl from '@/assets/events/Ipl Auction.jpg';
+import visual from '@/assets/events/VISUAL VANGUARD.png';
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * The finalized Porikkalam event list, transcribed from the organizing committee's
@@ -9,7 +35,57 @@ const OPEN_TO_ALL = 'Open to All Departments';
  * the database for registration/admin purposes.
  */
 export const EVENTS: EventItem[] = [
+
+    { 
+    poster: Hackonex,
+    id: 'hackathon',
+    registrationFee: '₹499',
+    title: 'Hackonex',
+    category: 'premium',
+    description:
+      'A team-based competition where participants solve real-world or problem-based challenges by developing software solutions within a fixed time. Teams brainstorm, code, test and present their solutions. The best-performing solution emerges as the winner.',
+    format: 'team',
+    teamSize: 'Team',
+    formatMode: 'competition',
+    prequalifierRequired: false,
+    duration: '6 Hours',
+    expectedParticipants: 30,
+    venue: 'DCKAP Room',
+    resources: 'Power source and Wi-Fi',
+    eligibility: OPEN_TO_ALL,
+    primaryDomains: ['CSE', 'IT', 'AIML', 'AIDS'],
+    whyIncluded:
+      'Develops coding skills, logical thinking, problem-solving, teamwork and time management. It gives participants an opportunity to apply programming knowledge to practical challenges and build innovative software solutions.',
+    icon: 'brain-circuit',
+    registrationStatus: 'open',
+  },
+   {
+    id: 'robo-rally',
+    registrationFee: '₹555',
+    title: 'Robo Rally',
+    category: 'premium',
+    description:
+      'Participants are required to design and build their own robotic vehicle to navigate a specially designed obstacle track. Multiple checkpoints will be placed along the course. If a robot deviates from the track, overturns, or cannot proceed due to an obstacle, it will be repositioned at the last successfully crossed checkpoint and the run will resume with the prescribed time penalty. Only robots complying with the specified design and technical regulations will be allowed to participate — robots failing inspection will be disqualified before the competition begins.',
+    format: 'team',
+    teamSize: 'Team',
+    formatMode: 'competition',
+    prequalifierRequired: true,
+    duration: 'Half Day',
+    expectedParticipants: 40,
+    venue: 'PJ Building',
+    resources: 'Obstacle Course',
+    eligibility: OPEN_TO_ALL,
+    primaryDomains: ['Mechanical', 'Production', 'EEE', 'EIE', 'ECE'],
+    whyIncluded:
+      'Combines design, fabrication, programming, electronics, and problem-solving. It provides a hands-on engineering challenge around mobility and navigation.',
+    budget: '₹3000',
+    poster: rally,
+    icon: 'bot',
+    registrationStatus: 'open',
+  },
   {
+         poster: sketch,
+
     id: 'sketchshift',
     registrationFee: '₹99',
     title: 'SketchShift',
@@ -32,6 +108,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+poster: civilCbi,
     id: 'civil-cbi',
     registrationFee: '₹149',
     title: 'Civil CBI',
@@ -54,6 +131,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: structron,
     id: 'structron',
     registrationFee: '₹149',
     title: 'Structron',
@@ -76,6 +154,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: deep,
     id: 'deep-dive-challenge',
     registrationFee: '₹149',
     title: 'Deep Dive Challenge',
@@ -96,6 +175,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: soccer,
     id: 'robo-soccer',
     registrationFee: '₹444',
     title: 'Robo Soccer',
@@ -114,11 +194,11 @@ export const EVENTS: EventItem[] = [
     primaryDomains: ['Mechanical', 'Production', 'EEE', 'EIE', 'ECE'],
     whyIncluded: 'An exciting audience-focused robotics event that does not require a large arena like Robo Wars.',
     budget: '₹1000',
-    poster: '/events/robo-soccer.jpeg',
     icon: 'bot',
     registrationStatus: 'open',
   },
   {
+     poster: flightcraft,
     id: 'Flightcraft',
     registrationFee: '₹199',
     title: 'Flightcraft',
@@ -140,6 +220,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: water,
     id: 'water-rocketry',
     registrationFee: '₹199',
     title: 'Water Rocketry',
@@ -163,6 +244,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: whatif,
     id: 'what-if-reverse-engineering-debugging',
     registrationFee: '₹149',
     title: 'What If? (Reverse Engineering & Debugging)',
@@ -184,31 +266,9 @@ export const EVENTS: EventItem[] = [
     icon: 'circuit-board',
     registrationStatus: 'open',
   },
+ 
   {
-    id: 'robo-rally',
-    registrationFee: '₹555',
-    title: 'Robo Rally',
-    category: 'premium',
-    description:
-      'Participants are required to design and build their own robotic vehicle to navigate a specially designed obstacle track. Multiple checkpoints will be placed along the course. If a robot deviates from the track, overturns, or cannot proceed due to an obstacle, it will be repositioned at the last successfully crossed checkpoint and the run will resume with the prescribed time penalty. Only robots complying with the specified design and technical regulations will be allowed to participate — robots failing inspection will be disqualified before the competition begins.',
-    format: 'team',
-    teamSize: 'Team',
-    formatMode: 'competition',
-    prequalifierRequired: true,
-    duration: 'Half Day',
-    expectedParticipants: 40,
-    venue: 'PJ Building',
-    resources: 'Obstacle Course',
-    eligibility: OPEN_TO_ALL,
-    primaryDomains: ['Mechanical', 'Production', 'EEE', 'EIE', 'ECE'],
-    whyIncluded:
-      'Combines design, fabrication, programming, electronics, and problem-solving. It provides a hands-on engineering challenge around mobility and navigation.',
-    budget: '₹3000',
-    poster: '/events/robo-rally.jpeg',
-    icon: 'bot',
-    registrationStatus: 'open',
-  },
-  {
+     poster: code,
     id: 'code-detective-speed-relay',
     registrationFee: '₹149',
     title: 'Code Detective – Speed Relay',
@@ -231,8 +291,10 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: human,
     id: 'human-matrix',
     title: 'Human Matrix',
+    registrationFee: 'No fee',
     category: 'non-technical',
     description:
       'A treasure-hunt style team event where participants follow a series of clues, riddles and challenges hidden across the campus. Each solved clue leads the team closer to the final treasure. The fastest team to complete the hunt wins.',
@@ -249,34 +311,15 @@ export const EVENTS: EventItem[] = [
     icon: 'clipboard-list',
     registrationStatus: 'open',
   },
+
   {
-    id: 'hackathon',
-    registrationFee: '₹499',
-    title: 'Hackonex',
-    category: 'premium',
-    description:
-      'A team-based competition where participants solve real-world or problem-based challenges by developing software solutions within a fixed time. Teams brainstorm, code, test and present their solutions. The best-performing solution emerges as the winner.',
-    format: 'team',
-    teamSize: 'Team',
-    formatMode: 'competition',
-    prequalifierRequired: false,
-    duration: '6 Hours',
-    expectedParticipants: 30,
-    venue: 'DCKAP Room',
-    resources: 'Power source and Wi-Fi',
-    eligibility: OPEN_TO_ALL,
-    primaryDomains: ['CSE', 'IT', 'AIML', 'AIDS'],
-    whyIncluded:
-      'Develops coding skills, logical thinking, problem-solving, teamwork and time management. It gives participants an opportunity to apply programming knowledge to practical challenges and build innovative software solutions.',
-    icon: 'brain-circuit',
-    registrationStatus: 'open',
-  },
-  {
+    poster: ipl,
     id: 'ipl-auction',
     title: 'IPL Auction',
+    registrationFee: 'No fee',
     category: 'non-technical',
     description:
-      'A fun strategy-based event where participants form teams and compete to build their ideal cricket squad through a simulated IPL-style auction. Participants must bid for players, manage their budget, make strategic decisions, and create a balanced and competitive team.',
+    'A fun strategy-based event where participants form teams and compete to build their ideal cricket squad through a simulated IPL-style auction. Participants must bid for players, manage their budget, make strategic decisions, and create a balanced and competitive team.',
     format: 'team',
     teamSize: 'Team',
     formatMode: 'competition',
@@ -290,6 +333,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: paper,
     id: 'paper-presentation',
     registrationFee: '₹149',
     title: 'Paper Presentation',
@@ -311,6 +355,7 @@ export const EVENTS: EventItem[] = [
     registrationStatus: 'open',
   },
   {
+    poster: visual,
     id: 'poster-designing',
      registrationFee: '₹99',
     title: 'visual vanguard ',

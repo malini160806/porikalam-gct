@@ -11,8 +11,8 @@ export const timeline: TimelineStep[] = [
   {
     id: 'tl1',
     label: 'Registrations',
-    date: '01 Aug – 15 Sept 2026',
-    description: 'Open registrations across all technical and non-technical events.',
+    date: '01 Sept – 22 Sept 2026',
+    description: 'Registration is open for all technical and non-technical events.',
   },
   {
     id: 'tl2',

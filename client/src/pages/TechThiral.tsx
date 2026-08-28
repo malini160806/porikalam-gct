@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight,
   Award,
-  Building2,
   Compass,
   Handshake,
   Lightbulb,
@@ -10,7 +9,7 @@ import {
   Presentation,
   Rocket,
   Sparkles,
-  Users,
+  Unlock,
 } from 'lucide-react';
 
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
@@ -22,7 +21,6 @@ import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
 
-import { useCountUp } from '@/hooks/useCountUp';
 import { SITE } from '@/constants/site';
 
 import {
@@ -42,61 +40,61 @@ const HIGHLIGHT_ICONS: Record<string, typeof Compass> = {
   connect: Network,
 };
 
-const OVERVIEW_STATS = [
+const OVERVIEW_PILLARS = [
   {
-    id: 'days',
-    label: 'Event Days',
-    value: 2,
-    icon: Building2,
+    id: 'showcase',
+    word: 'Showcase',
+    tagline: 'Your Product',
+    icon: Presentation,
   },
   {
-    id: 'stages',
-    label: 'Journey Stages',
-    value: techThiralJourney.length,
-    icon: Compass,
+    id: 'connect',
+    word: 'Connect',
+    tagline: 'With Industry Experts',
+    icon: Handshake,
   },
   {
-    id: 'highlights',
-    label: 'Expo Highlights',
-    value: techThiralHighlights.length,
-    icon: Sparkles,
+    id: 'unlock',
+    word: 'Unlock',
+    tagline: 'Partnerships & Leads',
+    icon: Unlock,
   },
   {
-    id: 'audience',
-    label: 'Exhibitor Categories',
-    value: techThiralAudience.length,
-    icon: Users,
+    id: 'grow',
+    word: 'Grow',
+    tagline: "Your Startup's Reach",
+    icon: Rocket,
   },
 ];
 
-function OverviewStat({
-  label,
-  value,
+function OverviewPillar({
+  word,
+  tagline,
   icon: Icon,
+  index,
 }: {
-  label: string;
-  value: number;
-  icon: typeof Building2;
+  word: string;
+  tagline: string;
+  icon: typeof Presentation;
+  index: number;
 }) {
-  const { ref, value: animated } = useCountUp(value);
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
       whileHover={{ y: -5 }}
       className="flex flex-col items-center gap-2 border border-gold/20 bg-navy-deep/70 px-5 py-6 text-center shadow-card"
     >
       <Icon size={24} className="text-gold" strokeWidth={1.5} />
 
-      <span className="font-heading text-3xl font-bold text-gold sm:text-4xl">
-        {animated}
+      <span className="font-heading text-lg font-bold uppercase tracking-wide text-gold sm:text-xl">
+        {word}
       </span>
 
       <span className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-beige/70">
-        {label}
+        {tagline}
       </span>
     </motion.div>
   );
@@ -347,12 +345,13 @@ export default function TechThiral() {
 
           <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
 
-            {OVERVIEW_STATS.map((stat) => (
-              <OverviewStat
-                key={stat.id}
-                label={stat.label}
-                value={stat.value}
-                icon={stat.icon}
+            {OVERVIEW_PILLARS.map((pillar, index) => (
+              <OverviewPillar
+                key={pillar.id}
+                word={pillar.word}
+                tagline={pillar.tagline}
+                icon={pillar.icon}
+                index={index}
               />
             ))}
 

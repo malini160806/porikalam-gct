@@ -92,6 +92,5 @@ export const FOOTER_LINKS = {
     { label: 'Resources', path: '/resources' },
     { label: 'Accommodation', path: '/accommodation' },
     { label: 'Certificates', path: '/certificates' },
-    { label: 'Volunteer Portal', path: '/volunteer' },
   ],
 };

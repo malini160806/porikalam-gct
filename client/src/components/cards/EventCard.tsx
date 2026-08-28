@@ -70,10 +70,10 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
         boxShadow: '0 12px 36px -8px rgba(212,175,55,0.45), 0 8px 24px -10px rgba(61,90,117,0.35)',
         borderColor: 'rgba(212,175,55,0.8)',
       }}
-      className="group relative grid h-full min-h-[560px] grid-cols-1 grid-rows-2 overflow-hidden rounded-sm border border-gold/30 shadow-card transition-colors duration-300"
+      className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-gold/30 shadow-card transition-colors duration-300"
     >
-      {/* Top half — poster */}
-      <div className="relative h-full overflow-hidden">
+      {/* Poster */}
+      <div className="relative h-36 shrink-0 overflow-hidden">
         <img
           src={event.poster ?? posterPlaceholder}
           alt={event.poster ? `${event.title} poster` : ''}
@@ -81,54 +81,54 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
         />
         {!event.poster && (
           <div className="absolute inset-0 flex items-center justify-center bg-navy-deep/45">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold/60 bg-navy-deep/60 p-4 text-gold shadow-[0_0_24px_-4px_rgba(212,175,55,0.5)] backdrop-blur-sm">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold/60 bg-navy-deep/60 p-2.5 text-gold shadow-[0_0_24px_-4px_rgba(212,175,55,0.5)] backdrop-blur-sm">
               <Icon className="h-full w-full" />
             </div>
           </div>
         )}
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent" />
-        <span className="absolute left-4 top-4 z-10 inline-flex items-center rounded-full border border-gold/50 bg-navy-deep/70 px-3 py-1 font-body text-[10px] font-semibold uppercase tracking-widest text-gold backdrop-blur-sm">
+        <span className="absolute left-3 top-3 z-10 inline-flex items-center rounded-full border border-gold/50 bg-navy-deep/70 px-2.5 py-0.5 font-body text-[9px] font-semibold uppercase tracking-widest text-gold backdrop-blur-sm">
           {EVENT_CATEGORY_LABELS[event.category]}
         </span>
-        <span className="absolute right-4 top-4 z-10 inline-flex items-center rounded-full border border-gold/30 bg-navy-deep/70 px-3 py-1 backdrop-blur-sm">
+        <span className="absolute right-3 top-3 z-10 inline-flex items-center rounded-full border border-gold/30 bg-navy-deep/70 px-2.5 py-0.5 backdrop-blur-sm">
           <RegistrationStatus status={registrationStatus} />
         </span>
       </div>
 
-      {/* Bottom half — details */}
-      <div className="navy-paper bp-grid-bg relative h-full overflow-y-auto border-t border-gold/20 p-6 shadow-[inset_0_0_44px_-24px_rgba(212,175,55,0.5)]">
-        <CornerOrnament corner="top-left" variant="scroll" size={28} opacity={0.5} className="drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
-        <CornerOrnament corner="bottom-right" variant="scroll" size={28} opacity={0.5} className="drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
+      {/* Details */}
+      <div className="navy-paper bp-grid-bg relative flex-1 overflow-y-auto border-t border-gold/20 p-4 shadow-[inset_0_0_44px_-24px_rgba(212,175,55,0.5)]">
+        <CornerOrnament corner="top-left" variant="scroll" size={22} opacity={0.5} className="drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
+        <CornerOrnament corner="bottom-right" variant="scroll" size={22} opacity={0.5} className="drop-shadow-[0_2px_6px_rgba(0,15,24,0.65)]" />
 
         <div className="relative z-10 flex h-full flex-col justify-between">
           <div>
-            <h3 className="font-heading text-xl font-semibold tracking-wide text-cream sm:text-2xl">
+            <h3 className="font-heading text-lg font-semibold tracking-wide text-cream">
               {event.title}
             </h3>
-            <p className="mt-1 font-body text-xs font-semibold uppercase tracking-wider text-gold">
+            <p className="mt-0.5 font-body text-[11px] font-semibold uppercase tracking-wider text-gold">
               {event.format === 'team' ? 'Team Event' : 'Individual Event'}
             </p>
 
-            <p className="mt-3 line-clamp-3 font-body text-sm leading-relaxed text-beige/80">
+            <p className="mt-2 line-clamp-2 font-body text-xs leading-relaxed text-beige/80">
               {event.description}
             </p>
 
-            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-gold/15 pt-4">
-              <DetailRow icon={<Clock size={13} />} label="Duration" value={event.duration} />
+            <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-gold/15 pt-3">
+              <DetailRow icon={<Clock size={12} />} label="Duration" value={event.duration} />
               <DetailRow
-                icon={<Users size={13} />}
+                icon={<Users size={12} />}
                 label="Team Size"
                 value={event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
               />
-              <DetailRow icon={<MapPin size={13} />} label="Location" value={event.venue} />
+              <DetailRow icon={<MapPin size={12} />} label="Location" value={event.venue} />
               <DetailRow
-                icon={<Users2 size={13} />}
+                icon={<Users2 size={12} />}
                 label="Registration Limit"
                 value={`${event.expectedParticipants} Participants`}
               />
             </dl>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-3 flex flex-wrap gap-1.5">
               <Badge variant="gold">{event.eligibility}</Badge>
               {event.prequalifierRequired ? (
                 <Badge variant="navy">Prequalifier Required</Badge>
@@ -137,10 +137,9 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
               )}
             </div>
 
-          
             {event.prequalifierRequired && (
-              <p className="mt-4 flex items-start gap-2 border-t border-gold/15 pt-4 font-body text-xs text-beige/70">
-                <ShieldCheck size={14} className="mt-0.5 shrink-0 text-gold" />
+              <p className="mt-3 flex items-start gap-2 border-t border-gold/15 pt-3 font-body text-[11px] text-beige/70">
+                <ShieldCheck size={13} className="mt-0.5 shrink-0 text-gold" />
                 All registrants compete in an online prequalifier round in {SITE.prequalifierWindow} — only
                 those who qualify are selected to compete in the 2-day mega event on campus.
               </p>
@@ -151,7 +150,7 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
             to={`/events/${event.id}`}
             variant="secondary"
             size="sm"
-            className="mt-6 w-fit"
+            className="mt-4 w-fit"
             icon={<ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />}
           >
             View Event

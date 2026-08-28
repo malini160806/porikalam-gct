@@ -213,9 +213,15 @@ function BlockShell({
   );
 }
 
+const FULL_DAY_TITLES = new Set([
+  'Thulira — Student Startup Challenge',
+  'Tech Thiral — Industry Expo',
+]);
+
 function EventCard({ item, blockEndTime, index }: { item: ScheduleItem; blockEndTime: string; index: number }) {
   const Icon = getIcon(item);
-  const showEndTime = item.endTime !== blockEndTime;
+  const isFullDay = FULL_DAY_TITLES.has(item.title);
+  const showEndTime = !isFullDay && item.endTime !== blockEndTime;
 
   return (
     <motion.div
@@ -231,6 +237,7 @@ function EventCard({ item, blockEndTime, index }: { item: ScheduleItem; blockEnd
       <span className="flex items-center gap-1 font-body text-[11px] text-beige/60">
         <MapPin size={11} className="shrink-0" />
         {item.venue}
+        {isFullDay && ' · Full Day'}
         {showEndTime && ` · until ${formatTime(item.endTime)}`}
       </span>
     </motion.div>

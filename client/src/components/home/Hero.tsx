@@ -125,9 +125,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mx-auto mt-4 max-w-md font-quote text-lg italic leading-relaxed text-beige/80"
+            className="mx-auto mt-4 max-w-md font-quote leading-relaxed text-beige/80"
           >
-            A National Level Flagship Event
+           <span className="text-2xl font-extrabold italic tracking-wide text-cream drop-shadow-[0_4px_4px_rgba(0,0,0,1)] drop-shadow-[0_8px_12px_rgba(0,0,0,0.95)] drop-shadow-[0_12px_25px_rgba(0,0,0,0.8)] sm:text-3xl">
+  A National Level Flagship Event
+</span>
 
             {/* Engineering | Innovation | Entrepreneurship */}
             <span className="mt-3 flex flex-wrap items-center justify-center gap-y-1.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:flex-nowrap sm:whitespace-nowrap sm:text-sm">

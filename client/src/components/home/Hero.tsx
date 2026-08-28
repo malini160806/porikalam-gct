@@ -130,7 +130,7 @@ export function Hero() {
             A National Level Flagship Event
 
             {/* Engineering | Innovation | Entrepreneurship */}
-            <span className="mt-3 flex items-center justify-center whitespace-nowrap font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:text-sm">
+            <span className="mt-3 flex flex-wrap items-center justify-center gap-y-1.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:flex-nowrap sm:whitespace-nowrap sm:text-sm">
               <span className="mr-2 text-gold/50">✦</span>
 
               <span>Engineering</span>

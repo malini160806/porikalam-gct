@@ -31,7 +31,6 @@ import {
 import { Link } from 'react-router-dom';
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Badge } from '@/components/ui/Badge';
 import { Tabs } from '@/components/ui/Tabs';
 import { schedule } from '@/data/schedule';
 import type { ScheduleItem } from '@/data/types';
@@ -173,9 +172,6 @@ function FlagshipCard({
           </div>
         </div>
         <p className="font-body text-sm leading-relaxed text-beige/80">{description}</p>
-        <div>
-          <Badge variant="navy">Full Day · Day 1 &amp; Day 2</Badge>
-        </div>
         <div className="mt-auto flex items-center gap-2 pt-2 font-body text-xs font-bold uppercase tracking-[0.2em] text-gold transition-transform duration-300 group-hover:translate-x-1">
           View Details
           <ArrowRight size={14} />
@@ -347,7 +343,11 @@ export default function Schedule() {
       <section className="relative overflow-hidden bg-cream/95 py-20 sm:py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-20" />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Flagship Platforms" title="Flagship Events" />
+          <SectionHeading
+            eyebrow="Flagship Platforms"
+            title="Flagship Events"
+            subtitle="Both run full day, across Day 1 & Day 2."
+          />
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
             <FlagshipCard
               icon={Rocket}

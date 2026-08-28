@@ -111,7 +111,7 @@ export function FlagshipExperiences() {
           </div>
 
           <h2 className="font-heading text-4xl uppercase tracking-wide text-cream sm:text-5xl">
-            Flagship Experiences
+            Flagship Event
           </h2>
 
           {/* Animated divider */}

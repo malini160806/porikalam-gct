@@ -77,7 +77,7 @@ const atAGlance = [
   },
   {
     label: 'Theme',
-    value: 'Engineering, Innovation & Entrepreneurship',
+    value: 'Engineering through the ages',
   },
   {
     label: 'Participants',
@@ -341,8 +341,7 @@ export default function About() {
 
           <p className="mt-8 font-body text-sm leading-relaxed text-slate">
             Government College of Technology, Coimbatore has trained
-            generations of engineers across Civil, Mechanical, Electrical,
-            Electronics, and Computer disciplines. Porikkalam channels that
+            generations of engineers across various disciplines. Porikkalam channels that
             same institutional depth into two days of student-run competition
             and craft — a symposium built by the college's own students, for
             students everywhere.

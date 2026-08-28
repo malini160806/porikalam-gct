@@ -20,24 +20,22 @@ export function Countdown() {
       transition={{ duration: 0.6, delay: 0.5 }}
       className="mt-10 flex flex-col items-center gap-5"
     >
-      <span className="inline-flex items-center gap-2 font-body text-sm font-semibold uppercase tracking-[0.2em] text-beige">
-        <CalendarDays size={16} className="text-gold" />
-        {SITE.eventDateRange}
-      </span>
+      <span className="inline-flex items-center gap-2 font-body text-lg font-bold uppercase tracking-[0.2em] text-beige sm:text-xl lg:text-2xl">
+  <CalendarDays size={20} className="text-gold" />
+  {SITE.eventDateRange}
+</span>
 
       {countdown.isOver ? (
         <span className="font-heading text-xl font-semibold uppercase tracking-wide text-gold">
           Happening Now
         </span>
       ) : (
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           {UNITS.map((unit) => (
             <div
               key={unit.key}
-              className="flex flex-col items-center gap-1 border border-gold/30 bg-navy/50 px-3 py-2 backdrop-blur-sm sm:px-6 sm:py-4"
-            >
-              <span className="font-heading text-2xl font-bold tabular-nums text-gold sm:text-4xl">
-                {String(countdown[unit.key]).padStart(2, '0')}
+                  className="flex flex-col items-center gap-1 border border-gold/30 bg-navy/50 px-2.5 py-1.5 backdrop-blur-sm sm:px-4 sm:py-2.5"            >
+                  <span className="font-heading text-xl font-bold tabular-nums text-gold sm:text-3xl">                {String(countdown[unit.key]).padStart(2, '0')}
               </span>
               <span className="font-body text-[10px] font-semibold uppercase tracking-widest text-beige/70 sm:text-xs">
                 {unit.label}

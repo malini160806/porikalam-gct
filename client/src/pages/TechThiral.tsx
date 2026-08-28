@@ -85,7 +85,7 @@ function OverviewPillar({
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
       whileHover={{ y: -5 }}
-      className="flex flex-col items-center gap-2 border border-gold/20 bg-navy-deep/70 px-5 py-6 text-center shadow-card"
+      className="flex flex-col items-center gap-2 border border-gold/20 bg-navy-deep/70 px-2 py-6 text-center shadow-card sm:px-5"
     >
       <Icon size={24} className="text-gold" strokeWidth={1.5} />
 
@@ -93,7 +93,7 @@ function OverviewPillar({
         {word}
       </span>
 
-      <span className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-beige/70">
+      <span className="whitespace-nowrap font-body text-[9px] font-semibold uppercase tracking-wide text-beige/70 sm:text-[10px] sm:tracking-[0.18em]">
         {tagline}
       </span>
     </motion.div>

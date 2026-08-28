@@ -84,10 +84,10 @@ function OverviewPillar({ word, tagline, index }: { word: string; tagline: strin
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
       whileHover={{ y: -4, borderColor: 'rgba(212,175,55,0.6)' }}
-      className="flex flex-col items-center gap-1.5 border border-gold/20 bg-navy-deep/60 px-6 py-5 text-center transition-colors duration-300"
+      className="flex flex-col items-center gap-1.5 border border-gold/20 bg-navy-deep/60 px-2 py-5 text-center transition-colors duration-300 sm:px-6"
     >
       <span className="font-heading text-xl font-bold uppercase tracking-wide text-gold sm:text-2xl">{word}</span>
-      <span className="font-body text-[11px] font-semibold uppercase tracking-widest text-beige/70">{tagline}</span>
+      <span className="whitespace-nowrap font-body text-[9px] font-semibold uppercase tracking-wide text-beige/70 sm:text-[11px] sm:tracking-widest">{tagline}</span>
     </motion.div>
   );
 }

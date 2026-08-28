@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Cpu, Lightbulb, Mail, MapPin, Phone, Send, Sparkles, Triangle } from 'lucide-react';
-import { Logo } from '@/components/common/Logo';
 import { SocialIcons } from '@/components/ui/SocialIcons';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { SITE, FOOTER_LINKS } from '@/constants/site';
 import rosetteSeal from '@/assets/heritage/rosette-seal.webp';
+import porikkalamLogo from '@/assets/porikkalam-logo.webp';
 
 const TAGLINES = [
   { icon: Triangle, title: 'Ancient Roots', subtitle: 'Timeless Wisdom' },
@@ -46,7 +46,13 @@ export function Footer() {
       >
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-6">
           <div className="flex flex-col gap-4 lg:col-span-2">
-            <Logo />
+            <Link to="/" className="shrink-0">
+              <img
+                src={porikkalamLogo}
+                alt="Porikkalam"
+                className="h-16 w-auto object-contain sm:h-18 md:h-20"
+              />
+            </Link>
             <p className="font-quote max-w-xs text-base italic leading-relaxed text-beige/80">
               {SITE.description}
               <span className="mt-3 flex flex-wrap items-center gap-y-1 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:text-sm">

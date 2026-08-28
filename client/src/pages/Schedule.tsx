@@ -28,9 +28,9 @@ import {
   Users,
   Wrench,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Tabs } from '@/components/ui/Tabs';
 import { schedule } from '@/data/schedule';
@@ -142,7 +142,6 @@ function FlagshipCard({
   subtitle,
   description,
   to,
-  ctaLabel,
   delay = 0,
 }: {
   icon: IconType;
@@ -150,7 +149,6 @@ function FlagshipCard({
   subtitle: string;
   description: string;
   to: string;
-  ctaLabel: string;
   delay?: number;
 }) {
   return (
@@ -160,26 +158,29 @@ function FlagshipCard({
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay }}
       whileHover={{ y: -6 }}
-      className="flex flex-col gap-5 border border-gold/40 bg-navy-deep p-8 shadow-card sm:p-10"
     >
-      <div className="flex items-center gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy text-gold">
-          <Icon size={26} strokeWidth={1.5} />
+      <Link
+        to={to}
+        className="group flex h-full flex-col gap-5 border border-gold/40 bg-navy-deep p-8 shadow-card transition-colors duration-300 hover:border-gold sm:p-10"
+      >
+        <div className="flex items-center gap-4">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-navy text-gold">
+            <Icon size={26} strokeWidth={1.5} />
+          </div>
+          <div>
+            <h3 className="font-heading text-2xl font-bold uppercase tracking-wide text-cream">{title}</h3>
+            <p className="font-body text-xs font-semibold uppercase tracking-[0.15em] text-gold/80">{subtitle}</p>
+          </div>
         </div>
+        <p className="font-body text-sm leading-relaxed text-beige/80">{description}</p>
         <div>
-          <h3 className="font-heading text-2xl font-bold uppercase tracking-wide text-cream">{title}</h3>
-          <p className="font-body text-xs font-semibold uppercase tracking-[0.15em] text-gold/80">{subtitle}</p>
+          <Badge variant="navy">Full Day · Day 1 &amp; Day 2</Badge>
         </div>
-      </div>
-      <p className="font-body text-sm leading-relaxed text-beige/80">{description}</p>
-      <div>
-        <Badge variant="navy">Full Day · Day 1 &amp; Day 2</Badge>
-      </div>
-      <div className="mt-auto pt-2">
-        <Button to={to} variant="primary" size="md" icon={<ArrowRight size={16} />}>
-          {ctaLabel}
-        </Button>
-      </div>
+        <div className="mt-auto flex items-center gap-2 pt-2 font-body text-xs font-bold uppercase tracking-[0.2em] text-gold transition-transform duration-300 group-hover:translate-x-1">
+          View Details
+          <ArrowRight size={14} />
+        </div>
+      </Link>
     </motion.div>
   );
 }
@@ -346,7 +347,7 @@ export default function Schedule() {
       <section className="relative overflow-hidden bg-cream/95 py-20 sm:py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-20" />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Flagship Platforms" title="Flagship Experiences" />
+          <SectionHeading eyebrow="Flagship Platforms" title="Flagship Events" />
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
             <FlagshipCard
               icon={Rocket}
@@ -354,7 +355,6 @@ export default function Schedule() {
               subtitle="Student Startup Challenge"
               description="A platform for aspiring student entrepreneurs to showcase innovative startup ideas, prototypes and entrepreneurial solutions."
               to="/thulira"
-              ctaLabel="Explore Thulira"
             />
             <FlagshipCard
               icon={Building2}
@@ -362,7 +362,6 @@ export default function Schedule() {
               subtitle="Industry & Startup Summit"
               description="A technology-driven platform where engineering minds connect with startups, innovators, industry professionals and emerging technologies."
               to="/tech-thiral"
-              ctaLabel="Explore Tech Thiral"
               delay={0.1}
             />
           </div>

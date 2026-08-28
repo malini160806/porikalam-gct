@@ -128,7 +128,7 @@ export function Hero() {
             className="mx-auto mt-6 max-w-md font-quote leading-relaxed text-beige/80"
           >
       <span
-  className="text-2xl font-extrabold text-cream sm:text-2.7xl"
+  className="text-lg font-extrabold text-cream sm:text-2xl"
   style={{
     textShadow: '3px 4px 6px rgba(0,0,0,1)',
   }}

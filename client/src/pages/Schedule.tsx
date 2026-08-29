@@ -291,6 +291,7 @@ function FlagshipCard({
   title,
   subtitle,
   description,
+  venue,
   to,
   delay = 0,
 }: {
@@ -298,6 +299,7 @@ function FlagshipCard({
   title: string;
   subtitle: string;
   description: string;
+  venue: string;
   to: string;
   delay?: number;
 }) {
@@ -352,16 +354,29 @@ function FlagshipCard({
           {description}
         </p>
 
-        {/* Duration */}
-        <div className="flex items-center gap-2 border-t border-gold/15 pt-4">
-          <Clock
-            size={16}
-            className="text-gold"
-          />
+        {/* Venue + Duration */}
+        <div className="flex flex-col gap-2 border-t border-gold/15 pt-4">
+          <div className="flex items-center gap-2">
+            <MapPin
+              size={16}
+              className="text-gold"
+            />
 
-          <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
-            Full Day · 2 Days
-          </span>
+            <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
+              {venue}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Clock
+              size={16}
+              className="text-gold"
+            />
+
+            <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
+              Full Day · 2 Days
+            </span>
+          </div>
         </div>
 
         {/* View Details */}
@@ -842,6 +857,7 @@ export default function Schedule() {
               title="Thulira"
               subtitle="Student Startup Challenge"
               description="A platform for aspiring student entrepreneurs to showcase innovative startup ideas, prototypes and entrepreneurial solutions."
+              venue="Open Auditorium"
               to="/thulira"
             />
 
@@ -851,6 +867,7 @@ export default function Schedule() {
               title="Tech Thiral"
               subtitle="Industry & Startup Summit"
               description="A technology-driven platform where engineering minds connect with startups, innovators, industry professionals and emerging technologies."
+              venue="Parking Space"
               to="/tech-thiral"
               delay={0.1}
             />

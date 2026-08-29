@@ -672,10 +672,10 @@ function TransitionGap({
   endTime: string;
 }) {
   return (
-    <div className="flex items-center gap-3 px-1 text-beige/35">
-      <span className="h-px flex-1 bg-gold/10" />
+    <div className="flex items-center gap-3 px-1 py-1 text-beige/70">
+      <span className="h-px flex-1 bg-gold/25" />
 
-      <span className="font-body text-[10px] font-semibold uppercase tracking-[0.2em]">
+      <span className="whitespace-nowrap font-body text-xs font-bold uppercase tracking-[0.2em] sm:text-sm">
         {formatTime(
           startTime,
         )}{' '}
@@ -686,7 +686,7 @@ function TransitionGap({
         · Open / Transition
       </span>
 
-      <span className="h-px flex-1 bg-gold/10" />
+      <span className="h-px flex-1 bg-gold/25" />
     </div>
   );
 }

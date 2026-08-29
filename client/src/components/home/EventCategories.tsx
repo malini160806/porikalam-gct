@@ -261,15 +261,7 @@ export function EventCategories() {
                   {event.description}
                 </p>
 
-                {/* Hover indicator */}
-                <motion.div
-                  className="mx-auto mt-6 flex items-center justify-center gap-2 font-body text-[10px] font-bold uppercase tracking-[0.2em] text-gold/60"
-                  initial={{ opacity: 0, y: 5 }}
-                  whileHover={{ opacity: 1, y: 0 }}
-                >
-                  Discover
-                  <ArrowRight size={13} />
-                </motion.div>
+               
 
               </div>
             </motion.div>
@@ -310,9 +302,9 @@ export function EventCategories() {
         >
           <Sparkles size={14} className="text-gold/50" />
 
-          <span className="font-body text-[10px] uppercase tracking-[0.3em] text-beige/40">
-            Discover · Compete · Conquer
-          </span>
+          <span className="font-body text-sm font-semibold uppercase tracking-[0.22em] text-beige">
+  Discover · Compete · Conquer
+</span>
 
           <Sparkles size={14} className="text-gold/50" />
         </motion.div>

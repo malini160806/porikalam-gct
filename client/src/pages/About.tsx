@@ -14,7 +14,6 @@ import {
 
 import { PageHero } from '@/components/common/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { CoreTeamMemberCard } from '@/components/cards/CoreTeamMemberCard';
 
 import {
@@ -25,8 +24,6 @@ import {
 import { getIcon } from '@/routes/utils/icons';
 
 import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.webp';
-import mandalaBrown1 from '@/assets/heritage/mandala-brown-1.webp';
-import mandalaBrown2 from '@/assets/heritage/mandala-brown-2.webp';
 import heroPanorama from '@/assets/hero/ancient-futuristic-panorama.webp';
 
 import { EraJourney } from '@/components/home/EraJourney';
@@ -454,66 +451,7 @@ export default function About() {
       {/* =========================================
           FULL TEAM
       ========================================= */}
-      <section id="team" className="relative overflow-hidden bg-navy-deep py-28">
-
-        {/* Background grid */}
-        <div className="absolute inset-0 bp-grid-bg opacity-[0.12]" />
-
-        {/* Ambient glow */}
-        <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/5 blur-[140px]"
-          animate={{
-            scale: [1, 1.12, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-
-        {/* Floating glow particles */}
-        <motion.div
-          className="pointer-events-none absolute left-[8%] top-[20%] h-2 w-2 rounded-full bg-gold shadow-[0_0_20px_rgba(212,175,55,0.9)]"
-          animate={{
-            y: [0, -25, 0],
-            opacity: [0.25, 1, 0.25],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-
-        <motion.div
-          className="pointer-events-none absolute right-[10%] top-[35%] h-1.5 w-1.5 rounded-full bg-gold shadow-[0_0_18px_rgba(212,175,55,0.9)]"
-          animate={{
-            y: [0, 25, 0],
-            opacity: [0.2, 1, 0.2],
-          }}
-          transition={{
-            duration: 3.5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-        />
-
-        <img
-          src={mandalaBrown1}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-20 top-20 hidden h-64 w-64 opacity-10 lg:block"
-        />
-
-        <img
-          src={mandalaBrown2}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-20 bottom-20 hidden h-64 w-64 opacity-10 lg:block"
-        />
+      <section id="team" className="relative overflow-hidden bg-cream py-28">
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
@@ -526,11 +464,11 @@ export default function About() {
             className="mb-20 text-center"
           >
 
-            <p className="font-body text-xs font-bold uppercase tracking-[0.3em] text-gold">
+            <p className="font-body text-xs font-bold uppercase tracking-[0.3em] text-brown">
               The People Behind The Vision
             </p>
 
-            <h2 className="mt-3 font-heading text-4xl uppercase tracking-wide text-cream sm:text-5xl lg:text-6xl">
+            <h2 className="mt-3 font-heading text-4xl uppercase tracking-wide text-navy sm:text-5xl lg:text-6xl">
               Meet The Team
             </h2>
 
@@ -573,7 +511,7 @@ export default function About() {
 
             </div>
 
-            <p className="mx-auto mt-7 max-w-3xl font-quote text-lg italic leading-relaxed text-beige/70">
+            <p className="mx-auto mt-7 max-w-3xl font-quote text-lg italic leading-relaxed text-slate">
               The passionate minds working together to bring Porikkalam 2026
               to life — driven by engineering, innovation, creativity and
               collaboration.
@@ -582,12 +520,12 @@ export default function About() {
           </motion.div>
 
           {/* Team Domains */}
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-14">
 
             {coreTeamDomains
-  .slice()
-  .sort((a, b) => a.order - b.order)
-  .map((domain) => {
+              .slice()
+              .sort((a, b) => a.order - b.order)
+              .map((domain, domainIndex) => {
 
                 const members = getMembersForDomain(domain.id);
                 const Icon = getIcon(domain.icon);
@@ -595,96 +533,43 @@ export default function About() {
                 return (
                   <motion.div
                     key={domain.id}
-                    initial={{
-                      opacity: 0,
-                      y: 40,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                      amount: 0.15,
-                    }}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{
-                      duration: 0.7,
+                      duration: 0.6,
                       ease: 'easeOut',
+                      delay: domainIndex * 0.05,
                     }}
-                    className="group relative overflow-hidden border border-gold/25 bg-navy/70 p-6 shadow-card backdrop-blur-sm sm:p-10"
+                    className="flex flex-col gap-6"
                   >
 
-                    {/* Card background */}
-                    <div className="absolute inset-0 bp-grid-bg opacity-[0.08]" />
-
-                    {/* Top glow */}
-                    <motion.div
-                      className="absolute left-1/2 top-0 h-px -translate-x-1/2 bg-gold shadow-[0_0_15px_rgba(212,175,55,0.9)]"
-                      initial={{ width: '15%' }}
-                      whileInView={{ width: '40%' }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 1,
-                        delay: 0.2,
-                      }}
-                    />
-
-                    {/* Corner ornaments */}
-                    <CornerOrnament
-                      corner="top-left"
-                      className="opacity-50"
-                    />
-
-                    <CornerOrnament
-                      corner="bottom-right"
-                      className="opacity-50"
-                    />
-
                     {/* Domain heading */}
-                    <div className="relative z-10 flex flex-col items-center gap-4 text-center">
+                    <div className="flex flex-wrap items-center gap-4 border-b border-navy/15 pb-5">
 
-                      <motion.div
-                        whileHover={{
-                          scale: 1.1,
-                          rotate: 5,
-                          boxShadow:
-                            '0 0 30px rgba(212,175,55,0.35)',
-                        }}
-                        className="flex h-16 w-16 items-center justify-center rounded-full border border-gold/60 bg-navy-deep text-gold transition-all duration-300"
-                      >
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 bg-white text-brown">
                         <Icon
-                          size={28}
+                          size={22}
                           strokeWidth={1.5}
                         />
-                      </motion.div>
+                      </div>
 
-                      <div>
+                      <div className="flex flex-1 flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
 
-                        <p className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-gold/70">
-                          Domain {String(domain.order).padStart(2, '0')}
-                        </p>
-
-                        <h3 className="mt-2 font-heading text-2xl uppercase tracking-wide text-cream sm:text-3xl">
+                        <h3 className="font-heading text-xl uppercase tracking-wide text-navy sm:text-2xl">
                           {domain.name}
                         </h3>
+
+                        <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-brown/80">
+                          {members.length} {members.length === 1 ? 'Member' : 'Members'}
+                        </span>
 
                       </div>
 
                     </div>
 
-                    {/* Gold divider */}
-                    <div className="relative z-10 my-8 flex items-center justify-center gap-3">
-
-                      <span className="h-px w-12 bg-gold/30" />
-
-                      <span className="h-1.5 w-1.5 rotate-45 bg-gold shadow-[0_0_10px_rgba(212,175,55,0.8)]" />
-
-                      <span className="h-px w-12 bg-gold/30" />
-
-                    </div>
-
                     {/* Members */}
-                    <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
                       {members.map((member, index) => (
                         <CoreTeamMemberCard

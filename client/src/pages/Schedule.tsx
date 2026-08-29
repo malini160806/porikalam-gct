@@ -354,35 +354,42 @@ function FlagshipCard({
           {description}
         </p>
 
-        {/* Venue + Duration */}
-        <div className="flex flex-col gap-2 border-t border-gold/15 pt-4">
-          <div className="flex items-center gap-2">
-            <MapPin
-              size={16}
-              className="text-gold"
-            />
+        {/* Footer: venue, duration, view details — pinned to the card's bottom
+            edge as one block so it lines up across cards regardless of how
+            many lines the description above wraps to. */}
+        <div className="mt-auto flex flex-col gap-4">
 
-            <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              {venue}
-            </span>
+          {/* Venue + Duration */}
+          <div className="flex flex-col gap-2 border-t border-gold/15 pt-4">
+            <div className="flex items-center gap-2">
+              <MapPin
+                size={16}
+                className="text-gold"
+              />
+
+              <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
+                {venue}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Clock
+                size={16}
+                className="text-gold"
+              />
+
+              <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
+                Full Day · 2 Days
+              </span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Clock
-              size={16}
-              className="text-gold"
-            />
-
-            <span className="font-body text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              Full Day · 2 Days
-            </span>
+          {/* View Details */}
+          <div className="flex items-center gap-2 font-body text-xs font-bold uppercase tracking-[0.2em] text-gold transition-transform duration-300 group-hover:translate-x-1">
+            View Details
+            <ArrowRight size={14} />
           </div>
-        </div>
 
-        {/* View Details */}
-        <div className="mt-auto flex items-center gap-2 pt-2 font-body text-xs font-bold uppercase tracking-[0.2em] text-gold transition-transform duration-300 group-hover:translate-x-1">
-          View Details
-          <ArrowRight size={14} />
         </div>
       </Link>
     </motion.div>

@@ -41,9 +41,8 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Tech Thiral', path: '/tech-thiral' },
   {
     label: 'Explore',
-    path: '/sponsors',
+    path: '/accommodation',
     children: [
-      { label: 'Sponsors', path: '/sponsors' },
       { label: 'Accommodation', path: '/accommodation' },
       { label: 'FAQ', path: '/faq' },
       { label: 'Announcements', path: '/announcements' },
@@ -83,7 +82,6 @@ export const FOOTER_LINKS = {
     { label: 'Leaderboard', path: '/leaderboard' },
   ],
   community: [
-    { label: 'Sponsors', path: '/sponsors' },
     { label: 'Media', path: '/media' },
   ],
   support: [

@@ -5,6 +5,7 @@ import type { CoreTeamDomain, CoreTeamMember } from './types';
  * Segregation list — the Team page renders this data dynamically, so future
  * additions or edits only require updating this file.
  */
+
 export const coreTeamDomains: CoreTeamDomain[] = [
   { id: 'technical-ops', name: 'Technical & Event Operations', icon: 'settings', order: 1 },
   { id: 'hospitality', name: 'Hospitality & Guest Relations', icon: 'users', order: 2 },
@@ -15,10 +16,11 @@ export const coreTeamDomains: CoreTeamDomain[] = [
 
 export const coreTeamMembers: CoreTeamMember[] = [
   // Technical & Event Operations
-  { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', order: 1 },
-  { id: 'ctm2', name: 'Kaviya R', domain: 'technical-ops', order: 2 },
-  { id: 'ctm4', name: 'Sivaa V', domain: 'technical-ops', order: 3 },
-  { id: 'ctm5', name: 'Jeevanagan T', domain: 'technical-ops', order: 4 },
+  { id: 'ctm0', name: 'Illamathi', role: 'Staff Coordinator', domain: 'technical-ops', order: 1 },
+  { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', order: 2 },
+  { id: 'ctm2', name: 'Kaviya R', domain: 'technical-ops', order: 3 },
+  { id: 'ctm4', name: 'Sivaa V', domain: 'technical-ops', order: 4 },
+  { id: 'ctm5', name: 'Jeevanagan T', domain: 'technical-ops', order: 5 },
 
   // Hospitality & Guest Relations
   { id: 'ctm6', name: 'Anfas Ali A', domain: 'hospitality', order: 1 },

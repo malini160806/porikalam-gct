@@ -42,9 +42,16 @@ export function CoreTeamMemberCard({ member, index = 0 }: CoreTeamMemberCardProp
         )}
       </motion.div>
 
-      <h4 className="min-w-0 flex-1 truncate font-heading text-base font-semibold tracking-wide text-navy">
-        {member.name}
-      </h4>
+      <div className="min-w-0 flex-1">
+        <h4 className="truncate font-heading text-base font-semibold tracking-wide text-navy">
+          {member.name}
+        </h4>
+        {member.role && (
+          <p className="truncate font-body text-xs font-medium uppercase tracking-wide text-brown/80">
+            {member.role}
+          </p>
+        )}
+      </div>
 
       {member.linkedin && (
         <a

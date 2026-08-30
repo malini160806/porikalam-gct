@@ -138,6 +138,7 @@ export type CoreTeamMember = {
   id: string;
   name: string;
   domain: string;
+  role?: string;
   photo?: string;
   linkedin?: string;
   email?: string;

@@ -45,7 +45,7 @@ export const EVENTS: EventItem[] = [
     description:
       'A team-based competition where participants solve real-world or problem-based challenges by developing software solutions within a fixed time. Teams brainstorm, code, test and present their solutions. The best-performing solution emerges as the winner.',
     format: 'team',
-    teamSize: 'Team',
+    teamSize: '4',
     formatMode: 'competition',
     prequalifierRequired: false,
     duration: '6 Hours',
@@ -67,7 +67,7 @@ export const EVENTS: EventItem[] = [
     description:
       'Participants are required to design and build their own robotic vehicle to navigate a specially designed obstacle track. Multiple checkpoints will be placed along the course. If a robot deviates from the track, overturns, or cannot proceed due to an obstacle, it will be repositioned at the last successfully crossed checkpoint and the run will resume with the prescribed time penalty. Only robots complying with the specified design and technical regulations will be allowed to participate — robots failing inspection will be disqualified before the competition begins.',
     format: 'team',
-    teamSize: 'Team',
+    teamSize: '3',
     formatMode: 'competition',
     prequalifierRequired: true,
     duration: 'Half Day',

@@ -60,10 +60,6 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
             {event.title}
           </h3>
 
-          <p className="mt-1.5 line-clamp-2 font-body text-xs leading-relaxed text-beige/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-            {event.description}
-          </p>
-
           <div className="mt-3 flex flex-wrap gap-2">
             {/* Team / Individual */}
             <StatPill

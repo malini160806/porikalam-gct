@@ -5,10 +5,13 @@ import { Event } from "../models/Event.js";
 import { User } from "../models/User.js";
 import { Registration } from "../models/Registration.js";
 import type { RegistrationTeammate } from "../models/Registration.js";
+import { PrequalifierSubmission } from "../models/PrequalifierSubmission.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { requireAuth, requireUserId } from "../middleware/auth.js";
 import { serializeEvent, serializeRegistration } from "../utils/serializers.js";
+import { uploadPpt } from "../utils/upload.js";
+import { sendPrequalifierConfirmationEmail } from "../utils/mailer.js";
 
 const router = Router();
 
@@ -82,8 +85,18 @@ router.post(
           })
         : [];
 
-    if (requestedUsernames.length > 0) {
+    if (event.teamType === "team") {
       const teamSizeLimit = Number.parseInt(event.teamSize, 10);
+      const minTeammates = Math.max((event.minTeamSize ?? 2) - 1, 0);
+
+      if (requestedUsernames.length < minTeammates) {
+        throw new ApiError(
+          400,
+          `This event needs teams of ${event.minTeamSize ?? 2} to ${event.teamSize} — add at least ${minTeammates} teammate(s).`,
+          "teammateUsernames",
+        );
+      }
+
       if (Number.isFinite(teamSizeLimit) && requestedUsernames.length > teamSizeLimit - 1) {
         throw new ApiError(
           400,
@@ -166,6 +179,58 @@ router.post(
     if (!leaderRegistration) throw new ApiError(500, "Registration failed. Please try again.");
 
     res.status(201).json({ registration: serializeRegistration(leaderRegistration) });
+  }),
+);
+
+const prequalifierSchema = z.object({
+  username: z.string().trim().min(1).max(40),
+  email: z.string().trim().email().max(120),
+  // Teammates arrive as a JSON-encoded array string since this is a multipart form body.
+  teammateUsernames: z.string().trim().optional(),
+  problemStatement: z.string().trim().max(200).optional(),
+});
+
+router.post(
+  "/:slug/prequalifier",
+  uploadPpt.single("ppt"),
+  asyncHandler(async (req, res) => {
+    const slug = String(req.params.slug).toLowerCase();
+    const event = await Event.findOne({ slug });
+    if (!event) throw new ApiError(404, "Event not found.");
+
+    const input = prequalifierSchema.parse(req.body);
+    if (!req.file) throw new ApiError(400, "Please upload your PPT to submit.", "ppt");
+
+    let teammateUsernames: string[] = [];
+    if (input.teammateUsernames) {
+      try {
+        const parsed: unknown = JSON.parse(input.teammateUsernames);
+        if (Array.isArray(parsed)) {
+          teammateUsernames = parsed.filter(
+            (value): value is string => typeof value === "string" && value.trim().length > 0,
+          );
+        }
+      } catch {
+        // Malformed input — treat as no teammates rather than failing the whole submission.
+      }
+    }
+
+    const pptUrl = `/uploads/ppts/${req.file.filename}`;
+
+    const submission = await PrequalifierSubmission.create({
+      eventId: event._id,
+      eventSlug: event.slug,
+      eventName: event.eventName,
+      username: input.username,
+      email: input.email,
+      teammateUsernames,
+      problemStatement: input.problemStatement ?? null,
+      pptUrl,
+    });
+
+    void sendPrequalifierConfirmationEmail(input.email, event.eventName);
+
+    res.status(201).json({ submissionId: submission._id.toString() });
   }),
 );
 

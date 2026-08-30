@@ -7,12 +7,14 @@ import {
   Wallet,
   Download,
   ArrowDown,
+  ArrowRight,
   Sparkle,
   Hourglass,
 } from 'lucide-react';
 
 import { PageHero } from '@/components/common/PageHero';
 import { PageLoader } from '@/components/common/PageLoader';
+import { Button } from '@/components/ui/Button';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { EVENT_CATEGORY_LABELS } from '@/data/eventMeta';
 import { getEventTheme } from '@/data/eventThemes';
@@ -152,6 +154,88 @@ function InfoCard({
           />
 
         </div>
+
+      </div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   RESOURCE BOX — Rule Book / Problem Statement download cards
+========================================================= */
+
+function ResourceBox({
+  eyebrow,
+  title,
+  comingSoonTitle,
+  comingSoonNote,
+  downloadUrl,
+  downloadLabel,
+  delay,
+}: {
+  eyebrow: string;
+  title: string;
+  comingSoonTitle: string;
+  comingSoonNote: string;
+  downloadUrl?: string;
+  downloadLabel: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay }}
+      className="mt-4 overflow-hidden border border-brown/20 bg-navy"
+    >
+      <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+
+        <div className="flex items-center gap-3">
+          <motion.div
+            animate={downloadUrl ? { y: [0, -2, 0] } : { rotate: 360 }}
+            transition={
+              downloadUrl
+                ? { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+                : { duration: 6, repeat: Infinity, ease: 'linear' }
+            }
+            className="flex h-9 w-9 shrink-0 items-center justify-center border border-[var(--accent)]/40 bg-[var(--accent)]/15 text-[var(--accent)]"
+          >
+            {downloadUrl ? <Download size={17} strokeWidth={1.6} /> : <Sparkle size={16} strokeWidth={1.6} />}
+          </motion.div>
+
+          <div>
+            <p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              {eyebrow}
+            </p>
+            <p className="mt-0.5 font-heading text-base font-semibold text-cream sm:text-lg">
+              {downloadUrl ? title : comingSoonTitle}
+            </p>
+            {!downloadUrl && <p className="mt-0.5 font-body text-sm text-cream/70">{comingSoonNote}</p>}
+          </div>
+        </div>
+
+        {downloadUrl ? (
+          <motion.a
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center justify-center gap-2 border border-[var(--accent)]/50 bg-[var(--accent)]/15 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-cream transition-all duration-300 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-navy sm:text-base"
+          >
+            <Download size={16} strokeWidth={1.8} />
+            <span>{downloadLabel}</span>
+            <ArrowDown size={14} className="transition-transform duration-300 group-hover:translate-y-1" />
+          </motion.a>
+        ) : (
+          <span
+            aria-disabled="true"
+            className="inline-flex cursor-not-allowed items-center justify-center gap-2 border border-cream/20 bg-white/5 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-cream/60 sm:text-base"
+          >
+            <Download size={16} strokeWidth={1.8} />
+            <span>Coming Soon</span>
+          </span>
+        )}
 
       </div>
     </motion.div>
@@ -573,110 +657,69 @@ export default function EventDetail() {
                   RULE BOOK
               ================================================== */}
 
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 18,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.55,
-                  delay: 1.2,
-                }}
-                className="mt-4 overflow-hidden border border-brown/20 bg-navy"
-              >
+              <ResourceBox
+                eyebrow="Event Rules"
+                title="Official Rule Book"
+                comingSoonTitle="Rule Book Coming Soon"
+                comingSoonNote="Detailed rules for this event will be published here shortly."
+                downloadUrl={event.ruleBook}
+                downloadLabel="Click Here to Download Rule Book"
+                delay={1.2}
+              />
 
-                <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+              {/* =================================================
+                  PREQUALIFIER ROUND (Problem Statement + Register)
+              ================================================== */}
 
-                  {/* RULE BOOK INFO */}
+              {event.prequalifierRequired && (
+                <>
+                  <ResourceBox
+                    eyebrow="Prequalifier Round"
+                    title="Problem Statement"
+                    comingSoonTitle="Problem Statement Coming Soon"
+                    comingSoonNote="Problem statements for the prequalifier round will be published here shortly."
+                    downloadUrl={event.problemStatementUrl}
+                    downloadLabel="Click Here to Download Problem Statement"
+                    delay={1.25}
+                  />
 
-                  <div className="flex items-center gap-3">
+                  <motion.div
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 1.3 }}
+                    className="mt-4 overflow-hidden border border-[var(--accent)]/50 bg-navy"
+                  >
+                    <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+                      <div className="flex items-center gap-3">
+                        <motion.div
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                          className="flex h-9 w-9 shrink-0 items-center justify-center border border-[var(--accent)]/50 bg-[var(--accent)]/20 text-[var(--accent)]"
+                        >
+                          <ArrowRight size={17} strokeWidth={1.8} />
+                        </motion.div>
+                        <div>
+                          <p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+                            Prequalifier Round
+                          </p>
+                          <p className="mt-0.5 font-heading text-base font-semibold text-cream sm:text-lg">
+                            Register for Prequalifier Round
+                          </p>
+                        </div>
+                      </div>
 
-                    <motion.div
-                      animate={
-                        event.ruleBook
-                          ? { y: [0, -2, 0] }
-                          : { rotate: 360 }
-                      }
-                      transition={
-                        event.ruleBook
-                          ? { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-                          : { duration: 6, repeat: Infinity, ease: 'linear' }
-                      }
-                      className="flex h-9 w-9 shrink-0 items-center justify-center border border-[var(--accent)]/40 bg-[var(--accent)]/15 text-[var(--accent)]"
-                    >
-                      {event.ruleBook ? (
-                        <Download size={17} strokeWidth={1.6} />
-                      ) : (
-                        <Sparkle size={16} strokeWidth={1.6} />
-                      )}
-                    </motion.div>
-
-                    <div>
-                      <p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
-                        Event Rules
-                      </p>
-
-                      <p className="mt-0.5 font-heading text-base font-semibold text-cream sm:text-lg">
-                        {event.ruleBook ? 'Official Rule Book' : 'Rule Book Coming Soon'}
-                      </p>
-
-                      {!event.ruleBook && (
-                        <p className="mt-0.5 font-body text-sm text-cream/70">
-                          Detailed rules for this event will be published here shortly.
-                        </p>
-                      )}
+                      <Button
+                        to={`/events/${event.id}/prequalifier`}
+                        variant="primary"
+                        size="md"
+                        icon={<ArrowRight size={14} />}
+                      >
+                        Register Now
+                      </Button>
                     </div>
-
-                  </div>
-
-                  {/* DOWNLOAD */}
-
-                  {event.ruleBook ? (
-                    <motion.a
-                      href={event.ruleBook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{
-                        scale: 1.02,
-                      }}
-                      whileTap={{
-                        scale: 0.98,
-                      }}
-                      className="group inline-flex items-center justify-center gap-2 border border-[var(--accent)]/50 bg-[var(--accent)]/15 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-cream transition-all duration-300 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-navy sm:text-base"
-                    >
-
-                      <Download
-                        size={16}
-                        strokeWidth={1.8}
-                      />
-
-                      <span>
-                        Click Here to Download Rule Book
-                      </span>
-
-                      <ArrowDown
-                        size={14}
-                        className="transition-transform duration-300 group-hover:translate-y-1"
-                      />
-
-                    </motion.a>
-                  ) : (
-                    <span
-                      aria-disabled="true"
-                      className="inline-flex cursor-not-allowed items-center justify-center gap-2 border border-cream/20 bg-white/5 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-cream/60 sm:text-base"
-                    >
-                      <Download size={16} strokeWidth={1.8} />
-                      <span>Coming Soon</span>
-                    </span>
-                  )}
-
-                </div>
-
-              </motion.div>
+                  </motion.div>
+                </>
+              )}
 
             </div>
 

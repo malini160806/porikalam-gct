@@ -11,8 +11,9 @@ export const UPLOADS_ROOT = process.env.VERCEL
   ? path.join(os.tmpdir(), "uploads")
   : path.resolve(process.cwd(), "uploads");
 export const PHOTOS_DIR = path.join(UPLOADS_ROOT, "photos");
+export const PPTS_DIR = path.join(UPLOADS_ROOT, "ppts");
 
-for (const dir of [PHOTOS_DIR]) {
+for (const dir of [PHOTOS_DIR, PPTS_DIR]) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
@@ -31,5 +32,17 @@ export const uploadPhoto = multer({
   limits: { fileSize: 3 * 1024 * 1024 },
   fileFilter: (_req, file, callback) => {
     callback(null, /^image\/(png|jpe?g|webp)$/.test(file.mimetype));
+  },
+});
+
+export const uploadPpt = multer({
+  storage: makeStorage(PPTS_DIR),
+  limits: { fileSize: 25 * 1024 * 1024 },
+  fileFilter: (_req, file, callback) => {
+    const isPpt =
+      /^application\/vnd\.(ms-powerpoint|openxmlformats-officedocument\.presentationml\.presentation)$/.test(
+        file.mimetype,
+      ) || /\.pptx?$/i.test(file.originalname);
+    callback(null, isPpt);
   },
 });

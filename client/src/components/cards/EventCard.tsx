@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Users, Wallet, Trophy } from 'lucide-react';
+import { Users, Wallet, Trophy, ArrowRight } from 'lucide-react';
 import type { EventItem } from '@/data/types';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
 import posterPlaceholder from '@/assets/heritage/gct-building-banner.png';
@@ -43,6 +43,17 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
           alt={event.poster ? `${event.title} poster` : ''}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
+
+        {event.prequalifierRequired && (
+          <motion.span
+            animate={{ opacity: [0.85, 1, 0.85] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 rounded-full border border-gold bg-gold px-3 py-1.5 font-body text-[11px] font-bold uppercase tracking-wide text-navy shadow-[0_4px_16px_-4px_rgba(212,175,55,0.8)]"
+          >
+            Click Here to Register
+            <ArrowRight size={12} />
+          </motion.span>
+        )}
 
         {!event.poster && (
           <div className="absolute inset-0 flex items-center justify-center bg-navy-deep/45">

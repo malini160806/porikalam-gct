@@ -12,6 +12,7 @@ const events: SeedEvent[] = [
     eventName: "SketchShift",
     slug: "sketchshift",
     category: "non-technical",
+    prizePool:"₹500",
     description:
       "Participants will be given a simple sketch and must think outside the box to transform it into something unexpected and creative. The most imaginative interpretation wins.",
     eligibility: OPEN_TO_ALL,
@@ -29,7 +30,6 @@ const events: SeedEvent[] = [
     resources: "Printed A4 Sheets",
     referenceLink: null,
     budget: "₹500",
-    prizePool: null,
     registrationFee: null,
     poster: null,
     icon: "pen-tool",
@@ -231,7 +231,7 @@ const events: SeedEvent[] = [
     whyIncluded:
       "Combines design, fabrication, programming, electronics, and problem-solving. It provides a hands-on engineering challenge around mobility and navigation.",
     teamType: "team",
-    teamSize: "Team",
+    teamSize: "3",
     eventType: "competition",
     prequalifierRequired: true,
     duration: "Half Day",
@@ -312,7 +312,8 @@ const events: SeedEvent[] = [
     whyIncluded:
       "Develops coding skills, logical thinking, problem-solving, teamwork and time management. It gives participants an opportunity to apply programming knowledge to practical challenges and build innovative software solutions.",
     teamType: "team",
-    teamSize: "Team",
+    teamSize: "4",
+    minTeamSize: 3,
     eventType: "competition",
     prequalifierRequired: false,
     duration: "6 Hours",

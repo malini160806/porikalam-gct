@@ -10,6 +10,7 @@ import {
   X,
   ArrowRight,
   Lock,
+  AlertTriangle,
 } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { PageLoader } from '@/components/common/PageLoader';
@@ -56,6 +57,7 @@ export default function RegisterEvents() {
   const [submitting, setSubmitting] = useState(false);
   const [outcomes, setOutcomes] = useState<Record<string, SubmitOutcome> | null>(null);
   const [validationAttempted, setValidationAttempted] = useState(false);
+  const [prequalifierNotice, setPrequalifierNotice] = useState<EventItem | null>(null);
 
   const selectedEvents = useMemo(
     () => events.filter((event) => cart[event.id]),
@@ -72,14 +74,25 @@ export default function RegisterEvents() {
     return Number.isFinite(teamSizeLimit) ? Math.max(teamSizeLimit - 1, 0) : undefined;
   }
 
+  /** Minimum required teammates (team headcount minus the leader) — defaults to 1 (team of 2) when unset. */
+  function getMinTeammates(event: EventItem): number {
+    return Math.max((event.minTeamSize ?? 2) - 1, 0);
+  }
+
   /** Returns a human-readable validation error for a selected event's cart item, or null if it's ready to submit. */
   function getEventError(event: EventItem, item: CartItem): string | null {
     if (event.format === 'team') {
+      if (!item.username.trim()) return 'Team leader username is required.';
+      if (user && item.username.trim().toLowerCase() !== user.username.toLowerCase()) {
+        return `Team leader username must match your account (${user.username}).`;
+      }
       if (!item.teamName.trim()) return 'Team name is required.';
       const filled = item.teammateUsernames.map((u) => u.trim()).filter(Boolean);
       const maxTeammates = getMaxTeammates(event);
-      if (filled.length < 1) {
-        return `Add at least 1 teammate — this event needs teams of 2 to ${event.teamSize}.`;
+      const minTeammates = getMinTeammates(event);
+      const minTeamSize = event.minTeamSize ?? 2;
+      if (filled.length < minTeammates) {
+        return `Add at least ${minTeammates} teammate${minTeammates === 1 ? '' : 's'} — this event needs teams of ${minTeamSize} to ${event.teamSize}.`;
       }
       if (maxTeammates !== undefined && filled.length > maxTeammates) {
         return `Too many teammates — this event allows teams of up to ${event.teamSize}.`;
@@ -95,6 +108,10 @@ export default function RegisterEvents() {
   }
 
   function toggleEvent(event: EventItem) {
+    if (event.prequalifierRequired && !cart[event.id]) {
+      setPrequalifierNotice(event);
+      return;
+    }
     setOutcomes(null);
     setShowPayment(false);
     setCart((prev) => {
@@ -289,9 +306,13 @@ export default function RegisterEvents() {
                   const isTeamEvent = event.format === 'team';
                   const fee = parseFee(event.registrationFee);
                   const maxTeammates = getMaxTeammates(event);
+                  const minTeammates = getMinTeammates(event);
+                  const minTeamSize = event.minTeamSize ?? 2;
                   const item = cart[event.id];
                   const eventError = isSelected ? getEventError(event, item) : null;
                   const showError = validationAttempted && eventError !== null;
+
+                  const requiresPrequalifier = event.prequalifierRequired && !alreadyRegistered && !isClosed;
 
                   return (
                     <div
@@ -300,45 +321,78 @@ export default function RegisterEvents() {
                         isSelected ? 'border-gold shadow-[0_10px_30px_-20px_rgba(212,175,55,0.6)]' : 'border-navy/10'
                       } ${isDisabled ? 'opacity-60' : ''}`}
                     >
-                      <label
-                        htmlFor={`event-${event.id}`}
-                        className={`flex items-center gap-4 p-4 sm:p-5 ${isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-                      >
-                        <input
-                          type="checkbox"
-                          id={`event-${event.id}`}
-                          checked={isSelected}
-                          disabled={isDisabled}
-                          onChange={() => !isDisabled && toggleEvent(event)}
-                          className="h-4 w-4 shrink-0 accent-[#d4af37] border border-navy/40"
-                        />
-
-                        <div className="min-w-0 flex-1">
-                          <p className="font-heading text-base font-semibold text-navy sm:text-lg">
-                            {event.title}
-                          </p>
-                          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 font-body text-xs text-slate">
-                            <span className="inline-flex items-center gap-1">
-                              <Users size={12} />
-                              {isTeamEvent ? `Team of ${event.teamSize}` : 'Individual'}
-                            </span>
-                            <span className="inline-flex items-center gap-1">
-                              <Wallet size={12} />
-                              {fee > 0 ? formatRupees(fee) : 'Free'}
-                            </span>
+                      {requiresPrequalifier ? (
+                        <div className="flex flex-col items-start gap-3 p-4 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
+                          <div className="min-w-0 flex-1">
+                            <p className="font-heading text-base font-semibold text-navy sm:text-lg">
+                              {event.title}
+                            </p>
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 font-body text-xs text-slate">
+                              <span className="inline-flex items-center gap-1">
+                                <Users size={12} />
+                                {isTeamEvent ? `Team of ${event.teamSize}` : 'Individual'}
+                              </span>
+                              <span className="inline-flex items-center gap-1">
+                                <Wallet size={12} />
+                                {fee > 0 ? formatRupees(fee) : 'Free'}
+                              </span>
+                              <span className="inline-flex items-center gap-1 text-brown">
+                                <AlertTriangle size={12} />
+                                Prequalifier Required
+                              </span>
+                            </div>
                           </div>
-                        </div>
 
-                        {alreadyRegistered ? (
-                          <span className="shrink-0 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wide text-brown">
-                            Registered
-                          </span>
-                        ) : isClosed ? (
-                          <span className="shrink-0 rounded-full border border-navy/20 bg-navy/5 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wide text-navy/60">
-                            Closed
-                          </span>
-                        ) : null}
-                      </label>
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={() => setPrequalifierNotice(event)}
+                            className="shrink-0"
+                          >
+                            Register Here for {event.title}
+                          </Button>
+                        </div>
+                      ) : (
+                        <label
+                          htmlFor={`event-${event.id}`}
+                          className={`flex items-center gap-4 p-4 sm:p-5 ${isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                        >
+                          <input
+                            type="checkbox"
+                            id={`event-${event.id}`}
+                            checked={isSelected}
+                            disabled={isDisabled}
+                            onChange={() => !isDisabled && toggleEvent(event)}
+                            className="h-4 w-4 shrink-0 accent-[#d4af37] border border-navy/40"
+                          />
+
+                          <div className="min-w-0 flex-1">
+                            <p className="font-heading text-base font-semibold text-navy sm:text-lg">
+                              {event.title}
+                            </p>
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 font-body text-xs text-slate">
+                              <span className="inline-flex items-center gap-1">
+                                <Users size={12} />
+                                {isTeamEvent ? `Team of ${event.teamSize}` : 'Individual'}
+                              </span>
+                              <span className="inline-flex items-center gap-1">
+                                <Wallet size={12} />
+                                {fee > 0 ? formatRupees(fee) : 'Free'}
+                              </span>
+                            </div>
+                          </div>
+
+                          {alreadyRegistered ? (
+                            <span className="shrink-0 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wide text-brown">
+                              Registered
+                            </span>
+                          ) : isClosed ? (
+                            <span className="shrink-0 rounded-full border border-navy/20 bg-navy/5 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wide text-navy/60">
+                              Closed
+                            </span>
+                          ) : null}
+                        </label>
+                      )}
 
                       {/* TEAM MEMBER BOX */}
                       <AnimatePresence>
@@ -352,8 +406,16 @@ export default function RegisterEvents() {
                           >
                             <div className="flex flex-col gap-3 p-4 sm:p-5">
                               <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
-                                Team Details — this event needs teams of 2 to {event.teamSize} members
+                                Team Details — this event needs teams of {minTeamSize} to {event.teamSize} members.
+                                Enter every participant&apos;s username, including yourself as team leader.
                               </p>
+
+                              <Input
+                                label="Team Leader Username *"
+                                value={item.username}
+                                onChange={(e) => updateUsername(event.id, e.target.value)}
+                                placeholder="Your Porikkalam username"
+                              />
 
                               <Input
                                 label="Team Name *"
@@ -400,7 +462,9 @@ export default function RegisterEvents() {
 
                               <p className="font-body text-xs text-slate/60">
                                 Teammates must already have a Porikkalam account — they register on the site first,
-                                then you add their username here. At least 1 teammate is required (team of 2 minimum).
+                                then you add their username here. At least {minTeammates} teammate
+                                {minTeammates === 1 ? '' : 's'} {minTeammates === 1 ? 'is' : 'are'} required (team of{' '}
+                                {minTeamSize} minimum).
                               </p>
 
                               {showError && (
@@ -573,6 +637,51 @@ export default function RegisterEvents() {
           )}
         </div>
       </section>
+
+      <AnimatePresence>
+        {prequalifierNotice && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-navy-deep/70 p-4"
+            onClick={() => setPrequalifierNotice(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-sm border border-gold/40 bg-white p-6 text-center shadow-2xl"
+            >
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-gold/10 text-brown">
+                <AlertTriangle size={22} strokeWidth={1.6} />
+              </div>
+
+              <h3 className="mt-4 font-heading text-lg font-semibold text-navy">Prequalifier Required</h3>
+
+              <p className="mt-2 font-body text-sm text-slate">
+                {prequalifierNotice.title} requires a prequalifier round. Please register for{' '}
+                {prequalifierNotice.title} directly from its event page.
+              </p>
+
+              <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => setPrequalifierNotice(null)}
+                >
+                  Cancel
+                </Button>
+                <Button to={`/events/${prequalifierNotice.id}`} variant="primary" size="sm" className="flex-1">
+                  Go to {prequalifierNotice.title} Page
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

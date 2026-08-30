@@ -15,6 +15,8 @@ export type EventItem = {
   format: EventFormat;
   /** Explicit team size as given by the organizers: 'Individual', 'Team', or a headcount like '4'. */
   teamSize: string;
+  /** Smallest allowed team headcount for team events — defaults to 2 (i.e. at least 1 teammate) when unset. */
+  minTeamSize?: number;
   formatMode: EventFormatMode;
   prequalifierRequired: boolean;
   duration: string;
@@ -31,6 +33,10 @@ export type EventItem = {
   registrationFee?: string;
   /** URL to a downloadable rules & regulations document. Rule Book section is hidden when absent. */
   ruleBook?: string;
+  /** URL to a downloadable problem statement document — prequalifier events only. */
+  problemStatementUrl?: string;
+  /** Selectable problem statement titles for the prequalifier submission form. */
+  problemStatements?: string[];
   icon: string;
   /** Official event poster/artwork. Falls back to a heritage-themed placeholder when absent. */
   poster?: string;

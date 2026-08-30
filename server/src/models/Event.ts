@@ -16,6 +16,8 @@ export interface EventDoc {
   whyIncluded?: string | null;
   teamType: EventTeamType;
   teamSize: string;
+  /** Smallest allowed team headcount — defaults to 2 (i.e. at least 1 teammate) when unset. */
+  minTeamSize?: number | null;
   eventType: EventType;
   prequalifierRequired: boolean;
   duration: string;
@@ -47,6 +49,7 @@ const eventSchema = new Schema<EventDoc>(
     whyIncluded: { type: String, trim: true, default: null },
     teamType: { type: String, required: true, enum: ["individual", "team"] },
     teamSize: { type: String, required: true, trim: true },
+    minTeamSize: { type: Number, default: null },
     eventType: { type: String, required: true, enum: ["competition", "participation"] },
     prequalifierRequired: { type: Boolean, required: true, default: false },
     duration: { type: String, required: true, trim: true },

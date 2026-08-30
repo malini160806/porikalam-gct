@@ -47,6 +47,7 @@ export const EVENTS: EventItem[] = [
       'A team-based competition where participants solve real-world or problem-based challenges by developing software solutions within a fixed time. Teams brainstorm, code, test and present their solutions. The best-performing solution emerges as the winner.',
     format: 'team',
     teamSize: '4',
+    minTeamSize: 3,
     formatMode: 'competition',
     prequalifierRequired: true,
     duration: '6 Hours',

@@ -4,22 +4,22 @@ import { Button } from '@/components/ui/Button';
 
 const FEATURED_EVENTS = [
   {
-    name: 'SketchShift',
+    name: 'Hackonex',
     description:
       'Unleash your creativity by transforming ideas into expressive sketches and unique visual concepts.',
   },
   {
-    name: 'Civil CBI',
+    name: 'Robo Rally',
     description:
       'Put your civil engineering knowledge to the test through challenging real-world construction scenarios.',
   },
   {
-    name: 'FlightCraft',
+    name: 'Robo Soccer',
     description:
       'Design, build and launch a paper glider while testing creativity, balance and aerodynamic thinking.',
   },
   {
-    name: 'SkyWorks',
+    name: 'Flight Craft',
     description:
       'Take on an exciting engineering challenge where design, precision and innovation come together.',
   },
@@ -199,16 +199,6 @@ export function EventCategories() {
 
               {/* Content */}
               <div className="relative">
-
-                {/* Event number */}
-                <motion.span
-                  className="block font-body text-[10px] font-bold tracking-[0.35em] text-gold/50"
-                  whileHover={{
-                    color: 'rgba(212,175,55,0.95)',
-                  }}
-                >
-                  {String(index + 1).padStart(2, '0')}
-                </motion.span>
 
                 {/* Event name */}
                 <motion.h3

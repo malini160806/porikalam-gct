@@ -39,6 +39,11 @@
     box-sizing: border-box;
   }
 
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+
   html {
     scroll-behavior: smooth;
   }

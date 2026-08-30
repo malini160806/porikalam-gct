@@ -7,10 +7,6 @@ import {
   Wallet,
   Download,
   ArrowDown,
-  MapPin,
-  Trophy,
-  Lightbulb,
-  Tag,
   Sparkle,
   Hourglass,
 } from 'lucide-react';
@@ -19,16 +15,10 @@ import { PageHero } from '@/components/common/PageHero';
 import { PageLoader } from '@/components/common/PageLoader';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
 import { EVENT_CATEGORY_LABELS } from '@/data/eventMeta';
+import { getEventTheme } from '@/data/eventThemes';
+import { EventThemeBackdrop, EventThemeIconFrame } from '@/components/events/EventThemeArt';
 import { useEvent } from '@/hooks/useEvents';
-import type { EventItem } from '@/data/types';
 import NotFound from './NotFound';
-
-/** Per-category accent — drives every themed color on this page via the `--accent` CSS variable. */
-const CATEGORY_ACCENT: Record<EventItem['category'], string> = {
-  premium: '#d4af37',
-  technical: '#3891ff',
-  'non-technical': '#a46621',
-};
 
 /* =========================================================
    WORD BY WORD ANIMATION
@@ -151,13 +141,13 @@ function InfoCard({
         {/* TEXT */}
         <div className="min-w-0 flex-1">
 
-          <p className="font-body text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--accent)]">
+          <p className="font-body text-xs font-bold uppercase tracking-[0.15em] text-[var(--accent)]">
             {label}
           </p>
 
           <AnimatedText
             text={value}
-            className="mt-1 block font-heading text-sm font-semibold leading-6 text-navy sm:text-base"
+            className="mt-1 block font-heading text-lg font-semibold leading-7 text-navy sm:text-xl"
             delay={delay + 0.15}
           />
 
@@ -195,7 +185,8 @@ export default function EventDetail() {
     event.registrationFee || 'Free';
 
   const registrationStatus = event.registrationStatus ?? 'open';
-  const accent = CATEGORY_ACCENT[event.category];
+  const theme = getEventTheme(event);
+  const accent = theme.accent;
 
   return (
     <>
@@ -218,33 +209,9 @@ export default function EventDetail() {
         style={{ '--accent': accent } as React.CSSProperties}
       >
 
-        {/* BACKGROUND DECORATION */}
+        {/* EVENT-SPECIFIC BACKGROUND DECORATION */}
 
-        <motion.div
-          animate={{
-            scale: [1, 1.08, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="pointer-events-none absolute -left-40 top-10 h-80 w-80 rounded-full bg-[var(--accent)]/10 blur-3xl"
-        />
-
-        <motion.div
-          animate={{
-            scale: [1.08, 1, 1.08],
-            opacity: [0.25, 0.45, 0.25],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="pointer-events-none absolute -right-40 bottom-10 h-80 w-80 rounded-full bg-gold/5 blur-3xl"
-        />
+        <EventThemeBackdrop theme={theme} />
 
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
@@ -286,12 +253,13 @@ export default function EventDetail() {
                 type: 'spring',
                 stiffness: 120,
               }}
-              className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent)]/40 bg-white/75 p-4 text-[var(--accent)] shadow-[0_10px_30px_-15px_var(--accent)] backdrop-blur-sm"
             >
-              <Icon
-                className="h-full w-full"
-                strokeWidth={1.3}
-              />
+              <EventThemeIconFrame theme={theme}>
+                <Icon
+                  className="h-full w-full p-4"
+                  strokeWidth={1.3}
+                />
+              </EventThemeIconFrame>
             </motion.div>
 
             {/* LABEL */}
@@ -329,7 +297,7 @@ export default function EventDetail() {
                 duration: 0.5,
                 delay: 0.4,
               }}
-              className="mt-1 font-heading text-2xl font-bold tracking-wide text-navy sm:text-3xl"
+              className="mt-1 font-heading text-3xl font-bold tracking-wide text-navy sm:text-4xl lg:text-5xl"
             >
               {event.title}
             </motion.h2>
@@ -465,7 +433,7 @@ export default function EventDetail() {
                     duration: 0.4,
                     delay: 0.45,
                   }}
-                  className="font-body text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--accent)]"
+                  className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--accent)]"
                 >
                   About The Event
                 </motion.p>
@@ -483,14 +451,14 @@ export default function EventDetail() {
                     duration: 0.45,
                     delay: 0.5,
                   }}
-                  className="mt-1 font-heading text-xl font-semibold text-navy sm:text-2xl"
+                  className="mt-1 font-heading text-2xl font-semibold text-navy sm:text-3xl"
                 >
                   {event.title}
                 </motion.h3>
 
                 {/* WORD BY WORD DESCRIPTION */}
 
-                <div className="mx-auto mt-3 max-w-3xl font-body text-sm leading-7 text-slate sm:text-base">
+                <div className="mx-auto mt-3 max-w-3xl font-body text-lg leading-8 text-slate sm:text-xl">
                   <AnimatedText
                     text={event.description}
                     delay={0.65}
@@ -599,92 +567,7 @@ export default function EventDetail() {
                   delay={0.95}
                 />
 
-                <InfoCard
-                  icon={
-                    <MapPin
-                      size={20}
-                      strokeWidth={1.5}
-                    />
-                  }
-                  label="Venue"
-                  value={event.venue}
-                  delay={1.0}
-                />
-
-                {event.prizePool && (
-                  <InfoCard
-                    icon={
-                      <Trophy
-                        size={20}
-                        strokeWidth={1.5}
-                      />
-                    }
-                    label="Prize Pool"
-                    value={event.prizePool}
-                    delay={1.05}
-                  />
-                )}
-
               </div>
-
-              {/* =================================================
-                  PRIMARY DOMAINS
-              ================================================== */}
-
-              {event.primaryDomains && event.primaryDomains.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1 }}
-                  className="mt-4 flex flex-wrap items-center gap-2 border border-[var(--accent)]/20 bg-cream/60 p-4"
-                >
-                  <span className="flex items-center gap-1.5 font-body text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--accent)]">
-                    <Tag size={12} /> Primary Domains
-                  </span>
-                  {event.primaryDomains.map((domain, index) => (
-                    <motion.span
-                      key={domain}
-                      initial={{ opacity: 0, scale: 0.85 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 1.15 + index * 0.05 }}
-                      className="rounded-full border border-[var(--accent)]/30 bg-white/70 px-2.5 py-1 font-body text-[10px] font-semibold uppercase tracking-wide text-navy"
-                    >
-                      {domain}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              )}
-
-              {/* =================================================
-                  WHY THIS EVENT
-              ================================================== */}
-
-              {event.whyIncluded && (
-                <motion.div
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: 1.15 }}
-                  className="relative mt-4 overflow-hidden border-l-2 border-[var(--accent)] bg-[var(--accent)]/8 p-4 sm:p-5"
-                >
-                  <div className="flex items-start gap-3">
-                    <motion.div
-                      animate={{ rotate: [0, 12, -8, 0] }}
-                      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                      className="flex h-9 w-9 shrink-0 items-center justify-center border border-[var(--accent)]/40 bg-white/70 text-[var(--accent)]"
-                    >
-                      <Lightbulb size={17} strokeWidth={1.6} />
-                    </motion.div>
-                    <div>
-                      <p className="font-body text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
-                        Why This Event
-                      </p>
-                      <p className="mt-1 font-body text-sm leading-6 text-slate">
-                        {event.whyIncluded}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
 
               {/* =================================================
                   RULE BOOK
@@ -733,16 +616,16 @@ export default function EventDetail() {
                     </motion.div>
 
                     <div>
-                      <p className="font-body text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+                      <p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
                         Event Rules
                       </p>
 
-                      <p className="mt-0.5 font-heading text-sm font-semibold text-cream">
+                      <p className="mt-0.5 font-heading text-base font-semibold text-cream sm:text-lg">
                         {event.ruleBook ? 'Official Rule Book' : 'Rule Book Coming Soon'}
                       </p>
 
                       {!event.ruleBook && (
-                        <p className="mt-0.5 font-body text-xs text-cream/60">
+                        <p className="mt-0.5 font-body text-sm text-cream/70">
                           Detailed rules for this event will be published here shortly.
                         </p>
                       )}
@@ -763,11 +646,11 @@ export default function EventDetail() {
                       whileTap={{
                         scale: 0.98,
                       }}
-                      className="group inline-flex items-center justify-center gap-2 border border-[var(--accent)]/50 bg-[var(--accent)]/15 px-4 py-2.5 font-body text-[10px] font-bold uppercase tracking-wider text-cream transition-all duration-300 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-navy"
+                      className="group inline-flex items-center justify-center gap-2 border border-[var(--accent)]/50 bg-[var(--accent)]/15 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-cream transition-all duration-300 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-navy sm:text-base"
                     >
 
                       <Download
-                        size={14}
+                        size={16}
                         strokeWidth={1.8}
                       />
 
@@ -776,7 +659,7 @@ export default function EventDetail() {
                       </span>
 
                       <ArrowDown
-                        size={12}
+                        size={14}
                         className="transition-transform duration-300 group-hover:translate-y-1"
                       />
 
@@ -784,9 +667,9 @@ export default function EventDetail() {
                   ) : (
                     <span
                       aria-disabled="true"
-                      className="inline-flex cursor-not-allowed items-center justify-center gap-2 border border-cream/15 bg-white/5 px-4 py-2.5 font-body text-[10px] font-bold uppercase tracking-wider text-cream/40"
+                      className="inline-flex cursor-not-allowed items-center justify-center gap-2 border border-cream/20 bg-white/5 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-cream/60 sm:text-base"
                     >
-                      <Download size={14} strokeWidth={1.8} />
+                      <Download size={16} strokeWidth={1.8} />
                       <span>Coming Soon</span>
                     </span>
                   )}

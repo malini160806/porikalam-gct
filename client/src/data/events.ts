@@ -111,6 +111,7 @@ export const EVENTS: EventItem[] = [
 poster: civilCbi,
     id: 'civil-cbi',
     registrationFee: '₹149',
+    prizePool: '₹2,250',
     title: 'Civil CBI',
     category: 'technical',
     description:
@@ -134,6 +135,7 @@ poster: civilCbi,
     poster: structron,
     id: 'structron',
     registrationFee: '₹149',
+    prizePool: '₹2,250',
     title: 'Structron',
     category: 'technical',
     description:

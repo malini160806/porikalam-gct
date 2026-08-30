@@ -29,6 +29,8 @@ export type EventItem = {
   budget?: string;
   prizePool?: string;
   registrationFee?: string;
+  /** URL to a downloadable rules & regulations document. Rule Book section is hidden when absent. */
+  ruleBook?: string;
   icon: string;
   /** Official event poster/artwork. Falls back to a heritage-themed placeholder when absent. */
   poster?: string;
@@ -144,3 +146,4 @@ export type CoreTeamMember = {
   email?: string;
   order: number;
 };
+

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Users, Wallet } from 'lucide-react';
+import { Users, Wallet, Trophy } from 'lucide-react';
 import type { EventItem } from '@/data/types';
 import { getEventIconComponent } from '@/components/icons/EventIcons';
 import posterPlaceholder from '@/assets/heritage/gct-building-banner.png';
@@ -31,7 +31,8 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
       transition={{ duration: 0.5, delay: index * 0.06 }}
       whileHover={{
         y: -6,
-        boxShadow: '0 12px 36px -8px rgba(212,175,55,0.45), 0 8px 24px -10px rgba(61,90,117,0.35)',
+        boxShadow:
+          '0 12px 36px -8px rgba(212,175,55,0.45), 0 8px 24px -10px rgba(61,90,117,0.35)',
         borderColor: 'rgba(212,175,55,0.8)',
       }}
       className="group relative h-80 overflow-hidden rounded-sm border border-gold/30 shadow-card transition-colors duration-300"
@@ -42,6 +43,7 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
           alt={event.poster ? `${event.title} poster` : ''}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
+
         {!event.poster && (
           <div className="absolute inset-0 flex items-center justify-center bg-navy-deep/45">
             <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-gold/60 bg-navy-deep/60 p-3 text-gold shadow-[0_0_24px_-4px_rgba(212,175,55,0.5)] backdrop-blur-sm">
@@ -63,11 +65,31 @@ export function EventCard({ event, index = 0 }: EventCardProps) {
           </p>
 
           <div className="mt-3 flex flex-wrap gap-2">
+            {/* Team / Individual */}
             <StatPill
               icon={<Users size={13} />}
-              label={event.format === 'team' ? `Team of ${event.teamSize}` : 'Individual'}
+              label={
+                event.format === 'team'
+                  ? `Team of ${event.teamSize}`
+                  : 'Individual'
+              }
             />
-            {event.registrationFee && <StatPill icon={<Wallet size={13} />} label={event.registrationFee} />}
+
+            {/* Registration Fee */}
+            {event.registrationFee && (
+              <StatPill
+                icon={<Wallet size={13} />}
+                label={event.registrationFee}
+              />
+            )}
+
+            {/* Prize Pool */}
+            {event.prizePool && (
+              <StatPill
+                icon={<Trophy size={13} />}
+                label={`Prize Pool: ${event.prizePool}`}
+              />
+            )}
           </div>
         </div>
       </Link>

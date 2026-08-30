@@ -23,7 +23,7 @@ import {
 
 import { getIcon } from '@/routes/utils/icons';
 
-import templeGopuram from '@/assets/heritage/temple-gopuram-detailed.webp';
+import gct from '@/assets/heritage/colorgct.png';
 import heroPanorama from '@/assets/hero/ancient-futuristic-panorama.webp';
 
 import { EraJourney } from '@/components/home/EraJourney';
@@ -72,10 +72,7 @@ const atAGlance = [
     label: 'Date & Time',
     value: 'September 25–26, 2026 | 9 AM – 6 PM',
   },
-  {
-    label: 'Theme',
-    value: 'Engineering through the ages',
-  },
+  
   {
     label: 'Participants',
     value:
@@ -89,7 +86,7 @@ const atAGlance = [
   {
     label: 'Focus',
     value:
-      'Competition | Innovation | Entrepreneurship | Industry Connect',
+      ' Entrepreneurship | Innovation | Industry Connect | Competition',
   },
 ];
 
@@ -171,24 +168,22 @@ export default function About() {
             />
 
             <p className="font-quote text-xl italic leading-relaxed text-slate">
-              PORIKKALAM 2026 is the inaugural flagship Engineering, Innovation,
-              and Entrepreneurship event presented by Government College of
-              Technology, Coimbatore, and organized by the DCKAP Incubation
-              Centre. Named after the traditional threshing floor where grain
-              was separated from chaff, Porikkalam represents the refining
-              process innovation goes through before it becomes impact.
+             PORIKKALAM 2026 is the inaugural flagship Engineering, 
+             Innovation, and Entrepreneurship event of Government College of Technology,
+              Coimbatore, presented by the DCKAP Incubation Centre. The event is scheduled 
+              to be held on 25th and 26th September 2026 (Friday & Saturday), from 9:00 AM to 6:00 PM. 
             </p>
 
             <p className="font-quote text-xl italic leading-relaxed text-slate">
-              It brings together students, academia, industry, startups,
-              researchers, and innovators on a common platform to compete,
-              collaborate, innovate, and create through technical challenges,
-              project showcases, startup activities, and expert interactions —
-              over two days, 25–26 September 2026.
+              It brings together students, academia, industry, startups, researchers, 
+              and innovators on a common platform to compete, collaborate, innovate, 
+              and create through technical challenges, project showcases, startup activities, 
+              workshops, and expert interactions. More than a festival, Porikkalam is an arena 
+              where ideas meet opportunity and engineering meets impact
             </p>
 
             <p className="font-body text-sm font-semibold uppercase tracking-widest text-brown">
-              Where Engineers Compete. Ideas Connect. Innovation Begins.
+           Where Engineers Compete. Ideas Connect. Innovation Begins.           
             </p>
           </motion.div>
 
@@ -200,7 +195,7 @@ export default function About() {
             className="order-1 flex items-center justify-center lg:order-2"
           >
             <img
-              src={templeGopuram}
+              src={gct}
               alt="Detailed sketch of a South Indian temple gopuram"
               className="w-full max-w-sm border border-gold/30 shadow-card sm:max-w-md"
             />
@@ -337,11 +332,11 @@ export default function About() {
           />
 
           <p className="mt-8 font-body text-sm leading-relaxed text-slate">
-            Government College of Technology, Coimbatore has trained
-            generations of engineers across various disciplines. Porikkalam channels that
-            same institutional depth into two days of student-run competition
-            and craft — a symposium built by the college's own students, for
-            students everywhere.
+            Established in 1945, Government College of Technology (GCT), Coimbatore, 
+            is one of Tamil Nadu's premier engineering institutions, renowned for its
+             excellence in technical education, research, and innovation. For nearly eight decades,
+              GCT has empowered generations of engineers, researchers, entrepreneurs, and industry leaders
+               who continue to make meaningful contributions across industries, academia, and society.
           </p>
 
         </div>
@@ -559,10 +554,6 @@ export default function About() {
                         <h3 className="font-heading text-xl uppercase tracking-wide text-navy sm:text-2xl">
                           {domain.name}
                         </h3>
-
-                        <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-brown/80">
-                          {members.length} {members.length === 1 ? 'Member' : 'Members'}
-                        </span>
 
                       </div>
 

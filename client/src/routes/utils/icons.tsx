@@ -27,6 +27,7 @@ import {
   Factory,
   Bug,
   ClipboardList,
+  UserCheck,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -59,6 +60,7 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   factory: Factory,
   bug: Bug,
   'clipboard-list': ClipboardList,
+  'user-check': UserCheck,
 };
 
 export function getIcon(name: string): LucideIcon {

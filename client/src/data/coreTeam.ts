@@ -7,20 +7,23 @@ import type { CoreTeamDomain, CoreTeamMember } from './types';
  */
 
 export const coreTeamDomains: CoreTeamDomain[] = [
-  { id: 'technical-ops', name: 'Technical & Event Operations', icon: 'settings', order: 1 },
-  { id: 'hospitality', name: 'Hospitality & Guest Relations', icon: 'users', order: 2 },
-  { id: 'web-tech', name: 'Web & Tech Support', icon: 'terminal-square', order: 3 },
-  { id: 'sponsorship-finance', name: 'Sponsorship & Finance', icon: 'landmark', order: 4 },
-  { id: 'marketing-branding', name: 'Marketing & Branding, Syscom, Decom', icon: 'pen-tool', order: 5 },
+  { id: 'staff-coordinator', name: 'Staff Coordinator', icon: 'user-check', order: 1 },
+  { id: 'technical-ops', name: 'Technical & Event Operations', icon: 'settings', order: 2 },
+  { id: 'hospitality', name: 'Hospitality & Guest Relations', icon: 'users', order: 3 },
+  { id: 'web-tech', name: 'Web & Tech Support', icon: 'terminal-square', order: 4 },
+  { id: 'sponsorship-finance', name: 'Sponsorship & Finance', icon: 'landmark', order: 5 },
+  { id: 'marketing-branding', name: 'Marketing & Branding, Syscom, Decom', icon: 'pen-tool', order: 6 },
 ];
 
 export const coreTeamMembers: CoreTeamMember[] = [
+  // Staff Coordinator
+  { id: 'ctm0', name: 'Illamathi', role: 'Staff Coordinator', domain: 'staff-coordinator', order: 1 },
+
   // Technical & Event Operations
-  { id: 'ctm0', name: 'Illamathi', role: 'Staff Coordinator', domain: 'technical-ops', order: 1 },
-  { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', order: 2 },
-  { id: 'ctm2', name: 'Kaviya R', domain: 'technical-ops', order: 3 },
-  { id: 'ctm4', name: 'Sivaa V', domain: 'technical-ops', order: 4 },
-  { id: 'ctm5', name: 'Jeevanagan T', domain: 'technical-ops', order: 5 },
+  { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', order: 1 },
+  { id: 'ctm2', name: 'Kaviya R', domain: 'technical-ops', order: 2 },
+  { id: 'ctm4', name: 'Sivaa V', domain: 'technical-ops', order: 3 },
+  { id: 'ctm5', name: 'Jeevanagan T', domain: 'technical-ops', order: 4 },
 
   // Hospitality & Guest Relations
   { id: 'ctm6', name: 'Anfas Ali A', domain: 'hospitality', order: 1 },

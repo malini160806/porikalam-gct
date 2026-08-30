@@ -25,6 +25,7 @@ import type { EventItem } from '@/data/types';
 type CartItem = {
   teamName: string;
   teammateUsernames: string[];
+  username: string;
 };
 
 type SubmitOutcome = { status: 'success' } | { status: 'error'; message: string };
@@ -54,6 +55,7 @@ export default function RegisterEvents() {
   const [paymentReference, setPaymentReference] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [outcomes, setOutcomes] = useState<Record<string, SubmitOutcome> | null>(null);
+  const [validationAttempted, setValidationAttempted] = useState(false);
 
   const selectedEvents = useMemo(
     () => events.filter((event) => cart[event.id]),
@@ -65,6 +67,33 @@ export default function RegisterEvents() {
     [selectedEvents],
   );
 
+  function getMaxTeammates(event: EventItem): number | undefined {
+    const teamSizeLimit = Number.parseInt(event.teamSize, 10);
+    return Number.isFinite(teamSizeLimit) ? Math.max(teamSizeLimit - 1, 0) : undefined;
+  }
+
+  /** Returns a human-readable validation error for a selected event's cart item, or null if it's ready to submit. */
+  function getEventError(event: EventItem, item: CartItem): string | null {
+    if (event.format === 'team') {
+      if (!item.teamName.trim()) return 'Team name is required.';
+      const filled = item.teammateUsernames.map((u) => u.trim()).filter(Boolean);
+      const maxTeammates = getMaxTeammates(event);
+      if (filled.length < 1) {
+        return `Add at least 1 teammate — this event needs teams of 2 to ${event.teamSize}.`;
+      }
+      if (maxTeammates !== undefined && filled.length > maxTeammates) {
+        return `Too many teammates — this event allows teams of up to ${event.teamSize}.`;
+      }
+      return null;
+    }
+
+    if (!item.username.trim()) return 'Your username is required.';
+    if (user && item.username.trim().toLowerCase() !== user.username.toLowerCase()) {
+      return `Username must match your account (${user.username}).`;
+    }
+    return null;
+  }
+
   function toggleEvent(event: EventItem) {
     setOutcomes(null);
     setShowPayment(false);
@@ -74,12 +103,19 @@ export default function RegisterEvents() {
         delete next[event.id];
         return next;
       }
-      return { ...prev, [event.id]: { teamName: '', teammateUsernames: [''] } };
+      return {
+        ...prev,
+        [event.id]: { teamName: '', teammateUsernames: [''], username: user?.username ?? '' },
+      };
     });
   }
 
   function updateTeamName(eventId: string, value: string) {
     setCart((prev) => ({ ...prev, [eventId]: { ...prev[eventId], teamName: value } }));
+  }
+
+  function updateUsername(eventId: string, value: string) {
+    setCart((prev) => ({ ...prev, [eventId]: { ...prev[eventId], username: value } }));
   }
 
   function updateTeammate(eventId: string, index: number, value: string) {
@@ -108,6 +144,15 @@ export default function RegisterEvents() {
         teammateUsernames: prev[eventId].teammateUsernames.filter((_, i) => i !== index),
       },
     }));
+  }
+
+  function handleRegisterNowClick() {
+    const hasErrors = selectedEvents.some((event) => getEventError(event, cart[event.id]) !== null);
+    if (hasErrors) {
+      setValidationAttempted(true);
+      return;
+    }
+    setShowPayment(true);
   }
 
   async function handleConfirmAndSubmit() {
@@ -243,8 +288,10 @@ export default function RegisterEvents() {
                   const isDisabled = alreadyRegistered || isClosed;
                   const isTeamEvent = event.format === 'team';
                   const fee = parseFee(event.registrationFee);
-                  const teamSizeLimit = Number.parseInt(event.teamSize, 10);
-                  const maxTeammates = Number.isFinite(teamSizeLimit) ? Math.max(teamSizeLimit - 1, 0) : undefined;
+                  const maxTeammates = getMaxTeammates(event);
+                  const item = cart[event.id];
+                  const eventError = isSelected ? getEventError(event, item) : null;
+                  const showError = validationAttempted && eventError !== null;
 
                   return (
                     <div
@@ -295,7 +342,7 @@ export default function RegisterEvents() {
 
                       {/* TEAM MEMBER BOX */}
                       <AnimatePresence>
-                        {isSelected && isTeamEvent && (
+                        {isSelected && isTeamEvent && item && (
                           <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
@@ -305,27 +352,27 @@ export default function RegisterEvents() {
                           >
                             <div className="flex flex-col gap-3 p-4 sm:p-5">
                               <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
-                                Team Details {maxTeammates !== undefined && `(up to ${maxTeammates} teammate${maxTeammates === 1 ? '' : 's'})`}
+                                Team Details — this event needs teams of 2 to {event.teamSize} members
                               </p>
 
                               <Input
-                                label="Team Name (optional)"
-                                value={cart[event.id].teamName}
+                                label="Team Name *"
+                                value={item.teamName}
                                 onChange={(e) => updateTeamName(event.id, e.target.value)}
                                 placeholder="Enter your team name"
                               />
 
                               <div className="flex flex-col gap-2">
-                                {cart[event.id].teammateUsernames.map((username, index) => (
+                                {item.teammateUsernames.map((username, index) => (
                                   <div key={index} className="flex items-end gap-2">
                                     <Input
-                                      label={index === 0 ? 'Teammate Username(s)' : undefined}
+                                      label={index === 0 ? 'Teammate Username(s) *' : undefined}
                                       value={username}
                                       onChange={(e) => updateTeammate(event.id, index, e.target.value)}
                                       placeholder="Existing Porikkalam username"
                                       className="flex-1"
                                     />
-                                    {cart[event.id].teammateUsernames.length > 1 && (
+                                    {item.teammateUsernames.length > 1 && (
                                       <button
                                         type="button"
                                         onClick={() => removeTeammateRow(event.id, index)}
@@ -339,7 +386,7 @@ export default function RegisterEvents() {
                                 ))}
                               </div>
 
-                              {(maxTeammates === undefined || cart[event.id].teammateUsernames.length < maxTeammates) && (
+                              {(maxTeammates === undefined || item.teammateUsernames.length < maxTeammates) && (
                                 <Button
                                   variant="outline"
                                   size="sm"
@@ -353,8 +400,39 @@ export default function RegisterEvents() {
 
                               <p className="font-body text-xs text-slate/60">
                                 Teammates must already have a Porikkalam account — they register on the site first,
-                                then you add their username here.
+                                then you add their username here. At least 1 teammate is required (team of 2 minimum).
                               </p>
+
+                              {showError && (
+                                <p className="font-body text-xs font-semibold text-red-700">{eventError}</p>
+                              )}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* INDIVIDUAL PARTICIPANT BOX */}
+                      <AnimatePresence>
+                        {isSelected && !isTeamEvent && item && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="overflow-hidden border-t border-navy/10 bg-cream/60"
+                          >
+                            <div className="flex flex-col gap-3 p-4 sm:p-5">
+                              <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
+                                Participant Details
+                              </p>
+
+                              <Input
+                                label="Your Username *"
+                                value={item.username}
+                                onChange={(e) => updateUsername(event.id, e.target.value)}
+                                placeholder="Your Porikkalam username"
+                                error={showError ? eventError ?? undefined : undefined}
+                              />
                             </div>
                           </motion.div>
                         )}
@@ -409,16 +487,24 @@ export default function RegisterEvents() {
                       Login to Register
                     </Button>
                   ) : !showPayment ? (
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="mt-5 w-full"
-                      disabled={selectedEvents.length === 0}
-                      onClick={() => setShowPayment(true)}
-                      icon={<ArrowRight size={14} />}
-                    >
-                      Register Now
-                    </Button>
+                    <>
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        className="mt-5 w-full"
+                        disabled={selectedEvents.length === 0}
+                        onClick={handleRegisterNowClick}
+                        icon={<ArrowRight size={14} />}
+                      >
+                        Register Now
+                      </Button>
+                      {validationAttempted &&
+                        selectedEvents.some((event) => getEventError(event, cart[event.id]) !== null) && (
+                          <p className="mt-2 text-center font-body text-xs text-red-700">
+                            Please complete the required details for each selected event above.
+                          </p>
+                        )}
+                    </>
                   ) : (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
-  Award,
   BrainCircuit,
   CheckCircle2,
   ChevronRight,
@@ -19,6 +18,9 @@ import {
   Target,
   TrendingUp,
   Truck,
+  Trophy,
+  Users,
+  Wallet,
   Wrench,
 } from 'lucide-react';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
@@ -32,7 +34,6 @@ import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
 import { SITE } from '@/constants/site';
 import {
   thuliraApplicationReview,
-  thuliraAwardsCriteria,
   thuliraDomains,
   thuliraEvaluationCriteria,
   thuliraExhibitionOpportunities,
@@ -74,6 +75,12 @@ const OVERVIEW_PILLARS = [
   { id: 'build', word: 'Build', tagline: 'For The Real World' },
   { id: 'pitch', word: 'Pitch', tagline: 'With Purpose' },
   { id: 'grow', word: 'Grow', tagline: 'With The Ecosystem' },
+];
+
+const EVENT_FACTS = [
+  { id: 'team-size', icon: Users, label: 'Team Size', value: 'Team of 4' },
+  { id: 'registration-fee', icon: Wallet, label: 'Registration Fee', value: '₹1,000' },
+  { id: 'prize-pool', icon: Trophy, label: 'Prize Pool', value: '₹60,000' },
 ];
 
 function OverviewPillar({ word, tagline, index }: { word: string; tagline: string; index: number }) {
@@ -217,7 +224,7 @@ export default function Thulira() {
           <SectionHeading eyebrow="Event Overview" title="Two Days. One Startup Ecosystem." tone="dark" />
           <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-5">
             <p className="font-body text-base leading-relaxed text-beige/85">
-              THULIRA is a two-day startup exhibition and competition that provides a platform for
+              THULIRA is a two-day Student startup exhibition and competition that provides a platform for
               students to showcase innovative startup ideas. It is open to students from Government
               College of Technology (GCT) and other educational institutions.
             </p>
@@ -235,6 +242,30 @@ export default function Thulira() {
           <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {OVERVIEW_PILLARS.map((pillar, index) => (
               <OverviewPillar key={pillar.id} word={pillar.word} tagline={pillar.tagline} index={index} />
+            ))}
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {EVENT_FACTS.map((fact, index) => (
+              <motion.div
+                key={fact.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ y: -4, borderColor: 'rgba(212,175,55,0.6)' }}
+                className="flex items-center gap-4 border border-gold/20 bg-navy-deep/60 p-5 transition-colors duration-300"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-gold/30 bg-navy-deep text-gold">
+                  <fact.icon size={20} strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-gold/80">
+                    {fact.label}
+                  </p>
+                  <p className="mt-0.5 font-heading text-lg font-semibold text-cream">{fact.value}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -422,42 +453,6 @@ export default function Thulira() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Awards & Recognition */}
-      <section className="relative overflow-hidden bg-cream/95 py-24">
-        <div className="absolute inset-0 bp-grid-bg opacity-25" />
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Awards & Recognition" title="Celebrating Bold Ideas" />
-          <p className="mx-auto mt-8 max-w-2xl font-body text-base leading-relaxed text-slate">
-            The most promising startup ideas will be recognized based on their overall performance in
-            the evaluation process. Awards recognize outstanding startup ideas based on:
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            {thuliraAwardsCriteria.map((item) => (
-              <Badge key={item} variant="gold">
-                {item}
-              </Badge>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-            className="relative mx-auto mt-14 max-w-xl overflow-hidden border-2 border-gold bg-navy-deep px-8 py-10 text-cream shadow-[0_0_36px_-8px_rgba(212,175,55,0.5)]"
-          >
-            <CornerOrnament corner="top-left" />
-            <CornerOrnament corner="bottom-right" />
-            <div className="relative z-10 flex flex-col items-center gap-3">
-              <Award size={32} className="text-gold" strokeWidth={1.5} />
-              <p className="font-heading text-lg font-bold uppercase tracking-wide text-gold sm:text-xl">
-                All Participants Will Receive A Certificate Of Participation
-              </p>
-            </div>
-          </motion.div>
         </div>
       </section>
 

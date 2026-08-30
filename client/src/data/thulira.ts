@@ -95,7 +95,6 @@ export const thuliraExhibitionOpportunities = [
   'Engage with industry experts',
   'Interact with entrepreneurs',
   'Interact with academicians',
-  'Connect with visitors',
   'Gain valuable exposure',
 ];
 

@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ClipboardCheck } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { Tabs } from '@/components/ui/Tabs';
 import { SearchBar } from '@/components/ui/SearchBar';
+import { Button } from '@/components/ui/Button';
 import { EventCard } from '@/components/cards/EventCard';
 import { getEventFilters } from '@/data/eventMeta';
 import { useEvents } from '@/hooks/useEvents';
@@ -109,6 +111,10 @@ export default function Events() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
+
+            <Button to="/events/register" variant="primary" size="md" icon={<ClipboardCheck size={16} />}>
+              Register for Events
+            </Button>
           </div>
 
           {/* Loading */}

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent, type ReactNode } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -87,7 +87,17 @@ const TAB_OPTIONS: Array<{ value: DashboardTab; label: string; icon: typeof User
   },
 ];
 
-function PlaceholderPanel({ icon: Icon, label, description }: { icon: typeof UserIcon; label: string; description: string }) {
+function PlaceholderPanel({
+  icon: Icon,
+  label,
+  description,
+  action,
+}: {
+  icon: typeof UserIcon;
+  label: string;
+  description: string;
+  action?: ReactNode;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -101,6 +111,7 @@ function PlaceholderPanel({ icon: Icon, label, description }: { icon: typeof Use
       </div>
       <p className="relative font-heading text-xl font-semibold tracking-wide text-navy">{label}</p>
       <p className="relative max-w-sm font-body text-sm text-slate">{description}</p>
+      {action && <div className="relative mt-2">{action}</div>}
     </motion.div>
   );
 }
@@ -118,6 +129,11 @@ function RegistrationsPanel({ registrations }: { registrations: RegistrationDto[
         icon={CalendarCheck}
         label="My Registrations"
         description="The events you register for will be listed here, with quick links to each event page."
+        action={
+          <Button to="/events/register" variant="primary" size="sm">
+            Register for Events
+          </Button>
+        }
       />
     );
   }

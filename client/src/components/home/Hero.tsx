@@ -128,12 +128,12 @@ export function Hero() {
             className="mx-auto mt-6 max-w-md font-quote leading-relaxed text-beige/80"
           >
       <span
-  className="text-lg font-extrabold text-cream sm:text-2xl"
+  className="text-lg font-extrabold text-cream sm:text-xl"
   style={{
     textShadow: '3px 4px 6px rgba(0,0,0,1)',
   }}
 >
-  A NATIONAL LEVEL FLAGSHIP EVENT
+  A NATIONAL LEVEL FLAGSHIP SYMPOSIUM
 </span> {/* Engineering | Innovation | Entrepreneurship */}
             <span className="mt-3 flex flex-wrap items-center justify-center gap-y-1.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:flex-nowrap sm:whitespace-nowrap sm:text-sm">
               <span className="mr-2 text-gold/50">✦</span>

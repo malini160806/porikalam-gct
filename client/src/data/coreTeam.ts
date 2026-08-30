@@ -17,7 +17,7 @@ export const coreTeamDomains: CoreTeamDomain[] = [
 
 export const coreTeamMembers: CoreTeamMember[] = [
   // Staff Coordinator
-  { id: 'ctm0', name: 'Illamathi', role: 'Staff Coordinator', domain: 'staff-coordinator', order: 1 },
+  { id: 'ctm0', name: 'Illamathi',  domain: 'staff-coordinator', order: 1 },
 
   // Technical & Event Operations
   { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', order: 1 },

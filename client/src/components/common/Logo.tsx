@@ -18,8 +18,8 @@ export function Logo({ compact = false }: LogoProps) {
         alt="Government College of Technology"
         className={
           compact
-            ? 'h-14 w-auto object-contain'
-            : 'h-16 w-auto object-contain sm:h-18 md:h-20 lg:h-20'
+            ? 'h-18 w-auto object-contain'
+            : 'h-1 w-auto object-contain sm:h-18 md:h-20 lg:h-20'
         }
       />
          {/* Divider */}

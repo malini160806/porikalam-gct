@@ -55,15 +55,15 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const SOCIAL_LINKS = [
-  { label: 'Instagram', href: 'https://www.instagram.com/p/DbTCMIjPlCh/?igsh=aHRkNnVmdmJpZzlw', icon: 'instagram' },
+  { label: 'Instagram', href: 'https://www.instagram.com/porikkalam_gct/', icon: 'instagram' },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/posts/porikkalam-gct-641401424_porikkalam2026-bfqbfrbfdbfvbgfbfbbffbfrbfvbgfbfqbfrbflbfebgf-share-7487505915043131392-68uG/',
+    href: 'https://www.linkedin.com/in/porikkalam-gct-641401424',
     icon: 'linkedin',
   },
-  { label: 'X', href: 'https://x.com/porikkalam_gct/status/2081736396147240975?s=48', icon: 'x' },
+  { label: 'X', href: 'https://x.com/porikkalam_gct', icon: 'x' },
   { label: 'WhatsApp', href: 'https://whatsapp.com/channel/0029VbDTSWEGE56iCcdPgH3D', icon: 'whatsapp' },
-  { label: 'Facebook', href: 'https://www.facebook.com/share/p/1EwErXR158/', icon: 'facebook' },
+  { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61588702441087', icon: 'facebook' },
   { label: 'Email', href: 'mailto:porikkalam.gct@gmail.com', icon: 'mail' },
 ] as const;
 

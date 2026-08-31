@@ -9,7 +9,6 @@ import {
 } from 'lucide-react';
 
 import { PageHero } from '@/components/common/PageHero';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { TeamCard } from '@/components/cards/TeamCard';
@@ -341,12 +340,7 @@ export default function Contact() {
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          <SectionHeading
-            eyebrow="Reach Out Directly"
-            title="Faculty & Student Coordinators"
-          />
-
-          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
 
             {coordinators.map((member, index) => (
               <TeamCard

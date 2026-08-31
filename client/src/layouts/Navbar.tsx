@@ -315,7 +315,7 @@ export function Navbar() {
       initial={{ opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed inset-x-0 top-0 z-40 border-b border-gold/30 bg-navy-deep transition-all duration-300 ${
+      className={`fixed inset-x-0 top-9 z-40 border-b border-gold/30 bg-navy-deep transition-all duration-300 ${
         scrolled ? 'shadow-[0_8px_28px_-10px_rgba(0,0,0,0.6)] backdrop-blur-lg' : 'backdrop-blur-md'
       }`}
     >

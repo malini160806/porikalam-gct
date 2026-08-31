@@ -1,3 +1,4 @@
+import { AnnouncementBar } from './AnnouncementBar';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ScrollToTop } from '@/components/common/ScrollToTop';
@@ -13,8 +14,9 @@ export function MainLayout() {
       <ScrollProgress />
       <MouseGlow />
       <ScrollTint />
+      <AnnouncementBar />
       <Navbar />
-      <main className="flex-1 pt-[73px]">
+      <main className="flex-1 pt-[109px]">
         <PageTransition />
       </main>
       <Footer />

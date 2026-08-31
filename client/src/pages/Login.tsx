@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { LoginForm } from '@/components/auth/LoginForm';
 import gctBuilding from '@/assets/heritage/gct-building.webp.png';
@@ -168,8 +169,8 @@ export default function Login() {
                   New to Porikkalam?
                 </span>
 
-                <a
-                  href="/register"
+                <Link
+                  to="/register"
                   className="group inline-flex items-center gap-1 font-body text-xs font-semibold text-brown transition-colors hover:text-gold"
                 >
                   Create your profile
@@ -177,7 +178,7 @@ export default function Login() {
                     size={12}
                     className="transition-transform group-hover:translate-x-1"
                   />
-                </a>
+                </Link>
 
               </div>
 

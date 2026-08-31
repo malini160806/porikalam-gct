@@ -11,16 +11,10 @@ import {
 import { PageHero } from '@/components/common/PageHero';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { TeamCard } from '@/components/cards/TeamCard';
 import { SITE } from '@/constants/site';
-import { team } from '@/data/team';
 
 import gctBuilding from '@/assets/heritage/gct-building.webp.png';
 import contactPanorama from '@/assets/hero/contact-panorama.webp';
-
-const coordinators = team.filter(
-  (member) => member.team === 'faculty' || member.team === 'core',
-);
 
 function ContactInfo({
   icon,
@@ -327,31 +321,6 @@ export default function Contact() {
             </motion.div>
 
           </div>
-        </div>
-      </section>
-
-
-      {/* =========================================================
-          COORDINATORS
-      ========================================================= */}
-      <section className="relative overflow-hidden bg-cream/95 py-24">
-
-        <div className="absolute inset-0 bp-grid-bg opacity-20" />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
-
-            {coordinators.map((member, index) => (
-              <TeamCard
-                key={member.id}
-                member={member}
-                index={index}
-              />
-            ))}
-
-          </div>
-
         </div>
       </section>
 

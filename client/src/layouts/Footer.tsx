@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Cpu, Lightbulb, Mail, MapPin, Phone, Send, Sparkles, Triangle } from 'lucide-react';
+import { Cpu, Lightbulb, Mail, MapPin, Phone, Sparkles, Triangle } from 'lucide-react';
 import { SocialIcons } from '@/components/ui/SocialIcons';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { SITE, FOOTER_LINKS } from '@/constants/site';
@@ -74,7 +74,7 @@ export function Footer() {
           <FooterColumn title="Support" links={FOOTER_LINKS.support} />
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-gold/20 pt-10 sm:grid-cols-2">
+        <div className="mt-12 border-t border-gold/20 pt-10">
           <div className="flex flex-col gap-2 font-body text-sm text-beige/80">
             <span className="flex items-center gap-2">
               <MapPin size={14} className="text-gold shrink-0" /> {SITE.college}, {SITE.location}
@@ -85,31 +85,6 @@ export function Footer() {
             <span className="flex items-center gap-2">
               <Phone size={14} className="text-gold shrink-0" /> {SITE.phone}
             </span>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <span className="font-heading text-sm font-semibold uppercase tracking-wider text-gold">
-              Newsletter
-            </span>
-            <p className="font-body text-xs text-beige/70">Stay updated with the latest announcements.</p>
-            <form
-              className="flex items-stretch border border-gold/40"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="w-full bg-transparent px-4 py-2.5 font-body text-sm text-cream placeholder:text-beige/50 outline-none"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="flex items-center justify-center bg-gold px-4 text-navy hover:bg-gold-light transition-colors"
-              >
-                <Send size={16} />
-              </button>
-            </form>
           </div>
         </div>
 

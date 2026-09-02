@@ -135,20 +135,20 @@ export function Hero() {
 >
   A NATIONAL LEVEL FLAGSHIP SYMPOSIUM
 </span> {/* Engineering | Innovation | Entrepreneurship */}
-            <span className="mt-3 flex flex-wrap items-center justify-center gap-y-1.5 font-body text-xs font-semibold uppercase tracking-[0.18em] text-gold sm:flex-nowrap sm:whitespace-nowrap sm:text-sm">
-              <span className="mr-2 text-gold/50">✦</span>
+            <span className="mt-3 flex flex-nowrap items-center justify-center whitespace-nowrap font-body text-[9px] font-semibold uppercase tracking-[0.1em] text-gold sm:text-sm sm:tracking-[0.18em]">
+              <span className="mr-1.5 text-gold/50 sm:mr-2">✦</span>
 
               <span>Engineering</span>
 
-              <span className="mx-2 text-beige/40">|</span>
+              <span className="mx-1.5 text-beige/40 sm:mx-2">|</span>
 
               <span>Innovation</span>
 
-              <span className="mx-2 text-beige/40">|</span>
+              <span className="mx-1.5 text-beige/40 sm:mx-2">|</span>
 
               <span>Entrepreneurship</span>
 
-              <span className="ml-2 text-gold/50">✦</span>
+              <span className="ml-1.5 text-gold/50 sm:ml-2">✦</span>
             </span>
           </motion.p>
 

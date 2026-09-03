@@ -190,27 +190,6 @@
     }
   }
 
-  /* Continuous right-to-left ticker for the site-wide announcement bar. The track holds two
-     copies of its content back to back, so a 50% translate loops seamlessly. */
-  .animate-marquee {
-    animation: marquee-scroll 26s linear infinite;
-  }
-
-  @keyframes marquee-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-marquee {
-      animation-play-state: paused;
-    }
-  }
-
   /* Dark-on-navy scrollbar for the mobile nav drawer, overriding the site-wide gold-on-cream default. */
   .mobile-nav-scroll {
     scrollbar-width: thin;

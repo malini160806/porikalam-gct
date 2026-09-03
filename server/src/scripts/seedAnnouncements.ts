@@ -46,6 +46,14 @@ const announcements: SeedAnnouncement[] = [
       'Events marked "Prequalifier Required" will hold their online round in Mid-August 2026. Only participants who qualify will be selected to compete in person at the 2-day mega event on 25–26 September 2026. Check the Events page to see which events require a prequalifier.',
     pinned: true,
   },
+  {
+    title: "Thulira and Tech Thiral applications are now open",
+    date: new Date("2026-09-03"),
+    category: "registration",
+    content:
+      "Applications for Thulira and Tech Thiral are now open. Head to the Thulira and Tech Thiral pages from the navbar to apply.",
+    pinned: true,
+  },
 ];
 
 async function seed(): Promise<void> {

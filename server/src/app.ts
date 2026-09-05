@@ -18,12 +18,35 @@ import techThiralRoutes from "./routes/techThiral.routes.js";
 // Phase 2+ will add: attendance, payments,
 // certificates, sponsors, gallery, contact routes.
 
+// CLIENT_URL can hold one or more comma-separated allowed origins. Vercel's stable
+// production alias (porikalam-gct.vercel.app) and its per-deployment preview URLs
+// (porikalam-gct-<hash>.vercel.app) are always allowed on top of that, so a stale
+// CLIENT_URL pointing at an old deployment hash doesn't silently CORS-block the
+// live site (every API call — including username generation — would fail).
+const configuredOrigins = env.clientUrl
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+const VERCEL_PROJECT_ORIGIN = /^https:\/\/porikalam-gct(-[a-z0-9]+)?\.vercel\.app$/;
+
 /** Builds the Express app. Pure request-handling setup only — no DB connection, no listen(). */
 export function createApp(): express.Express {
   const app = express();
   app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
   app.use(compression());
-  app.use(cors({ origin: env.clientUrl, credentials: true }));
+  app.use(
+    cors({
+      origin(origin, callback) {
+        // No Origin header — same-origin requests, curl/health checks, etc.
+        if (!origin) return callback(null, true);
+        if (configuredOrigins.includes(origin) || VERCEL_PROJECT_ORIGIN.test(origin)) {
+          return callback(null, true);
+        }
+        callback(new Error("Not allowed by CORS"));
+      },
+      credentials: true,
+    }),
+  );
   app.use(express.json({ limit: "500kb" }));
   app.use("/uploads", express.static(UPLOADS_ROOT));
 

@@ -13,6 +13,9 @@ export const SITE = {
   prequalifierWindow: 'Mid-August 2026',
   upiId: 'anfesh@ptyes',
   upiPayeeName: 'Anfas',
+  // Separate collection account for Thulira and Tech Thiral applications.
+  flagshipUpiId: '8807612544@nyes',
+  flagshipUpiPayeeName: 'Mohanraj',
 } as const;
 
 export type NavLink = {

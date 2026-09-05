@@ -12,8 +12,10 @@ import authRoutes from "./routes/auth.routes.js";
 import eventRoutes from "./routes/event.routes.js";
 import announcementRoutes from "./routes/announcement.routes.js";
 import adminRoutes from "./routes/admin/index.js";
+import thuliraRoutes from "./routes/thulira.routes.js";
+import techThiralRoutes from "./routes/techThiral.routes.js";
 
-// Phase 2+ will add: registrations, attendance, payments,
+// Phase 2+ will add: attendance, payments,
 // certificates, sponsors, gallery, contact routes.
 
 /** Builds the Express app. Pure request-handling setup only — no DB connection, no listen(). */
@@ -45,6 +47,8 @@ export function createApp(): express.Express {
   app.use("/api/events", eventRoutes);
   app.use("/api/announcements", announcementRoutes);
   app.use("/api/admin", adminRoutes);
+  app.use("/api/thulira", thuliraRoutes);
+  app.use("/api/tech-thiral", techThiralRoutes);
 
   app.get("/api/health", (_req, res) => res.json({ ok: true }));
 

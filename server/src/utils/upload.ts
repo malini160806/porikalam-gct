@@ -12,8 +12,9 @@ export const UPLOADS_ROOT = process.env.VERCEL
   : path.resolve(process.cwd(), "uploads");
 export const PHOTOS_DIR = path.join(UPLOADS_ROOT, "photos");
 export const PPTS_DIR = path.join(UPLOADS_ROOT, "ppts");
+export const PAYMENT_SCREENSHOTS_DIR = path.join(UPLOADS_ROOT, "payment-screenshots");
 
-for (const dir of [PHOTOS_DIR, PPTS_DIR]) {
+for (const dir of [PHOTOS_DIR, PPTS_DIR, PAYMENT_SCREENSHOTS_DIR]) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
@@ -44,5 +45,13 @@ export const uploadPpt = multer({
         file.mimetype,
       ) || /\.pptx?$/i.test(file.originalname);
     callback(null, isPpt);
+  },
+});
+
+export const uploadPaymentScreenshot = multer({
+  storage: makeStorage(PAYMENT_SCREENSHOTS_DIR),
+  limits: { fileSize: 3 * 1024 * 1024 },
+  fileFilter: (_req, file, callback) => {
+    callback(null, /^image\/(png|jpe?g|webp)$/.test(file.mimetype));
   },
 });

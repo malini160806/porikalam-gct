@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, UploadCloud } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea } from '@/components/ui/Input';
 import { applyForTechThiral } from '@/lib/techThiralApi';
@@ -8,6 +8,8 @@ import { ApiError } from '@/lib/apiClient';
 import { SITE } from '@/constants/site';
 
 const FEE = 1999;
+// UPI transaction reference numbers (UTR/RRN) are always a 12-digit number.
+const UPI_REFERENCE_REGEX = /^\d{12}$/;
 
 export function TechThiralApplicationForm() {
   const [organizationName, setOrganizationName] = useState('');
@@ -16,6 +18,7 @@ export function TechThiralApplicationForm() {
   const [contactPhone, setContactPhone] = useState('');
   const [showcaseDescription, setShowcaseDescription] = useState('');
   const [paymentReference, setPaymentReference] = useState('');
+  const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -29,6 +32,9 @@ export function TechThiralApplicationForm() {
     if (!contactEmail.trim()) return setError('Contact email is required.');
     if (!contactPhone.trim()) return setError('Contact phone is required.');
     if (!paymentReference.trim()) return setError('Enter your UPI payment reference to complete your booth application.');
+    if (!UPI_REFERENCE_REGEX.test(paymentReference.trim())) {
+      return setError('Enter a valid 12-digit UPI transaction reference ID.');
+    }
 
     setSubmitting(true);
     try {
@@ -39,6 +45,7 @@ export function TechThiralApplicationForm() {
         contactPhone: contactPhone.trim(),
         showcaseDescription: showcaseDescription.trim() || undefined,
         paymentReference: paymentReference.trim(),
+        paymentScreenshot: paymentScreenshot ?? undefined,
       });
       setSubmitted(true);
     } catch (err) {
@@ -131,8 +138,28 @@ export function TechThiralApplicationForm() {
         label="UPI Transaction / Reference ID *"
         value={paymentReference}
         onChange={(e) => setPaymentReference(e.target.value)}
-        placeholder="e.g. 123456789012"
+        placeholder="12-digit UTR number, e.g. 123456789012"
+        inputMode="numeric"
+        maxLength={12}
       />
+
+      <label className="flex flex-col gap-1.5 text-left">
+        <span className="font-body text-xs font-semibold uppercase tracking-wider text-slate">
+          Upload Payment Screenshot (optional)
+        </span>
+        <div className="flex items-center gap-3 border border-navy/25 bg-cream/60 px-4 py-3">
+          <UploadCloud size={18} className="shrink-0 text-brown" />
+          <input
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={(e) => setPaymentScreenshot(e.target.files?.[0] ?? null)}
+            className="w-full font-body text-sm text-navy file:mr-3 file:border-0 file:bg-gold/20 file:px-3 file:py-1.5 file:font-semibold file:text-brown"
+          />
+        </div>
+        {paymentScreenshot && (
+          <span className="font-body text-xs text-slate/70">Selected: {paymentScreenshot.name}</span>
+        )}
+      </label>
 
       {error && <p className="font-body text-sm font-semibold text-red-700">{error}</p>}
 

@@ -65,6 +65,56 @@ export async function sendPrequalifierConfirmationEmail(to: string, eventName: s
   }
 }
 
+export async function sendThuliraConfirmationEmail(to: string, teamName: string): Promise<void> {
+  if (!transporter) {
+    console.warn("[mailer] SMTP_USER/SMTP_PASS not set — skipping Thulira confirmation email.");
+    return;
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"Porikkalam 2026" <${env.smtpUser}>`,
+      to,
+      subject: `Thulira Application Received — ${teamName}`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
+          <h2 style="color: #b8860b;">Thank you for applying to Thulira!</h2>
+          <p>We've received <strong>${teamName}</strong>'s application and payment reference for the Thulira Startup Exhibition.</p>
+          <p>Our team will review your application and confirm your slot shortly.</p>
+          <p>Porikkalam 2026 · Government College of Technology, Coimbatore</p>
+        </div>
+      `,
+    });
+  } catch (error) {
+    console.error("[mailer] failed to send Thulira confirmation email:", error);
+  }
+}
+
+export async function sendTechThiralConfirmationEmail(to: string, organizationName: string): Promise<void> {
+  if (!transporter) {
+    console.warn("[mailer] SMTP_USER/SMTP_PASS not set — skipping Tech Thiral confirmation email.");
+    return;
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"Porikkalam 2026" <${env.smtpUser}>`,
+      to,
+      subject: `Tech Thiral Booth Application Received — ${organizationName}`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
+          <h2 style="color: #b8860b;">Thank you for applying to exhibit at Tech Thiral!</h2>
+          <p>We've received <strong>${organizationName}</strong>'s booth application and payment reference for the Tech Thiral Industry Expo.</p>
+          <p>Our team will review your application and confirm your booth allotment shortly.</p>
+          <p>Porikkalam 2026 · Government College of Technology, Coimbatore</p>
+        </div>
+      `,
+    });
+  } catch (error) {
+    console.error("[mailer] failed to send Tech Thiral confirmation email:", error);
+  }
+}
+
 export async function sendResetEmail(to: string, displayName: string, token: string): Promise<void> {
   if (!transporter) {
     console.warn("[mailer] SMTP_USER/SMTP_PASS not set — skipping password reset email.");

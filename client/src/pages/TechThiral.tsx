@@ -20,6 +20,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
+import { TechThiralApplicationForm } from '@/components/techThiral/TechThiralApplicationForm';
 
 import { SITE } from '@/constants/site';
 
@@ -228,7 +229,7 @@ export default function TechThiral() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.85 }}
           >
-            <Button to="/contact" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+            <Button href="#apply" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
               Apply To Exhibit
             </Button>
           </motion.div>
@@ -463,7 +464,7 @@ export default function TechThiral() {
       {/* =========================================================
           PARTICIPATION / GET INVOLVED
       ========================================================= */}
-      <section className="relative bg-cream/95 py-24">
+      <section id="apply" className="relative scroll-mt-20 bg-cream/95 py-24">
 
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 
@@ -471,6 +472,23 @@ export default function TechThiral() {
             eyebrow="Get Involved"
             title="Showcase At Tech Thiral"
           />
+
+          <div className="mx-auto mt-8 flex max-w-lg flex-col items-center gap-2 text-center">
+
+            <Presentation
+              size={32}
+              className="text-brown"
+              strokeWidth={1.5}
+            />
+
+            <p className="font-body text-sm leading-relaxed text-slate">
+              Startups and industry teams interested in exhibiting can apply
+              for a booth below with their company details. Booth applications
+              are handled directly on this page — there&apos;s no separate
+              website registration for Tech Thiral.
+            </p>
+
+          </div>
 
           <motion.div
             initial={{
@@ -483,58 +501,23 @@ export default function TechThiral() {
             }}
             viewport={{
               once: true,
-              amount: 0.4,
+              amount: 0.2,
             }}
             transition={{
               duration: 0.5,
             }}
-            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-10 text-center sm:p-12"
+            className="relative mx-auto mt-10 max-w-xl"
           >
 
-            <CornerOrnament corner="top-left" />
-            <CornerOrnament corner="bottom-right" />
+            <TechThiralApplicationForm />
 
-            <div className="relative z-10 flex flex-col items-center gap-5">
-
-              <Presentation
-                size={36}
-                className="text-brown"
-                strokeWidth={1.5}
-              />
-
-              <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
-                Bring Your Booth To Tech Thiral
-              </h3>
-
-              <p className="max-w-lg font-body text-sm leading-relaxed text-slate">
-                Startups and industry teams interested in exhibiting can
-                reach out to the Porikkalam team to apply for booth space
-                at the Industry Expo.
-              </p>
-
-              <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-
-                <Button
-                  to="/contact"
-                  variant="primary"
-                  size="lg"
-                  icon={<ArrowRight size={16} />}
-                >
-                  Apply To Exhibit
-                </Button>
-
-                <Button
-                  to="/schedule"
-                  variant="secondary"
-                  size="lg"
-                >
-                  View Schedule
-                </Button>
-
-              </div>
-
-            </div>
           </motion.div>
+
+          <div className="mt-8 flex justify-center">
+            <Button to="/schedule" variant="secondary" size="lg">
+              View Schedule
+            </Button>
+          </div>
 
         </div>
       </section>
@@ -680,7 +663,7 @@ export default function TechThiral() {
             </p>
 
             <Button
-              to="/contact"
+              href="#apply"
               variant="primary"
               size="lg"
               icon={<ArrowRight size={16} />}

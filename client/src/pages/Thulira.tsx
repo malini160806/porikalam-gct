@@ -79,8 +79,8 @@ const OVERVIEW_PILLARS = [
 
 const EVENT_FACTS = [
   { id: 'team-size', icon: Users, label: 'Team Size', value: 'Team of 4' },
-  { id: 'registration-fee', icon: Wallet, label: 'Registration Fee', value: '₹1,000' },
-  { id: 'prize-pool', icon: Trophy, label: 'Prize Pool', value: '₹60,000' },
+  { id: 'registration-fee', icon: Wallet, label: 'Registration Fee', value: '₹799' },
+  { id: 'prize-pool', icon: Trophy, label: 'Prize Pool', value: '₹32,500' },
 ];
 
 function OverviewPillar({ word, tagline, index }: { word: string; tagline: string; index: number }) {
@@ -170,7 +170,7 @@ export default function Thulira() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.85 }}
           >
-            <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+            <Button href="#apply" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
               Apply Now
             </Button>
           </motion.div>

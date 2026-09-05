@@ -20,7 +20,9 @@ import { TN_ENGINEERING_COLLEGES } from '@/data/tnEngineeringColleges';
 
 const GENDER_OPTIONS = ['Male', 'Female', 'Other', 'Prefer not to say'];
 const YEAR_OPTIONS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year', 'Postgraduate'];
+const DEGREE_OPTIONS = ['B.E.', 'B.Tech', 'M.E.', 'M.Tech'];
 const OTHER_COLLEGE = '__other__';
+const OTHER_DEGREE = '__other__';
 
 const step1Schema = z.object({
   fullName: z.string().trim().min(2, 'Name must be at least 2 characters').max(100),
@@ -105,6 +107,7 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [isOtherCollege, setIsOtherCollege] = useState(false);
+  const [isOtherDegree, setIsOtherDegree] = useState(false);
   const [isCheckingConflicts, setIsCheckingConflicts] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
@@ -384,13 +387,44 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   onChange={(e) => updateField('department', e.target.value)}
                   error={errors.department}
                 />
-                <Input
-                  label="Degree"
-                  required
-                  value={values.degree}
-                  onChange={(e) => updateField('degree', e.target.value)}
-                  error={errors.degree}
-                />
+                <div className="flex flex-col gap-1.5">
+                  <Select
+                    label="Degree"
+                    required
+                    value={isOtherDegree ? OTHER_DEGREE : values.degree}
+                    onChange={(e) => {
+                      const nextValue = e.target.value;
+                      if (nextValue === OTHER_DEGREE) {
+                        setIsOtherDegree(true);
+                        updateField('degree', '');
+                      } else {
+                        setIsOtherDegree(false);
+                        updateField('degree', nextValue);
+                      }
+                    }}
+                  >
+                    <option value="" disabled>
+                      Select your degree
+                    </option>
+                    {DEGREE_OPTIONS.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                    <option value={OTHER_DEGREE}>Other</option>
+                  </Select>
+                  {!isOtherDegree && errors.degree && <span className="text-xs text-red-700">{errors.degree}</span>}
+                </div>
+                {isOtherDegree && (
+                  <Input
+                    label="Enter Your Degree"
+                    required
+                    value={values.degree}
+                    onChange={(e) => updateField('degree', e.target.value)}
+                    error={errors.degree}
+                    placeholder="Type your degree"
+                  />
+                )}
                 <div className="flex flex-col gap-1.5">
                   <Select
                     label="Year of Study"

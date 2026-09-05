@@ -98,6 +98,7 @@ export function serializeRegistration(registration: HydratedDocument<Registratio
       role: teammate.role,
     })),
     payment_reference: registration.paymentReference ?? null,
+    payment_screenshot_url: registration.paymentScreenshotUrl ?? null,
     notes: registration.notes ?? null,
     status: registration.status,
     created_at: registration.createdAt.toISOString(),

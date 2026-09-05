@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Lock,
   AlertTriangle,
+  UploadCloud,
 } from 'lucide-react';
 import { PageHero } from '@/components/common/PageHero';
 import { PageLoader } from '@/components/common/PageLoader';
@@ -42,6 +43,9 @@ function formatRupees(amount: number): string {
   return `₹${amount.toLocaleString('en-IN')}`;
 }
 
+// UPI transaction reference numbers (UTR/RRN) are always a 12-digit number.
+const UPI_REFERENCE_REGEX = /^\d{12}$/;
+
 export default function RegisterEvents() {
   const { events, loading } = useEvents();
   const { user, registrations, refresh } = useSession();
@@ -54,6 +58,7 @@ export default function RegisterEvents() {
   const [cart, setCart] = useState<Record<string, CartItem>>({});
   const [showPayment, setShowPayment] = useState(false);
   const [paymentReference, setPaymentReference] = useState('');
+  const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [outcomes, setOutcomes] = useState<Record<string, SubmitOutcome> | null>(null);
   const [validationAttempted, setValidationAttempted] = useState(false);
@@ -186,6 +191,7 @@ export default function RegisterEvents() {
             ? item.teammateUsernames.map((username) => username.trim()).filter(Boolean)
             : undefined,
           paymentReference: parseFee(event.registrationFee) > 0 ? paymentReference.trim() : undefined,
+          paymentScreenshot: parseFee(event.registrationFee) > 0 ? paymentScreenshot ?? undefined : undefined,
         });
         nextOutcomes[event.id] = { status: 'success' };
       } catch (err) {
@@ -594,12 +600,39 @@ export default function RegisterEvents() {
                       )}
 
                       {total > 0 && (
-                        <Input
-                          label="UPI Transaction / Reference ID"
-                          value={paymentReference}
-                          onChange={(e) => setPaymentReference(e.target.value)}
-                          placeholder="e.g. 123456789012"
-                        />
+                        <>
+                          <Input
+                            label="UPI Transaction / Reference ID"
+                            value={paymentReference}
+                            onChange={(e) => setPaymentReference(e.target.value)}
+                            placeholder="12-digit UTR number, e.g. 123456789012"
+                            inputMode="numeric"
+                            maxLength={12}
+                          />
+                          {paymentReference.trim() !== '' && !UPI_REFERENCE_REGEX.test(paymentReference.trim()) && (
+                            <p className="font-body text-xs text-red-700">
+                              Enter a valid 12-digit UPI transaction reference ID.
+                            </p>
+                          )}
+
+                          <label className="flex flex-col gap-1.5 text-left">
+                            <span className="font-body text-xs font-semibold uppercase tracking-wider text-slate">
+                              Upload Payment Screenshot (optional)
+                            </span>
+                            <div className="flex items-center gap-3 border border-navy/25 bg-cream/60 px-4 py-3">
+                              <UploadCloud size={18} className="shrink-0 text-brown" />
+                              <input
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp"
+                                onChange={(e) => setPaymentScreenshot(e.target.files?.[0] ?? null)}
+                                className="w-full font-body text-sm text-navy file:mr-3 file:border-0 file:bg-gold/20 file:px-3 file:py-1.5 file:font-semibold file:text-brown"
+                              />
+                            </div>
+                            {paymentScreenshot && (
+                              <span className="font-body text-xs text-slate/70">Selected: {paymentScreenshot.name}</span>
+                            )}
+                          </label>
+                        </>
                       )}
 
                       <div className="flex gap-3">
@@ -616,7 +649,7 @@ export default function RegisterEvents() {
                           variant="primary"
                           size="md"
                           className="flex-1"
-                          disabled={submitting || (total > 0 && !paymentReference.trim())}
+                          disabled={submitting || (total > 0 && !UPI_REFERENCE_REGEX.test(paymentReference.trim()))}
                           onClick={handleConfirmAndSubmit}
                         >
                           {submitting ? 'Submitting…' : 'Confirm & Submit'}

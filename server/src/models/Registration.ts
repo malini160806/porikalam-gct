@@ -30,6 +30,7 @@ export interface RegistrationDoc {
   teamName?: string | null;
   teammates: RegistrationTeammate[];
   paymentReference?: string | null;
+  paymentScreenshotUrl?: string | null;
   notes?: string | null;
   status: RegistrationStatus;
   createdAt: Date;
@@ -68,6 +69,7 @@ const registrationSchema = new Schema<RegistrationDoc>(
     // participant (leader or teammate) can see the whole team from their side.
     teammates: { type: [teammateSchema], default: [] },
     paymentReference: { type: String, trim: true, default: null },
+    paymentScreenshotUrl: { type: String, trim: true, default: null },
     notes: { type: String, trim: true, default: null },
     status: { type: String, required: true, enum: ["submitted", "confirmed", "cancelled"], default: "confirmed" },
   },

@@ -45,6 +45,7 @@ export interface RegistrationDto {
   team_name: string | null;
   teammates: RegistrationTeammateDto[];
   payment_reference: string | null;
+  payment_screenshot_url: string | null;
   notes: string | null;
   status: 'submitted' | 'confirmed' | 'cancelled';
   created_at: string;

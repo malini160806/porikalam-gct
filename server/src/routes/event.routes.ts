@@ -10,10 +10,13 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { requireAuth, requireUserId } from "../middleware/auth.js";
 import { serializeEvent, serializeRegistration } from "../utils/serializers.js";
-import { uploadPpt } from "../utils/upload.js";
+import { uploadPpt, uploadPaymentScreenshot } from "../utils/upload.js";
 import { sendPrequalifierConfirmationEmail } from "../utils/mailer.js";
 
 const router = Router();
+
+// UPI transaction reference numbers (UTR/RRN) are always a 12-digit number.
+const UPI_REFERENCE_REGEX = /^\d{12}$/;
 
 router.get(
   "/",
@@ -37,8 +40,13 @@ const registerSchema = z.object({
   teamName: z.string().trim().max(120).optional(),
   // Teammates are identified by their existing Porikkalam username — they
   // must already hold an account; one is never created on their behalf here.
-  teammateUsernames: z.array(z.string().trim().min(1).max(40)).max(15).optional().default([]),
-  paymentReference: z.string().trim().max(80).optional(),
+  // Arrives as a JSON-encoded array string since this is a multipart form body.
+  teammateUsernames: z.string().trim().optional(),
+  paymentReference: z
+    .string()
+    .trim()
+    .regex(UPI_REFERENCE_REGEX, "Enter a valid 12-digit UPI transaction reference ID.")
+    .optional(),
 });
 
 // The participant's profile (name, email, phone, college, department, year)
@@ -50,6 +58,7 @@ const registerSchema = z.object({
 router.post(
   "/:slug/register",
   requireAuth,
+  uploadPaymentScreenshot.single("paymentScreenshot"),
   asyncHandler(async (req, res) => {
     const slug = String(req.params.slug).toLowerCase();
     const input = registerSchema.parse(req.body);
@@ -69,6 +78,20 @@ router.post(
       throw new ApiError(400, "Enter your UPI payment reference to complete registration.", "paymentReference");
     }
 
+    let parsedTeammateUsernames: string[] = [];
+    if (input.teammateUsernames) {
+      try {
+        const parsed: unknown = JSON.parse(input.teammateUsernames);
+        if (Array.isArray(parsed)) {
+          parsedTeammateUsernames = parsed.filter(
+            (value): value is string => typeof value === "string" && value.trim().length > 0,
+          );
+        }
+      } catch {
+        // Malformed input — treat as no teammates rather than failing the whole registration.
+      }
+    }
+
     // Teammates only make sense for team events — silently ignore any sent
     // for an individual event rather than erroring on stray client state.
     // Usernames are looked up case-insensitively (the system always issues
@@ -77,7 +100,7 @@ router.post(
     const seenUsernames = new Set<string>();
     const requestedUsernames =
       event.teamType === "team"
-        ? input.teammateUsernames.filter((username) => {
+        ? parsedTeammateUsernames.filter((username) => {
             const key = username.toLowerCase();
             if (key === leader.username.toLowerCase() || seenUsernames.has(key)) return false;
             seenUsernames.add(key);
@@ -162,6 +185,7 @@ router.post(
       teamName,
       teammates: roster,
       paymentReference: input.paymentReference ?? null,
+      paymentScreenshotUrl: req.file ? `/uploads/payment-screenshots/${req.file.filename}` : null,
       status,
     }));
 

@@ -23,11 +23,15 @@ import techThiralRoutes from "./routes/techThiral.routes.js";
 // (porikalam-gct-<hash>.vercel.app) are always allowed on top of that, so a stale
 // CLIENT_URL pointing at an old deployment hash doesn't silently CORS-block the
 // live site (every API call — including username generation — would fail).
+// The Vite dev server origins are also always allowed: client/.env points local
+// dev builds at this same deployed API (there's no separate local backend/DB), so
+// `npm run dev` needs to reach it too.
 const configuredOrigins = env.clientUrl
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 const VERCEL_PROJECT_ORIGIN = /^https:\/\/porikalam-gct(-[a-z0-9]+)?\.vercel\.app$/;
+const LOCAL_DEV_ORIGINS = new Set(["http://localhost:5173", "http://127.0.0.1:5173"]);
 
 /** Builds the Express app. Pure request-handling setup only — no DB connection, no listen(). */
 export function createApp(): express.Express {
@@ -39,7 +43,11 @@ export function createApp(): express.Express {
       origin(origin, callback) {
         // No Origin header — same-origin requests, curl/health checks, etc.
         if (!origin) return callback(null, true);
-        if (configuredOrigins.includes(origin) || VERCEL_PROJECT_ORIGIN.test(origin)) {
+        if (
+          configuredOrigins.includes(origin) ||
+          VERCEL_PROJECT_ORIGIN.test(origin) ||
+          LOCAL_DEV_ORIGINS.has(origin)
+        ) {
           return callback(null, true);
         }
         callback(new Error("Not allowed by CORS"));

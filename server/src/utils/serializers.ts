@@ -21,8 +21,6 @@ export function serializeUser(user: HydratedDocument<UserDoc>) {
     register_number: user.registerNumber ?? null,
     city: user.city ?? null,
     state: user.state ?? null,
-    guardian_name: user.guardianName ?? null,
-    emergency_contact: user.emergencyContact ?? null,
     profile_photo_url: user.profilePhotoUrl ?? null,
     managed_event: user.managedEvent ?? null,
     created_at: user.createdAt.toISOString(),

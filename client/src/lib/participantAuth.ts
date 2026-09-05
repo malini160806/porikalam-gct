@@ -65,8 +65,6 @@ export interface RegisterParticipantInput {
   registerNumber: string;
   city: string;
   state: string;
-  guardianName: string;
-  emergencyContact: string;
   password: string;
   reservedUsername?: string;
 }

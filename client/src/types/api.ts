@@ -13,8 +13,6 @@ export interface AuthUser {
   register_number: string | null;
   city: string | null;
   state: string | null;
-  guardian_name: string | null;
-  emergency_contact: string | null;
   profile_photo_url: string | null;
   managed_event: string | null;
   created_at: string;

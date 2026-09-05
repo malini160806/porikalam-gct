@@ -194,8 +194,6 @@ function ProfilePanel({ user, onUpdated }: { user: AuthUser; onUpdated: (user: A
     { label: 'Degree', value: user.degree },
     { label: 'Year of Study', value: user.year_of_study },
     { label: 'Register Number', value: user.register_number },
-    { label: 'Parent / Guardian Name', value: user.guardian_name },
-    { label: 'Emergency Contact', value: user.emergency_contact },
   ];
 
   async function handleSave(event: FormEvent) {

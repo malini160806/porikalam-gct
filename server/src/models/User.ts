@@ -16,8 +16,6 @@ export interface UserDoc {
   registerNumber?: string | null;
   city?: string | null;
   state?: string | null;
-  guardianName?: string | null;
-  emergencyContact?: string | null;
   profilePhotoUrl?: string | null;
   managedEvent?: string | null;
   resetTokenHash?: string | null;
@@ -42,8 +40,6 @@ const userSchema = new Schema<UserDoc>(
     registerNumber: { type: String, trim: true, default: null },
     city: { type: String, trim: true, default: null },
     state: { type: String, trim: true, default: null },
-    guardianName: { type: String, trim: true, default: null },
-    emergencyContact: { type: String, trim: true, default: null },
     profilePhotoUrl: { type: String, default: null },
     managedEvent: { type: String, default: null },
     resetTokenHash: { type: String, default: null, select: false },

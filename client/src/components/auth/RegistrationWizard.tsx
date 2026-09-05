@@ -16,9 +16,11 @@ import {
   uploadProfilePhoto,
   ParticipantAuthError,
 } from '@/lib/participantAuth';
+import { TN_ENGINEERING_COLLEGES } from '@/data/tnEngineeringColleges';
 
 const GENDER_OPTIONS = ['Male', 'Female', 'Other', 'Prefer not to say'];
 const YEAR_OPTIONS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year', 'Postgraduate'];
+const OTHER_COLLEGE = '__other__';
 
 const step1Schema = z.object({
   fullName: z.string().trim().min(2, 'Name must be at least 2 characters').max(100),
@@ -38,8 +40,6 @@ const step1Schema = z.object({
   registerNumber: z.string().trim().min(1, 'Register number is required').max(40),
   city: z.string().trim().min(1, 'City is required').max(80),
   state: z.string().trim().min(1, 'State is required').max(80),
-  guardianName: z.string().trim().min(2, 'Guardian name is required').max(100),
-  emergencyContact: z.string().trim().regex(/^\d{7,15}$/, 'Enter a valid emergency contact number'),
 });
 
 type Step1Values = z.infer<typeof step1Schema>;
@@ -73,8 +73,6 @@ const EMPTY_STEP1: Step1Values = {
   registerNumber: '',
   city: '',
   state: '',
-  guardianName: '',
-  emergencyContact: '',
 };
 
 const STEP1_FIELD_LABELS: Record<keyof Step1Values, string> = {
@@ -90,8 +88,6 @@ const STEP1_FIELD_LABELS: Record<keyof Step1Values, string> = {
   registerNumber: 'Register Number',
   city: 'City',
   state: 'State',
-  guardianName: 'Parent / Guardian Name',
-  emergencyContact: 'Emergency Contact Number',
 };
 
 interface RegistrationWizardProps {
@@ -108,6 +104,7 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [isOtherCollege, setIsOtherCollege] = useState(false);
   const [isCheckingConflicts, setIsCheckingConflicts] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
@@ -342,13 +339,44 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   </Select>
                   {errors.gender && <span className="text-xs text-red-700">{errors.gender}</span>}
                 </div>
-                <Input
-                  label="College Name"
-                  required
-                  value={values.college}
-                  onChange={(e) => updateField('college', e.target.value)}
-                  error={errors.college}
-                />
+                <div className="flex flex-col gap-1.5">
+                  <Select
+                    label="College Name"
+                    required
+                    value={isOtherCollege ? OTHER_COLLEGE : values.college}
+                    onChange={(e) => {
+                      const nextValue = e.target.value;
+                      if (nextValue === OTHER_COLLEGE) {
+                        setIsOtherCollege(true);
+                        updateField('college', '');
+                      } else {
+                        setIsOtherCollege(false);
+                        updateField('college', nextValue);
+                      }
+                    }}
+                  >
+                    <option value="" disabled>
+                      Select your college
+                    </option>
+                    {TN_ENGINEERING_COLLEGES.map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))}
+                    <option value={OTHER_COLLEGE}>Other (not listed)</option>
+                  </Select>
+                  {!isOtherCollege && errors.college && <span className="text-xs text-red-700">{errors.college}</span>}
+                </div>
+                {isOtherCollege && (
+                  <Input
+                    label="Enter Your College Name"
+                    required
+                    value={values.college}
+                    onChange={(e) => updateField('college', e.target.value)}
+                    error={errors.college}
+                    placeholder="Type your college name"
+                  />
+                )}
                 <Input
                   label="Department"
                   required
@@ -401,21 +429,6 @@ export function RegistrationWizard({ onSuccess }: RegistrationWizardProps) {
                   value={values.state}
                   onChange={(e) => updateField('state', e.target.value)}
                   error={errors.state}
-                />
-                <Input
-                  label="Parent / Guardian Name"
-                  required
-                  value={values.guardianName}
-                  onChange={(e) => updateField('guardianName', e.target.value)}
-                  error={errors.guardianName}
-                />
-                <Input
-                  label="Emergency Contact Number"
-                  type="tel"
-                  required
-                  value={values.emergencyContact}
-                  onChange={(e) => updateField('emergencyContact', e.target.value.replace(/[^\d]/g, ''))}
-                  error={errors.emergencyContact}
                 />
               </div>
 

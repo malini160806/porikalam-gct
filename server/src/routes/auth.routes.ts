@@ -60,8 +60,6 @@ const registerSchema = z.object({
   registerNumber: z.string().trim().min(1, "Register number is required").max(40),
   city: z.string().trim().min(1).max(80),
   state: z.string().trim().min(1).max(80),
-  guardianName: z.string().trim().min(2).max(100),
-  emergencyContact: z.string().trim().regex(/^\d{7,15}$/, "Enter a valid emergency contact number"),
   password: z
     .string()
     .min(8, "At least 8 characters")
@@ -103,8 +101,6 @@ router.post(
       registerNumber: input.registerNumber,
       city: input.city,
       state: input.state,
-      guardianName: input.guardianName,
-      emergencyContact: input.emergencyContact,
     });
 
     await Role.create({ userId: user._id, role: "participant" });

@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
+  BookOpen,
   BrainCircuit,
   CheckCircle2,
   ChevronRight,
+  Download,
   Factory,
   GraduationCap,
   Handshake,
@@ -475,6 +477,39 @@ export default function Thulira() {
               <Button to="/thulira/prequalifier" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
                 Apply for Prequalifier
               </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Brochure */}
+      <section className="relative bg-cream/95 py-24">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Resources" title="Event Brochure" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5 }}
+            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-10"
+          >
+            <CornerOrnament corner="top-left" />
+            <CornerOrnament corner="bottom-right" />
+
+            <div className="relative z-10 flex flex-col items-center gap-4">
+              <BookOpen size={32} className="text-brown" strokeWidth={1.5} />
+              <h3 className="font-heading text-2xl font-semibold text-navy">Brochure Coming Soon</h3>
+              <p className="max-w-md font-body text-sm leading-relaxed text-slate">
+                The full Thulira brochure with detailed event information will be published here shortly.
+              </p>
+              <span
+                aria-disabled="true"
+                className="mt-2 inline-flex cursor-not-allowed items-center justify-center gap-2 border border-navy/20 bg-navy/5 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wider text-navy/50"
+              >
+                <Download size={16} strokeWidth={1.8} />
+                <span>Coming Soon</span>
+              </span>
             </div>
           </motion.div>
         </div>

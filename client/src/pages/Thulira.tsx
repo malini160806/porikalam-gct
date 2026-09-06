@@ -29,14 +29,11 @@ import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { TempleSilhouette } from '@/components/common/TempleSilhouette';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
-import { ThuliraApplicationForm } from '@/components/thulira/ThuliraApplicationForm';
 import { SITE } from '@/constants/site';
 import {
-  thuliraApplicationReview,
   thuliraDomains,
   thuliraEvaluationCriteria,
   thuliraExhibitionOpportunities,
@@ -173,8 +170,8 @@ export default function Thulira() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.85 }}
           >
-            <Button href="#apply" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-              Apply Now
+            <Button to="/thulira/prequalifier" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+              Apply for Prequalifier Round
             </Button>
           </motion.div>
         </div>
@@ -321,39 +318,6 @@ export default function Thulira() {
         </div>
       </section>
 
-      {/* Application & Registration */}
-      <section id="apply" className="relative scroll-mt-20 bg-cream/95 py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Application & Registration" title="Submit Your Startup Idea" />
-
-          <div className="mx-auto mt-8 flex max-w-lg flex-col items-center gap-2 text-center">
-            <Lightbulb size={32} className="text-brown" strokeWidth={1.5} />
-            <p className="font-body text-sm leading-relaxed text-slate">
-              Participation begins with an online application. Submit your startup idea below within the
-              specified timeline — all applications undergo preliminary screening before shortlisted teams
-              are invited to the startup exhibition.
-            </p>
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-              {thuliraApplicationReview.map((item) => (
-                <Badge key={item} variant="outline">
-                  {item}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-            className="relative mx-auto mt-10 max-w-xl"
-          >
-            <ThuliraApplicationForm />
-          </motion.div>
-        </div>
-      </section>
-
       {/* Innovation Domains */}
       <section className="relative overflow-hidden bg-navy-deep py-24">
         <div className="absolute inset-0 bp-grid-bg opacity-20" />
@@ -475,7 +439,7 @@ export default function Thulira() {
               </p>
 
               <Button to="/thulira/prequalifier" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-                Apply for Prequalifier
+                Apply for Prequalifier Round
               </Button>
             </div>
           </motion.div>
@@ -515,7 +479,7 @@ export default function Thulira() {
         </div>
       </section>
 
-      {/* Apply Now — final CTA */}
+      {/* Apply for Prequalifier Round — final CTA */}
       <section className="relative overflow-hidden bg-navy-deep py-16 text-center">
         <div className="absolute inset-0 bp-grid-bg opacity-20" />
         <motion.div
@@ -525,8 +489,8 @@ export default function Thulira() {
           transition={{ duration: 0.5 }}
           className="relative mx-auto flex max-w-4xl justify-center px-4 sm:px-6"
         >
-          <Button href="#apply" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-            Apply Now
+          <Button to="/thulira/prequalifier" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+            Apply for Prequalifier Round
           </Button>
         </motion.div>
       </section>

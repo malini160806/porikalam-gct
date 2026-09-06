@@ -4,9 +4,19 @@ import dicLogo from '@/assets/partners/DIC.png';
 
 type LogoProps = {
   compact?: boolean;
+  /** Shows only the DCKAP Incubation Center logo, without the GCT logo or divider — used in the admin panel. */
+  dckapOnly?: boolean;
 };
 
-export function Logo({ compact = false }: LogoProps) {
+export function Logo({ compact = false, dckapOnly = false }: LogoProps) {
+  if (dckapOnly) {
+    return (
+      <Link to="/" className="flex shrink-0 items-center">
+        <img src={dicLogo} alt="DCKAP Incubation Center" className="h-14 w-auto object-contain" />
+      </Link>
+    );
+  }
+
   return (
     <Link
       to="/"

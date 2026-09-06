@@ -36,7 +36,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between border-b border-gold/15 px-5 py-5">
-        <Logo compact />
+        <Logo compact dckapOnly />
       </div>
 
       <nav className="flex-1 overflow-y-auto px-3 py-4">
@@ -97,7 +97,7 @@ function AdminShell() {
 
       {/* Mobile top bar */}
       <div className="fixed inset-x-0 top-0 z-30 flex items-center justify-between border-b border-gold/15 bg-navy px-4 py-3 md:hidden">
-        <Logo compact />
+        <Logo compact dckapOnly />
         <button
           type="button"
           onClick={() => setMobileOpen(true)}

@@ -28,7 +28,7 @@ export function CoreTeamMemberCard({ member, index = 0 }: CoreTeamMemberCardProp
         y: -4,
         boxShadow: '0 10px 26px -10px rgba(212,175,55,0.4), 0 6px 16px -10px rgba(61,90,117,0.3)',
       }}
-      className="group flex items-center gap-4 border border-gold/30 bg-white p-4 shadow-card transition-colors duration-300 hover:border-gold"
+      className="group flex items-start gap-4 border border-gold/30 bg-white p-4 shadow-card transition-colors duration-300 hover:border-gold"
     >
       <motion.div
         className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-gold bg-navy font-heading text-base text-gold"
@@ -47,7 +47,7 @@ export function CoreTeamMemberCard({ member, index = 0 }: CoreTeamMemberCardProp
           {member.name}
         </h4>
         {member.role && (
-          <p className="truncate font-body text-xs font-medium uppercase tracking-wide text-brown/80">
+          <p className="mt-1 font-body text-xs font-bold uppercase leading-snug tracking-wide text-brown">
             {member.role}
           </p>
         )}

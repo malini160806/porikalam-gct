@@ -12,6 +12,15 @@ if (!import.meta.env.VITE_API_URL && !import.meta.env.DEV) {
   );
 }
 
+/** Uploaded files (profile photos, payment screenshots) are served from the API's own
+ * origin (Render), not the frontend's (Vercel) — a bare `/uploads/...` path from the API
+ * resolves against whichever origin the browser is on, so it must be made absolute here. */
+export function resolveUploadUrl(path: string | null | undefined): string | null {
+  if (!path) return null;
+  if (/^https?:\/\//.test(path)) return path;
+  return `${API_BASE.replace(/\/api\/?$/, '')}${path}`;
+}
+
 export class ApiError extends Error {
   status: number;
   field?: string;

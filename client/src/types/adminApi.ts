@@ -52,6 +52,7 @@ export interface AdminParticipantDto {
   college: string | null;
   department: string | null;
   year_of_study: string | null;
+  profile_photo_url: string | null;
   created_at: string;
 }
 
@@ -78,4 +79,69 @@ export interface AdminParticipantsResponse {
   total: number;
   page: number;
   limit: number;
+}
+
+export type AdminPaymentStatus = 'paid' | 'pending' | 'free';
+
+export interface AdminRegistrationDto {
+  id: string;
+  username: string;
+  participant_name: string;
+  contact_email: string;
+  phone: string;
+  college: string | null;
+  department: string | null;
+  year_of_study: string | null;
+  event_key: string;
+  event_name: string;
+  team_name: string | null;
+  role: 'leader' | 'member';
+  payment_reference: string | null;
+  payment_screenshot_url: string | null;
+  payment_status: AdminPaymentStatus;
+  status: 'submitted' | 'confirmed' | 'cancelled';
+  checked_in_at: string | null;
+  created_at: string;
+}
+
+export interface AdminRegistrationsResponse {
+  registrations: AdminRegistrationDto[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface AdminPaymentDto {
+  id: string;
+  username: string;
+  participant_name: string;
+  contact_email: string;
+  phone: string;
+  event_key: string;
+  event_name: string;
+  team_name: string | null;
+  payment_reference: string | null;
+  payment_screenshot_url: string | null;
+  status: 'submitted' | 'confirmed' | 'cancelled';
+  created_at: string;
+}
+
+export interface AdminPaymentsResponse {
+  payments: AdminPaymentDto[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface AdminAttendanceRegistrationDto {
+  id: string;
+  event_key: string;
+  event_name: string;
+  team_name: string | null;
+  checked_in_at: string | null;
+}
+
+export interface AdminAttendanceLookupResponse {
+  participant: AdminParticipantDto;
+  registrations: AdminAttendanceRegistrationDto[];
 }

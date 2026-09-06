@@ -46,6 +46,7 @@ export interface RegistrationDto {
   payment_screenshot_url: string | null;
   notes: string | null;
   status: 'submitted' | 'confirmed' | 'cancelled';
+  checked_in_at: string | null;
   created_at: string;
   updated_at: string;
 }

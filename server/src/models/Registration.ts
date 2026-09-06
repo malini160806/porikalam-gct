@@ -33,6 +33,8 @@ export interface RegistrationDoc {
   paymentScreenshotUrl?: string | null;
   notes?: string | null;
   status: RegistrationStatus;
+  checkedInAt?: Date | null;
+  checkedInBy?: Types.ObjectId | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -72,6 +74,8 @@ const registrationSchema = new Schema<RegistrationDoc>(
     paymentScreenshotUrl: { type: String, trim: true, default: null },
     notes: { type: String, trim: true, default: null },
     status: { type: String, required: true, enum: ["submitted", "confirmed", "cancelled"], default: "confirmed" },
+    checkedInAt: { type: Date, default: null },
+    checkedInBy: { type: Schema.Types.ObjectId, ref: "Admin", default: null },
   },
   { timestamps: true },
 );

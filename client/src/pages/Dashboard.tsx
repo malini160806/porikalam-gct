@@ -336,12 +336,13 @@ export default function Dashboard() {
               <div className="flex flex-col items-center gap-4">
                 <ParticipantIdCard
                   name={currentUser.display_name}
+                  username={currentUser.username}
                   department={currentUser.department}
                   yearOfStudy={currentUser.year_of_study}
                   photoUrl={currentUser.profile_photo_url}
                 />
                 <p className="max-w-sm text-center font-body text-xs text-slate">
-                  Your scannable QR pass unlocks once event registration opens.
+                  Show this QR pass to an event admin to check in at any event you're registered for.
                 </p>
               </div>
             ) : (

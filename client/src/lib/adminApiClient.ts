@@ -48,3 +48,25 @@ export async function adminApiFetch<T>(path: string, options: AdminApiFetchOptio
 
   return body as T;
 }
+
+/** Downloads a CSV (or other file) response from an authenticated admin endpoint — `adminApiFetch` assumes JSON, so exports need their own fetch. */
+export async function adminApiDownload(path: string, filename: string): Promise<void> {
+  const token = getAdminToken();
+  const response = await fetch(`${API_BASE}/admin${path}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => null);
+    throw new AdminApiError(response.status, body?.message ?? 'Could not download this file right now.');
+  }
+
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}

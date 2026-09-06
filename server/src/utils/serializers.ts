@@ -99,6 +99,7 @@ export function serializeRegistration(registration: HydratedDocument<Registratio
     payment_screenshot_url: registration.paymentScreenshotUrl ?? null,
     notes: registration.notes ?? null,
     status: registration.status,
+    checked_in_at: registration.checkedInAt ? registration.checkedInAt.toISOString() : null,
     created_at: registration.createdAt.toISOString(),
     updated_at: registration.updatedAt.toISOString(),
   };

@@ -31,6 +31,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Divider } from '@/components/ui/Divider';
 import { CornerOrnament } from '@/components/common/CornerOrnament';
 import { ParticipantJourney } from '@/components/thulira/ParticipantJourney';
+import { ThuliraApplicationForm } from '@/components/thulira/ThuliraApplicationForm';
 import { SITE } from '@/constants/site';
 import {
   thuliraApplicationReview,
@@ -319,39 +320,34 @@ export default function Thulira() {
       </section>
 
       {/* Application & Registration */}
-      <section className="relative bg-cream/95 py-24">
+      <section id="apply" className="relative scroll-mt-20 bg-cream/95 py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Application & Registration" title="Submit Your Startup Idea" />
+
+          <div className="mx-auto mt-8 flex max-w-lg flex-col items-center gap-2 text-center">
+            <Lightbulb size={32} className="text-brown" strokeWidth={1.5} />
+            <p className="font-body text-sm leading-relaxed text-slate">
+              Participation begins with an online application. Submit your startup idea below within the
+              specified timeline — all applications undergo preliminary screening before shortlisted teams
+              are invited to the startup exhibition.
+            </p>
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+              {thuliraApplicationReview.map((item) => (
+                <Badge key={item} variant="outline">
+                  {item}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5 }}
-            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-12 text-center"
+            className="relative mx-auto mt-10 max-w-xl"
           >
-            <CornerOrnament corner="top-left" />
-            <CornerOrnament corner="bottom-right" />
-            <div className="relative z-10 flex flex-col items-center gap-5">
-              <Lightbulb size={36} className="text-brown" />
-              <h3 className="font-heading text-3xl font-semibold tracking-wide text-navy">
-                Apply For Thulira
-              </h3>
-              <p className="max-w-md font-body text-sm text-slate">
-                Participation begins with an online application. Submit your startup idea through the
-                prescribed form within the specified timeline — all applications undergo preliminary
-                screening before shortlisted teams are invited to the startup exhibition.
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                {thuliraApplicationReview.map((item) => (
-                  <Badge key={item} variant="outline">
-                    {item}
-                  </Badge>
-                ))}
-              </div>
-              <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-                Apply Now
-              </Button>
-            </div>
+            <ThuliraApplicationForm />
           </motion.div>
         </div>
       </section>
@@ -494,7 +490,7 @@ export default function Thulira() {
           transition={{ duration: 0.5 }}
           className="relative mx-auto flex max-w-4xl justify-center px-4 sm:px-6"
         >
-          <Button to="/register" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+          <Button href="#apply" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
             Apply Now
           </Button>
         </motion.div>

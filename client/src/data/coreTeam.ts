@@ -4,7 +4,7 @@ import karthikPhoto from '@/assets/coreTeam/Karthick K.jpg';
 import kaviyaPhoto from '@/assets/coreTeam/KAVIYA RAJKUMAR.jpg';
 import sivaaPhoto from '@/assets/coreTeam/siva.png';
 import jeevanaganPhoto from '@/assets/coreTeam/JEEVANAGAN T.jpg';
-import anithaPhoto from '@/assets/coreTeam/Anitha R .jpg';
+import anithaPhoto from '@/assets/coreTeam/Anitha R.png';
 import yuvanPhoto from '@/assets/coreTeam/Yuvan Shankar N K.jpeg';
 import aravindhanPhoto from '@/assets/coreTeam/Aravindhan SM.jpg';
 import naveenaPhoto from '@/assets/coreTeam/Naveena.png';
@@ -15,7 +15,7 @@ import mohanrajPhoto from '@/assets/coreTeam/Mohanraj M.jpg';
 import jothiLakshmiPhoto from '@/assets/coreTeam/Jothi Lakshmi S .jpg';
 import monishVikramPhoto from '@/assets/coreTeam/Monish Vikram SB .png';
 import sorimuthuPhoto from '@/assets/coreTeam/Sorimuthu B.png';
-import vidhyapathiPhoto from '@/assets/coreTeam/Vidhyapathi D .jpg';
+import vidhyapathiPhoto from '@/assets/coreTeam/Vidhyapathi D.jpg.jpeg';
 import dharanPrasathPhoto from '@/assets/coreTeam/Dharan Prasath R.png';
 
 /**

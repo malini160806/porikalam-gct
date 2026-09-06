@@ -68,13 +68,11 @@ router.post(
 );
 
 const prequalifierSchema = z.object({
-  teamName: z.string().trim().min(1).max(120),
   startupTitle: z.string().trim().min(1).max(150),
-  leaderName: z.string().trim().min(1).max(80),
-  leaderEmail: z.string().trim().email().max(120),
-  leaderPhone: z.string().trim().min(1).max(20),
+  username: z.string().trim().min(1).max(40),
+  email: z.string().trim().email().max(120),
   // Teammates arrive as a JSON-encoded array string since this is a multipart form body.
-  teammateNames: z.string().trim().optional(),
+  teammateUsernames: z.string().trim().optional(),
   problemStatement: z.string().trim().max(200).optional(),
 });
 
@@ -85,12 +83,12 @@ router.post(
     const input = prequalifierSchema.parse(req.body);
     if (!req.file) throw new ApiError(400, "Please upload your PPT to submit.", "ppt");
 
-    let teammateNames: string[] = [];
-    if (input.teammateNames) {
+    let teammateUsernames: string[] = [];
+    if (input.teammateUsernames) {
       try {
-        const parsed: unknown = JSON.parse(input.teammateNames);
+        const parsed: unknown = JSON.parse(input.teammateUsernames);
         if (Array.isArray(parsed)) {
-          teammateNames = parsed.filter(
+          teammateUsernames = parsed.filter(
             (value): value is string => typeof value === "string" && value.trim().length > 0,
           );
         }
@@ -102,17 +100,15 @@ router.post(
     const pptUrl = `/uploads/ppts/${req.file.filename}`;
 
     const submission = await ThuliraPrequalifierSubmission.create({
-      teamName: input.teamName,
       startupTitle: input.startupTitle,
-      leaderName: input.leaderName,
-      leaderEmail: input.leaderEmail,
-      leaderPhone: input.leaderPhone,
-      teammateNames,
+      username: input.username,
+      email: input.email,
+      teammateUsernames,
       problemStatement: input.problemStatement ?? null,
       pptUrl,
     });
 
-    void sendThuliraPrequalifierConfirmationEmail(input.leaderEmail, input.teamName);
+    void sendThuliraPrequalifierConfirmationEmail(input.email, input.startupTitle);
 
     res.status(201).json({ submissionId: submission._id.toString() });
   }),

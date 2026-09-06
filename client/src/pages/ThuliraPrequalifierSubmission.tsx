@@ -10,49 +10,43 @@ import { ApiError } from '@/lib/apiClient';
 const MAX_TEAMMATES = 3; // Team of 4 total, including the leader.
 
 export default function ThuliraPrequalifierSubmission() {
-  const [teamName, setTeamName] = useState('');
   const [startupTitle, setStartupTitle] = useState('');
-  const [leaderName, setLeaderName] = useState('');
-  const [leaderEmail, setLeaderEmail] = useState('');
-  const [leaderPhone, setLeaderPhone] = useState('');
-  const [teammateNames, setTeammateNames] = useState<string[]>(['']);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [teammateUsernames, setTeammateUsernames] = useState<string[]>(['']);
   const [pptFile, setPptFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   function updateTeammate(index: number, value: string) {
-    setTeammateNames((prev) => prev.map((name, i) => (i === index ? value : name)));
+    setTeammateUsernames((prev) => prev.map((name, i) => (i === index ? value : name)));
   }
 
   function addTeammateRow() {
-    setTeammateNames((prev) => (prev.length >= MAX_TEAMMATES ? prev : [...prev, '']));
+    setTeammateUsernames((prev) => (prev.length >= MAX_TEAMMATES ? prev : [...prev, '']));
   }
 
   function removeTeammateRow(index: number) {
-    setTeammateNames((prev) => prev.filter((_, i) => i !== index));
+    setTeammateUsernames((prev) => prev.filter((_, i) => i !== index));
   }
 
   async function handleSubmit(formEvent: FormEvent) {
     formEvent.preventDefault();
     setError(null);
 
-    if (!teamName.trim()) return setError('Team name is required.');
     if (!startupTitle.trim()) return setError('Startup / idea title is required.');
-    if (!leaderName.trim()) return setError('Team leader name is required.');
-    if (!leaderEmail.trim()) return setError('Team leader email is required.');
-    if (!leaderPhone.trim()) return setError('Team leader phone is required.');
+    if (!username.trim()) return setError('Team Leader Username is required.');
+    if (!email.trim()) return setError('Your email ID is required.');
     if (!pptFile) return setError('Please upload your PPT to submit.');
 
     setSubmitting(true);
     try {
       await submitThuliraPrequalifier({
-        teamName: teamName.trim(),
         startupTitle: startupTitle.trim(),
-        leaderName: leaderName.trim(),
-        leaderEmail: leaderEmail.trim(),
-        leaderPhone: leaderPhone.trim(),
-        teammateNames: teammateNames.map((name) => name.trim()).filter(Boolean),
+        username: username.trim(),
+        email: email.trim(),
+        teammateUsernames: teammateUsernames.map((name) => name.trim()).filter(Boolean),
         ppt: pptFile,
       });
       setSubmitted(true);
@@ -82,12 +76,12 @@ export default function ThuliraPrequalifierSubmission() {
               <h2 className="mt-4 font-heading text-2xl font-semibold text-navy sm:text-3xl">Submission Received</h2>
 
               <p className="mx-auto mt-4 max-w-md font-body text-sm leading-7 text-slate sm:text-base">
-                Thank you, <strong>{teamName}</strong>. We will review your prequalifier submission and update the
-                results on the website&apos;s leaderboard page and via email.
+                Thank you for participating in the prequalifier round for <strong>{startupTitle}</strong>. We will
+                review your submission and update the results on the website&apos;s leaderboard page and via email.
               </p>
 
               <p className="mt-3 font-body text-sm font-semibold text-navy">
-                Please check your email — a confirmation has been sent to {leaderEmail}.
+                Please check your email — a confirmation has been sent to {email}.
               </p>
 
               <p className="mt-5 font-heading text-xl font-bold text-brown">Stay tuned!!</p>
@@ -112,7 +106,6 @@ export default function ThuliraPrequalifierSubmission() {
                 </h2>
               </div>
 
-              <Input label="Team Name *" value={teamName} onChange={(e) => setTeamName(e.target.value)} placeholder="Enter your team name" />
               <Input
                 label="Startup / Idea Title *"
                 value={startupTitle}
@@ -120,32 +113,34 @@ export default function ThuliraPrequalifierSubmission() {
                 placeholder="What are you building?"
               />
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Input label="Team Leader Name *" value={leaderName} onChange={(e) => setLeaderName(e.target.value)} placeholder="Full name" />
-                <Input
-                  label="Team Leader Phone *"
-                  value={leaderPhone}
-                  onChange={(e) => setLeaderPhone(e.target.value)}
-                  placeholder="10-digit mobile number"
-                />
-              </div>
+              <Input
+                label="Team Leader Username *"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Your Porikkalam username"
+              />
 
               <Input
-                label="Team Leader Email *"
+                label="Your Email ID *"
                 type="email"
-                value={leaderEmail}
-                onChange={(e) => setLeaderEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
               />
 
               <div className="flex flex-col gap-2">
                 <p className="font-body text-xs font-semibold uppercase tracking-wide text-slate/70">
-                  Other Teammates (up to {MAX_TEAMMATES}, optional)
+                  Other Participants&apos; Usernames (up to {MAX_TEAMMATES}, optional)
                 </p>
-                {teammateNames.map((name, index) => (
+                {teammateUsernames.map((teammateUsername, index) => (
                   <div key={index} className="flex items-end gap-2">
-                    <Input value={name} onChange={(e) => updateTeammate(index, e.target.value)} placeholder="Teammate full name" className="flex-1" />
-                    {teammateNames.length > 1 && (
+                    <Input
+                      value={teammateUsername}
+                      onChange={(e) => updateTeammate(index, e.target.value)}
+                      placeholder="Existing Porikkalam username"
+                      className="flex-1"
+                    />
+                    {teammateUsernames.length > 1 && (
                       <button
                         type="button"
                         onClick={() => removeTeammateRow(index)}
@@ -157,7 +152,7 @@ export default function ThuliraPrequalifierSubmission() {
                     )}
                   </div>
                 ))}
-                {teammateNames.length < MAX_TEAMMATES && (
+                {teammateUsernames.length < MAX_TEAMMATES && (
                   <Button variant="outline" size="sm" type="button" onClick={addTeammateRow} icon={<Plus size={14} />} className="self-start">
                     Add Teammate
                   </Button>

@@ -4,12 +4,10 @@ export type ThuliraPrequalifierStatus = "submitted" | "reviewed" | "shortlisted"
 
 export interface ThuliraPrequalifierSubmissionDoc {
   _id: Types.ObjectId;
-  teamName: string;
   startupTitle: string;
-  leaderName: string;
-  leaderEmail: string;
-  leaderPhone: string;
-  teammateNames: string[];
+  username: string;
+  email: string;
+  teammateUsernames: string[];
   problemStatement?: string | null;
   pptUrl: string;
   status: ThuliraPrequalifierStatus;
@@ -19,12 +17,10 @@ export interface ThuliraPrequalifierSubmissionDoc {
 
 const thuliraPrequalifierSubmissionSchema = new Schema<ThuliraPrequalifierSubmissionDoc>(
   {
-    teamName: { type: String, required: true, trim: true },
     startupTitle: { type: String, required: true, trim: true },
-    leaderName: { type: String, required: true, trim: true },
-    leaderEmail: { type: String, required: true, trim: true, lowercase: true },
-    leaderPhone: { type: String, required: true, trim: true },
-    teammateNames: { type: [String], default: [] },
+    username: { type: String, required: true, trim: true },
+    email: { type: String, required: true, trim: true, lowercase: true },
+    teammateUsernames: { type: [String], default: [] },
     problemStatement: { type: String, trim: true, default: null },
     pptUrl: { type: String, required: true },
     status: {
@@ -37,7 +33,7 @@ const thuliraPrequalifierSubmissionSchema = new Schema<ThuliraPrequalifierSubmis
   { timestamps: true },
 );
 
-thuliraPrequalifierSubmissionSchema.index({ leaderEmail: 1 });
+thuliraPrequalifierSubmissionSchema.index({ username: 1 });
 
 export const ThuliraPrequalifierSubmission = model<ThuliraPrequalifierSubmissionDoc>(
   "ThuliraPrequalifierSubmission",

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { TechThiralApplication } from "../models/TechThiralApplication.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
 import { uploadPaymentScreenshot } from "../utils/upload.js";
 
 const router = Router();
@@ -23,10 +24,13 @@ router.post(
   uploadPaymentScreenshot.single("paymentScreenshot"),
   asyncHandler(async (req, res) => {
     const input = applySchema.parse(req.body);
+    if (!req.file) {
+      throw new ApiError(400, "Upload your payment screenshot to complete your booth application.", "paymentScreenshot");
+    }
 
     const application = await TechThiralApplication.create({
       paymentReference: input.paymentReference,
-      paymentScreenshotUrl: req.file ? `/uploads/payment-screenshots/${req.file.filename}` : null,
+      paymentScreenshotUrl: `/uploads/payment-screenshots/${req.file.filename}`,
     });
 
     res.status(201).json({ applicationId: application._id.toString() });

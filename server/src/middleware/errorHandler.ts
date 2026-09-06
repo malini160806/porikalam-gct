@@ -1,9 +1,22 @@
 import type { NextFunction, Request, Response } from "express";
+import { MulterError } from "multer";
 import { ApiError } from "../utils/ApiError.js";
 
 export function errorHandler(err: unknown, _req: Request, res: Response, _next: NextFunction): void {
   if (err instanceof ApiError) {
     res.status(err.status).json({ message: err.message, field: err.field });
+    return;
+  }
+
+  if (err instanceof MulterError) {
+    if (err.code === "LIMIT_FILE_SIZE") {
+      res.status(400).json({
+        message: "Payment screenshot must be under 200KB. Compress it and try again.",
+        field: err.field,
+      });
+      return;
+    }
+    res.status(400).json({ message: err.message, field: err.field });
     return;
   }
 

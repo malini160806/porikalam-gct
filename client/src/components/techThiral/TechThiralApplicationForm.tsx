@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { applyForTechThiral } from '@/lib/techThiralApi';
 import { ApiError } from '@/lib/apiClient';
+import { validatePaymentScreenshot } from '@/lib/fileValidation';
 import { SITE } from '@/constants/site';
 
 const FEE = 1999;
@@ -27,6 +28,7 @@ export function TechThiralApplicationForm() {
     if (!UPI_REFERENCE_REGEX.test(paymentReference.trim())) {
       return setError('Enter a valid 12-digit UPI transaction reference ID.');
     }
+    if (!paymentScreenshot) return setError('Upload your payment screenshot to complete your booth application.');
 
     setSubmitting(true);
     try {
@@ -117,14 +119,27 @@ export function TechThiralApplicationForm() {
 
       <label className="flex flex-col gap-1.5 text-left">
         <span className="font-body text-xs font-semibold uppercase tracking-wider text-slate">
-          Upload Payment Screenshot (optional)
+          Upload Payment Screenshot * (max 200KB)
         </span>
         <div className="flex items-center gap-3 border border-navy/25 bg-cream/60 px-4 py-3">
           <UploadCloud size={18} className="shrink-0 text-brown" />
           <input
             type="file"
             accept="image/png,image/jpeg,image/webp"
-            onChange={(e) => setPaymentScreenshot(e.target.files?.[0] ?? null)}
+            onChange={(e) => {
+              const file = e.target.files?.[0] ?? null;
+              if (file) {
+                const validationError = validatePaymentScreenshot(file);
+                if (validationError) {
+                  setError(validationError);
+                  setPaymentScreenshot(null);
+                  e.target.value = '';
+                  return;
+                }
+              }
+              setError(null);
+              setPaymentScreenshot(file);
+            }}
             className="w-full font-body text-sm text-navy file:mr-3 file:border-0 file:bg-gold/20 file:px-3 file:py-1.5 file:font-semibold file:text-brown"
           />
         </div>

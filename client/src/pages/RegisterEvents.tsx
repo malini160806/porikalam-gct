@@ -21,6 +21,7 @@ import { useEvents } from '@/hooks/useEvents';
 import { useSession } from '@/context/SessionContext';
 import { registerForEvent } from '@/lib/registrationApi';
 import { ApiError } from '@/lib/apiClient';
+import { validatePaymentScreenshot } from '@/lib/fileValidation';
 import { SITE } from '@/constants/site';
 import type { EventItem } from '@/data/types';
 
@@ -59,6 +60,7 @@ export default function RegisterEvents() {
   const [showPayment, setShowPayment] = useState(false);
   const [paymentReference, setPaymentReference] = useState('');
   const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
+  const [screenshotError, setScreenshotError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [outcomes, setOutcomes] = useState<Record<string, SubmitOutcome> | null>(null);
   const [validationAttempted, setValidationAttempted] = useState(false);
@@ -617,17 +619,33 @@ export default function RegisterEvents() {
 
                           <label className="flex flex-col gap-1.5 text-left">
                             <span className="font-body text-xs font-semibold uppercase tracking-wider text-slate">
-                              Upload Payment Screenshot (optional)
+                              Upload Payment Screenshot * (max 200KB)
                             </span>
                             <div className="flex items-center gap-3 border border-navy/25 bg-cream/60 px-4 py-3">
                               <UploadCloud size={18} className="shrink-0 text-brown" />
                               <input
                                 type="file"
                                 accept="image/png,image/jpeg,image/webp"
-                                onChange={(e) => setPaymentScreenshot(e.target.files?.[0] ?? null)}
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0] ?? null;
+                                  if (file) {
+                                    const validationError = validatePaymentScreenshot(file);
+                                    if (validationError) {
+                                      setScreenshotError(validationError);
+                                      setPaymentScreenshot(null);
+                                      e.target.value = '';
+                                      return;
+                                    }
+                                  }
+                                  setScreenshotError(null);
+                                  setPaymentScreenshot(file);
+                                }}
                                 className="w-full font-body text-sm text-navy file:mr-3 file:border-0 file:bg-gold/20 file:px-3 file:py-1.5 file:font-semibold file:text-brown"
                               />
                             </div>
+                            {screenshotError && (
+                              <span className="font-body text-xs font-semibold text-red-700">{screenshotError}</span>
+                            )}
                             {paymentScreenshot && (
                               <span className="font-body text-xs text-slate/70">Selected: {paymentScreenshot.name}</span>
                             )}
@@ -649,7 +667,11 @@ export default function RegisterEvents() {
                           variant="primary"
                           size="md"
                           className="flex-1"
-                          disabled={submitting || (total > 0 && !UPI_REFERENCE_REGEX.test(paymentReference.trim()))}
+                          disabled={
+                            submitting ||
+                            (total > 0 && !UPI_REFERENCE_REGEX.test(paymentReference.trim())) ||
+                            (total > 0 && !paymentScreenshot)
+                          }
                           onClick={handleConfirmAndSubmit}
                         >
                           {submitting ? 'Submitting…' : 'Confirm & Submit'}

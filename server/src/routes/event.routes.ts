@@ -77,6 +77,9 @@ router.post(
     if (event.registrationFee && !input.paymentReference) {
       throw new ApiError(400, "Enter your UPI payment reference to complete registration.", "paymentReference");
     }
+    if (event.registrationFee && !req.file) {
+      throw new ApiError(400, "Upload your payment screenshot to complete registration.", "paymentScreenshot");
+    }
 
     let parsedTeammateUsernames: string[] = [];
     if (input.teammateUsernames) {

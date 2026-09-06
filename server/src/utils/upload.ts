@@ -50,7 +50,7 @@ export const uploadPpt = multer({
 
 export const uploadPaymentScreenshot = multer({
   storage: makeStorage(PAYMENT_SCREENSHOTS_DIR),
-  limits: { fileSize: 3 * 1024 * 1024 },
+  limits: { fileSize: 200 * 1024 },
   fileFilter: (_req, file, callback) => {
     callback(null, /^image\/(png|jpe?g|webp)$/.test(file.mimetype));
   },

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Clock,
   ShieldCheck,
   Users,
   Wallet,
+  Trophy,
   Download,
   ArrowDown,
   ArrowRight,
@@ -641,13 +641,13 @@ export default function EventDetail() {
 
                 <InfoCard
                   icon={
-                    <Clock
+                    <Trophy
                       size={20}
                       strokeWidth={1.5}
                     />
                   }
-                  label="Duration"
-                  value={event.duration}
+                  label="Prize Pool"
+                  value={event.prizePool ?? 'To be announced'}
                   delay={0.95}
                 />
 

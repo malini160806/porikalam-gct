@@ -1,22 +1,18 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, UploadCloud } from 'lucide-react';
+import { CheckCircle2, ExternalLink, UploadCloud } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { Input, Textarea } from '@/components/ui/Input';
+import { Input } from '@/components/ui/Input';
 import { applyForTechThiral } from '@/lib/techThiralApi';
 import { ApiError } from '@/lib/apiClient';
 import { SITE } from '@/constants/site';
 
 const FEE = 1999;
+const BOOTH_FORM_URL = 'https://forms.gle/AgDBkXZ8YDPsQb6MA';
 // UPI transaction reference numbers (UTR/RRN) are always a 12-digit number.
 const UPI_REFERENCE_REGEX = /^\d{12}$/;
 
 export function TechThiralApplicationForm() {
-  const [organizationName, setOrganizationName] = useState('');
-  const [contactPerson, setContactPerson] = useState('');
-  const [contactEmail, setContactEmail] = useState('');
-  const [contactPhone, setContactPhone] = useState('');
-  const [showcaseDescription, setShowcaseDescription] = useState('');
   const [paymentReference, setPaymentReference] = useState('');
   const [paymentScreenshot, setPaymentScreenshot] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -27,10 +23,6 @@ export function TechThiralApplicationForm() {
     formEvent.preventDefault();
     setError(null);
 
-    if (!organizationName.trim()) return setError('Organization / startup name is required.');
-    if (!contactPerson.trim()) return setError('Contact person name is required.');
-    if (!contactEmail.trim()) return setError('Contact email is required.');
-    if (!contactPhone.trim()) return setError('Contact phone is required.');
     if (!paymentReference.trim()) return setError('Enter your UPI payment reference to complete your booth application.');
     if (!UPI_REFERENCE_REGEX.test(paymentReference.trim())) {
       return setError('Enter a valid 12-digit UPI transaction reference ID.');
@@ -39,11 +31,6 @@ export function TechThiralApplicationForm() {
     setSubmitting(true);
     try {
       await applyForTechThiral({
-        organizationName: organizationName.trim(),
-        contactPerson: contactPerson.trim(),
-        contactEmail: contactEmail.trim(),
-        contactPhone: contactPhone.trim(),
-        showcaseDescription: showcaseDescription.trim() || undefined,
         paymentReference: paymentReference.trim(),
         paymentScreenshot: paymentScreenshot ?? undefined,
       });
@@ -67,8 +54,8 @@ export function TechThiralApplicationForm() {
         </div>
         <h3 className="mt-4 font-heading text-2xl font-semibold text-navy">Booth Application Submitted</h3>
         <p className="mx-auto mt-3 max-w-md font-body text-sm leading-7 text-slate">
-          Thank you, <strong>{organizationName}</strong>. We&apos;ll verify your payment reference and confirm your
-          booth allotment for the Tech Thiral Industry Expo by email.
+          Thank you for applying. We&apos;ll cross-check your booth form response and payment reference, then
+          confirm your booth allotment for the Tech Thiral Industry Expo.
         </p>
       </motion.div>
     );
@@ -88,43 +75,28 @@ export function TechThiralApplicationForm() {
         <p className="mt-2 font-body text-xs text-slate/70">Booth Fee ₹{FEE}</p>
       </div>
 
-      <Input
-        label="Organization / Startup Name *"
-        value={organizationName}
-        onChange={(e) => setOrganizationName(e.target.value)}
-        placeholder="Your company or startup name"
-      />
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Input
-          label="Contact Person *"
-          value={contactPerson}
-          onChange={(e) => setContactPerson(e.target.value)}
-          placeholder="Full name"
-        />
-        <Input
-          label="Contact Phone *"
-          value={contactPhone}
-          onChange={(e) => setContactPhone(e.target.value)}
-          placeholder="10-digit mobile number"
-        />
+      <div className="border border-navy/15 bg-cream/60 p-4">
+        <p className="font-body text-xs font-bold uppercase tracking-wide text-slate/70">Step 1</p>
+        <p className="mt-1 font-body text-sm text-slate">
+          Fill out the booth application form with your organization and contact details.
+        </p>
+        <a
+          href={BOOTH_FORM_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-flex items-center gap-2 border border-gold/50 bg-gold/10 px-4 py-2.5 font-body text-sm font-bold uppercase tracking-wide text-brown transition-colors hover:bg-gold hover:text-navy"
+        >
+          Open Booth Application Form
+          <ExternalLink size={14} />
+        </a>
       </div>
 
-      <Input
-        label="Contact Email *"
-        type="email"
-        value={contactEmail}
-        onChange={(e) => setContactEmail(e.target.value)}
-        placeholder="you@example.com"
-      />
-
-      <Textarea
-        label="What will you showcase? (optional)"
-        value={showcaseDescription}
-        onChange={(e) => setShowcaseDescription(e.target.value)}
-        placeholder="Briefly describe your product, prototype, or demo"
-        rows={3}
-      />
+      <div className="border border-navy/15 bg-cream/60 p-4">
+        <p className="font-body text-xs font-bold uppercase tracking-wide text-slate/70">Step 2</p>
+        <p className="mt-1 font-body text-sm text-slate">
+          After submitting the form above, complete your payment here to confirm your booth.
+        </p>
+      </div>
 
       <div className="border border-gold/40 bg-gold/10 p-3">
         <p className="font-body text-xs text-slate">
@@ -164,7 +136,7 @@ export function TechThiralApplicationForm() {
       {error && <p className="font-body text-sm font-semibold text-red-700">{error}</p>}
 
       <Button variant="primary" size="lg" type="submit" disabled={submitting} className="mt-2 w-full">
-        {submitting ? 'Submitting…' : 'Submit Booth Application'}
+        {submitting ? 'Submitting…' : 'Submit Payment'}
       </Button>
     </motion.form>
   );

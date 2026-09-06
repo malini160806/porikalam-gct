@@ -2,7 +2,6 @@ import { Router } from "express";
 import { z } from "zod";
 import { TechThiralApplication } from "../models/TechThiralApplication.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { sendTechThiralConfirmationEmail } from "../utils/mailer.js";
 import { uploadPaymentScreenshot } from "../utils/upload.js";
 
 const router = Router();
@@ -11,17 +10,14 @@ const router = Router();
 const UPI_REFERENCE_REGEX = /^\d{12}$/;
 
 const applySchema = z.object({
-  organizationName: z.string().trim().min(1).max(150),
-  contactPerson: z.string().trim().min(1).max(80),
-  contactEmail: z.string().trim().email().max(120),
-  contactPhone: z.string().trim().min(1).max(20),
-  showcaseDescription: z.string().trim().max(500).optional(),
   paymentReference: z
     .string()
     .trim()
     .regex(UPI_REFERENCE_REGEX, "Enter a valid 12-digit UPI transaction reference ID."),
 });
 
+// Organization/contact details are collected separately via the booth application
+// Google Form — this only records the UPI payment reference (and optional screenshot).
 router.post(
   "/apply",
   uploadPaymentScreenshot.single("paymentScreenshot"),
@@ -29,16 +25,9 @@ router.post(
     const input = applySchema.parse(req.body);
 
     const application = await TechThiralApplication.create({
-      organizationName: input.organizationName,
-      contactPerson: input.contactPerson,
-      contactEmail: input.contactEmail,
-      contactPhone: input.contactPhone,
-      showcaseDescription: input.showcaseDescription ?? null,
       paymentReference: input.paymentReference,
       paymentScreenshotUrl: req.file ? `/uploads/payment-screenshots/${req.file.filename}` : null,
     });
-
-    void sendTechThiralConfirmationEmail(input.contactEmail, input.organizationName);
 
     res.status(201).json({ applicationId: application._id.toString() });
   }),

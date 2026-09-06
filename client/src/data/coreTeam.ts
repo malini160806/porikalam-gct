@@ -20,29 +20,32 @@ export const coreTeamMembers: CoreTeamMember[] = [
   { id: 'ctm0', name: 'Illamathi',  domain: 'staff-coordinator', order: 1 },
 
   // Technical & Event Operations
-  { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', order: 1 },
-  { id: 'ctm2', name: 'Kaviya R', domain: 'technical-ops', order: 2 },
-  { id: 'ctm4', name: 'Sivaa V', domain: 'technical-ops', order: 3 },
-  { id: 'ctm5', name: 'Jeevanagan T', domain: 'technical-ops', order: 4 },
+  { id: 'ctm1', name: 'Karthik K', domain: 'technical-ops', role: 'Director of Technical Events', order: 1 },
+  { id: 'ctm2', name: 'Kaviya R', domain: 'technical-ops', role: 'Director of Technical Events', order: 2 },
+  { id: 'ctm4', name: 'Sivaa V', domain: 'technical-ops', role: 'Director of Technical Events', order: 3 },
+  { id: 'ctm5', name: 'Jeevanagan T', domain: 'technical-ops', role: 'Director of Technical Events', order: 4 },
+  { id: 'ctm17', name: 'Anitha R', domain: 'technical-ops', role: 'Director of Non-Technical Events', order: 5 },
+  { id: 'ctm18', name: 'Yuvan Shankar N K', domain: 'technical-ops', role: 'Director of Flagship Events', order: 6 },
 
   // Hospitality & Guest Relations
-  { id: 'ctm6', name: 'Anfas Ali A', domain: 'hospitality', order: 1 },
-  { id: 'ctm7', name: 'Naveena S', domain: 'hospitality', order: 2 },
-  { id: 'ctm8', name: 'Kaviya R', domain: 'hospitality', order: 3 },
+  { id: 'ctm7', name: 'Naveena S', domain: 'hospitality', role: 'Director of Hospitality & Guest Relations', order: 1 },
+  { id: 'ctm19', name: 'Aravindhan S M', domain: 'hospitality', role: 'Director of Hospitality & Guest Relations', order: 2 },
+  { id: 'ctm8', name: 'Kaviya R', domain: 'hospitality', role: 'Director of Alumni & Guest Relations', order: 3 },
 
   // Web & Tech Support
-  { id: 'ctm9', name: 'Dharani S', domain: 'web-tech', order: 1 },
-  { id: 'ctm10', name: 'Malini R', domain: 'web-tech', order: 2 },
+  { id: 'ctm9', name: 'Dharani S', domain: 'web-tech', role: 'Director of Web Operations', order: 1 },
+  { id: 'ctm10', name: 'Malini R', domain: 'web-tech', role: 'Director of Web Operations', order: 2 },
 
   // Sponsorship & Finance
-  { id: 'ctm11', name: 'Jothi Lakshmi S', domain: 'sponsorship-finance', order: 1 },
-  { id: 'ctm12', name: 'Mohanraj M', domain: 'sponsorship-finance', order: 2 },
+  { id: 'ctm6', name: 'Anfas Ali A', domain: 'sponsorship-finance', role: 'Director of Financial Operations', order: 1 },
+  { id: 'ctm12', name: 'Mohanraj M', domain: 'sponsorship-finance', role: 'Director of Sponsorship', order: 2 },
+  { id: 'ctm11', name: 'Jothi Lakshmi S', domain: 'sponsorship-finance', role: 'Director of Sponsorship & Financial Operations', order: 3 },
 
   // Marketing & Branding, Syscom, Decom
-  { id: 'ctm13', name: 'Monish Vikram SB', domain: 'marketing-branding', order: 1 },
-  { id: 'ctm14', name: 'Sorimuthu B', domain: 'marketing-branding', order: 2 },
-  { id: 'ctm15', name: 'Vidhyapathi D', domain: 'marketing-branding', order: 3 },
-  { id: 'ctm16', name: 'Dharan Prasath R', domain: 'marketing-branding', order: 4 },
+  { id: 'ctm13', name: 'Monish Vikram SB', domain: 'marketing-branding', role: 'Director of Social Media & Communication', order: 1 },
+  { id: 'ctm14', name: 'Sorimuthu B', domain: 'marketing-branding', role: 'Director of Marketing & Outreach', order: 2 },
+  { id: 'ctm15', name: 'Vidhyapathi D', domain: 'marketing-branding', role: 'Director of Creative Design', order: 3 },
+  { id: 'ctm16', name: 'Dharan Prasath R', domain: 'marketing-branding', role: 'Director of Media & Production', order: 4 },
 ];
 
 export function getMembersForDomain(domainId: string): CoreTeamMember[] {

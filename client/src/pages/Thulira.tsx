@@ -456,6 +456,34 @@ export default function Thulira() {
         </div>
       </section>
 
+      {/* Prequalifier Round */}
+      <section className="relative bg-cream/95 py-24">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Prequalifier Round" title="Submit Your Prequalifier Entry" />
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5 }}
+            className="relative mt-12 overflow-hidden border border-gold/30 bg-white/40 p-10 text-center sm:p-12"
+          >
+            <CornerOrnament corner="top-left" />
+            <CornerOrnament corner="bottom-right" />
+
+            <div className="relative z-10 flex flex-col items-center gap-5">
+              <p className="max-w-lg font-body text-sm leading-relaxed text-slate">
+                Before the main event, teams must clear a prequalifier round — submit your team details and pitch
+                deck to be considered. Problem statements will be announced soon; check back before submitting.
+              </p>
+
+              <Button to="/thulira/prequalifier" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+                Apply for Prequalifier
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Apply Now — final CTA */}
       <section className="relative overflow-hidden bg-navy-deep py-16 text-center">
         <div className="absolute inset-0 bp-grid-bg opacity-20" />

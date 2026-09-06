@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { z } from "zod";
 import { ThuliraApplication } from "../models/ThuliraApplication.js";
+import { ThuliraPrequalifierSubmission } from "../models/ThuliraPrequalifierSubmission.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { sendThuliraConfirmationEmail } from "../utils/mailer.js";
-import { uploadPaymentScreenshot } from "../utils/upload.js";
+import { ApiError } from "../utils/ApiError.js";
+import { sendThuliraConfirmationEmail, sendThuliraPrequalifierConfirmationEmail } from "../utils/mailer.js";
+import { uploadPaymentScreenshot, uploadPpt } from "../utils/upload.js";
 
 const router = Router();
 
@@ -62,6 +64,57 @@ router.post(
     void sendThuliraConfirmationEmail(input.leaderEmail, input.teamName);
 
     res.status(201).json({ applicationId: application._id.toString() });
+  }),
+);
+
+const prequalifierSchema = z.object({
+  teamName: z.string().trim().min(1).max(120),
+  startupTitle: z.string().trim().min(1).max(150),
+  leaderName: z.string().trim().min(1).max(80),
+  leaderEmail: z.string().trim().email().max(120),
+  leaderPhone: z.string().trim().min(1).max(20),
+  // Teammates arrive as a JSON-encoded array string since this is a multipart form body.
+  teammateNames: z.string().trim().optional(),
+  problemStatement: z.string().trim().max(200).optional(),
+});
+
+router.post(
+  "/prequalifier",
+  uploadPpt.single("ppt"),
+  asyncHandler(async (req, res) => {
+    const input = prequalifierSchema.parse(req.body);
+    if (!req.file) throw new ApiError(400, "Please upload your PPT to submit.", "ppt");
+
+    let teammateNames: string[] = [];
+    if (input.teammateNames) {
+      try {
+        const parsed: unknown = JSON.parse(input.teammateNames);
+        if (Array.isArray(parsed)) {
+          teammateNames = parsed.filter(
+            (value): value is string => typeof value === "string" && value.trim().length > 0,
+          );
+        }
+      } catch {
+        // Malformed input — treat as no teammates rather than failing the whole submission.
+      }
+    }
+
+    const pptUrl = `/uploads/ppts/${req.file.filename}`;
+
+    const submission = await ThuliraPrequalifierSubmission.create({
+      teamName: input.teamName,
+      startupTitle: input.startupTitle,
+      leaderName: input.leaderName,
+      leaderEmail: input.leaderEmail,
+      leaderPhone: input.leaderPhone,
+      teammateNames,
+      problemStatement: input.problemStatement ?? null,
+      pptUrl,
+    });
+
+    void sendThuliraPrequalifierConfirmationEmail(input.leaderEmail, input.teamName);
+
+    res.status(201).json({ submissionId: submission._id.toString() });
   }),
 );
 

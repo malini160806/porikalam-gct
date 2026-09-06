@@ -7,6 +7,7 @@ import { Announcement } from "./Announcement.js";
 import { Registration } from "./Registration.js";
 import { PrequalifierSubmission } from "./PrequalifierSubmission.js";
 import { ThuliraApplication } from "./ThuliraApplication.js";
+import { ThuliraPrequalifierSubmission } from "./ThuliraPrequalifierSubmission.js";
 import { TechThiralApplication } from "./TechThiralApplication.js";
 import { env } from "../config/env.js";
 
@@ -20,6 +21,7 @@ export {
   Registration,
   PrequalifierSubmission,
   ThuliraApplication,
+  ThuliraPrequalifierSubmission,
   TechThiralApplication,
 };
 
@@ -33,6 +35,7 @@ const allModels = [
   Registration,
   PrequalifierSubmission,
   ThuliraApplication,
+  ThuliraPrequalifierSubmission,
   TechThiralApplication,
 ];
 

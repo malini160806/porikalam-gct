@@ -90,6 +90,32 @@ export async function sendThuliraConfirmationEmail(to: string, teamName: string)
   }
 }
 
+export async function sendThuliraPrequalifierConfirmationEmail(to: string, teamName: string): Promise<void> {
+  if (!transporter) {
+    console.warn("[mailer] SMTP_USER/SMTP_PASS not set — skipping Thulira prequalifier confirmation email.");
+    return;
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"Porikkalam 2026" <${env.smtpUser}>`,
+      to,
+      subject: `Thulira Prequalifier Submission Received — ${teamName}`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
+          <h2 style="color: #b8860b;">Thank you for participating!</h2>
+          <p>We've received <strong>${teamName}</strong>'s prequalifier submission for the Thulira Startup Exhibition.</p>
+          <p>We will review your submission and update the results on the website's leaderboard page and via email.</p>
+          <p style="font-size: 18px; font-weight: 800; color: #b8860b;">Stay tuned!!</p>
+          <p>Porikkalam 2026 · Government College of Technology, Coimbatore</p>
+        </div>
+      `,
+    });
+  } catch (error) {
+    console.error("[mailer] failed to send Thulira prequalifier confirmation email:", error);
+  }
+}
+
 export async function sendTechThiralConfirmationEmail(to: string, organizationName: string): Promise<void> {
   if (!transporter) {
     console.warn("[mailer] SMTP_USER/SMTP_PASS not set — skipping Tech Thiral confirmation email.");

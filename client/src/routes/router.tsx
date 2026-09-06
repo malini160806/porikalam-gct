@@ -13,6 +13,7 @@ const EventDetail = lazy(() => import('@/pages/EventDetail'));
 const RegisterEvents = lazy(() => import('@/pages/RegisterEvents'));
 const PrequalifierSubmission = lazy(() => import('@/pages/PrequalifierSubmission'));
 const Thulira = lazy(() => import('@/pages/Thulira'));
+const ThuliraPrequalifierSubmission = lazy(() => import('@/pages/ThuliraPrequalifierSubmission'));
 const TechThiral = lazy(() => import('@/pages/TechThiral'));
 const Sponsors = lazy(() => import('@/pages/Sponsors'));
 const Contact = lazy(() => import('@/pages/Contact'));
@@ -74,6 +75,7 @@ export const router = createBrowserRouter([
       { path: 'events/:eventId/prequalifier', element: withSuspense(PrequalifierSubmission) },
       { path: 'events/:eventId', element: withSuspense(EventDetail) },
       { path: 'thulira', element: withSuspense(Thulira) },
+      { path: 'thulira/prequalifier', element: withSuspense(ThuliraPrequalifierSubmission) },
       { path: 'tech-thiral', element: withSuspense(TechThiral) },
       { path: 'sponsors', element: withSuspense(Sponsors) },
       { path: 'contact', element: withSuspense(Contact) },

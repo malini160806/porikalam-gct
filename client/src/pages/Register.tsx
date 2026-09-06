@@ -36,11 +36,11 @@ export default function Register() {
       ========================================================= */}
       <section className="relative z-10 flex min-h-screen items-center px-5 py-10 sm:px-8 lg:px-12">
 
-        <div className="mx-auto grid w-full max-w-7xl overflow-hidden border border-gold/20 bg-navy/40 shadow-[0_30px_100px_-30px_rgba(0,0,0,0.8)] backdrop-blur-sm lg:grid-cols-[0.8fr_1.4fr]">
+        <div className="mx-auto grid w-full max-w-7xl overflow-hidden border border-gold/20 bg-navy/40 shadow-[0_30px_100px_-30px_rgba(0,0,0,0.8)] backdrop-blur-sm lg:h-[calc(100vh-5rem)] lg:grid-cols-[0.8fr_1.4fr]">
 
 
           {/* =====================================================
-              LEFT — EVENT BRANDING
+              LEFT — EVENT BRANDING (fixed in place)
           ===================================================== */}
           <div className="relative hidden min-h-[760px] overflow-hidden lg:flex">
 
@@ -170,9 +170,9 @@ export default function Register() {
 
 
           {/* =====================================================
-              RIGHT — REGISTRATION
+              RIGHT — REGISTRATION (scrollable)
           ===================================================== */}
-          <div className="relative flex min-h-[760px] items-center justify-center bg-cream p-5 sm:p-8 lg:p-10">
+          <div className="relative flex min-h-[760px] items-center justify-center overflow-y-auto bg-cream p-5 sm:p-8 lg:h-full lg:items-start lg:p-10">
 
             {/* Paper grid */}
             <div className="pointer-events-none absolute inset-0 bp-grid-bg opacity-25" />
